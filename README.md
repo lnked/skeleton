@@ -1,0 +1,2 @@
+# skeleton
+Web starter kit
