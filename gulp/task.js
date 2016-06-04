@@ -1,9 +1,9 @@
 'use strict';
 
-const gulp          = require('gulp');
-const folder        = './tasks/';
-
 module.exports = function(name, config, is) {
+    const gulp          = require('gulp');
+    const folder        = './tasks/';
+
     config = config || {};
     config.task = name;
     config.is = is;

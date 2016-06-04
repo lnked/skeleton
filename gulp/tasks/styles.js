@@ -1,15 +1,15 @@
 'use strict';
 
 module.exports = function(config) {
-    config = config || {}
+    config = config || {};
+    
+    const $             = require('gulp-load-plugins')({ pattern: ['gulp-*', 'gulp.*', 'postcss-*'] });
+    const gulp          = require('gulp');
+    const clean         = require("../clean.js");
+    const error 		= require("../error.js");
 
     var postcss      = require('gulp-postcss');
     var  = require('autoprefixer');
-
-    const $             = require('gulp-load-plugins')();
-    const gulp          = require('gulp');
-    const clean         = require("../clean.js");
-    const errorHandler  = require("../errorHandler.js");
 
     const postcss       = require('postcss');
 
@@ -80,10 +80,10 @@ module.exports = function(config) {
         //     clean(config.app, config.is.build);
         // }
 
-        // gulp.src(config.src, {since: gulp.lastRun(config.taskName)})
-        //     .pipe($.plumber({errorHandler: errorHandler}))
+        // gulp.src(config.src, {since: gulp.lastRun(config.task)})
+        //     .pipe($.plumber({errorHandler: error}))
         //     .pipe(gulp.dest(config.app))
-        //     .pipe($.notify({ message: config.taskName + ' complete', onLast: true }));
+        //     .pipe($.notify({ message: config.task + ' complete', onLast: true }));
 
         callback();
 

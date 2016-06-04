@@ -1,24 +1,22 @@
 'use strict';
 
 module.exports = function(config) {
-    const $             = require('gulp-load-plugins')();
+    config = config || {};
+
+    const $             = require('gulp-load-plugins')({ pattern: ['gulp-*', 'gulp.*', 'postcss-*'] });
     const gulp          = require('gulp');
-    const include       = require('gulp-file-include');
-    const inlineCss     = require("gulp-inline-css");
-    const prettify      = require('gulp-html-prettify');
     const clean         = require("../clean.js");
-    const errorHandler  = require("../errorHandler.js");
-    
-    config = config || {}
+    const error 		= require("../error.js");
 
     return function(callback) {
 
         gulp.src(config.src)
 
-            .pipe($.plumber({errorHandler: errorHandler}))
+            .pipe($.plumber({errorHandler: error}))
             .pipe($.debug({'title': config.task}))
 
-            .pipe(include({
+            // .pipe(include({
+            .pipe($.fileInclude({
                 prefix: '@@',
                 basepath: '@file'
             }))
@@ -35,7 +33,7 @@ module.exports = function(config) {
 
             .pipe($.if(
                 config.is.build,
-                prettify({
+                $.htmlPrettify({
                     indent_size: 4,
                     indent_char: ' ',
                     brace_style: 'expand',

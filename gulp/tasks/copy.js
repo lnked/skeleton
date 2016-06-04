@@ -7,13 +7,16 @@ module.exports = function(config) {
     const gulp          = require('gulp');
     const clean         = require("../clean.js");
     const error         = require("../error.js");
-
+    
     return function(callback) {
+        // clean(config.app, config.is.build);
 
-        console.log('favicon')
+        gulp.src(config.src, {since: gulp.lastRun(config.task)})
+            .pipe($.plumber({errorHandler: error}))
+            .pipe(gulp.dest(config.app))
+            .pipe($.notify({ message: config.task + ' complete', onLast: true }));
 
         callback();
-
     };
 
 };

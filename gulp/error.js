@@ -1,4 +1,4 @@
-const $ 			= require('gulp-load-plugins')();
+const $             = require('gulp-load-plugins')({ pattern: ['gulp-*', 'gulp.*', 'postcss-*'] });
 const gulp 			= require('gulp');
 
 module.exports = function(err) {

@@ -14,23 +14,29 @@ module.exports.tasks = {
     'scripts': {
         path: src + 'scripts',
         ignore: '!' + src + 'scripts/**/_*.*',
-        // formats: {
-        //     js: [src + 'scripts/**/*.js', '!' + src + 'scripts/**/_*.*'],
-        //     coffee: [src + 'scripts/**/*.coffee', '!' + src + 'scripts/**/_*.*'],
-        // },
-        // src: [src + 'scripts/**/*.js', src + 'scripts/**/*.coffee', '!' + src + 'scripts/**/_*.*'],
         app: app + 'js'
     },
 
     'styles': {},
     
-    'images': {},
+    'images': {
+        src: src + 'images/**/*.{gif,svg,png,jpg,jpeg,webp}',
+        app: app + 'images'
+    },
+
     'fonts': {},
+    
     'json': {},
+
     'favicon': {},
+    
     'svgstore': {},
+
     'extras': {},
+    
     'webserver': {},
+    
     'screenshot': {},
+    
     'watch': {}
 }

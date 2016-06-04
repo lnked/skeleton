@@ -5,12 +5,13 @@ module.exports = function(config) {
 
     const $             = require('gulp-load-plugins')({ pattern: ['gulp-*', 'gulp.*', 'postcss-*'] });
     const gulp          = require('gulp');
-
+    const error         = require("../error.js");
+    
     return function(callback) {
 
-        console.log('json')
-
-        callback();
+        return gulp.src(config.app)
+            .pipe($.ghPages())
+            .pipe($.notify({ message: config.task + ' complete', onLast: true }));
 
     };
 
