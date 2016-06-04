@@ -6,53 +6,50 @@ module.exports = function(config) {
     const $             = require('gulp-load-plugins')({ pattern: ['gulp-*', 'gulp.*', 'postcss-*'] });
     const gulp          = require('gulp');
     const path          = require('path');
-    const clean         = require("../utils/clean.js");
+    const clean         = require("../clean.js");
     const error         = require("../error.js");
     
     return function(callback) {
 
-        function fileContents (filePath, file) {
+        function fileContents(filePath, file) {
             return file.contents.toString();
         }
 
-        gulp.src(config.app.file)
+        gulp.src(config.file)
             .pipe($.inject(
                 gulp.src(config.src)
-                .pipe($.svgmin(function (file) {
-                    var prefix = path.basename(file.relative, path.extname(file.relative));
-                    return {
-                        plugins: [
-                            {
-                                removeTitle: true
-                            },
-                            {
-                                removeDoctype: true
-                            },
-                            {
-                                removeComments: true
-                            },
-                            {
-                                cleanupNumericValues: {
+                    .pipe($.svgmin(function (file) {
+                        var prefix = path.basename(file.relative, path.extname(file.relative));
+                        return {
+                            plugins: [
+                                {removeTitle:true},
+                                {removeDesc:true},
+                                {removeViewBox:true},
+                                {removeDoctype:true},
+                                {removeMetadata:true},
+                                {removeComments:true},
+                                {removeUselessDefs:true},
+                                {removeXMLProcInst:true},
+                                {removeDimensions:true},
+                                {cleanupNumericValues: {
                                     floatPrecision: 2
-                                }
-                            },
-                            {
-                                convertColors: {
-                                    names2hex: false,
-                                    rgb2hex: true
-                                }
-                            },
-                            {
-                                cleanupIDs: {
+                                }},
+                                {cleanupIDs: {
                                     prefix: prefix + '-',
                                     minify: false
-                                }
-                            }
-                        ]
-                    }
-                }))
-                .pipe($.svgstore({ inlineSvg: true })), { transform: fileContents }))
-                .pipe(gulp.dest(config.app.path));
+                                }},
+                                {convertColors: {
+                                    names2hex: true,
+                                    rgb2hex: true
+                                }},
+                                {removeUselessStrokeAndFill:false}
+                            ]
+                        }
+                    }))
+                    .pipe($.svgstore({ inlineSvg: true })),
+                { transform: fileContents }
+            ))
+            .pipe(gulp.dest(config.path));
        
         callback();
     };

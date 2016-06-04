@@ -39,11 +39,31 @@ module.exports.tasks = {
         app: app + 'favicon'
     },
     
-    'svgstore': {},
+    'svgstore': {
+        src: src + 'svgstore/**/*.svg',
+        path: src + 'template/components/',
+        file: src + 'template/components/_svgstore.html'
+    },
 
     'extras': {},
     
-    'webserver': {},
+    'webserver': {
+        app: app,
+        server: {
+            port: 3004,
+            // proxy: {
+            //     target: "http://localhost:3004/",
+            //     ws: true
+            // },
+            server: {
+                baseDir: app,
+                index: 'index.html'
+            },
+            browser: [
+                "google chrome", // "firefox"
+            ]
+        }
+    },
     
     'screenshot': {},
     

@@ -36,6 +36,13 @@ module.exports = function(config) {
                         {removeUselessDefs:true},
                         {removeXMLProcInst:true},
                         {removeDimensions:true},
+                        {cleanupNumericValues: {
+                            floatPrecision: 2
+                        }},
+                        {cleanupIDs: {
+                            prefix: prefix + '-',
+                            minify: false
+                        }},
                         {convertColors: {
                             names2hex: true,
                             rgb2hex: true

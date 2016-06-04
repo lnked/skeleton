@@ -1,5 +1,6 @@
 'use strict';
 
+const $             = require('gulp-load-plugins')({ pattern: ['gulp-*', 'gulp.*', 'postcss-*'] });
 const gulp          = require('gulp');
 const task          = require("./gulp/task.js");
 const config        = require("./gulp/config.js");
@@ -13,4 +14,4 @@ gulp.task('build',
     gulp.parallel('template', 'styles', 'scripts', 'images', 'favicon', 'fonts', 'json', 'extras')
 );
 
-gulp.task('default', gulp.series('watch'));
+gulp.task('default', gulp.parallel( 'watch', 'webserver' ));
