@@ -3,12 +3,20 @@
 module.exports = function(config) {
     config = config || {};
 
+    const $             = require('gulp-load-plugins')({ pattern: ['gulp-*', 'gulp.*', 'postcss-*'] });
     const gulp          = require('gulp');
-    
+    const clean         = require("../clean.js");
+    const error         = require("../error.js");
+
     return function(callback) {
-
-        console.log('fonts')
-
+        
+        gulp.src(config.src)
+            .pipe($.if(
+                !config.is.build,
+                $.newer(config.app)
+            ))
+            .pipe(gulp.dest(config.app));
+            
         callback();
 
     };

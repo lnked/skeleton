@@ -10,8 +10,13 @@ module.exports = function(config) {
 
     return function(callback) {
 
-        console.log('favicon')
-
+        gulp.src(config.src)
+            .pipe($.if(
+                !config.is.build,
+                $.newer(config.app)
+            ))
+            .pipe(gulp.dest(config.app));
+            
         callback();
 
     };

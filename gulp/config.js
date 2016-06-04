@@ -24,11 +24,20 @@ module.exports.tasks = {
         app: app + 'images'
     },
 
-    'fonts': {},
+    'fonts': {
+        src: src + 'fonts/**/*.{woff2,woff,ttf,eot,svg}',
+        app: app + 'fonts'
+    },
     
-    'json': {},
+    'json': {
+        src: src + 'json/**/*.*',
+        app: app + 'json'
+    },
 
-    'favicon': {},
+    'favicon': {
+        src: src + 'favicon/**/*.*',
+        app: app + 'favicon'
+    },
     
     'svgstore': {},
 
@@ -38,5 +47,16 @@ module.exports.tasks = {
     
     'screenshot': {},
     
-    'watch': {}
+    'watch': {
+        tasks: {
+            template:   [src + 'template/*.html', src + 'template/**/*.html', src + 'template/**/**/*.html', '!' + src + 'template/**/_*.*'],
+            scripts:    [src + 'scripts/**/*.{js,coffee}', '!' + src + 'scripts/**/_*.*'],
+            images:     [src + 'images/**/*.*'],
+            favicon:    [src + 'favicon/**/*.*'],
+            fonts:      [src + 'fonts/**/*.*'],
+            json:       [src + 'json/**/*.json'],
+            styles:     [src + 'styles/**/*.scss'],
+            svgstore:   [src + 'svgstore/**/*.svg']
+        }
+    }
 }
