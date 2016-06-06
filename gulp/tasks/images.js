@@ -51,7 +51,7 @@ module.exports = function(config) {
                             floatPrecision: 2
                         }},
                         {cleanupIDs: {
-                            prefix: prefix + '-',
+                            prefix: '-',
                             minify: false
                         }},
                         {convertColors: {

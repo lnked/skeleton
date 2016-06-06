@@ -10,6 +10,7 @@ is = {
     es2015: false,  // short: e
     react: false,   // short: r
     mail: false,    // short: m
+    lint: false,    // short: l
     watch: false,   // short: w
     uncss: false,   // short: u
     server: false,  // short: s

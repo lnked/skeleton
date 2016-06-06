@@ -36,22 +36,20 @@ module.exports = function(config) {
                     $.react()
                 ))
 
-                .pipe($.eslint())
-                .pipe($.eslint.format())
-                .pipe($.eslint.failAfterError())
+                .pipe($.if(global.is.lint, $.eslint()))
+                .pipe($.if(global.is.lint, $.eslint.format()))
+                .pipe($.if(global.is.lint, $.eslint.failAfterError()))
                 
                 .pipe($.rename({suffix: '.min'}))
                 
-                .pipe($.if(
-                    global.is.build,
-                    $.uglify()
-                ))
+                .pipe($.if(global.is.build, $.uglify()))
 
                 .pipe($.if(!global.is.build, $.sourcemaps.write()))
 
                 .pipe($.debug({'title': config.task}))
 
                 .pipe(gulp.dest(config.app))
+                
                 .pipe($.notify({ message: config.task + ' complete: ' + folder, onLast: true }));
         });
 

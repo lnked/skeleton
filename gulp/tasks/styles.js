@@ -10,6 +10,25 @@ module.exports = function(config) {
 
     return function(callback) {
         
+        let stylelintConfig = {
+            "rules": {
+                "color-no-invalid-hex": true,
+                "declaration-colon-space-after": "always",
+                "declaration-colon-space-before": "never",
+                "function-comma-space-after": "always",
+                "media-feature-colon-space-after": "always",
+                "media-feature-colon-space-before": "never",
+                "media-feature-name-no-vendor-prefix": true,
+                "max-empty-lines": 5,
+                "number-leading-zero": "never",
+                "selector-list-comma-space-before": "never",
+                "selector-no-id": true,
+                "number-no-trailing-zeros": true,
+                "property-no-vendor-prefix": true,
+                "value-no-vendor-prefix": true
+            }
+        };
+
         gulp.src(config.src)
             .pipe($.plumber({errorHandler: error}))
             .pipe($.sourcemaps.init())
@@ -19,6 +38,7 @@ module.exports = function(config) {
                     require('postcss-modules')({
                         scopeBehaviour: 'global'
                     }),
+                    require('precss'),
                     require('postcss-use')({ resolveFromFile: true, modules: '*' }),
                     require('postcss-each'),
                     require('postcss-for'),
@@ -31,18 +51,20 @@ module.exports = function(config) {
                     require('postcss-include'),
                     require('postcss-nested'),
                     require('postcss-color-function'),
+                    require('postcss-custom-media'),
+                    require('postcss-media-minmax'),
                     require('postcss-simple-vars')({ silent: true }),
                     require('postcss-font-magician')({
                         hosted: '../fonts',
                         formats: 'local woff2 woff ttf eot svg'
                     }),
+                    require('postcss-cssnext'),
                     require('postcss-fixes'),
                     require('postcss-vmin'),
                     require('postcss-opacity'),
-                    require('postcss-color-rgba-fallback'),
-                    require('postcss-will-change'),
                     require('postcss-unnth'),
-                    require('postcss-cssnext'),
+                    require('postcss-will-change'),
+                    require('postcss-color-rgba-fallback'),
                     require('postcss-reporter')({ clearMessages: true })
                 ])
             )
@@ -60,14 +82,28 @@ module.exports = function(config) {
             ))
 
             .pipe($.if(
+                global.is.lint,
+                $.postcss([
+                    require('stylelint')(stylelintConfig),
+                    require('postcss-reporter')({
+                        clearMessages: true,
+                        throwError: true
+                    })
+                ])
+            ))
+
+            .pipe($.rename({suffix: '.min'}))
+
+            .pipe($.if(
                 global.is.build,
                 $.postcss([
+                    require('postcss-emptymediaqueries'),
+                    require('css-mqpacker'),
+                    require('postcss-flexboxfixer'),
+                    require('postcss-gradientfixer'),
                     require('autoprefixer')({
                         browsers: ["last 2 version", "safari 5", "ie > 7", "opera 12.1", "ios 6", "android 2.3"]
                     }),
-                    require('precss'),
-                    require('postcss-flexboxfixer'),
-                    require('postcss-gradientfixer'),
                     require('cssnano')({
                         'safe': true,
                         'calc': false,
