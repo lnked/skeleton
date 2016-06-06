@@ -20,19 +20,19 @@ module.exports = function(config) {
             gulp.src([path.join(config.path, folder, '/**/*.*'), config.ignore])
                 .pipe($.plumber({errorHandler: error}))
                 .pipe($.debug({'title': config.task}))
-                .pipe($.if(!config.is.build, $.sourcemaps.init()))
+                .pipe($.if(!global.is.build, $.sourcemaps.init()))
 
                 .pipe($.if(/[.]coffee$/, $.coffee()))
                 
                 .pipe($.concat(folder + '.js'))
 
                 .pipe($.if(
-                    config.is.es2015,
+                    global.is.es2015,
                     $.babel({ presets: ['es2015'] })
                 ))
 
                 .pipe($.if(
-                    config.is.react,
+                    global.is.react,
                     $.react()
                 ))
 
@@ -43,11 +43,11 @@ module.exports = function(config) {
                 .pipe($.rename({suffix: '.min'}))
                 
                 .pipe($.if(
-                    config.is.build,
+                    global.is.build,
                     $.uglify()
                 ))
 
-                .pipe($.if(!config.is.build, $.sourcemaps.write()))
+                .pipe($.if(!global.is.build, $.sourcemaps.write()))
 
                 .pipe($.debug({'title': config.task}))
 

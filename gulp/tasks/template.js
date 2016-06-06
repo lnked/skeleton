@@ -23,7 +23,7 @@ module.exports = function(config) {
             }))
 
             .pipe($.if(
-                config.is.email,
+                global.is.email,
                 $.inlineCss({
                     applyStyleTags: true,
                     applyLinkTags: true,
@@ -33,7 +33,7 @@ module.exports = function(config) {
             ))
 
             .pipe($.if(
-                config.is.build,
+                global.is.build,
                 $.htmlPrettify({
                     indent_size: 4,
                     indent_char: ' ',
@@ -47,7 +47,7 @@ module.exports = function(config) {
             ))
 
             .pipe($.if(
-                config.is.watch,
+                global.is.watch,
                 $.htmlhint({
                     "attr-value-double-quotes": false,
                     "tagname-lowercase": false,
@@ -62,7 +62,7 @@ module.exports = function(config) {
             ))
 
             .pipe($.if(
-                config.is.watch,
+                global.is.watch,
                 $.htmlhint.reporter()
             ))
 

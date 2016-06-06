@@ -29,7 +29,6 @@ module.exports = function(config) {
                         hosted: '../fonts',
                         formats: 'local woff2 woff ttf eot svg'
                     }),
-                    require('cssnext'),
                     require('precss'),
                     require('autoprefixer')({
                         browsers: ["last 2 version", "safari 5", "ie > 7", "opera 12.1", "ios 6", "android 2.3"]
@@ -42,12 +41,13 @@ module.exports = function(config) {
                     require('postcss-gradientfixer'),
                     require('postcss-will-change'),
                     require('postcss-unnth'),
-                    require('postcss-discard-empty'),
+                    require('cssnext'),
+                    require('postcss-reporter')({ clearMessages: true })
                 ])
             )
 
             .pipe($.if(
-                config.is.build,
+                global.is.build,
                 $.postcss([
                     require('cssnano')({
                         'safe': true,

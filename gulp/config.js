@@ -55,6 +55,10 @@ module.exports.tasks = {
 
     'extras': {},
     
+    'deploy': {
+        app: app + '/**/*'
+    },
+    
     'webserver': {
         app: app,
         server: {

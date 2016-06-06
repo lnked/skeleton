@@ -12,7 +12,7 @@ module.exports = function(config) {
         
         gulp.src(config.src)
             .pipe($.if(
-                !config.is.build,
+                !global.is.build,
                 $.newer(config.app)
             ))
             .pipe(gulp.dest(config.app));

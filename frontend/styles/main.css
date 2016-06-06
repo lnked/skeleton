@@ -1,23 +1,10 @@
 @charset "utf-8";
 
-@import "./colors";
 @import "./variable";
 
 @import "./reset";
 
 body {
-    font-family: "Alice";
-    font-family: 'PT Sans';
     font-family: 'Roboto';
-    font-family: 'Slabo 27px', serif;
-}
-
-/*
-@include "./mixin/";
-@import "./form/";
-@import "./components/**";
-*/
-
-body {
-    background-color: $red;
+    font-weight: 300;
 }

@@ -29,4 +29,4 @@ if (typeof $.util.env !== 'undefined') {
     }
 }
 
-module.exports.is = is;
+global.is = is;

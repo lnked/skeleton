@@ -12,7 +12,7 @@ module.exports = function(config) {
 
     return function(callback) {
 
-        // clean(config.app, config.is.build);
+        // clean(config.app, global.is.build);
 
         gulp.src(config.src)
             .pipe($.plumber({errorHandler: error}))
@@ -33,7 +33,7 @@ module.exports = function(config) {
             )
 
             .pipe($.if(
-                config.is.build,
+                global.is.build,
                 $.imagemin({
                     optimizationLevel: 3,
                     progressive: true,

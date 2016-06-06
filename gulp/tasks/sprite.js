@@ -32,7 +32,7 @@ module.exports = function(config) {
 		// 	mode: {
 		// 		css: {
 		// 			dest:		'.',
-		// 			bust:		!config.is.build,
+		// 			bust:		!global.is.build,
 		// 			sprite:		'sprite.svg',
 		// 			layout:		'vertical',
 		// 			prefix:		'$',

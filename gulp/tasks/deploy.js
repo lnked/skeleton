@@ -9,9 +9,11 @@ module.exports = function(config) {
     
     return function(callback) {
 
-        return gulp.src(config.app)
-            .pipe($.ghPages())
+        gulp.src(config.app)
+            .pipe($.ghpages({branch: 'master'}))
             .pipe($.notify({ message: config.task + ' complete', onLast: true }));
+
+        callback();
 
     };
 
