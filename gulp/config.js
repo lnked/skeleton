@@ -7,7 +7,7 @@ module.exports.src  = src;
 
 module.exports.tasks = {
     'template': {
-        src: [src + 'template/**/*.html', '!' + src + 'template/**/_*.*'],
+        src: [src + 'template/**/*.html', '!' + src + 'template/**/*.mustache', '!' + src + 'template/**/_*.*'],
         app: app
     },
 
@@ -17,7 +17,10 @@ module.exports.tasks = {
         app: app + 'js'
     },
 
-    'styles': {},
+    'styles': {
+        src: [src + 'styles/**/*.css', '!' + src + 'styles/_*.*', '!' + src + 'styles/**/_*.*'],
+        app: app + 'css'
+    },
     
     'images': {
         src: src + 'images/**/*.{gif,svg,png,jpg,jpeg,webp}',
@@ -45,16 +48,17 @@ module.exports.tasks = {
         file: src + 'template/components/_svgstore.html'
     },
 
+    'sprite': {
+        image: '../images/sprite.png',
+        style: '_sprite.scss'
+    },
+
     'extras': {},
     
     'webserver': {
         app: app,
         server: {
             port: 3004,
-            // proxy: {
-            //     target: "http://localhost:3004/",
-            //     ws: true
-            // },
             server: {
                 baseDir: app,
                 index: 'index.html'
@@ -65,11 +69,33 @@ module.exports.tasks = {
         }
     },
     
-    'screenshot': {},
+    'screenshot': [
+        '320x480',
+        '480x320',
+
+        '320x568',
+        '568x320',
+
+        '375x627',
+        '627x375',
+
+        '414x736',
+        '736x414',
+
+        '600x960',
+        '960x600',
+
+        '768x1024',
+        '1024x768',
+
+        '1280x1024', 
+
+        '1920x1080'
+    ],
     
     'watch': {
         tasks: {
-            template:   [src + 'template/*.html', src + 'template/**/*.html', src + 'template/**/**/*.html', '!' + src + 'template/**/_*.*'],
+            template:   [src + 'template/*.html', src + 'template/**/*.html', src + 'template/**/**/*.html', src + 'template/**/_*.*'],
             scripts:    [src + 'scripts/**/*.{js,coffee}', '!' + src + 'scripts/**/_*.*'],
             images:     [src + 'images/**/*.*'],
             favicon:    [src + 'favicon/**/*.*'],
@@ -78,5 +104,55 @@ module.exports.tasks = {
             styles:     [src + 'styles/**/*.scss'],
             svgstore:   [src + 'svgstore/**/*.svg']
         }
+    },
+
+    'ftp': {
+        user: "username",
+        password: 'password',
+        port: 'ftp server port',
+        host: 'ftp server host',
+        uploadPath: 'target path'
+    },
+
+    'tinypng': ['eGm6p86Xxr4aQ3H7SvfoogEUKOwgBQc3'],
+
+    'critical': {
+        // Inline the generated critical-path CSS 
+        // - true generates HTML 
+        // - false generates CSS 
+        inline: false,
+
+        // Your base directory 
+        base: app,
+
+        // HTML source file 
+        src: 'index.html',
+
+        // Your CSS Files (optional) 
+        css: [app + 'css/main.min.css'],
+
+        dimensions: [{
+            width: 320,
+            height: 480
+        }, {
+            width: 1200,
+            height: 900
+        }],
+
+        // Target for final HTML output. 
+        // use some css file when the inline option is not set 
+        dest: app + 'css/critical.css',
+
+        // Minify critical-path CSS when inlining 
+        minify: true,
+
+        // Extract inlined styles from referenced stylesheets 
+        extract: true,
+
+        // ignore css rules 
+        ignore: ['font-face'],
+
+        // overwrite default options 
+        ignoreOptions: {}
     }
 }

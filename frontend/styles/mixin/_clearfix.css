@@ -1,0 +1,9 @@
+@define-mixin clearfix {
+
+}
+
+/*
+.footer {
+    @mixin clearfix;
+}
+*/

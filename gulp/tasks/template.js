@@ -15,7 +15,8 @@ module.exports = function(config) {
             .pipe($.plumber({errorHandler: error}))
             .pipe($.debug({'title': config.task}))
 
-            // .pipe(include({
+            .pipe($.if(/[.]mustache$/, $.mustachePlus()))
+          
             .pipe($.fileInclude({
                 prefix: '@@',
                 basepath: '@file'
