@@ -5,6 +5,7 @@ const $ = require('gulp-load-plugins')();
 let is, m, env;
 
 is = {
+    pretty: false,  // short: p
     build: false,   // short: b
     es2015: false,  // short: e
     react: false,   // short: r

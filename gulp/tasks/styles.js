@@ -14,10 +14,17 @@ module.exports = function(config) {
             .pipe($.plumber({errorHandler: error}))
             .pipe($.sourcemaps.init())
 
-
             .pipe(
                 $.postcss([
+                    require('postcss-modules')({
+                        scopeBehaviour: 'global'
+                    }),
                     require('postcss-use')({ resolveFromFile: true, modules: '*' }),
+                    require('postcss-each'),
+                    require('postcss-for'),
+                    require('postcss-at-rules-variables'),
+                    require('postcss-custom-properties'),
+                    require('postcss-conditionals'),
                     require('postcss-mixins'),
                     require('postcss-partial-import'),
                     require('postcss-extend'),
@@ -29,26 +36,38 @@ module.exports = function(config) {
                         hosted: '../fonts',
                         formats: 'local woff2 woff ttf eot svg'
                     }),
-                    require('precss'),
-                    require('autoprefixer')({
-                        browsers: ["last 2 version", "safari 5", "ie > 7", "opera 12.1", "ios 6", "android 2.3"]
-                    }),
                     require('postcss-fixes'),
                     require('postcss-vmin'),
                     require('postcss-opacity'),
                     require('postcss-color-rgba-fallback'),
-                    require('postcss-flexboxfixer'),
-                    require('postcss-gradientfixer'),
                     require('postcss-will-change'),
                     require('postcss-unnth'),
-                    require('cssnext'),
+                    require('postcss-cssnext'),
                     require('postcss-reporter')({ clearMessages: true })
                 ])
             )
 
             .pipe($.if(
+                global.is.pretty,
+                $.postcss([
+                    require('postcss-sorting')({
+                        "sort-order": "default",
+                        "empty-lines-between-children-rules": 0,
+                        "empty-lines-between-media-rules": 0,
+                        "preserve-empty-lines-between-children-rules": false
+                    })
+                ])
+            ))
+
+            .pipe($.if(
                 global.is.build,
                 $.postcss([
+                    require('autoprefixer')({
+                        browsers: ["last 2 version", "safari 5", "ie > 7", "opera 12.1", "ios 6", "android 2.3"]
+                    }),
+                    require('precss'),
+                    require('postcss-flexboxfixer'),
+                    require('postcss-gradientfixer'),
                     require('cssnano')({
                         'safe': true,
                         'calc': false,

@@ -5,6 +5,7 @@
 @import "./reset";
 
 body {
-    font-family: 'Roboto';
-    font-weight: 300;
+    font-weight: 400;
+    font-family: "Alice";
+    font-family: "Roboto";
 }
