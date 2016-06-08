@@ -1,47 +1,28 @@
 @charset "utf-8";
 
-@import "./reset";
+@import 'reset.css';
+@import './reset';
+@import "_variable";
 
+@import "./form";
+@import "_form";
+@import "./_form.css";
+@import "form.css";
+
+@import "./form/";
+@import "form/_*.css";
+
+.test {
+    color: #f00;
+}
+
+.test2 {
+    color: #0f0;
+}
+
+/*
 body {
-    font-weight: 400;
-    font-family: "Alice";
+  background: resolve('foobar.jpg');
+  background: resolve('icons/baz.png');
 }
-
-@media screen and (width >= 500px) and (width <= 1200px) {
-    .bar {
-        display: block;
-    }
-}
-
-@media screen and (device-aspect-ratio: 16 / 9) {
-    
-}
-
-@media screen and (grid: -0) {
-   
-}
-
-@media screen and (500px <= width <= 1200px) {
-    .bar {
-        display: block;
-    }
-}
-
-@media screen and (1200px >= width >= 500px) {
-    .bar {
-        display: block;
-    }
-}
-
-@media screen and (1200px <= width >= 500px) {
-    .bar {
-        display: block;
-    }
-}
-
-@custom-media --foo (width >= 20em) and (width <= 50em);
-@custom-media --bar (height >= 300px) and (height <= 600px);
-
-@media (--foo) and (--bar) {
-
-}
+*/

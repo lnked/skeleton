@@ -1,13 +1,13 @@
 'use strict';
 
+const $             = require('gulp-load-plugins')({ pattern: ['gulp-*', 'gulp.*', 'postcss-*'] });
+const gulp          = require('gulp');
+const clean         = require("../clean.js");
+const error         = require("../error.js");
+
 module.exports = function(config) {
     config = config || {};
     
-    const $             = require('gulp-load-plugins')({ pattern: ['gulp-*', 'gulp.*', 'postcss-*'] });
-    const gulp          = require('gulp');
-    const clean         = require("../clean.js");
-    const error 		= require("../error.js");
-
     return function(callback) {
         
         let stylelintConfig = {
@@ -35,30 +35,43 @@ module.exports = function(config) {
 
             .pipe(
                 $.postcss([
-                    require('postcss-modules')({
-                        scopeBehaviour: 'global'
+                    require('postcss-import-folder')({
+                        encoding:  'utf8',
+                        extname: 'css',
+                        prefix: '_'
                     }),
-                    require('precss'),
+                    // require('postcss-partial-import'),
+                    /*
                     require('postcss-use')({ resolveFromFile: true, modules: '*' }),
+                    require('precss'),
+                    require('postcss-scss'),
+                    require('postcss-assets')({
+                        loadPaths: ['images/'],
+                        relative: '../images/'
+                    }),
+                    require('postcss-cssnext')({ 
+                        browsers: 'last 2 versions' 
+                    }),
+                    // require('lost'), for grid
+                    require('cssgrace'),
                     require('postcss-each'),
                     require('postcss-for'),
                     require('postcss-at-rules-variables'),
                     require('postcss-custom-properties'),
                     require('postcss-conditionals'),
                     require('postcss-mixins'),
-                    require('postcss-partial-import'),
                     require('postcss-extend'),
                     require('postcss-include'),
-                    require('postcss-nested'),
                     require('postcss-color-function'),
                     require('postcss-custom-media'),
                     require('postcss-media-minmax'),
+                    require('postcss-custom-selectors'),
+                    require('postcss-nested'),
                     require('postcss-simple-vars')({ silent: true }),
                     require('postcss-font-magician')({
                         hosted: '../fonts',
                         formats: 'local woff2 woff ttf eot svg'
                     }),
-                    require('postcss-cssnext'),
                     require('postcss-fixes'),
                     require('postcss-vmin'),
                     require('postcss-opacity'),
@@ -66,8 +79,24 @@ module.exports = function(config) {
                     require('postcss-will-change'),
                     require('postcss-color-rgba-fallback'),
                     require('postcss-reporter')({ clearMessages: true })
+                    */
                 ])
             )
+
+            .pipe($.if(
+                global.is.modules,
+                $.postcss([
+                    require('postcss-modules')({
+                        scopeBehaviour: 'global',
+                        getJSON: function(cssFileName, json) {
+                          var path          = require('path');
+                          var cssName       = path.basename(cssFileName, '.css');
+                          var jsonFileName  = path.resolve(config.app + cssName + '.json');
+                          fs.writeFileSync(jsonFileName, JSON.stringify(json));
+                        }
+                    })
+                ])
+            ))
 
             .pipe($.if(
                 global.is.pretty,

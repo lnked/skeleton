@@ -1,12 +1,12 @@
 'use strict';
 
+const $             = require('gulp-load-plugins')({ pattern: ['gulp-*', 'gulp.*', 'postcss-*'] });
+const gulp          = require('gulp');
+const error         = require("../error.js");
+
 module.exports = function(config) {
     config = config || {};
 
-    const $             = require('gulp-load-plugins')({ pattern: ['gulp-*', 'gulp.*', 'postcss-*'] });
-    const gulp          = require('gulp');
-    const error         = require("../error.js");
-    
     return function(callback) {
 
         gulp.src(config.app)

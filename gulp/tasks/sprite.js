@@ -1,16 +1,15 @@
 'use strict';
 
+const $             = require('gulp-load-plugins')({ pattern: ['gulp-*', 'gulp.*', 'postcss-*'] });
+const gulp 			= require('gulp');
+const error 		= require("../error.js");
+
 module.exports = function(config) {
 	config = config || {};
 
-	const $             = require('gulp-load-plugins')({ pattern: ['gulp-*', 'gulp.*', 'postcss-*'] });
-	const gulp 			= require('gulp');
-	const spritesmith 	= require('gulp.spritesmith');
-	const error 		= require("../utils/error.js");
-
 	return function(callback) {
 		
-		let spriteData = gulp.src(config.src).pipe(spritesmith({
+		let spriteData = gulp.src(config.src).pipe($.spritesmith({
 			imgName: config.sprite.image,
 			cssName: config.sprite.style
 		}));

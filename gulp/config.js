@@ -18,6 +18,7 @@ module.exports.tasks = {
     },
 
     'styles': {
+        path: [src + 'styles'],
         src: [src + 'styles/**/*.css', '!' + src + 'styles/_*.*', '!' + src + 'styles/**/_*.*'],
         app: app + 'css'
     },

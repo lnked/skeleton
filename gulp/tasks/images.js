@@ -1,14 +1,14 @@
 'use strict';
 
+const $             = require('gulp-load-plugins')({ pattern: ['gulp-*', 'gulp.*', 'postcss-*'] });
+const gulp          = require('gulp');
+const svgo          = require('imagemin-svgo');
+const gifsicle      = require('imagemin-gifsicle');
+const clean         = require("../clean.js");
+const error         = require("../error.js");
+
 module.exports = function(config) {
     config = config || {};
-
-    const $             = require('gulp-load-plugins')({ pattern: ['gulp-*', 'gulp.*', 'postcss-*'] });
-    const gulp          = require('gulp');
-    const svgo          = require('imagemin-svgo');
-    const gifsicle      = require('imagemin-gifsicle');
-    const clean         = require("../clean.js");
-    const error         = require("../error.js");
 
     return function(callback) {
 

@@ -58,4 +58,7 @@ echo -e "Проект ${GREEN}$folder_name${NC} успешно создан"
 
 cd ${ROOT}/$folder_name/
 
+# Запуск сборщика и сервера
+gulp build && gulp --server
+
 exit 0

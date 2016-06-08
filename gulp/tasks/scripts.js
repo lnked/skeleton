@@ -1,15 +1,15 @@
 'use strict';
 
+const $             = require('gulp-load-plugins')({ pattern: ['gulp-*', 'gulp.*', 'postcss-*'] });
+const gulp          = require('gulp');
+const path          = require('path');
+const es            = require("event-stream");
+const clean         = require("../clean.js");
+const error         = require("../error.js");
+const getFolders    = require("../folders.js");
+
 module.exports = function(config) {
     config = config || {};
-
-    const $             = require('gulp-load-plugins')({ pattern: ['gulp-*', 'gulp.*', 'postcss-*'] });
-    const gulp          = require('gulp');
-    const path          = require('path');
-    const es            = require("event-stream");
-    const clean         = require("../clean.js");
-    const error         = require("../error.js");
-    const getFolders    = require("../folders.js");
 
     return function(callback) {
         

@@ -1,0 +1,142 @@
+:root {
+    --array: foo, bar, baz;
+    --from: 1;
+    --to: 3;
+    --icon-exclude: 2;
+    --color-danger: red;
+}
+
+:root { 
+  --mainColor: red; 
+} 
+
+a {  
+  color: var(--mainColor); 
+}
+h1 {  
+  color: var(--mainColor);
+}
+
+@each $val in var(--array) {
+    @import "$val.css";
+}
+
+html {
+    background-color: var(--color-danger);
+}
+
+.some-class {
+    color: #fff;
+ 
+    @for $val from var(--from) to var(--to) {
+        @if $val != var(--icon-exclude) {
+            .icon-$val {
+                background-position: 0 $(val)px;
+            }
+        }
+    }
+}
+
+$type: monster;
+p {
+  @if $type == ocean {
+    color: blue;
+  } @else if $type == matador {
+    color: red;
+  } @else if $type == monster {
+    color: green;
+  } @else {
+    color: black;
+  }
+}
+
+@for $i from 1 to 3 {
+  .b-$i { 
+    width: $i px;
+    @if $i == 2 {
+      color: green;
+    }
+  }
+}
+
+
+
+body {
+    font-weight: 400;
+    font-family: "Alice";
+}
+
+.test {
+    clear: fix;
+}
+
+.as {
+    position: center;
+    width: 300px;
+    height: 123px;
+}
+
+.es {
+    text-overflow: ellipsis;
+}
+
+.es {
+    text-overflow: ellipsis;
+    overflow: auto;
+    white-space: normal;
+}
+
+@media screen and (width >= 500px) and (width <= 1200px) {
+    .bar {
+        display: block;
+    }
+}
+
+@media screen and (device-aspect-ratio: 16 / 9) {
+    
+}
+
+@media screen and (grid: -0) {
+   
+}
+
+@media screen and (500px <= width <= 1200px) {
+    .bar {
+        display: block;
+    }
+}
+
+@media screen and (1200px >= width >= 500px) {
+    .bar {
+        display: block;
+    }
+}
+
+@media screen and (1200px <= width >= 500px) {
+    .bar {
+        display: block;
+    }
+}
+
+@custom-media --foo (width >= 20em) and (width <= 50em);
+@custom-media --bar (height >= 300px) and (height <= 600px);
+
+@media (--foo) and (--bar) {
+
+}
+
+.foo {
+  width: 100%;
+
+  @media (min-width: 960px) {
+    width: 50%;
+  }
+}
+
+.bar {
+  width: 100%;
+
+  @media (min-width: 960px) {
+    width: 50%;
+  }
+}
