@@ -1,8 +1,15 @@
 @charset "utf-8";
 
+@import "form/*.*";
+
+@import "form/*";
+@import "form/_*.css";
+@import "form/form-*.css";
+
 @import 'reset.css';
 @import './reset';
 @import "_variable";
+@import "__variable";
 
 @import "./form";
 @import "_form";
@@ -10,7 +17,29 @@
 @import "form.css";
 
 @import "./form/";
-@import "form/_*.css";
+
+@import "form/form-*.css";
+@import "form/_form-*.css";
+
+@import "variables";
+
+@import "utils/mixins/*";
+
+@import "base/fonts";
+@import "base/reset";
+
+@import "base/global";
+@import "base/helpers";
+
+@import "layout/layout";
+@import "layout/header";
+@import "layout/footer";
+@import "layout/content";
+@import "layout/typography";
+
+@import "components/*";
+
+@import "sprite/*";
 
 .test {
     color: #f00;

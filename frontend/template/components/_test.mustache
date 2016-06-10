@@ -1,6 +1,5 @@
 {{> ../partials/head }}
 
-
 base.mustache:
 <h2>Names</h2>
 {{#names}}
@@ -16,12 +15,9 @@ user.mustache:
   <strong>{{name}}</strong>
 {{/names}}
 
-
-
-
 {{> partials/head }}
 
-<body>
+<template>
     {{> partials/header }}
 
     <div class="wrap">
@@ -34,5 +30,4 @@ user.mustache:
 
     {{> partials/footer }}
 
-</body>
-</html>
+</template>

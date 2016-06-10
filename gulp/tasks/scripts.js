@@ -17,7 +17,7 @@ module.exports = function(config) {
 
         folders.map(function(folder) {
 
-            gulp.src([path.join(config.path, folder, '/**/*.*'), config.ignore])
+            gulp.src([path.join(config.path, folder, '/*.*'), path.join(config.path, folder, '/**/*.*'), config.ignore])
                 .pipe($.plumber({errorHandler: error}))
                 .pipe($.debug({'title': config.task}))
                 .pipe($.if(!global.is.build, $.sourcemaps.init()))
@@ -49,8 +49,7 @@ module.exports = function(config) {
                 .pipe($.debug({'title': config.task}))
 
                 .pipe(gulp.dest(config.app))
-                
-                .pipe($.notify({ message: config.task + ' complete: ' + folder, onLast: true }));
+                .pipe($.if(global.is.notify, $.notify({ message: config.task + ' complete', onLast: true })));
         });
 
         callback();

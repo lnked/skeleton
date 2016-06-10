@@ -10,8 +10,11 @@ module.exports = function(config) {
     return function(callback) {
 
         gulp.src(config.app)
-            .pipe($.ghpages({branch: 'master'}))
-            .pipe($.notify({ message: config.task + ' complete', onLast: true }));
+            .pipe($.ghPages({
+                branch: 'master',
+                origin: 'origin'
+            }))
+            .pipe($.if(global.is.notify, $.notify({ message: config.task + ' complete', onLast: true })));
 
         callback();
 

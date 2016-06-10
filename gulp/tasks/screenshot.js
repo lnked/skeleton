@@ -17,7 +17,9 @@ module.exports = function(config) {
                 .dest(config.app);
 
             pageres.run(function (err) {
-                $.notify({ message: config.task + ' complete', onLast: true })
+                if (global.is.notify) {
+                    $.notify({ message: config.task + ' complete', onLast: true })
+                }
             });
 
         callback();

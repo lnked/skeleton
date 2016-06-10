@@ -15,7 +15,8 @@ module.exports = function(config) {
                 !global.is.build,
                 $.newer(config.app)
             ))
-            .pipe(gulp.dest(config.app));
+            .pipe(gulp.dest(config.app))
+            .pipe($.if(global.is.notify, $.notify({ message: config.task + ' complete', onLast: true })));
             
         callback();
 

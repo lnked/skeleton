@@ -12,8 +12,8 @@ module.exports = function(config) {
 		return gulp.src(config.app)
 			.pipe($.plumber({errorHandler: error}))
 			.pipe($.deployFtp(config.cfg))
-			.pipe(gulp.dest(config.folder));
-			.pipe($.notify({ message: config.task + ' complete', onLast: true }));
+			.pipe(gulp.dest(config.folder))
+			.pipe($.if(global.is.notify, $.notify({ message: config.task + ' complete', onLast: true })));
 
 	};
 

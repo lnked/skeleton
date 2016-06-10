@@ -113,8 +113,10 @@
   },
   "dependencies": {},
   "scripts": {
-    "start": "gulp --s",
+    "start": "gulp --server",
     "build": "gulp build",
+    "clean": "rm -rf ./public_html",
+    
     "production": "cross-env NODE_ENV=production npm-run-all clean build",
     "make-block": "babel-node make-block.js",
     "lint:scripts": "eslint app gulp",
@@ -122,7 +124,6 @@
     "lint": "npm-run-all -p lint:*",
     "predeploy": "npm run production",
     "deploy": "gulp deploy",
-    "clean": "rimraf dist app/styles/sprites/*.styl",
     "prezip": "npm run production",
     "zip": "gulp zip",
     "patch": "gulp patch",

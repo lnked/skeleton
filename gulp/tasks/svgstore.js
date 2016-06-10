@@ -49,7 +49,8 @@ module.exports = function(config) {
                     .pipe($.svgstore({ inlineSvg: true })),
                 { transform: fileContents }
             ))
-            .pipe(gulp.dest(config.path));
+            .pipe(gulp.dest(config.path))
+            .pipe($.if(global.is.notify, $.notify({ message: config.task + ' complete', onLast: true })));
        
         callback();
     };

@@ -14,6 +14,7 @@ is = {
     watch: false,   // short: w
     uncss: false,   // short: u
     server: false,  // short: s
+    notify: false,  // short: n
     coffee: false   // short: c
 };
 

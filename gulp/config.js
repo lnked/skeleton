@@ -1,5 +1,5 @@
 const src = './frontend/';
-const app = './public_html/';
+const app = './dist/';
 
 module.exports.app  = app;
 
@@ -7,13 +7,13 @@ module.exports.src  = src;
 
 module.exports.tasks = {
     'template': {
-        src: [src + 'template/**/*.html', '!' + src + 'template/**/*.mustache', '!' + src + 'template/**/_*.*'],
+        src: [src + 'template/**/*.html', '!' + src + 'template/**/*.mustache', '!' + src + 'template/**/*.template', '!' + src + 'template/**/*.tpl', '!' + src + 'template/**/_*.*'],
         app: app
     },
 
     'scripts': {
         path: src + 'scripts',
-        ignore: '!' + src + 'scripts/**/_*.*',
+        ignore: '!' + src + 'scripts/**/!_*.*',
         app: app + 'js'
     },
 
