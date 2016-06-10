@@ -1,6 +1,6 @@
 'use strict';
 
-const gulp          = require('gulp');
+const gulp  = require('gulp');
 
 module.exports = function(config) {
     config = config || {};

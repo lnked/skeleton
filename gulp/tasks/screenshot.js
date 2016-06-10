@@ -1,9 +1,9 @@
 'use strict';
 
-const $             = require('gulp-load-plugins')({ pattern: ['gulp-*', 'gulp.*', 'postcss-*'] });
-const gulp          = require('gulp');
-const Pageres       = require('pageres');
-const clean         = require("../clean.js");
+const $         = require('gulp-load-plugins')({ pattern: ['gulp-*', 'gulp.*', 'postcss-*'] });
+const gulp      = require('gulp');
+const Pageres   = require('pageres');
+const clean     = require("../clean.js");
 
 module.exports = function(config) {
     config = config || {};

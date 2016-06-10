@@ -1,7 +1,7 @@
 'use strict';
 
-const gulp          = require('gulp');
-const critical      = require('critical'); // .stream;
+const gulp      = require('gulp');
+const critical  = require('critical'); // .stream;
 
 module.exports = function(config) {
     config = config || {};
