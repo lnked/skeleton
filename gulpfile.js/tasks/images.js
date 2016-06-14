@@ -4,8 +4,8 @@ const $         = require('gulp-load-plugins')({ pattern: ['gulp-*', 'gulp.*', '
 const gulp      = require('gulp');
 const svgo      = require('imagemin-svgo');
 const gifsicle  = require('imagemin-gifsicle');
-const clean     = require("../clean.js");
-const error     = require("../error.js");
+const clean     = require('../utils/clean');
+const error     = require('../utils/error');
 
 module.exports = function(config) {
     config = config || {};

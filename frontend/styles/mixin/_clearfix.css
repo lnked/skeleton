@@ -2,8 +2,26 @@
 
 }
 
+.clearfix {
+    @extend %clearfix;
+}
+
 /*
 .footer {
     @mixin clearfix;
+}
+*/
+
+
+/*
+%clearfix {
+    zoom: 1;
+
+    &:after {
+        clear: both;
+        content: '';
+        line-height: 0;
+        display: table;
+    }
 }
 */

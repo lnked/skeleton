@@ -2,7 +2,7 @@
 
 module.exports = function(name, config) {
     const gulp      = require('gulp');
-    const folder    = './tasks/';
+    const folder    = '../tasks/';
 
     config = config || {};
     config.task = name;

@@ -3,7 +3,7 @@
 const $         = require('gulp-load-plugins')({ pattern: ['gulp-*', 'gulp.*', 'postcss-*'] });
 const gulp      = require('gulp');
 const Pageres   = require('pageres');
-const clean     = require("../clean.js");
+const clean     = require("../clean");
 
 module.exports = function(config) {
     config = config || {};

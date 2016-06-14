@@ -4,9 +4,9 @@ const $             = require('gulp-load-plugins')({ pattern: ['gulp-*', 'gulp.*
 const gulp          = require('gulp');
 const path          = require('path');
 const es            = require("event-stream");
-const clean         = require("../clean.js");
-const error         = require("../error.js");
-const getFolders    = require("../folders.js");
+const clean         = require('../utils/clean');
+const error         = require('../utils/error');
+const getFolders    = require('../utils/folders');
 
 module.exports = function(config) {
     config = config || {};

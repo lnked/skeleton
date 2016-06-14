@@ -1,46 +1,27 @@
 @charset "utf-8";
 
-@import "form/*.*";
+@import 'reset.css';
 
+/*
+@import "_variable";
+@import "mixin/clearfix";
+@import "__variable";
+
+@import './reset';
 @import "form/*";
 @import "form/_*.css";
 @import "form/form-*.css";
-
-@import 'reset.css';
-@import './reset';
-@import "_variable";
-@import "__variable";
-
+@import "form/*.*";
 @import "./form";
 @import "_form";
 @import "./_form.css";
 @import "form.css";
-
 @import "./form/";
-
 @import "form/form-*.css";
 @import "form/_form-*.css";
-
-@import "variables";
-
-@import "utils/mixins/*";
-
-@import "base/fonts";
-@import "base/reset";
-
-@import "base/global";
-@import "base/helpers";
-
-@import "layout/layout";
-@import "layout/header";
-@import "layout/footer";
-@import "layout/content";
-@import "layout/typography";
-
 @import "components/*";
-
 @import "sprite/*";
-
+*/
 .test {
     color: #f00;
 }
@@ -51,7 +32,8 @@
 
 /*
 body {
-  background: resolve('foobar.jpg');
-  background: resolve('icons/baz.png');
+    transform: translate3d(0,0,0);
+    background: resolve('foobar.jpg');
+    background: resolve('icons/baz.png');
 }
 */

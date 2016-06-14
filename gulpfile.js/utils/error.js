@@ -2,6 +2,7 @@ const $     = require('gulp-load-plugins')({ pattern: ['gulp-*', 'gulp.*', 'post
 const gulp  = require('gulp');
 
 module.exports = function(err) {
+    $.util.beep();
     $.util.log($.util.colors.cyan('FileName:'), $.util.colors.green(err.fileName));
     $.util.log($.util.colors.cyan('Plugin:'), $.util.colors.green(err.plugin));
     $.util.log($.util.colors.cyan('column:'), $.util.colors.red.bold(err.column));

@@ -1,0 +1,11 @@
+.is-hidden {
+    display: none;
+}
+
+.is-show {
+    display: block;
+}
+
+.center {
+    text-align: center;
+}

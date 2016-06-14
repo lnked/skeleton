@@ -7,6 +7,8 @@
     "autoprefixer": "^6.3.6",
     "babel-eslint": "^6.0.4",
     "babel-preset-es2015": "^6.9.0",
+    "basisjs-tools": "^1.8.0",
+    "basisjs-tools-instrumenter": "^1.0.3",
     "browser-sync": "^2.12.10",
     "css-mqpacker": "^5.0.1",
     "cssgrace": "^3.0.0",
@@ -116,7 +118,6 @@
     "start": "gulp --server",
     "build": "gulp build",
     "clean": "rm -rf ./public_html",
-    
     "production": "cross-env NODE_ENV=production npm-run-all clean build",
     "make-block": "babel-node make-block.js",
     "lint:scripts": "eslint app gulp",

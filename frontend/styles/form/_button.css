@@ -1,0 +1,24 @@
+.button {
+    margin: 0;
+    border: none;
+    overflow: visible;
+    font: inherit;
+    text-align: center;
+    text-transform: none;
+    text-decoration: none;
+    display: inline-block;
+    box-sizing: border-box;
+    background: rgba(0, 0, 0, 0);
+    vertical-align: middle;
+    padding-top: 0;
+    padding-bottom: 0;
+    cursor: pointer;
+    user-select: none;
+    -webkit-appearance: none;
+    border-color: rgba(0, 0, 0, 0);
+    transition: border-color $a-time ease, background-color $a-time ease, color $a-time ease;
+
+    &:focus {
+        outline: 0;
+    }
+}
