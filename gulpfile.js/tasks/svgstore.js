@@ -11,8 +11,8 @@ module.exports = function(config) {
 
     return function(callback) {
 
-        function fileContents(filePath, file) {
-            return file.contents.toString();
+        function fileContents (filePath, file) {
+            return file.contents.toString().replace(/<svg.*?>|<\/svg>/gi, '');
         }
 
         gulp.src(config.file)
@@ -42,7 +42,10 @@ module.exports = function(config) {
                                     names2hex: true,
                                     rgb2hex: true
                                 }},
-                                {removeUselessStrokeAndFill:false}
+                                {removeUselessStrokeAndFill: {
+                                    fill: true,
+                                    stroke: false
+                                }}
                             ]
                         }
                     }))

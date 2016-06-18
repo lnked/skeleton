@@ -1,9 +1,34 @@
-(function(){
+// $(function() {
+//     alert('DOM is ready');
+// });
+
+// $.fn.toggle = function(boolean) {
+//   this.forEach(function(item) {
+//     item.hidden = boolean;
+//   });
+// };
+
+// $('.button').toggle(false);
+
+(function(body){
     'use strict';
 
     const app = {
         edit: function() {
             alert('init')
+        },
+
+        ajax: function() {
+            
+            fetch('user.json')
+              .then(function(response) {
+                return response.json();
+               })
+              .then(function(user) {
+                console.log(user);
+              })
+              .catch(alert);
+
         },
 
         init: function() {
@@ -66,4 +91,4 @@
     };
 
     app.init();
-})();
+})(document.body);

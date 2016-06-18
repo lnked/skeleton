@@ -1,5 +1,6 @@
 svg {
     shape-rendering: optimizeSpeed;
+    /*fill: currentColor;*/
 }
 
 .image {

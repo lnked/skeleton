@@ -31,6 +31,9 @@ module.exports = function(config) {
         watch: [
             require('postcss-import-folder'),
             require('postcss-use')({ resolveFromFile: true, modules: '*' }),
+            require('postcss-cssnext')({ 
+                browsers: 'last 2 versions' 
+            }),
             // require('postcss-partial-import'),
             // require('precss'),
             // require('postcss-scss'),
@@ -38,13 +41,15 @@ module.exports = function(config) {
             //     loadPaths: ['images/'],
             //     relative: '../images/'
             // }),
-            // require('postcss-cssnext')({ 
-            //     browsers: 'last 2 versions' 
-            // }),
             // require('lost'), for grid
             // require('cssgrace'),
             // require('postcss-each'),
             // require('postcss-for'),
+            // require('postcss-vmin'),
+            // require('postcss-remtopx'),
+            // require('postcss-inline')({filter: /.woff$/})
+            // require('postcss-will-change'),
+            // require('postcss-color-rgba-fallback'),
             // require('postcss-at-rules-variables'),
             // require('postcss-custom-properties'),
             // require('postcss-conditionals'),
@@ -65,8 +70,6 @@ module.exports = function(config) {
             // require('postcss-vmin'),
             // require('postcss-opacity'),
             // require('postcss-unnth'),
-            // require('postcss-will-change'),
-            // require('postcss-color-rgba-fallback'),
             // require('postcss-reporter')({ clearMessages: true })
         ],
         modules: [
