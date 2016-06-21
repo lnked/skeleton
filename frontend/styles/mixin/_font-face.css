@@ -1,0 +1,66 @@
+@font-face { 
+    font-family: 'Web font'; 
+    src: url('webfont.woff2') format('woff2'), 
+         url('webfont.ttf')  format('truetype'), /* Только если нужна поддержка старых Android, иначе закомментировать */ 
+         url('webfont.woff') format('woff'); 
+    font-weight: normal; 
+    font-style: normal; 
+}
+
+@font-face { 
+    font-family: 'Web font'; 
+    src: url('webfont.eot');                                    /* IE9 Compat Modes */ 
+    src: url('webfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */ 
+         url('webfont.woff2') format('woff2'),                  /* Новейшие браузеры */ 
+         url('webfont.woff') format('woff'),                    /* Новые браузеры и IE9+ */ 
+         url('webfont.ttf')  format('truetype'),                /* Старые Safari, Android, iOS */ 
+         url('webfont.svg#svgFontName') format('svg');          /* Древние Safari, iOS, Android */ 
+    font-weight: normal; 
+    font-style: normal; 
+}
+
+/*
+100 - Thin
+
+200 - Extra Light (Ultra Light)
+
+300 - Light
+
+400 - Normal
+
+500 - Medium
+
+600 - Semi Bold (Demi Bold)
+
+700 - Bold
+
+800 - Extra Bold (Ultra Bold)
+
+900 - Black (Heavy)
+
+{
+    "extrathin": 50,
+    "hairline": 50,
+    "ultrathin": 50,
+    "thin": 100,
+    "extralight": 200,
+    "ultralight": 200,
+    "light": 300,
+    "book": 400,
+    "normal": 400,
+    "plain": 400,
+    "regular": 400,
+    "medium": 500,
+    "demibold": 600,
+    "semibold": 600,
+    "bold": 700,
+    "extrabold": 800,
+    "heavy": 800,
+    "ultrabold": 800,
+    "black": 900,
+    "extrablack": 950,
+    "fat": 950,
+    "poster": 950,
+    "ultrablack": 950
+}
+*/

@@ -36,4 +36,8 @@ body {
     background: resolve('foobar.jpg');
     background: resolve('icons/baz.png');
 }
+
+template {
+    display: none !important;
+}
 */

@@ -42,10 +42,7 @@ module.exports = function(config) {
                                     names2hex: true,
                                     rgb2hex: true
                                 }},
-                                {removeUselessStrokeAndFill: {
-                                    fill: true,
-                                    stroke: false
-                                }}
+                                {removeUselessStrokeAndFill: false}
                             ]
                         }
                     }))
