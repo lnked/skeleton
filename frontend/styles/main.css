@@ -1,6 +1,8 @@
 @charset "utf-8";
 
-/*@import "mixin/*";*/
+@import "mixins/*";
+
+@import "fonts/*";
 
 @import 'reset.css';
 @import "variable";
@@ -13,4 +15,4 @@
 
 /*@import "form/*";*/
 
-@import "sprite/*";
+/*@import "sprite/*";*/

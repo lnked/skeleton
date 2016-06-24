@@ -38,7 +38,6 @@ module.exports = function(config) {
                 prefix: '_'
             }),
             require('precss'),
-            // require('postcss-scss'),
             require('postcss-assets')({
                 loadPaths: ['images/'],
                 relative: '../images/'
@@ -51,14 +50,10 @@ module.exports = function(config) {
             require('postcss-at-rules-variables'),
             require('postcss-custom-properties'),
             require('postcss-conditionals'),
-            require('postcss-mixins'),
-            require('postcss-extend'),
-            require('postcss-include'),
             require('postcss-color-function'),
             require('postcss-custom-media'),
             require('postcss-media-minmax'),
             require('postcss-custom-selectors'),
-            require('postcss-simple-vars')({ silent: true }),
             require('postcss-font-magician')({
                 hosted: '../fonts',
                 formats: 'local woff2 woff ttf eot svg'
@@ -122,10 +117,18 @@ module.exports = function(config) {
         gulp.src(config.src)
             .pipe($.plumber({errorHandler: error}))
             
-            .pipe($.if(
-                !global.is.build,
-                $.sourcemaps.init()
+            .pipe($.if(!global.is.build, $.sourcemaps.init()))
+
+            .pipe($.postcss(
+                [
+                    require('postcss-easy-import')({
+                        glob: true,
+                        prefix: '_'
+                    })
+                ]
             ))
+            
+            .pipe($.sass())
 
             .pipe($.postcss(processors.watch))
 
@@ -151,10 +154,7 @@ module.exports = function(config) {
                 $.postcss(processors.build)
             ))
 
-            .pipe($.if(
-                !global.is.build,
-                $.sourcemaps.write()
-            ))
+            .pipe($.if(!global.is.build, $.sourcemaps.write()))
 
             .pipe(gulp.dest(config.app))
             .pipe($.if(global.is.notify, $.notify({ message: config.task + ' complete', onLast: true })));

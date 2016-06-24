@@ -1,4 +1,4 @@
-@define-mixin triangle($width, $height, $color) {
+@mixin triangle($width, $height, $color) {
     width: 0;
     height: 0;
     border-style: solid;
