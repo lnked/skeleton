@@ -1,43 +1,16 @@
 @charset "utf-8";
 
+/*@import "mixin/*";*/
+
 @import 'reset.css';
+@import "variable";
 
-/*
-@import "_variable";
-@import "mixin/clearfix";
-@import "__variable";
+@import "base";
 
-@import './reset';
-@import "form/*";
-@import "form/_*.css";
-@import "form/form-*.css";
-@import "form/*.*";
-@import "./form";
-@import "_form";
-@import "./_form.css";
-@import "form.css";
-@import "./form/";
-@import "form/form-*.css";
-@import "form/_form-*.css";
+@import "helpers/*";
+
 @import "components/*";
+
+/*@import "form/*";*/
+
 @import "sprite/*";
-*/
-.test {
-    color: #f00;
-}
-
-.test2 {
-    color: #0f0;
-}
-
-/*
-body {
-    transform: translate3d(0,0,0);
-    background: resolve('foobar.jpg');
-    background: resolve('icons/baz.png');
-}
-
-template {
-    display: none !important;
-}
-*/

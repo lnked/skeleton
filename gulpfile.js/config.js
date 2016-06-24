@@ -56,6 +56,8 @@ module.exports.tasks = {
 
     'extras': {},
     
+    'before_build': {},
+    
     'deploy': {
         app: app + '/**/*'
     },

@@ -29,48 +29,45 @@ module.exports = function(config) {
 
     let processors = {
         watch: [
-            require('postcss-import-folder'),
-            require('postcss-use')({ resolveFromFile: true, modules: '*' }),
             require('postcss-cssnext')({ 
                 browsers: 'last 2 versions' 
             }),
-            // require('postcss-partial-import'),
-            // require('precss'),
+            require('postcss-use')({ resolveFromFile: true, modules: '*' }),
+            require('postcss-easy-import')({
+                glob: true,
+                prefix: '_'
+            }),
+            require('precss'),
             // require('postcss-scss'),
-            // require('postcss-assets')({
-            //     loadPaths: ['images/'],
-            //     relative: '../images/'
-            // }),
-            // require('lost'), for grid
-            // require('cssgrace'),
-            // require('postcss-each'),
-            // require('postcss-for'),
-            // require('postcss-vmin'),
-            // require('postcss-remtopx'),
-            // require('postcss-inline')({filter: /.woff$/})
-            // require('postcss-will-change'),
-            // require('postcss-color-rgba-fallback'),
-            // require('postcss-at-rules-variables'),
-            // require('postcss-custom-properties'),
-            // require('postcss-conditionals'),
-            // require('postcss-mixins'),
-            // require('postcss-extend'),
-            // require('postcss-include'),
-            // require('postcss-color-function'),
-            // require('postcss-custom-media'),
-            // require('postcss-media-minmax'),
-            // require('postcss-custom-selectors'),
-            // require('postcss-nested'),
-            // require('postcss-simple-vars')({ silent: true }),
-            // require('postcss-font-magician')({
-            //     hosted: '../fonts',
-            //     formats: 'local woff2 woff ttf eot svg'
-            // }),
-            // require('postcss-fixes'),
-            // require('postcss-vmin'),
-            // require('postcss-opacity'),
-            // require('postcss-unnth'),
-            // require('postcss-reporter')({ clearMessages: true })
+            require('postcss-assets')({
+                loadPaths: ['images/'],
+                relative: '../images/'
+            }),
+            require('postcss-each'),
+            require('postcss-vmin'),
+            require('postcss-remtopx'),
+            require('postcss-will-change'),
+            require('postcss-color-rgba-fallback'),
+            require('postcss-at-rules-variables'),
+            require('postcss-custom-properties'),
+            require('postcss-conditionals'),
+            require('postcss-mixins'),
+            require('postcss-extend'),
+            require('postcss-include'),
+            require('postcss-color-function'),
+            require('postcss-custom-media'),
+            require('postcss-media-minmax'),
+            require('postcss-custom-selectors'),
+            require('postcss-simple-vars')({ silent: true }),
+            require('postcss-font-magician')({
+                hosted: '../fonts',
+                formats: 'local woff2 woff ttf eot svg'
+            }),
+            require('postcss-fixes'),
+            require('postcss-vmin'),
+            require('postcss-opacity'),
+            require('postcss-unnth'),
+            require('postcss-reporter')({ clearMessages: true })
         ],
         modules: [
             require('postcss-modules')({
@@ -99,6 +96,7 @@ module.exports = function(config) {
             })
         ],
         build: [
+            require('postcss-discard-comments'),
             require('postcss-emptymediaqueries'),
             require('css-mqpacker'),
             require('postcss-flexboxfixer'),
@@ -123,7 +121,11 @@ module.exports = function(config) {
 
         gulp.src(config.src)
             .pipe($.plumber({errorHandler: error}))
-            .pipe($.sourcemaps.init())
+            
+            .pipe($.if(
+                !global.is.build,
+                $.sourcemaps.init()
+            ))
 
             .pipe($.postcss(processors.watch))
 
@@ -149,7 +151,11 @@ module.exports = function(config) {
                 $.postcss(processors.build)
             ))
 
-            .pipe($.sourcemaps.write())
+            .pipe($.if(
+                !global.is.build,
+                $.sourcemaps.write()
+            ))
+
             .pipe(gulp.dest(config.app))
             .pipe($.if(global.is.notify, $.notify({ message: config.task + ' complete', onLast: true })));
 
