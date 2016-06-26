@@ -34,12 +34,10 @@ cd ./$folder_name
 # Создаем папку проекта если ее нет
 #
 if [ "$iscopy" = "iscopy" ] ; then
-    cp -r ${SOURCE}/gulp ${ROOT}/$folder_name/gulp
     cp -r ${SOURCE}/gulpfile.js ${ROOT}/$folder_name/gulpfile.js
     cp -r ${SOURCE}/package.json ${ROOT}/$folder_name/package.json
     cp -r ${SOURCE}/node_modules/ ${ROOT}/$folder_name/node_modules
 else
-    ln -s ${SOURCE}/gulp/ ${ROOT}/$folder_name/
     ln -s ${SOURCE}/gulpfile.js ${ROOT}/$folder_name/
     ln -s ${SOURCE}/package.json ${ROOT}/$folder_name/
     ln -s ${SOURCE}/node_modules/ ${ROOT}/$folder_name/

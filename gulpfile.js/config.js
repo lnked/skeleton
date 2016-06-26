@@ -1,5 +1,5 @@
 const src = './frontend/';
-const app = './dist/';
+const app = './public_html/';
 
 module.exports.app  = app;
 
@@ -8,7 +8,7 @@ module.exports.src  = src;
 module.exports.tasks = {
     'template': {
         src: [src + 'template/**/*.html', '!' + src + 'template/**/*.mustache', '!' + src + 'template/**/*.template', '!' + src + 'template/**/*.tpl', '!' + src + 'template/**/_*.*'],
-        app: app
+        app: app + 'markup'
     },
 
     'scripts': {
@@ -19,7 +19,7 @@ module.exports.tasks = {
 
     'styles': {
         path: [src + 'styles'],
-        src: [src + 'styles/**/*.css', '!' + src + 'styles/_*.*', '!' + src + 'styles/**/_*.*'],
+        src: [src + 'styles/**/*.scss', src + 'styles/**/*.css', '!' + src + 'styles/_*.*', '!' + src + 'styles/**/_*.*'],
         app: app + 'css'
     },
     
@@ -108,7 +108,7 @@ module.exports.tasks = {
             favicon:    [src + 'favicon/**/*.*'],
             fonts:      [src + 'fonts/**/*.*'],
             json:       [src + 'json/**/*.json'],
-            styles:     [src + 'styles/**/*.scss'],
+            styles:     [src + 'styles/**/*.css', src + 'styles/**/*.scss'],
             svgstore:   [src + 'svgstore/**/*.svg']
         }
     },

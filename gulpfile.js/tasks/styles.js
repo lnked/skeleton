@@ -29,34 +29,22 @@ module.exports = function(config) {
 
     let processors = {
         watch: [
-            require('postcss-cssnext')({ 
-                browsers: 'last 2 versions' 
-            }),
-            require('postcss-use')({ resolveFromFile: true, modules: '*' }),
-            require('postcss-easy-import')({
-                glob: true,
-                prefix: '_'
-            }),
-            require('precss'),
             require('postcss-assets')({
                 loadPaths: ['images/'],
                 relative: '../images/'
             }),
-            require('postcss-each'),
             require('postcss-vmin'),
-            require('postcss-remtopx'),
             require('postcss-will-change'),
             require('postcss-color-rgba-fallback'),
             require('postcss-at-rules-variables'),
             require('postcss-custom-properties'),
-            require('postcss-conditionals'),
-            require('postcss-color-function'),
             require('postcss-custom-media'),
             require('postcss-media-minmax'),
             require('postcss-custom-selectors'),
             require('postcss-font-magician')({
                 hosted: '../fonts',
-                formats: 'local woff2 woff ttf eot svg'
+                foundries: 'hosted',
+                formats: 'local woff2 woff ttf eot'
             }),
             require('postcss-fixes'),
             require('postcss-vmin'),
@@ -96,18 +84,14 @@ module.exports = function(config) {
             require('css-mqpacker'),
             require('postcss-flexboxfixer'),
             require('postcss-gradientfixer'),
-            require('autoprefixer')({
-                browsers: ["last 2 version", "safari 5", "ie > 7", "opera 12.1", "ios 6", "android 2.3"],
-                cascade: false
-            }),
             require('cssnano')({
-                'safe': true,
-                'calc': false,
-                'zindex': false,
-                'autoprefixer': false,
-                'normalizeCharset': true,
-                'convertValues': { length: false },
-                'colormin': true
+                safe: true,
+                calc: false,
+                zindex: false,
+                autoprefixer: false,
+                normalizeCharset: true,
+                convertValues: { length: false },
+                colormin: true
             })
         ]
     };
@@ -115,20 +99,28 @@ module.exports = function(config) {
     return function(callback) {
 
         gulp.src(config.src)
-            .pipe($.plumber({errorHandler: error}))
-            
+            .pipe($.plumber({errorHandler: error}))            
             .pipe($.if(!global.is.build, $.sourcemaps.init()))
+
+            .pipe($.sassBulkImport())
+            
+            .pipe($.sass())
+            
+            .pipe($.pixrem())
 
             .pipe($.postcss(
                 [
-                    require('postcss-easy-import')({
-                        glob: true,
-                        prefix: '_'
+                    require('autoprefixer')({
+                        browsers: ["last 2 version", "safari 5", "ie > 7", "opera 12.1", "ios 6", "android 2.3"]
                     })
                 ]
             ))
-            
-            .pipe($.sass())
+
+            .pipe($.postcss(
+                [
+                    require('postcss-use')({ resolveFromFile: true, modules: '*' }),
+                ]
+            ))
 
             .pipe($.postcss(processors.watch))
 
@@ -149,11 +141,9 @@ module.exports = function(config) {
 
             .pipe($.rename({suffix: '.min'}))
 
-            .pipe($.if(
-                global.is.build,
-                $.postcss(processors.build)
-            ))
-
+            .pipe($.if(global.is.build, $.groupCssMediaQueries()))
+            .pipe($.if(global.is.build, $.postcss(processors.build)))
+            
             .pipe($.if(!global.is.build, $.sourcemaps.write()))
 
             .pipe(gulp.dest(config.app))
