@@ -1,5 +1,6 @@
 const src = './frontend/';
-const app = './public_html/';
+const app = './dist/';
+const markup = '';
 
 module.exports.app  = app;
 
@@ -8,7 +9,7 @@ module.exports.src  = src;
 module.exports.tasks = {
     'template': {
         src: [src + 'template/**/*.html', '!' + src + 'template/**/*.mustache', '!' + src + 'template/**/*.template', '!' + src + 'template/**/*.tpl', '!' + src + 'template/**/_*.*'],
-        app: app + 'markup'
+        app: app + markup
     },
 
     'scripts': {

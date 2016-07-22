@@ -1,0 +1,38 @@
+<article class="news-item clearfix" itemscope itemtype="http://schema.org/NewsArticle">
+    @@if (typeof image !== 'undefined' && image !== '') {
+    <figure class="news-item__image" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+        <a href="./news-item.html" itemprop="url">
+            <img src="../images/@@image" class="news-item__image__src" itemprop="image" alt="">
+        </a>
+    </figure>
+    }
+    
+    <div class="news-item__content">
+        @@if (typeof date !== 'undefined' && date !== '') {
+            <time class="news-item__date" datetime="2016-03-12" itemprop="datePublished">@@date</time>
+        }
+        
+        @@if (typeof title !== 'undefined' && title !== '') {
+        <h3 class="news-item__title">
+            <a href="./news-item.html" itemprop="url" class="news-item__title__link">
+                <span itemprop="name">@@title</span>
+            </a>
+        </h3>
+        }
+        
+        @@if (typeof description !== 'undefined' && description !== '') {
+        <div class="news-item__description" itemprop="description">
+            @@description
+        </div>
+        }
+    </div>
+</article>
+
+<!-- 
+@@include('../components/news-item.html', {
+    "date": "12.03.2016",
+    "title": "",
+    "image": "news-image.jpg",
+    "description": "К примеру, индейки. Рекомендуется строить помещения для этой птицы на легких песчаных почвах, выгонять на пастбище лишь тогда, когда сойдет роса. Индюшата, по мнению опытных птицеводов, прежде чем приобретут красную кожу на голове и наросты на шее и горле, очень чувствительны к ветру и сырости."
+})
+-->

@@ -1,0 +1,39 @@
+%layout {
+    width: 100%;
+    height: 100%;
+    max-width: $layout-width;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    outline: 1px solid #0FF;
+}
+
+%inline {
+    display: inline-block;
+    vertical-align: top;
+    *display: inline;
+    *zoom: 1;
+}
+
+.layout-wrapper {
+    width: 100%;
+    min-height: 100%;
+    overflow: hidden;
+
+    &__inner {
+        @extend %layout;
+        padding-bottom: $footer-height + $footer-margin;
+    }
+}
+
+@media only screen and (max-width: 1280px) {}
+@media only screen and (max-width: 1140px) {}
+@media only screen and (max-width: 1024px) {}
+@media only screen and (max-width: 960px) {}
+@media only screen and (max-width: 768px) {}
+@media only screen and (max-width: 568px) {}
+@media only screen and (max-width: 480px) {}
+@media only screen and (max-width: 375px) {}
+@media only screen and (max-width: 320px) {}

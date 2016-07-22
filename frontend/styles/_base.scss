@@ -1,0 +1,62 @@
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    
+    &, &:before, &:after {
+        box-sizing: border-box;
+    }
+}
+
+html, body { height: 100%; }
+
+html {
+    font-size: $font-base;
+    font-family: $font-family;
+    text-size-adjust: 100%;
+    quotes: "“" "”";
+}
+
+body {
+    min-width: 320px;
+    color: $color-text;
+    line-height: 1.4446;
+    letter-spacing: 0em;
+    background-color: $body-background;
+}
+
+body, input, textarea, select, button {
+    font-synthesis: none;
+    text-rendering: optimizeLegibility; //auto | optimizeSpeed | optimizeLegibility | geometricPrecision
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-smoothing: antialiased;
+    -moz-font-feature-settings: 'liga', 'kern';
+    direction: ltr;
+    text-align: left;
+}
+
+body {
+    transform: translate3d(0,0,0);
+    /*background: resolve('foobar.jpg');
+    background: resolve('icons/baz.png');*/
+}
+
+// $min_width: 400;
+// $max_width: 800;
+
+// $min_font: 12;
+// $max_font: 24; 
+
+// :root { font-size: #{$min_font}px; }
+
+// @media (min-width: #{$min_width}px) and (max-width: #{$max_width}px) {
+//   :root { 
+//     font-size: calc(#{$min_font}px + (#{$max_font} - #{$min_font}) * ( (100vw - #{$min_width}px) / ( #{$max_width} - #{$min_width})));
+//   }
+// }
+// @media (min-width: #{$max_width}px) {
+//   :root { 
+//     font-size: #{$max_font}px;
+//   }
+// }
