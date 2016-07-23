@@ -1,0 +1,13 @@
+.c-checkbox {
+
+    &__input {}
+    &__visible {}
+
+    &__input:checked + &__visible {
+
+    }
+
+    &__label {
+        &__middle {}
+    }
+}

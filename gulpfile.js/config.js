@@ -1,6 +1,6 @@
 const src = './frontend/';
-const app = './dist/';
-const markup = '';
+const app = './public_html/';
+const markup = 'markup';
 
 module.exports.app  = app;
 
@@ -20,7 +20,7 @@ module.exports.tasks = {
 
     'styles': {
         path: [src + 'styles'],
-        src: [src + 'styles/**/*.scss', src + 'styles/**/*.css', '!' + src + 'styles/_*.*', '!' + src + 'styles/**/_*.*'],
+        src: [src + 'styles/*.scss', src + 'styles/**/*.scss', '!' + src + 'styles/_*.*', '!' + src + 'styles/**/_*.*'],
         app: app + 'css'
     },
     

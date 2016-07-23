@@ -1,0 +1,95 @@
+.sidebar {
+    float: left;
+    width: $sidebar-width;
+    margin-right: -$sidebar-width;
+
+    &__trigger {
+        width: 100%;
+        height: 54px;
+        display: block;
+        cursor: pointer;
+        position: relative;
+        border-radius: 2px;
+        background-color: #f00;
+
+        &__hamburger {
+            width: 100%;
+            max-width: 42px;
+            height: 2px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-left: -21px;
+            margin-top: -1px;
+            display: block;
+            font-size: 0;
+            user-select: none;
+            -webkit-touch-callout: none;
+            background-color: #fff;
+            transition: background-color $a-time;
+
+            &:before,
+            &:after {
+                content: '';
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                left: 0;
+                background-color: #fff;
+                transition: transform $a-time, background-color $a-time;
+            }
+
+            &:before {
+                transform: translateY(-8px);
+            }
+
+            &:after {
+                transform: translateY(8px);
+            }
+        }
+    }
+
+    &__content {
+        width: 100%;
+        display: none;
+        max-width: 100%;
+        padding: 10px 0;
+        position: absolute;
+        margin-top: 10px;
+        @include opacity(0);
+        background-color: #f00;
+        transform: translate3d(0, -20px, 0);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, .2);
+        transition: transform $a-time, opacity $a-time;
+        
+        &.active {
+            display: block;
+        }
+
+        &.animate {
+            @include opacity(1);
+            transform: translate3d(0, 0, 0);
+        }
+
+        &:before {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: -5px;
+            margin-left: -10px;
+            border-bottom: 5px solid #f00;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+        }
+    }
+}
+
+@media only screen and (max-width: 1280px) {}
+@media only screen and (max-width: 1140px) {}
+@media only screen and (max-width: 1024px) {}
+@media only screen and (max-width: 960px) {}
+@media only screen and (max-width: 768px) {}
+@media only screen and (max-width: 568px) {}
+@media only screen and (max-width: 480px) {}
+@media only screen and (max-width: 375px) {}
+@media only screen and (max-width: 320px) {}

@@ -1,12 +1,36 @@
-.layout-wrapper {
+.content {
     width: 100%;
-    min-height: 100%;
-    overflow: hidden;
-
+    float: left;
+    
     &__inner {
-        @extend %layout;
-        padding-bottom: $footer-height + $footer-margin;
+        padding: 20px;
     }
+
+    p {
+        &:not(:last-child) {
+            margin-bottom: 25px;
+        }
+    }
+
+    ul {
+        &:not([class]) {
+            margin-bottom: 25px;
+
+            li {
+                color: #000;
+            }
+        }
+    }
+
+    img {
+        & :not([class]) {
+            max-width: 100%;
+        }
+    }
+}
+
+.sidebar + .content {
+    padding-left: $sidebar-width + 30px;
 }
 
 @media only screen and (max-width: 1280px) {}

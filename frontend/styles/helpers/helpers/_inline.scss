@@ -1,0 +1,6 @@
+%inline {
+    display: inline-block;
+    vertical-align: top;
+    *display: inline;
+    *zoom: 1;
+}

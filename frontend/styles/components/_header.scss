@@ -1,11 +1,16 @@
-.layout-wrapper {
-    width: 100%;
-    min-height: 100%;
-    overflow: hidden;
+.layout-header {
+    clear: both;
+    position: relative;
+    height: $header-height;
 
-    &__inner {
+    &__wrapper {
         @extend %layout;
-        padding-bottom: $footer-height + $footer-margin;
+    }
+
+    &__logo {
+        position: absolute;
+        left: 0;
+        top: 0;
     }
 }
 
