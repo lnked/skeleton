@@ -1,0 +1,131 @@
+.menu-overlay {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 8888;
+    visibility: hidden;
+    @include opacity(0);
+    background-color: $c-sandwich-overlay;
+    transform: scale(0.5, 0.5);
+    transition: opacity .6s, transform .3s;
+}
+
+.sandwich {
+    width: 48px;
+    height: 48px;
+    position: absolute;
+    left: 10px;
+    top: 112px;
+    margin: 0;
+    z-index: -1;
+    cursor: pointer;
+    @include opacity(0);
+    text-decoration: none;
+
+    &__layer {
+        width: 100%;
+        max-width: 37px;
+        height: 4px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-left: -18px;
+        margin-top: 0;
+        font-size: 0;
+        display: block;
+        user-select: none;
+        -webkit-touch-callout: none;
+        background-color: $c-sandwich-background;
+        transition: background-color $a-time;
+
+        &:before,
+        &:after {
+            content: '';
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            background-color: $c-sandwich-background;
+            transition: transform $a-time, background-color $a-time;
+        }
+
+        &:before {
+            transform: translateY(-10px);
+        }
+
+        &:after {
+            transform: translateY(10px);
+        }
+    }
+
+    &:hover &__layer {
+        &:before {
+            transform: translateY(-12px);
+        }
+
+        &:after {
+            transform: translateY(12px);
+        }
+    }
+}
+
+.page-visible {
+    .header {
+        visibility: visible;
+    }
+
+    .navigation {
+        visibility: visible;
+    }
+}
+
+.page-open {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    -webkit-overflow-scrolling: touch;
+
+    .layout-wrapper {
+        overflow: hidden;
+    }
+
+    .menu-overlay {
+        transform: scale(1, 1);
+        @include opacity(.9);
+    }
+    
+    .navigation {
+        &__list {
+            transform: scale(1, 1);
+        }
+    }
+
+    .sandwich {
+        right: 45px;
+
+        &__layer {
+            background-color: transparent;
+    
+            &:before, &:after {
+                background-color: $c-sandwich-background-active !important;
+            }
+
+            &:before {
+                transform: translateY(0) rotate(45deg) !important;
+            }
+
+            &:after {
+                transform: translateY(0) rotate(-45deg) !important;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .sandwich {
+        z-index: 10030;
+        @include opacity(1);
+    }
+}
