@@ -1,0 +1,19 @@
+.f-label {
+    clear: both;
+    font-size: 0;
+    display: block;
+    position: relative;
+
+    &:not(:last-child) {
+        margin-bottom: 25px;
+    }
+
+    &__name {
+        color: #666;
+        font-size: 1.3rem;
+        font-weight: 400;
+        line-height: 1;
+        display: block;
+        margin-bottom: 8px;
+    }
+}

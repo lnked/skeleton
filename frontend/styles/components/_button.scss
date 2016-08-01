@@ -1,0 +1,45 @@
+.button {
+    height: 48px;
+    padding: 0 42px;
+    
+    color: #fff;
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 52px;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+
+    @extend %button;
+
+    border: 0;
+    border-radius: 5px;
+    background-color: #f6171e;
+    box-shadow: 0 2px 0 0 #ae0005;
+
+    &:visited {
+        color: #fff;
+    }
+
+    &_submit {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    &:hover, &:focus {
+        color: #fff;
+        background-color: darken(#f6171e, 10%);
+    }
+
+    &.disabled {
+        background: #ccc !important;
+        cursor: not-allowed !important;
+        background: #ccc !important;
+
+        &, &:hover {
+            -webkit-box-shadow: none !important;
+            box-shadow:none !important;
+            background: #ccc !important;
+        }
+    }
+}

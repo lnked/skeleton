@@ -21,18 +21,18 @@ module.exports = function(config) {
 
             .pipe($.if(/[.]webp$/, $.webp()))
 
-            .pipe(
-                $.if(/[.]svg$/,
-                    $.postcss([
-                        require('postcss-svg-fallback')({
-                            basePath: '',
-                            dest: '',
-                            fallbackSelector: '.no-svg',
-                            disableConvert: false,
-                        })
-                    ])
-                )
-            )
+            // .pipe(
+            //     $.if(/[.]svg$/,
+            //         $.postcss([
+            //             require('postcss-svg-fallback')({
+            //                 basePath: '',
+            //                 dest: '',
+            //                 fallbackSelector: '.no-svg',
+            //                 disableConvert: false,
+            //             })
+            //         ])
+            //     )
+            // )
 
             .pipe($.if(
                 global.is.build,

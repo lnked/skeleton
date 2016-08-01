@@ -1,0 +1,12 @@
+%button {
+    padding-top: 0;
+    padding-bottom: 0;
+    outline: none;
+    cursor: pointer;
+    border: 0 none;
+    user-select: none;
+    text-decoration: none;
+    display: inline-block;
+    -webkit-appearance: none;
+    transition: border-color $a-time, background-color $a-time, color $a-time;
+}

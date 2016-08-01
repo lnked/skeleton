@@ -1,0 +1,20 @@
+.captcha {
+    clear: both;
+    
+    &__image {
+        width: 120px;
+        float: left;
+        border: 1px solid #eee;
+        box-sizing: border-box;
+        overflow: hidden;
+        
+        &__trigger {
+            display: block;
+            cursor: pointer;
+        }
+    }
+
+    &__field {
+        margin-left: 135px;
+    }
+}
