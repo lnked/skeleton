@@ -1,5 +1,12 @@
 "use strict";
 
+function updateCaptcha(selector) {
+    if ($(selector).length) {
+        var src = $(selector).attr('src').split('?')[0];
+        $(selector).attr('src', src + '?' + Math.random());
+    }
+}
+
 function lockScroll(element) {
     var lockX, lockY, events = ['scroll', 'mousewheel', 'touchmove'], keys = {37: 1, 38: 1, 39: 1, 40: 1};
 
