@@ -5,7 +5,29 @@
 
 @@include('./components/_svgstore.html')
 
-@@include('./components/_demo.template')
+<div class="layout-wrapper">
 
+    @@include('./components/_header.html', {
+        "current": "index"
+    })
+
+    <div class="layout-wrapper__pusher">
+
+        <div class="layout-wrapper__container clearfix">
+
+            @@include('./components/_sidebar.html')
+
+            @@include('./components/_breadcrumbs.html', {
+                "page1": "Главная",
+                "page2": "",
+                "page3": ""
+            })
+            
+        </div>
+
+    </div>
+
+</div>
+
+@@include('./components/_footer.html')
 @@include('./components/_scripts.html')
-

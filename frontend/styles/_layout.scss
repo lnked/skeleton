@@ -3,9 +3,12 @@
     min-height: 100%;
     overflow: hidden;
 
-    &__inner {
-        @extend %layout;
+    &__pusher {
         padding-bottom: $footer-height + $footer-margin;
+    }
+
+    &__container {
+        @extend %layout;
     }
 }
 

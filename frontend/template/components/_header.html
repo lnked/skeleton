@@ -7,18 +7,27 @@
 <header class="layout-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
 	<div class="layout-header__wrapper">
 		
-		<a href="" class="layout-header__logo logo"></a>
+		<a href="/markup/index.html" class="layout-header__logo logo"></a>
 		
-		<nav class="navigation" id="navigation" role="navigation">
-			<ul class="navigation__list">
-			    <li class="navigation__item"><a href="" class="navigation__link@@if (typeof current !== 'undefined' && current == ''){ current}">menu 1</a></li>
-			    <li class="navigation__item"><a href="" class="navigation__link@@if (typeof current !== 'undefined' && current == ''){ current}">menu 2</a></li>
-			    <li class="navigation__item"><a href="" class="navigation__link@@if (typeof current !== 'undefined' && current == ''){ current}">menu 3</a></li>
-			    <li class="navigation__item"><a href="" class="navigation__link@@if (typeof current !== 'undefined' && current == ''){ current}">menu 4</a></li>
-			    <li class="navigation__item"><a href="" class="navigation__link@@if (typeof current !== 'undefined' && current == ''){ current}">menu 5</a></li>
-			    <li class="navigation__item"><a href="" class="navigation__link@@if (typeof current !== 'undefined' && current == ''){ current}">menu 6</a></li>
-			</ul>
-		</nav>
-
 	</div>
 </header>
+
+<nav class="navigation" id="navigation" role="navigation">
+	<div class="navigation__wrapper">
+		<ul class="navigation__list">
+		    
+		    <li class="navigation__item itemscope="itemscope" itemtype="http://www.schema.org/SiteNavigationElement">
+		    	<a href="/markup/index.html" itemprop="url" class="navigation__link@@if (typeof current !== 'undefined' && current == 'index'){ _current}">
+		    		<span class="navigation__link__name" itemprop="name">Страница</span>
+		    	</a>
+	    	</li>
+
+		    <li class="navigation__item itemscope="itemscope" itemtype="http://www.schema.org/SiteNavigationElement">
+		    	<a href="/markup/index.html" itemprop="url" class="navigation__link@@if (typeof current !== 'undefined' && current == 'index'){ _current}">
+		    		<span class="navigation__link__name" itemprop="name">Страница</span>
+		    	</a>
+	    	</li>
+
+		</ul>
+	</div>
+</nav>

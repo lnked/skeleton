@@ -1,0 +1,27 @@
+<nav class="breadcrumbs clearfix">
+    <ol class="breadcrumbs__list" itemscope itemtype="http://schema.org/BreadcrumbList">
+        @@if (page1 !== '')
+        {
+        <li class="breadcrumbs__item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a href="#" itemprop="item" class="breadcrumbs__item__link"><span itemprop="name">@@page1</span></a>
+            <meta itemprop="position" content="1" />
+        </li>
+        }
+
+        @@if (page2 !== '')
+        {
+        <li class="breadcrumbs__item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a href="#" itemprop="item" class="breadcrumbs__item__link"><span itemprop="name">@@page2</span></a>
+            <meta itemprop="position" content="2" />
+        </li>
+        }
+
+        @@if (page3 !== '')
+        {
+        <li class="breadcrumbs__item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a href="#" itemprop="item" class="breadcrumbs__item__link"><span itemprop="name">@@page3</span></a>
+            <meta itemprop="position" content="3" />
+        </li>
+        }
+    </ol>
+</nav>
