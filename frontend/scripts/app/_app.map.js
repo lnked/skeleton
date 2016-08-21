@@ -3,10 +3,10 @@ var app = app || {};
 (function(body){
     "use strict";
 
-    app = {
+    app.map = {
         
         init: function() {
-            this.map.init();
+            alert("map");
         }
 
     };
