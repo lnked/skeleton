@@ -1,119 +1,119 @@
-;(function ($) {
-    "use strict";
+// ;(function ($) {
+//     "use strict";
 
-    $.app = $.app || {};
+//     $.app = $.app || {};
 
-    var _this;
+//     var _this;
 
-    $.app.sandwich = {
+//     $.app.sandwich = {
 
-        config: {
-            keyHooks: !1,
-            selector: '.js-sandwich-menu',
-            wrapper: '.layout-wrapper',
-            overlay: '.overlay'
-        },
+//         config: {
+//             keyHooks: !1,
+//             selector: '.js-sandwich-menu',
+//             wrapper: '.layout-wrapper',
+//             overlay: '.overlay'
+//         },
 
-        extend: function(config)
-        {
-            _this = this;
+//         extend: function(config)
+//         {
+//             _this = this;
 
-            if (typeof config !== 'undefined')
-            {
-                var x;
-                for (x in config)
-                {
-                    if (typeof _this.config[x] !== 'undefined')
-                        _this.config[x] = config[x];
-                }
-            }
-        },
+//             if (typeof config !== 'undefined')
+//             {
+//                 var x;
+//                 for (x in config)
+//                 {
+//                     if (typeof _this.config[x] !== 'undefined')
+//                         _this.config[x] = config[x];
+//                 }
+//             }
+//         },
 
-        isOpen: function()
-        {
-            return body.hasClass('page-visible');
-        },
+//         isOpen: function()
+//         {
+//             return body.hasClass('page-visible');
+//         },
 
-        hide: function()
-        {
-            body.removeClass('page-open');
+//         hide: function()
+//         {
+//             body.removeClass('page-open');
 
-            setTimeout(function(){
-                body.removeClass('page-visible');
-            }, 10);
+//             setTimeout(function(){
+//                 body.removeClass('page-visible');
+//             }, 10);
 
-            $(this.config.overlay).css({
-                'visibility': 'hidden'
-            });
-        },
+//             $(this.config.overlay).css({
+//                 'visibility': 'hidden'
+//             });
+//         },
 
-        toggle: function()
-        {
-            if (body.hasClass('page-visible'))
-            {
-                setTimeout(function(){
-                    body.removeClass('page-visible');
-                }, 10);
-            }
-            else
-            {
-                setTimeout(function(){
-                    body.addClass('page-visible');
-                }, 10);
-            }
+//         toggle: function()
+//         {
+//             if (body.hasClass('page-visible'))
+//             {
+//                 setTimeout(function(){
+//                     body.removeClass('page-visible');
+//                 }, 10);
+//             }
+//             else
+//             {
+//                 setTimeout(function(){
+//                     body.addClass('page-visible');
+//                 }, 10);
+//             }
 
-            body.toggleClass('page-open');
+//             body.toggleClass('page-open');
 
-            var visibility = 'visible';
+//             var visibility = 'visible';
 
-            if (!body.hasClass('page-open'))
-            {
-                visibility = 'hidden'
-            }
+//             if (!body.hasClass('page-open'))
+//             {
+//                 visibility = 'hidden'
+//             }
             
-            $(_this.config.overlay).css({
-                'visibility': visibility
-            });
-        },
+//             $(_this.config.overlay).css({
+//                 'visibility': visibility
+//             });
+//         },
 
-        sandwichTrigger: function()
-        {
-            _this = this;
+//         sandwichTrigger: function()
+//         {
+//             _this = this;
 
-            if (_this.config.keyHooks)
-            {
-                body.on('keydown', function(e) {
-                    if(e.keyCode == 27 && _this.isOpen())
-                    {
-                        _this.toggle();
-                    }
-                });
-            };
+//             if (_this.config.keyHooks)
+//             {
+//                 body.on('keydown', function(e) {
+//                     if(e.keyCode == 27 && _this.isOpen())
+//                     {
+//                         _this.toggle();
+//                     }
+//                 });
+//             };
 
-            body.on('click', _this.config.selector, function(e){
-                e.preventDefault ? e.preventDefault() : e.returnValue = false;
-                _this.toggle();
-            });
-        },
+//             body.on('click', _this.config.selector, function(e){
+//                 e.preventDefault ? e.preventDefault() : e.returnValue = false;
+//                 _this.toggle();
+//             });
+//         },
 
-        overlayTrigger: function()
-        {
-            _this = this;
+//         overlayTrigger: function()
+//         {
+//             _this = this;
 
-            body.on('click', _this.config.overlay, function(e){
-                _this.hide();
-            });
-        },
+//             body.on('click', _this.config.overlay, function(e){
+//                 _this.hide();
+//             });
+//         },
 
-        init: function(config)
-        {
-            this.extend(config);
+//         init: function(config)
+//         {
+//             this.extend(config);
             
-            this.sandwichTrigger();
-            this.overlayTrigger();
-        }
+//             this.sandwichTrigger();
+//             this.overlayTrigger();
+//         }
 
-    };
+//     };
 
-})(jQuery);
- 
+// })(jQuery);
+//  

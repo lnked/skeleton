@@ -3,12 +3,10 @@ var app = app || {};
 (function(body){
     "use strict";
 
-    app = {
+    app.map = {
         
         init: function() {
-            this.map.init();
-            this.faq.init();
-            this.fixmenu.init();
+            alert("map");
         }
 
     };
