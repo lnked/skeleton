@@ -30,7 +30,7 @@
 }
 
 .sidebar + .content {
-    padding-left: $sidebar-width + 30px;
+    padding-left: $sidebar-width + $sidebar-margin;
 }
 
 @media only screen and (max-width: 1280px) {}

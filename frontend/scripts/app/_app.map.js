@@ -40,13 +40,16 @@ var app = app || {};
 
             ymaps.ready(function(){
 
-                that._mapObject = new ymaps.Map("map", {
+                that._mapObject = new ymaps.Map(data.id, {
                     center: [data.coords[0], data.coords[1]],
                     zoom: 13,
-                    controls: ['zoomControl', 'searchControl', 'typeSelector',  'fullscreenControl']
-                }, {
-                    searchControlProvider: 'yandex#search'
+                    controls: ['zoomControl', 'searchControl', 'typeSelector', 'fullscreenControl']
                 }),
+
+                that._mapObject.behaviors.disable('scrollZoom');
+
+                that._mapObject.controls.get('zoomControl').options.set('size', 'small');
+                that._mapObject.controls.get('zoomControl').options.set('position', { right: 10, top: 50 });
 
                 that._mapObject.geoObjects
                     .add(new ymaps.Placemark([data.coords[0], data.coords[1]], {}, {

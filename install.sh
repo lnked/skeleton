@@ -43,7 +43,7 @@ else
     ln -s ${SOURCE}/node_modules/ ${ROOT}/$folder_name/
 fi
 
-mkdir frontend public_html frontend/template frontend/styles frontend/scripts
+mkdir logs frontend public_html frontend/template frontend/styles frontend/scripts
 mkdir frontend/images frontend/sprite frontend/favicon frontend/fonts frontend/json frontend/svgstore
 
 # Копируем файлы

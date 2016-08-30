@@ -29,6 +29,11 @@ module.exports.tasks = {
         app: app + 'images'
     },
 
+    'files': {
+        src: src + 'files/**/*.*',
+        app: app + 'files'
+    },
+
     'video': {
         src: src + 'video/**/*.*',
         app: app + 'video'
@@ -111,6 +116,7 @@ module.exports.tasks = {
             template:   [src + 'template/*.html', src + 'template/**/*.html', src + 'template/**/**/*.html', src + 'template/**/_*.*'],
             scripts:    [src + 'scripts/**/*.{js,coffee}'],
             video:      [src + 'video/**/*.*'],
+            files:      [src + 'files/**/*.*'],
             images:     [src + 'images/**/*.*'],
             favicon:    [src + 'favicon/**/*.*'],
             fonts:      [src + 'fonts/**/*.*'],
