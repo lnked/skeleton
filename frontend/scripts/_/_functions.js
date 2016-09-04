@@ -192,3 +192,32 @@ function lockScroll(element) {
 //   .on('mouseenter', showEventPreventedMsg)
 //   .on('mouseleave', hideEventPreventedMsg);      
 // $('[id*="parent"]').scrollTop(100);
+
+var isJson = function(item) {
+    item = typeof item !== "string" ? JSON.stringify(item) : item;
+
+    try {
+        item = JSON.parse(item);
+    }
+    catch (e) {
+        return false;
+    }
+
+    if (typeof item === "object" && item !== null) {
+        return true;
+    }
+
+    return false;
+}
+
+String.prototype.toHHMMSS = function () {
+    var sec_num = parseInt(this, 10); // don't forget the second param
+    var hours   = Math.floor(sec_num / 3600);
+    var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
+    var seconds = sec_num - (hours * 3600) - (minutes * 60);
+
+    if (hours   < 10) {hours   = "0"+hours;}
+    if (minutes < 10) {minutes = "0"+minutes;}
+    if (seconds < 10) {seconds = "0"+seconds;}
+    return hours+':'+minutes+':'+seconds;
+}
