@@ -33,4 +33,6 @@ fi
 sudo launchctl unload /Library/LaunchDaemons/homebrew.mxcl.nginx.plist
 sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.nginx.plist
 
+./install.sh $DOMAIN
+
 exit 0
