@@ -14,7 +14,7 @@ EOF
 cat <<EOT >> /usr/local/etc/nginx/sites-available/$DOMAIN
 server {
     listen          80;
-    index           index.php;
+    index           index.html index.htm index.php;
     server_name     $DOMAIN www.$DOMAIN;
     root            /Users/edik/web/$DOMAIN/public_html;
     
@@ -27,9 +27,28 @@ server {
     }
 
     location / {
-        include   /usr/local/etc/nginx/conf.d/php-fpm;
         rewrite ^(.*)$ /index.php;
+        include   /usr/local/etc/nginx/conf.d/php-fpm;
     }
+
+    location ~* \.(htm|html)$ {}
+
+    location = /favicon.ico {
+        log_not_found off;
+        access_log off;
+    }
+
+    location = /robots.txt {
+        allow all;
+        log_not_found off;
+        access_log off;
+    }
+
+    ## Disable viewing .htaccess & .htpassword
+    location ~ /\.ht {
+        deny  all;
+    }
+}
 }
 EOT
 
