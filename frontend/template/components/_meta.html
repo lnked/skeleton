@@ -21,6 +21,7 @@
     <![endif]-->
 
     <script>(function(d) { d.className = d.className.replace(/\bno-js/, ''); })(document.documentElement);</script>
+    <script>if (window.jQuery === undefined){window.jQueryReadyHandlers = [];window.$ = window.jQuery = function(cb){window.jQueryReadyHandlers.push(cb);return window.$;};window.$.ready = window.$;}</script>
     <title itemprop="name">@@title</title>
 </head>
 <body@@if (typeof(bodyclass) !== 'undefined' && bodyclass !== ''){ class="@@bodyclass"}>

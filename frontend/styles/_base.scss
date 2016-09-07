@@ -65,3 +65,22 @@ body {
 //     font-size: #{$max_font}px;
 //   }
 // }
+
+
+// @media only screen and (min-width: 1200px) {
+//     :root {
+//         content: url('https://gu-st.ru/htdocs/img/svg-sprite/icons-svg-desc.svg?fh=6b24d3d33197815d4796b073e7e5f24a') url('https://gu-st.ru/htdocs/img/svg-sprite/footer-sprite-icon-desc-in.png?fh=23e3b0cfcb9ae481a3c488659f607ba3');
+//     };
+// }
+
+// @media only screen and (min-width: 768px) and (max-width: 1199px) {
+//     :root {
+//         content: url('https://gu-st.ru/htdocs/img/svg-sprite/icons-svg-tablet.svg?fh=328df68f28726dd3e332f9fcf5dc8e54') url('https://gu-st.ru/htdocs/img/svg-sprite/footer-sprite-icon-desc-in.png?fh=23e3b0cfcb9ae481a3c488659f607ba3');
+//     };
+// }
+
+// @media only screen and (max-width: 767px) {
+//     :root {
+//         content: url('https://gu-st.ru/htdocs/img/svg-sprite/icons-svg-phone.svg?fh=502553eda6bf54ef78dc6b5828c87d00') url('https://gu-st.ru/htdocs/img/svg-sprite/footer-sprite-icon-desc-in.png?fh=23e3b0cfcb9ae481a3c488659f607ba3');
+//     };
+// }

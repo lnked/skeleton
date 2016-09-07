@@ -13,15 +13,22 @@ EOF
 
 cat <<EOT >> /usr/local/etc/nginx/sites-available/$DOMAIN
 server {
-    listen       80;
-    server_name $DOMAIN www.$DOMAIN;
-    root /Users/edik/web/$DOMAIN/public_html;
- 
-    error_log /Users/edik/web/$DOMAIN/logs/error.log;
-    access_log  /Users/edik/web/$DOMAIN/logs/access.log main;
+    listen          80;
+    index           index.php;
+    server_name     $DOMAIN www.$DOMAIN;
+    root            /Users/edik/web/$DOMAIN/public_html;
+    
+    #
+    error_log       /Users/edik/web/$DOMAIN/logs/error.log;
+    access_log      /Users/edik/web/$DOMAIN/logs/access.log main;
+
+    location ~* \.(css|js|png|ico|jpe?g|gif|woff|eot|svg|ttf|txt)$ {
+        expires 30d;
+    }
 
     location / {
         include   /usr/local/etc/nginx/conf.d/php-fpm;
+        rewrite ^(.*)$ /index.php;
     }
 }
 EOT
