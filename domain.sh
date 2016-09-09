@@ -6,6 +6,8 @@ FILE=/usr/local/etc/nginx/sites-enabled/$DOMAIN;
 
 sudo bash <<EOF
 echo -e "" >> /private/etc/hosts
+#
+#
 echo -e "127.0.0.1       $DOMAIN" >> /private/etc/hosts
 echo -e "::1             $DOMAIN" >> /private/etc/hosts
 echo -e "" >> /private/etc/hosts
