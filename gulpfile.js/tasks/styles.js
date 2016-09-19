@@ -49,7 +49,6 @@ module.exports = function(config) {
             require('postcss-fixes'),
             require('postcss-vmin'),
             require('postcss-opacity'),
-            require('postcss-unnth'),
             require('postcss-reporter')({ clearMessages: true })
         ],
         modules: [
