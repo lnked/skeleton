@@ -33,6 +33,9 @@ module.exports = function(config) {
                 loadPaths: ['images/'],
                 relative: '../images/'
             }),
+            require('postcss-data-packer')({
+                dest: config.app + '/main_data.css'
+            }),
             require('postcss-vmin'),
             require('postcss-will-change'),
             require('postcss-color-rgba-fallback'),
@@ -41,8 +44,9 @@ module.exports = function(config) {
             require('postcss-custom-media'),
             require('postcss-media-minmax'),
             require('postcss-custom-selectors'),
+            require('postcss-quantity-queries'),
             require('postcss-font-magician')({
-                hosted: '../fonts',
+                hosted: '/fonts',
                 foundries: 'hosted',
                 formats: 'local woff2 woff ttf eot'
             }),

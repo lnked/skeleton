@@ -114,7 +114,7 @@ module.exports.tasks = {
     'watch': {
         tasks: {
             template:   [src + 'template/*.html', src + 'template/**/*.html', src + 'template/**/**/*.html', src + 'template/**/_*.*'],
-            scripts:    [src + 'scripts/**/*.{js,coffee}'],
+            scripts:    [src + 'scripts/**/*.{js,jsx,coffee}'],
             video:      [src + 'video/**/*.*'],
             files:      [src + 'files/**/*.*'],
             images:     [src + 'images/**/*.*'],

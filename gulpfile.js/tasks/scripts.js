@@ -26,15 +26,11 @@ module.exports = function(config) {
                 
                 .pipe($.concat(folder + '.js'))
 
-                .pipe($.if(
-                    global.is.es2015,
-                    $.babel({ presets: ['es2015'] })
-                ))
+                .pipe($.if(global.is.es2015, $.babel({ presets: ['es2015'] })))
 
-                .pipe($.if(
-                    global.is.react,
-                    $.react()
-                ))
+                .pipe($.if(/[.]jsx$/, $.react()))
+
+                .pipe($.if(global.is.react, $.react()))
 
                 .pipe($.if(global.is.lint, $.eslint()))
                 .pipe($.if(global.is.lint, $.eslint.format()))
