@@ -37,6 +37,7 @@ module.exports = function(config) {
                 dest: config.app + '/main_data.css'
             }),
             require('postcss-vmin'),
+            require('postcss-triangle'),
             require('postcss-will-change'),
             require('postcss-color-rgba-fallback'),
             require('postcss-at-rules-variables'),

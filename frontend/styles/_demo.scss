@@ -1,0 +1,37 @@
+.isosceles-triangle {
+    triangle: pointing-<up|down|left|right>;
+    width: <length>;
+    height: <length>;
+    background-color: <color>;
+}
+
+.right-isosceles-triangle {
+    triangle: right-iso pointing-<up|down|left|right>;
+    <width|height>: <length>;
+    background-color: <color>;
+}
+
+.equilateral-triangle {
+    triangle: equilateral pointing-<up|down|left|right>;
+    <width|height>: <length>;
+    background-color: <color>;
+}
+
+.isosceles-triangle {
+    triangle: pointing-right;
+    width: 150px;
+    height: 115px;
+    background-color: red;
+}
+
+.right-isosceles-triangle {
+    triangle: right-iso pointing-down;
+    width: 250px;
+    background-color: red;
+}
+
+.equilateral-triangle {
+    triangle: equilateral pointing-up;
+    height: 100px;
+    background-color: red;
+}
