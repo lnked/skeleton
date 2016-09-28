@@ -3,11 +3,10 @@ var app = app || {};
 (function(body){
     "use strict";
 
-    $.app = $.app = $.app || {};
+    var $body = $(body),
+        _this;
 
-    var body = $('body'), _this;
-
-    $.app.ajaxForm = {
+    app.ajaxForm = {
 
         config: {
             form_class: '.form-ajax',
@@ -142,7 +141,7 @@ var app = app || {};
         {
             _this = this;
 
-            body.on('submit', '.form-file-upload', function(e) {
+            $body.on('submit', '.form-file-upload', function(e) {
                 return AIM.submit(this, {
                     onStart: function()
                     {
@@ -169,13 +168,11 @@ var app = app || {};
         send: function(action, method, data, cb, err)
         {
 
-            if (typeof cb !== 'function')
-            {
+            if (typeof cb !== 'function') {
                 cb = function() {};
             }
 
-            if (typeof err !== 'function')
-            {
+            if (typeof err !== 'function') {
                 err = function() {};
             }
 
@@ -193,9 +190,6 @@ var app = app || {};
                     data: data,
                     contentType: false,
                     processData: method.toLowerCase() == 'get',
-                    // beforeSend: function(request) {
-                    //     return request.setRequestHeader('X-CSRF-Token', $("meta[name='csrf-token']").attr('content'));
-                    // },
                     success: cb,
                     error: err,
                     dataType: 'JSON'
@@ -209,7 +203,7 @@ var app = app || {};
         {
             _this = this;
 
-            body.on('click', _this.config.link_class, function(e) {
+            $body.on('click', _this.config.link_class, function(e) {
                 e.preventDefault ? e.preventDefault() : e.returnValue = false;
 
                 var link = $(this);
@@ -259,7 +253,7 @@ var app = app || {};
         {
             _this = this;
 
-            body.on('submit', _this.config.form_class, function(e) {
+            $body.on('submit', _this.config.form_class, function(e) {
                 e.preventDefault ? e.preventDefault() : e.returnValue = false;
 
                 var form    = $(this),
