@@ -12,7 +12,7 @@ EOF
 
 cat <<EOT >> /usr/local/etc/nginx/sites-available/$DOMAIN
 server {
-    listen          80 default;
+    listen          80;
     server_name     $DOMAIN www.$DOMAIN;
     
     root            /Users/edik/web/$DOMAIN/public_html;
@@ -21,7 +21,7 @@ server {
     access_log      off;
     error_log       /Users/edik/web/$DOMAIN/logs/error.log error;
 
-    # location ~* \.(css|js|png|ico|jpe?g|gif|woff|eot|svg|ttf|txt)$ {
+    # location ~* \.(jpe?g|gif|png|zip|tgz|gz|rar|bz2|doc|xls|exe|pdf|ppt|txt|tar|wav|bmp|rtf|html|css|js|ico|woff|eot|svg|ttf)$ {
     #     expires 30d;
     # }
 
@@ -35,47 +35,42 @@ server {
             rewrite ^ /index.php last;
         }
 
-        # начало rewrite
-        set $rflag 1;   # так как логического объединения в условных выражениях нет, то вводим переменную для сложения двух условий. flag указывает на необходимость сделать переадресацию
-        if (-e $request_filename) { # если есть запрошенный файл, то переадресация не нужна
+        set $rflag 1;
+        if (-e $request_filename) {
             set $rflag 0;
         }
 
-        if (!-f /Users/edik/web/$DOMAIN/public_html/index.php) { # если нет index.php в корне сайта, то переадресация тоже не нужна, ибо некуда
+        if (!-f /Users/edik/web/$DOMAIN/public_html/index.php) {
             set $rflag 0;
         }
 
-        if ($rflag = 1) {  #
+        if ($rflag = 1) {
             rewrite  ^ /index.php  last;
         }
-        # конец rewrite
 
-        if (-f $request_filename) { # для статических файлов включаем кэш на час
+        if (-f $request_filename) {
             expires  1h;
             break;
         }
     }
 
-    location ~ \.php$ { # этот блок сработает при запросе .php файлов
+    location ~ \.php$ {
         include /usr/local/etc/nginx/conf.d/php-fpm;
         root   /Users/edik/web/$DOMAIN/public_html;
-        fastcgi_pass   127.0.0.1:9000; # тут висит php-fpm
+        fastcgi_pass   127.0.0.1:9000;
         fastcgi_index  index.php;
         fastcgi_param  SCRIPT_FILENAME  /Users/edik/web/$DOMAIN/$fastcgi_script_name;
         include fastcgi_params;
         break;
     }
 
-    location ~ \.htm(l?)$ { # этот блок работает при вызове .html или .htm
-        # если в корне сайта лежит файл «.parse_html», то обрабатываем HTML как PHP
+    location ~ \.htm(l?)$ {
         fastcgi_param  SCRIPT_FILENAME  /Users/edik/web/$DOMAIN/$fastcgi_script_name;
         include fastcgi_params;
-        if (!-f $request_filename) { # даже если запросили .html, это не значит что он у нас есть
-            # соотвественно, если файла нет, то тоже делаем rewrite
+        if (!-f $request_filename) {
             rewrite  ^ /index.php  last;
         }
-        if (-f /Users/edik/web/$DOMAIN/.parse_html) { # проверяем на наличие метки
-            # если в директории сайта лежит ключевой файлик, то все html обрабатываем как php
+        if (-f /Users/edik/web/$DOMAIN/.parse_html) {
             fastcgi_pass   127.0.0.1:9000;
         }
         break;

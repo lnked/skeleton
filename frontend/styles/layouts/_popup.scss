@@ -1,0 +1,144 @@
+.popup-open {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	-webkit-overflow-scrolling: touch;
+
+	.layout-wrapper {
+		overflow: hidden;
+	}
+}
+
+.no-scroll.popup-open {
+	overflow: hidden;
+}
+
+.overlay {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 0;
+	margin: 0;
+	padding: 0;
+	z-index: 8888;
+	display: none;
+	background-color: #fff;
+	transition: opacity $a-time;
+	opacity: 0;
+	
+	&.visible {
+		display: block;
+	}
+
+	&.animate {
+		opacity: 0.7;
+	}
+}
+
+.popup {
+	width: 100%;
+	height: 100%;
+	max-width: 100%;
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	margin: 0;
+	padding: 0;
+	font-size: 0;
+	line-height: 1;
+	z-index: 9999;
+	display: none;
+	overflow-y: auto;
+	transform: translate3d(0, 0, 0);
+	transition: opacity .5s, transform .6s;
+	box-sizing: border-box;
+	opacity: 0;
+
+	&.visible {
+		display: block;
+	}
+
+	&.animate {
+		transform: translate3d(0, 0, 0);
+		opacity: 1;
+	}
+
+	&__dialog {
+		width: 100%;
+		height: auto;
+		max-width: 96rem;
+		margin: 0 auto;
+		text-align: center;
+		vertical-align: middle;
+		position: relative;
+		padding: 5rem 0;
+	
+		&.is-scrolling {
+			position: relative;
+			left: auto;
+			top: auto;
+			transform: none;
+		}
+	}
+
+	&__content {
+		width: 100%;
+		line-height: 1;
+		display: inline-block;
+		vertical-align: middle;
+		position: relative;
+		text-align: left;
+		padding: 0;
+		background-color: #fff;
+		background-color: rgba(255, 255, 255, .9);
+		box-shadow: 0 0 0.9rem rgba(0, 0, 0, 0.18);
+	}
+
+	&__header {
+		height: 70px;
+		text-align: center;
+		line-height: 70px;
+		background-color: #EAEFF3;
+
+		&__title {
+			color: #535353;
+			font-size: 2.2rem;
+			font-weight: 400;
+		}
+	}
+	
+	&__body {
+		padding: 35px 40px;
+		background-color: #fff;
+	}
+
+	&__close {
+		height: 23px;
+		color: #878787;
+		position: absolute;
+		right: 0;
+		top: -35px;
+		cursor: pointer;
+		padding-right: 32px;
+		font-size: 1.3rem;
+		line-height: 30px;
+		font-weight: 400;
+		text-decoration: underline;
+		background: url(/images/close.png) 100% 50% no-repeat;
+		background-size: 23px 23px;
+	}
+}
+
+@media only screen and (max-width: 1280px) {}
+@media only screen and (max-width: 1140px) {}
+@media only screen and (max-width: 1024px) {}
+@media only screen and (max-width: 960px) {}
+@media only screen and (max-width: 768px) {}
+@media only screen and (max-width: 568px) {}
+@media only screen and (max-width: 480px) {}
+@media only screen and (max-width: 375px) {}
+@media only screen and (max-width: 320px) {}
