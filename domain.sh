@@ -21,20 +21,43 @@ server {
     access_log      off;
     error_log       /Users/edik/web/$DOMAIN/logs/error.log error;
 
-    # location ~* \.(jpe?g|gif|png|zip|tgz|gz|rar|bz2|doc|xls|exe|pdf|ppt|txt|tar|wav|bmp|rtf|html|css|js|ico|woff|eot|svg|ttf)$ {
-    #     expires 30d;
-    # }
+    location ~ /\.ht {
+       deny  all;
+    }
+    
+    # Match assets
+    location ~* \.(jpe?g|gif|png|zip|tgz|gz|rar|bz2|doc|xls|exe|pdf|ppt|txt|tar|wav|bmp|rtf|html|css|js|ico|woff|woff2|eot|svg|ttf)$ {
+        expires 30d;
+    }
+    
+    location ~ \.htm(l?)$ {
+        fastcgi_param  SCRIPT_FILENAME  /Users/edik/web/$DOMAIN/$fastcgi_script_name;
+        include fastcgi_params;
+        if (!-f $request_filename) {
+            rewrite  ^ /index.php  last;
+        }
+        if (-f /Users/edik/web/$DOMAIN/.parse_html) {
+            fastcgi_pass   127.0.0.1:9000;
+        }
+        break;
+    }
 
-    # location / {
-    #     include /usr/local/etc/nginx/conf.d/php-fpm;
-    #     rewrite ^(.*)$ /index.php;
-    # }
+    location ~ \.php$ {
+        include /usr/local/etc/nginx/conf.d/php-fpm;
+        rewrite ^(.*)$ /index.php;
+        root   /Users/edik/web/$DOMAIN/public_html;
+        break;
+    }
+
+    location /cp {
+        rewrite ^ /cp/index.php last;
+    }
 
     location / {
         if (!-d /Users/edik/web/$DOMAIN/public_html) {
             rewrite ^ /index.php last;
         }
-
+    
         set $rflag 1;
         if (-e $request_filename) {
             set $rflag 0;
@@ -52,32 +75,6 @@ server {
             expires  1h;
             break;
         }
-    }
-
-    location ~ \.php$ {
-        include /usr/local/etc/nginx/conf.d/php-fpm;
-        root   /Users/edik/web/$DOMAIN/public_html;
-        fastcgi_pass   127.0.0.1:9000;
-        fastcgi_index  index.php;
-        fastcgi_param  SCRIPT_FILENAME  /Users/edik/web/$DOMAIN/$fastcgi_script_name;
-        include fastcgi_params;
-        break;
-    }
-
-    location ~ \.htm(l?)$ {
-        fastcgi_param  SCRIPT_FILENAME  /Users/edik/web/$DOMAIN/$fastcgi_script_name;
-        include fastcgi_params;
-        if (!-f $request_filename) {
-            rewrite  ^ /index.php  last;
-        }
-        if (-f /Users/edik/web/$DOMAIN/.parse_html) {
-            fastcgi_pass   127.0.0.1:9000;
-        }
-        break;
-    }
-
-    location ~ /\.ht {
-       deny  all;
     }
 }
 EOT
