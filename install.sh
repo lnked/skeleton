@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Название папки нового проекта
-folder_name=$1
+FOLDER_NAME=$1
 
 # Копировать проект
 iscopy=$2
@@ -11,50 +11,50 @@ RED='\033[0;31m'
 NC='\033[0m'
 
 SOURCE="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
-ROOT="$( dirname "$SOURCE" )"
-FOLDER_NAME='skeleton'
+PATH_ROOT="$( dirname "$SOURCE" )"
+# FOLDER_NAME='skeleton'
 
-cd $ROOT
+cd $PATH_ROOT
 
 echo -e " "
 
 # Создаем папку проекта если ее нет
 #
-if [ -d "$folder_name" ] ; then
-	echo -e "${RED}Папка $folder_name существует${NC}\n"
+if [ -d "$FOLDER_NAME" ] ; then
+    echo -e "${RED}Папка $FOLDER_NAME существует${NC}\n"
 else
-	mkdir $folder_name
-	echo -e "${GREEN}Создана папка $folder_name${NC} \n"
+    mkdir $FOLDER_NAME
+    echo -e "${GREEN}Создана папка $FOLDER_NAME${NC} \n"
 fi
 
 # Переходим в папку
 #
-cd ./$folder_name
+cd ./$FOLDER_NAME
 
 # Создаем папку проекта если ее нет
 #
 if [ "$iscopy" = "iscopy" ] ; then
-    cp -r ${SOURCE}/gulpfile.js ${ROOT}/$folder_name/gulpfile.js
-    cp -r ${SOURCE}/package.json ${ROOT}/$folder_name/package.json
-    cp -r ${SOURCE}/node_modules/ ${ROOT}/$folder_name/node_modules
+    cp -r ${SOURCE}/gulpfile.js ${PATH_ROOT}/$FOLDER_NAME/gulpfile.js
+    cp -r ${SOURCE}/package.json ${PATH_ROOT}/$FOLDER_NAME/package.json
+    cp -r ${SOURCE}/node_modules/ ${PATH_ROOT}/$FOLDER_NAME/node_modules
 else
-    ln -s ${SOURCE}/gulpfile.js ${ROOT}/$folder_name/
-    ln -s ${SOURCE}/package.json ${ROOT}/$folder_name/
-    ln -s ${SOURCE}/node_modules/ ${ROOT}/$folder_name/
+    ln -s ${SOURCE}/gulpfile.js ${PATH_ROOT}/$FOLDER_NAME/
+    ln -s ${SOURCE}/package.json ${PATH_ROOT}/$FOLDER_NAME/
+    ln -s ${SOURCE}/node_modules/ ${PATH_ROOT}/$FOLDER_NAME/
 fi
 
 mkdir logs frontend public_html frontend/template frontend/styles frontend/scripts
 mkdir frontend/images frontend/sprite frontend/favicon frontend/fonts frontend/json frontend/svgstore
 
 # Копируем файлы
-cp -r ${SOURCE}/.gitignore ${ROOT}/$folder_name/.gitignore
-cp -r ${SOURCE}/.eslintrc.json ${ROOT}/$folder_name/.eslintrc.json
+cp -r ${SOURCE}/.gitignore ${PATH_ROOT}/$FOLDER_NAME/.gitignore
+cp -r ${SOURCE}/.eslintrc.json ${PATH_ROOT}/$FOLDER_NAME/.eslintrc.json
 
-cp -R ${SOURCE}/frontend/* ${ROOT}/$folder_name/frontend/
+cp -R ${SOURCE}/frontend/* ${PATH_ROOT}/$FOLDER_NAME/frontend/
 
-echo -e "Проект ${GREEN}$folder_name${NC} успешно создан"
+echo -e "Проект ${GREEN}$FOLDER_NAME${NC} успешно создан"
 
-cd ${ROOT}/$folder_name/
+cd ${PATH_ROOT}/$FOLDER_NAME/
 
 # Запуск сборщика и сервера
 gulp build && gulp --server

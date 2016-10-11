@@ -2,6 +2,9 @@
 
 DOMAIN=$1;
 
+if [ ! -z "$DOMAIN" ]; then
+    echo -e "create domain $DOMAIN"
+
 sudo bash <<EOF
 echo -e "" >> /private/etc/hosts
 #
@@ -33,7 +36,7 @@ server {
     location ~ \.htm(l?)$ {
         fastcgi_param  SCRIPT_FILENAME  /Users/edik/web/$DOMAIN/$fastcgi_script_name;
         include fastcgi_params;
-        if (!-f $request_filename) {
+        if (! -f $request_filename) {
             rewrite  ^ /index.php  last;
         }
         if (-f /Users/edik/web/$DOMAIN/.parse_html) {
@@ -54,16 +57,16 @@ server {
     }
 
     location / {
-        if (!-d /Users/edik/web/$DOMAIN/public_html) {
+        if (! -d /Users/edik/web/$DOMAIN/public_html) {
             rewrite ^ /index.php last;
         }
-    
+
         set $rflag 1;
         if (-e $request_filename) {
             set $rflag 0;
         }
 
-        if (!-f /Users/edik/web/$DOMAIN/public_html/index.php) {
+        if (! -f /Users/edik/web/$DOMAIN/public_html/index.php) {
             set $rflag 0;
         }
 
@@ -79,6 +82,16 @@ server {
 }
 EOT
 
+# cat <<EOT >> /private/etc/apache2/users/$DOMAIN.conf
+# <VirtualHost *:8080>
+#     ServerName $DOMAIN
+#     ServerAlias $DOMAIN www.$DOMAIN
+#     DocumentRoot /Users/edik/web/$DOMAIN/public_html/
+#     ErrorLog /Users/edik/web/$DOMAIN/logs/error.log 
+#     CustomLog /Users/edik/web/$DOMAIN/logs/access.log common
+# </VirtualHost>
+# EOT
+
 if [!-f "/usr/local/etc/nginx/sites-enabled/$DOMAIN"]; then
     ln -sfv /usr/local/etc/nginx/sites-available/$DOMAIN /usr/local/etc/nginx/sites-enabled/$DOMAIN
 fi
@@ -86,9 +99,13 @@ fi
 sudo launchctl unload /Library/LaunchDaemons/homebrew.mxcl.nginx.plist
 sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.nginx.plist
 
-./install.sh $DOMAIN
+/Users/edik/web/skeleton/install.sh $DOMAIN
 
-sudo apachectl restart
+# sudo apachectl restart
 dscacheutil -flushcache
 
-exit 0
+else
+    echo -e "enter a domain name"
+fi
+
+# exit 0
