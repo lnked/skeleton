@@ -1,0 +1,13 @@
+@keyframes anim-effect-bounce {
+    0%,50%,100% {
+        transform: translateX(0);
+    }
+
+    37.5% {
+        transform: translateX(.5rem);
+    }
+
+    75% {
+        transform: translateX(-1rem);
+    };
+}

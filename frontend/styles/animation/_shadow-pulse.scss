@@ -1,0 +1,25 @@
+@keyframes fd-pulse {
+    0% {
+        box-shadow: 0 0 3px rgba(100,130,170,.55);
+    }
+
+    20% {
+        box-shadow: 0 0 4px rgba(70,130,170,.6);
+    }
+
+    40% {
+        box-shadow: 0 0 5px rgba(40,130,170,.65);
+    }
+
+    60% {
+        box-shadow: 0 0 6px rgba(10,130,170,.7);
+    }
+
+    80% {
+        box-shadow: 0 0 5px rgba(40,130,170,.65);
+    }
+
+    100% {
+        box-shadow: 0 0 4px rgba(70,130,170,.6);
+    };
+}

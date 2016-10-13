@@ -8,6 +8,7 @@ var app = app || {};
         init: function() {
             this.map.init();
             this.faq.init();
+            this.faq.morph();
             this.fixmenu.init();
         }
 

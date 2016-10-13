@@ -1,0 +1,47 @@
+@keyframes anim-effect-pulse1 {
+    0% {
+        opacity: 1;
+        transform: scale3d(.5,.5,1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale3d(1.1,1.1,1);
+    };
+}
+
+@keyframes anim-effect-pulse2 {
+    0% {
+        opacity: 1;
+        transform: scale3d(.5,.5,1);
+    }
+
+    50%,100% {
+        opacity: 0;
+        transform: scale3d(1.2,1.2,1);
+    };
+}
+
+@keyframes anim-effect-pulse-reverse1 {
+    0% {
+        opacity: 1;
+        transform: scale3d(1.1,1.1,1);
+    }
+
+    50%,100% {
+        opacity: 0;
+        transform: scale3d(.5,.5,1);
+    };
+}
+
+@keyframes anim-effect-pulse-reverse2 {
+    0% {
+        opacity: 1;
+        transform: scale3d(1.2,1.2,1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale3d(.5,.5,1);
+    };
+}
