@@ -36,7 +36,7 @@ server {
     location ~ \.htm(l?)$ {
         fastcgi_param  SCRIPT_FILENAME  /Users/edik/web/$DOMAIN/$fastcgi_script_name;
         include fastcgi_params;
-        if (! -f $request_filename) {
+        if (!-f $request_filename) {
             rewrite  ^ /index.php  last;
         }
         if (-f /Users/edik/web/$DOMAIN/.parse_html) {
@@ -57,7 +57,7 @@ server {
     }
 
     location / {
-        if (! -d /Users/edik/web/$DOMAIN/public_html) {
+        if (!-d /Users/edik/web/$DOMAIN/public_html) {
             rewrite ^ /index.php last;
         }
 
@@ -66,7 +66,7 @@ server {
             set $rflag 0;
         }
 
-        if (! -f /Users/edik/web/$DOMAIN/public_html/index.php) {
+        if (!-f /Users/edik/web/$DOMAIN/public_html/index.php) {
             set $rflag 0;
         }
 
