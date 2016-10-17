@@ -7,12 +7,33 @@ const es            = require("event-stream");
 const clean         = require('../utils/clean');
 const error         = require('../utils/error');
 const getFolders    = require('../utils/folders');
+const bowerFiles    = require('main-bower-files');
 
 module.exports = function(config) {
     config = config || {};
 
     return function(callback) {
         
+        console.log('bowerFiles: ',
+            bowerFiles({
+                filter:'**/*.js'
+            })
+        );
+
+        // gulp.task('task-name',function(){
+        //   return gulp.src(mainBowerFiles({
+        //   filter:'**/*.js', //css
+        //     paths: {
+        //         bowerDirectory: 'path/for/bower_components',
+        //         bowerrc: 'path/for/.bowerrc',
+        //         bowerJson: 'path/for/bower.json'
+        //     }
+        // }))
+        //   .pipe(concat('vendor.js'))
+        //   .pipe(gulp.dest('path/js'));
+        // });
+
+
         let folders = getFolders(config.path);
 
         folders.map(function(folder) {

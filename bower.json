@@ -1,0 +1,26 @@
+{
+  "name": "skeleton",
+  "description": "Web starter kit",
+  "main": "gulpfile.js",
+  "authors": [
+    "Edik Bulikyan <ed.proff@gmail.com> (https://github.com/lnked)"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "gulp",
+    "bower"
+  ],
+  "homepage": "https://github.com/lnked/skeleton",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "timeout": 120000,
+  "dependencies": {
+    "jquery": "http://code.jquery.com/jquery-1.9.1.min.js"
+  }
+}

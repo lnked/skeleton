@@ -83,12 +83,25 @@ server {
 EOT
 
 # cat <<EOT >> /private/etc/apache2/users/$DOMAIN.conf
-# <VirtualHost *:8080>
+# <VirtualHost *:80>
 #     ServerName $DOMAIN
 #     ServerAlias $DOMAIN www.$DOMAIN
-#     DocumentRoot /Users/edik/web/$DOMAIN/public_html/
+#     DocumentRoot /Users/edik/web/$DOMAIN/public_html
 #     ErrorLog /Users/edik/web/$DOMAIN/logs/error.log 
 #     CustomLog /Users/edik/web/$DOMAIN/logs/access.log common
+
+#     <Directory /Users/edik/web/$DOMAIN/public_html>
+#         <IfModule mod_rewrite.c>
+#             RewriteEngine On
+
+#             # Handle trailing slashes
+#             RewriteRule ^(.*)/$ /$1 [L,R=301]
+
+#             # Create pretty URLs
+#             RewriteCond %{REQUEST_FILENAME} !-f
+#             RewriteRule ^ index.php [L]
+#         </IfModule>
+#     </Directory>
 # </VirtualHost>
 # EOT
 
