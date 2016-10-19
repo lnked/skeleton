@@ -1,0 +1,11 @@
+{
+    "directory": "frontend/vendors/",
+    "scripts": {
+        "preinstall": "",
+        "postinstall": "./.bower-postinstall.sh",
+        "preuninstall": ""
+    },
+    "save": true,
+    "save-exact": true,
+    "strict-ssl": true
+}
