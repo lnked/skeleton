@@ -112,7 +112,7 @@ fi
 sudo launchctl unload /Library/LaunchDaemons/homebrew.mxcl.nginx.plist
 sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.nginx.plist
 
-# /Users/edik/web/skeleton/.install.sh $DOMAIN
+/Users/edik/web/skeleton/.install.sh $DOMAIN
 
 # sudo apachectl restart
 dscacheutil -flushcache

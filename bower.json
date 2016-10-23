@@ -21,6 +21,7 @@
   ],
   "timeout": 120000,
   "dependencies": {
-    "jquery": "http://code.jquery.com/jquery-1.9.1.min.js"
+    "jquery": "http://code.jquery.com/jquery-1.9.1.min.js",
+    "axios": "0.15.2"
   }
 }

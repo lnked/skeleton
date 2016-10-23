@@ -54,8 +54,6 @@ mkdir frontend/images frontend/sprite frontend/favicon frontend/fonts frontend/j
 
 # Копируем файлы
 cp -r ${SOURCE}/.gitignore ${PATH_ROOT}/$FOLDER_NAME/.gitignore
-cp -r ${SOURCE}/.eslintrc.json ${PATH_ROOT}/$FOLDER_NAME/.eslintrc.json
-
 cp -R ${SOURCE}/frontend/* ${PATH_ROOT}/$FOLDER_NAME/frontend/
 
 echo -e "Проект ${GREEN}$FOLDER_NAME${NC} успешно создан"

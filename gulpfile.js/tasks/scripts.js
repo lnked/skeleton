@@ -7,33 +7,30 @@ const es            = require("event-stream");
 const clean         = require('../utils/clean');
 const error         = require('../utils/error');
 const getFolders    = require('../utils/folders');
-// const bowerFiles    = require('main-bower-files');
+const bowerFiles    = require('main-bower-files');
 
 module.exports = function(config) {
     config = config || {};
 
     return function(callback) {
+
+        // Bower files
+        gulp.src(bowerFiles({
+            filter:'**/*.js',
+            paths: {
+                bowerDirectory: config.bower.path,
+                bowerrc: config.bower.config,
+                bowerJson: config.bower.json
+            }
+        }))
+        .pipe($.concat('vendors.js'))
+        .pipe($.rename({suffix: '.min'}))
+        .pipe($.if(global.is.build, $.uglify()))
+        .pipe(gulp.dest(config.app))
+        .pipe($.if(global.is.notify, $.notify({ message: 'Bower complete', onLast: true })));
+
+        // Scripts files
         
-        // console.log('bowerFiles: ',
-        //     bowerFiles({
-        //         filter:'**/*.js'
-        //     })
-        // );
-
-        // gulp.task('task-name',function(){
-        //   return gulp.src(mainBowerFiles({
-        //   filter:'**/*.js', //css
-        //     paths: {
-        //         bowerDirectory: 'path/for/bower_components',
-        //         bowerrc: 'path/for/.bowerrc',
-        //         bowerJson: 'path/for/bower.json'
-        //     }
-        // }))
-        //   .pipe(concat('vendor.js'))
-        //   .pipe(gulp.dest('path/js'));
-        // });
-
-
         let folders = getFolders(config.path);
 
         folders.map(function(folder) {

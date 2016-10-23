@@ -15,7 +15,12 @@ module.exports.tasks = {
     'scripts': {
         path: src + 'scripts',
         ignore: '!' + src + 'scripts/**/!_*.*',
-        app: app + 'js'
+        app: app + 'js',
+        bower: {
+            config: './.bowerrc',
+            path: src + 'vendors',
+            json: './bower.json'
+        }
     },
 
     'styles': {
