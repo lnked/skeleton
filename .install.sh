@@ -41,12 +41,20 @@ if [ "$iscopy" = "iscopy" ] ; then
     cp -r ${SOURCE}/.bowerrc ${PATH_ROOT}/$FOLDER_NAME/.bowerrc
     cp -r ${SOURCE}/bower.json ${PATH_ROOT}/$FOLDER_NAME/bower.json
 else
-    ln -s ${SOURCE}/gulpfile.js ${PATH_ROOT}/$FOLDER_NAME/
+    mkdir gulpfile.js
+
+    cp -r ${SOURCE}/gulpfile.js/config.js ${PATH_ROOT}/$FOLDER_NAME/gulpfile.js/config.js
+    cp -r ${SOURCE}/bower.json ${PATH_ROOT}/$FOLDER_NAME/
+
+    # ln -s ${SOURCE}/gulpfile.js ${PATH_ROOT}/$FOLDER_NAME/
+    ln -s ${SOURCE}/gulpfile.js/tasks ${PATH_ROOT}/$FOLDER_NAME/gulpfile.js/tasks
+    ln -s ${SOURCE}/gulpfile.js/utils ${PATH_ROOT}/$FOLDER_NAME/gulpfile.js/utils
+    ln -s ${SOURCE}/gulpfile.js/index.js ${PATH_ROOT}/$FOLDER_NAME/gulpfile.js/index.js
+
     ln -s ${SOURCE}/package.json ${PATH_ROOT}/$FOLDER_NAME/
     ln -s ${SOURCE}/node_modules/ ${PATH_ROOT}/$FOLDER_NAME/
-    ln -r ${SOURCE}/.editorconfig ${PATH_ROOT}/$FOLDER_NAME/
-    ln -r ${SOURCE}/.bowerrc ${PATH_ROOT}/$FOLDER_NAME/
-    cp -r ${SOURCE}/bower.json ${PATH_ROOT}/$FOLDER_NAME/
+    ln -s ${SOURCE}/.editorconfig ${PATH_ROOT}/$FOLDER_NAME/
+    ln -s ${SOURCE}/.bowerrc ${PATH_ROOT}/$FOLDER_NAME/
 fi
 
 mkdir logs frontend public_html frontend/template frontend/styles frontend/scripts
