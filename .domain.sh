@@ -24,9 +24,7 @@ server {
     access_log      off;
     error_log       /Users/edik/web/$DOMAIN/logs/error.log error;
 
-    location ~ /\.ht {
-       deny  all;
-    }
+    charset         utf-8;
     
     # Match assets
     location ~* \.(jpe?g|gif|png|zip|tgz|gz|rar|bz2|doc|xls|exe|pdf|ppt|txt|tar|wav|bmp|rtf|html|css|js|ico|woff|woff2|eot|svg|ttf)$ {
@@ -79,28 +77,26 @@ server {
             break;
         }
     }
+
+    location ~ /\.ht {
+       deny  all;
+    }
 }
 EOT
 
 # cat <<EOT >> /private/etc/apache2/users/$DOMAIN.conf
 # <VirtualHost *:80>
 #     ServerName $DOMAIN
-#     ServerAlias $DOMAIN www.$DOMAIN
+#     ServerAlias www.$DOMAIN
+#     DirectoryIndex index.php
 #     DocumentRoot /Users/edik/web/$DOMAIN/public_html
 #     ErrorLog /Users/edik/web/$DOMAIN/logs/error.log 
 #     CustomLog /Users/edik/web/$DOMAIN/logs/access.log common
 
-#     <Directory /Users/edik/web/$DOMAIN/public_html>
-#         <IfModule mod_rewrite.c>
-#             RewriteEngine On
-
-#             # Handle trailing slashes
-#             RewriteRule ^(.*)/$ /$1 [L,R=301]
-
-#             # Create pretty URLs
-#             RewriteCond %{REQUEST_FILENAME} ! -f
-#             RewriteRule ^ index.php [L]
-#         </IfModule>
+#     <Directory "/Users/edik/web/$DOMAIN/public_html">
+#         Options All
+#         AllowOverride All
+#         Require all granted
 #     </Directory>
 # </VirtualHost>
 # EOT

@@ -15,19 +15,25 @@ module.exports = function(config) {
     return function(callback) {
 
         // Bower files
-        gulp.src(bowerFiles({
-            filter:'**/*.js',
-            paths: {
-                bowerDirectory: config.bower.path,
-                bowerrc: config.bower.config,
-                bowerJson: config.bower.json
-            }
-        }))
-        .pipe($.concat('vendors.js'))
-        .pipe($.rename({suffix: '.min'}))
-        .pipe($.if(global.is.build, $.uglify()))
-        .pipe(gulp.dest(config.app))
-        .pipe($.if(global.is.notify, $.notify({ message: 'Bower complete', onLast: true })));
+        try {
+            gulp.src(bowerFiles({
+                filter:'**/*.js',
+                paths: {
+                    bowerDirectory: config.bower.path,
+                    bowerrc: config.bower.config,
+                    bowerJson: config.bower.json
+                }
+            }))
+            .pipe($.concat('vendors.js'))
+            .pipe($.rename({suffix: '.min'}))
+            .pipe($.if(global.is.build, $.uglify()))
+            .pipe(gulp.dest(config.app))
+            .pipe($.if(global.is.notify, $.notify({ message: 'Bower complete', onLast: true })));
+        
+        }
+        catch(e) {
+            console.log(e);
+        }
 
         // Scripts files
         
