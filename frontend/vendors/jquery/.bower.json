@@ -1,14 +1,26 @@
 {
   "name": "jquery",
-  "_cacheHeaders": {
-    "ETag": "\"54499a47-169d5\"",
-    "Last-Modified": "Fri, 24 Oct 2014 00:16:07 GMT",
-    "Content-Length": "37959",
-    "Content-Type": "application/javascript; charset=utf-8"
+  "main": "dist/jquery.js",
+  "license": "MIT",
+  "ignore": [
+    "package.json"
+  ],
+  "keywords": [
+    "jquery",
+    "javascript",
+    "browser",
+    "library"
+  ],
+  "homepage": "https://github.com/jquery/jquery-dist",
+  "version": "3.1.1",
+  "_release": "3.1.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "3.1.1",
+    "commit": "1b30f3ad466ebf2714d47eda34dbd7fdf6849fe3"
   },
-  "_release": "e-tag:54499a47-",
-  "main": "index.js",
-  "_source": "http://code.jquery.com/jquery-1.9.1.min.js",
-  "_target": "*",
-  "_originalSource": "http://code.jquery.com/jquery-1.9.1.min.js"
+  "_source": "https://github.com/jquery/jquery-dist.git",
+  "_target": "^3.1.1",
+  "_originalSource": "jquery",
+  "_direct": true
 }

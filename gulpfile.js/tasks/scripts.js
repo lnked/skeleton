@@ -31,8 +31,7 @@ module.exports = function(config) {
             .pipe(gulp.dest(config.app))
             .pipe($.if(global.is.notify, $.notify({ message: 'Bower complete', onLast: true })));
 
-        }
-        catch(e) {
+        } catch(e) {
             console.log(e);
         }
 
