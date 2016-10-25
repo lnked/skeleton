@@ -29,6 +29,7 @@
     "gulp-debug": "^2.1.2",
     "gulp-eslint": "^2.0.0",
     "gulp-file-include": "^0.13.7",
+    "gulp-filter": "^4.0.0",
     "gulp-gh-pages": "^0.5.4",
     "gulp-group-css-media-queries": "^1.1.0",
     "gulp-html-prettify": "0.0.1",

@@ -16,8 +16,9 @@ module.exports = function(config) {
 
         // Bower files
         try {
+            
             gulp.src(bowerFiles({
-                filter:'**/*.js',
+                filter: '**/*.js',
                 paths: {
                     bowerDirectory: config.bower.path,
                     bowerrc: config.bower.config,
@@ -29,7 +30,7 @@ module.exports = function(config) {
             .pipe($.if(global.is.build, $.uglify()))
             .pipe(gulp.dest(config.app))
             .pipe($.if(global.is.notify, $.notify({ message: 'Bower complete', onLast: true })));
-        
+
         }
         catch(e) {
             console.log(e);

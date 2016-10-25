@@ -42,7 +42,6 @@
     "commit": "ef320d70c8e92e7c57dee12adc515054b6f9b97d"
   },
   "_source": "https://github.com/mzabriskie/axios.git",
-  "_target": "^0.15.2",
-  "_originalSource": "axios",
-  "_direct": true
+  "_target": "0.15.2",
+  "_originalSource": "axios"
 }
