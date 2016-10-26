@@ -17,14 +17,16 @@ module.exports = function(config) {
         // Bower files
         try {
             
-            gulp.src(bowerFiles({
-                filter: '**/*.js',
-                paths: {
-                    bowerDirectory: config.bower.path,
-                    bowerrc: config.bower.config,
-                    bowerJson: config.bower.json
-                }
-            }))
+            gulp.src(
+                bowerFiles({
+                    filter: '**/*.js',
+                    paths: {
+                        bowerDirectory: config.bower.path,
+                        bowerrc: config.bower.config,
+                        bowerJson: config.bower.json
+                    }
+                })
+            )
             .pipe($.concat('vendors.js'))
             .pipe($.rename({suffix: '.min'}))
             .pipe($.if(global.is.build, $.uglify()))
