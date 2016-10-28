@@ -11,10 +11,10 @@ var app = app || {};
 
             try {
                 image = new Image();
-                image.src = url;
                 image.onload = function() {
                     $image.attr('src', url);
                 };
+                image.src = url;
             }
             catch (e) {
                 $image.attr('src', url);
