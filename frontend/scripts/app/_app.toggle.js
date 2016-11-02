@@ -14,8 +14,14 @@ var app = app || {};
 
                 $toggle = $(this).closest('.j-toggle').find('.j-toggle-item');
 
-                if ($toggle) {
+                if ($toggle)
+                {
                     $toggle.toggleClass('is-show');
+                }
+
+                if ($toggle.hasClass('is-hidden'))
+                {
+                    $toggle.removeClass('is-hidden');
                 }
 
                 if ($(this).data('toggle-text')) {
