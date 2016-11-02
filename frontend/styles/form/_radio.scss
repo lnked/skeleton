@@ -1,13 +1,75 @@
-.c-radio {
+$radio-size: 18px;
 
-    &__input {}
-    &__visible {}
+.f-radio {
+    clear: both;
+    min-width: $radio-size;
+    min-height: $radio-size;
+    cursor: pointer;
+    display: block;
+    position: relative;
+    font-size: 0;
+    
+    &__input {
+        width: 0;
+        height: 0;
+        left: 0;
+        top: 0;
+        opacity: 0;
+        position: absolute;
+    }
+    
+    &__visible {
+        width: $radio-size;
+        height: $radio-size;
+        float: left;
+        outline: none;
+        overflow: hidden;
+        user-select: none;
+        background: $c-white;
+        box-sizing: border-box;
+        border: 1px solid $c-nobel;
+        margin-right: -$radio-size;
 
-    &__input:checked + &__visible {
+        // Radio
+        border-width: 2px;
+        border-radius: 50%;
 
+        &:before {
+            width: 10px;
+            height: 10px;
+            margin: 2px;
+            content: "";
+            display: none;
+            border-radius: 50%;
+            background-color: $c-green;
+        }
     }
 
     &__label {
-        &__middle {}
+        width: 100%;
+        float: left;
+        display: block;
+        color: $c-matterhorn;
+        font-size: 1.4rem;
+        font-weight: 400;
+        line-height: $radio-size;
+        font-weight: 400;
+        padding-left: 25px;
+        letter-spacing: 0.01ex;
+
+        &__middle {
+            margin-top: -1px;
+            line-height: 1.3;
+            display: inline-block;
+            vertical-align: middle;
+        }
+    }
+
+    &__input:checked + &__visible {
+        border-color: $c-green;
+
+        &:before {
+            display: block;
+        }
     }
 }

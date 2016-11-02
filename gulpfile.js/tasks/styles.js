@@ -29,10 +29,6 @@ module.exports = function(config) {
 
     let processors = {
         watch: [
-            require('postcss-assets')({
-                loadPaths: ['images/'],
-                relative: '../images/'
-            }),
             require('postcss-data-packer')({
                 dest: config.app + '/main_data.css'
             }),

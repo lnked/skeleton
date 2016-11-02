@@ -73,6 +73,11 @@ $.popup.open('popup-choose-photo-source/nested-tab');
         {
         	popup = this;
 
+            if (!defaults.cssPosition)
+            {
+                return {};
+            }
+            
 			var prop = {},
 				ww = $win.width(),
                 wh = $win.height(),

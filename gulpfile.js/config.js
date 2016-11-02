@@ -28,7 +28,7 @@ module.exports.tasks = {
         src: [src + 'styles/*.scss', src + 'styles/**/*.scss', '!' + src + 'styles/_*.*', '!' + src + 'styles/**/_*.*'],
         app: app + 'css'
     },
-    
+
     'images': {
         src: src + 'images/**/*.{gif,svg,png,jpg,jpeg,webp}',
         app: app + 'images'

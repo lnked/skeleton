@@ -149,8 +149,8 @@ var app = app || {};
 //     }
 // });
 
-// <div class="quantity j-quantity clearfix" data-product="{$product.id}" data-min="1" data-max="999">
+// <div class="quantity j-quantity clearfix" data-product="1000" data-min="1" data-max="999">
 //     <button type="button" class="quantity__control _decrease j-quantity-control" data-role="decrease"></button>
-//     <input type="text" name="count[{$product.id}]" value="{$product.cart_count}" data-role="quantity-input" class="quantity__count j-quantity-count" maxlength="3" autocomplete="off">
+//     <input type="text" name="count[1000]" value="1" data-role="quantity-input" class="quantity__count j-quantity-count" maxlength="3" autocomplete="off">
 //     <button type="button" class="quantity__control _increase j-quantity-control" data-role="increase"></button>
 // </div>
