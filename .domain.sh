@@ -13,6 +13,7 @@ echo -e "::1             $DOMAIN" >> /private/etc/hosts
 echo -e "" >> /private/etc/hosts
 EOF
 
+if [ ! -f "/usr/local/etc/nginx/sites-available/$DOMAIN" ]; then
 cat <<EOT >> /usr/local/etc/nginx/sites-available/$DOMAIN
 server {
     listen          80;
@@ -83,6 +84,7 @@ server {
     }
 }
 EOT
+fi
 
 # cat <<EOT >> /private/etc/apache2/users/$DOMAIN.conf
 # <VirtualHost *:80>

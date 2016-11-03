@@ -57,6 +57,8 @@ else
     ln -s ${SOURCE}/.bowerrc ${PATH_ROOT}/$FOLDER_NAME/
 fi
 
+ln -s ${SOURCE}/.bower-postinstall.sh ${PATH_ROOT}/$FOLDER_NAME/
+    
 mkdir logs frontend public_html frontend/template frontend/styles frontend/scripts
 mkdir frontend/images frontend/sprite frontend/favicon frontend/fonts frontend/json frontend/svgstore
 
