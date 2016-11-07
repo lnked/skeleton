@@ -31,13 +31,13 @@ $checkbox-size: 18px;
         margin-right: -$checkbox-size;
 
         &:before {
-            width: 7px;
-            height: 3px;
+            width: 11px;
+            height: 6px;
             content: "";
             display: none;
             position: absolute;
             left: 4px;
-            top: 4px;
+            top: 5px;
             border-image: none;
             border-color: $c-green;
             border-style: solid;
