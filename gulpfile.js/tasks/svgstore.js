@@ -24,7 +24,7 @@ module.exports = function(config) {
                             plugins: [
                                 {removeTitle:true},
                                 {removeDesc:true},
-                                {removeViewBox:true},
+                                {removeViewBox:false},
                                 {removeDoctype:true},
                                 {removeMetadata:true},
                                 {removeComments:true},
@@ -38,6 +38,9 @@ module.exports = function(config) {
                                     prefix: prefix + '-',
                                     minify: false
                                 }},
+                                {js2svg: {
+                                    pretty: true
+                                }},
                                 {convertColors: {
                                     names2hex: true,
                                     rgb2hex: true
@@ -46,6 +49,14 @@ module.exports = function(config) {
                             ]
                         }
                     }))
+                    .pipe($.cheerio({
+                        run: function ($) {
+                            $('[fill]').removeAttr('fill');
+                            $('[style]').removeAttr('style');
+                        },
+                        parserOptions: { xmlMode: true }
+                    }))
+                    .pipe($.replace('&gt;', '>'))
                     .pipe($.svgstore({ inlineSvg: true })),
                 { transform: fileContents }
             ))
