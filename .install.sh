@@ -43,13 +43,14 @@ if [ "$iscopy" = "iscopy" ] ; then
 else
     mkdir gulpfile.js
 
+    # ln -s ${SOURCE}/gulpfile.js ${PATH_ROOT}/$FOLDER_NAME/
+    
     cp -r ${SOURCE}/gulpfile.js/config.js ${PATH_ROOT}/$FOLDER_NAME/gulpfile.js/config.js
+    cp -r ${SOURCE}/gulpfile.js/index.js ${PATH_ROOT}/$FOLDER_NAME/gulpfile.js/index.js
     cp -r ${SOURCE}/bower.json ${PATH_ROOT}/$FOLDER_NAME/
 
-    # ln -s ${SOURCE}/gulpfile.js ${PATH_ROOT}/$FOLDER_NAME/
     ln -s ${SOURCE}/gulpfile.js/tasks ${PATH_ROOT}/$FOLDER_NAME/gulpfile.js/tasks
     ln -s ${SOURCE}/gulpfile.js/utils ${PATH_ROOT}/$FOLDER_NAME/gulpfile.js/utils
-    ln -s ${SOURCE}/gulpfile.js/index.js ${PATH_ROOT}/$FOLDER_NAME/gulpfile.js/index.js
 
     ln -s ${SOURCE}/package.json ${PATH_ROOT}/$FOLDER_NAME/
     ln -s ${SOURCE}/node_modules/ ${PATH_ROOT}/$FOLDER_NAME/
