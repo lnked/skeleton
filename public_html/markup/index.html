@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<!-- (c) lnk. celebro | http://www.celebro.ru/ -->
+<!-- (c) lnk. CELEBRO Studio | http://celebro.ru -->
 <html lang="ru" class="no-js" itemscope="itemscope" xmlns="http://www.w3.org/1999/xhtml" itemtype="http://schema.org/WebPage">
 
 <head>
-    <link rel="stylesheet" href="../css/main.min.css">
+    <link rel="stylesheet" href="/css/main.min.css" media="none" onload="if(media!='all')media='all'">
+    <noscript>
+        <link rel="stylesheet" href="/css/main.min.css">
+    </noscript>
 
     <meta charset="UTF-8">
     <meta content="ie=edge" http-equiv="x-ua-compatible">
@@ -23,6 +26,9 @@
 
     <script>
         (function(d) { d.className = d.className.replace(/\bno-js/, ''); })(document.documentElement);
+    </script>
+    <script>
+        if (window.jQuery === undefined){window.jQueryReadyHandlers = [];window.$ = window.jQuery = function(cb){window.jQueryReadyHandlers.push(cb);return window.$;};window.$.ready = window.$;}
     </script>
     <title itemprop="name">Index</title>
 </head>
@@ -73,6 +79,52 @@
                 </ul>
             </div>
         </nav>
+
+        <!--  -->
+
+        <header class="cd-morph-dropdown">
+            <a href="#0" class="nav-trigger">Open Nav
+                <span aria-hidden="true"></span>
+            </a>
+
+            <nav class="main-nav">
+                <ul>
+                    <li class="has-dropdown gallery" data-content="about">
+                        <a href="#0">About</a>
+                    </li>
+
+                    <li class="has-dropdown links" data-content="pricing">
+                        <a href="#0">Pricing</a>
+                    </li>
+
+                    <li class="has-dropdown button" data-content="contact">
+                        <a href="#0">Contact</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="morph-dropdown-wrapper">
+                <div class="dropdown-list">
+                    <ul>
+                        <li id="about" class="dropdown gallery">
+                            <!-- dropdown content here -->
+                        </li>
+
+                        <li id="pricing" class="dropdown links">
+                            <!-- dropdown content here -->
+                        </li>
+
+                        <li id="contact" class="dropdown button">
+                            <!-- dropdown content here -->
+                        </li>
+                    </ul>
+
+                    <div class="bg-layer" aria-hidden="true"></div>
+                </div>
+                <!-- dropdown-list -->
+            </div>
+            <!-- morph-dropdown-wrapper -->
+        </header>
 
         <div class="layout-wrapper__pusher">
 
@@ -131,16 +183,31 @@
 
         </div>
     </footer>
-    <script src="../js/vendor.min.js"></script>
-    <script src="../js/app.min.js"></script>
+    <script src="/js/vendor.min.js"></script>
+    <script src="/js/app.min.js"></script>
+
+    <!--
+
+-->
+
     <!--[if lt IE 9]>
 <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js"></script>
 <![endif]-->
+
+    <!--[if IE 9]>
+    <script src="//cdn.rawgit.com/jpillora/xdomain/0.7.5/dist/xdomain.min.js"></script>
+    <script>
+        xdomain.slaves({
+            "http://www.gosuslugi.ru": "/corsproxy/proxy.html",
+            "https://www.gosuslugi.ru": "/corsproxy/proxy.html",
+            "http://pgu-devsf.test.gosuslugi.ru": "/corsproxy/proxy.html",
+            "https://pgu-devsf.test.gosuslugi.ru": "/corsproxy/proxy.html",
+            "http://gosbar.gosuslugi.ru": "/corsproxy/proxy.html",
+            "https://gosbar.gosuslugi.ru": "/corsproxy/proxy.html"
+        });
+    </script>
+<![endif]-->
+
 </body>
 
 </html>
-
-<!-- 
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&callback=googleMap"></script>
-<script src="//api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
--->

@@ -18,10 +18,10 @@ html {
 }
 
 body {
+    color: $c-text;
     min-width: 320px;
-    // font-size: calc(1em + 1vw);
-    color: $c-text-color;
-    line-height: 1.4446;
+    font-size: 1.6rem;
+    line-height: 1.5;
     letter-spacing: 0em;
     background-color: $c-body-background;
 }
