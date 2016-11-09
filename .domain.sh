@@ -55,6 +55,14 @@ server {
         rewrite ^ /cp/index.php last;
     }
 
+    location /cp/db {
+        rewrite ^ /cp/db/index.php last;
+    }
+
+    location /cp/dumper {
+        rewrite ^ /cp/dumper/index.php last;
+    }
+
     location / {
         if (!-d /Users/edik/web/$DOMAIN/public_html) {
             rewrite ^ /index.php last;
