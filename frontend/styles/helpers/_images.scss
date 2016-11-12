@@ -1,11 +1,19 @@
 svg {
-    shape-rendering: optimizeSpeed;
     fill: currentColor;
+    shape-rendering: geometricPrecision; // auto | optimizeSpeed | crispEdges | geometricPrecision | inherit;
 }
 
 .image {
     font: 0/0 a;
     border: 0;
+}
+
+img[src$=".gif"], img[src$=".png"] {
+    image-rendering: -moz-crisp-edges;
+    image-rendering:   -o-crisp-edges;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    -ms-interpolation-mode: nearest-neighbor;
 }
 
 /*

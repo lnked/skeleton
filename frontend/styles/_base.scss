@@ -2,6 +2,7 @@
     -webkit-tap-highlight-color: rgba(0,0,0,0);
     -webkit-tap-highlight-color: transparent;
     -webkit-touch-callout: none;
+    -webkit-overflow-scrolling: touch;
     
     &, &:before, &:after {
         box-sizing: border-box;
@@ -32,15 +33,17 @@ body, input, textarea, select, button {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-smoothing: antialiased;
-    -moz-font-feature-settings: 'liga', 'kern';
+    font-feature-settings: "liga", "kern";
     direction: ltr;
     text-align: left;
 }
 
 body {
+    /*
     transform: translate3d(0,0,0);
-    /*background: resolve('foobar.jpg');
-    background: resolve('icons/baz.png');*/
+    background: resolve('foobar.jpg');
+    background: resolve('icons/baz.png');
+    */
 }
 
 // @media  (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { 

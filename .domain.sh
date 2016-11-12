@@ -27,23 +27,37 @@ server {
 
     charset         utf-8;
     
-    # Match assets
     location ~* \.(jpe?g|gif|png|zip|tgz|gz|rar|bz2|doc|xls|exe|pdf|ppt|txt|tar|wav|bmp|rtf|html|css|js|ico|woff|woff2|eot|svg|ttf)$ {
         expires 30d;
+    }
+
+    location /cp {
+        rewrite ^ /index.php last;
+    }
+
+    location /cp/db {
+        rewrite ^ /index.php last;
+    }
+
+    location /cp/dumper {
+        rewrite ^ /index.php last;
     }
     
     location ~ \.htm(l?)$ {
         fastcgi_param  SCRIPT_FILENAME  /Users/edik/web/$DOMAIN/\$fastcgi_script_name;
         include fastcgi_params;
+
         if (!-f \$request_filename) {
             rewrite  ^ /index.php  last;
         }
+
         if (-f /Users/edik/web/$DOMAIN/.parse_html) {
             fastcgi_pass   127.0.0.1:9000;
         }
+
         break;
     }
-
+    
     location ~ \.php$ {
         include /usr/local/etc/nginx/conf.d/php-fpm;
         rewrite ^(.*)$ /index.php;
@@ -51,44 +65,13 @@ server {
         break;
     }
 
-    location /cp {
-        rewrite ^ /cp/index.php last;
-    }
-
-    location /cp/db {
-        rewrite ^ /cp/db/index.php last;
-    }
-
-    location /cp/dumper {
-        rewrite ^ /cp/dumper/index.php last;
-    }
-
     location / {
-        if (!-d /Users/edik/web/$DOMAIN/public_html) {
-            rewrite ^ /index.php last;
-        }
-
-        set \$rflag 1;
-        if (-e \$request_filename) {
-            set \$rflag 0;
-        }
-
-        if (!-f /Users/edik/web/$DOMAIN/public_html/index.php) {
-            set \$rflag 0;
-        }
-
-        if (\$rflag = 1) {
-            rewrite  ^ /index.php  last;
-        }
-
-        if (-f \$request_filename) {
-            expires  1h;
-            break;
-        }
+        include /usr/local/etc/nginx/conf.d/php-fpm;
+        rewrite ^ /index.php last;
     }
 
     location ~ /\.ht {
-       deny  all;
+       deny all;
     }
 }
 EOT
