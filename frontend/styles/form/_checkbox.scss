@@ -27,7 +27,7 @@ $checkbox-size: 18px;
         user-select: none;
         background: $c-white;
         box-sizing: border-box;
-        border: 1px solid $c-nobel;
+        border: 1px solid #f00;
         margin-right: -$checkbox-size;
 
         &:before {
@@ -50,7 +50,7 @@ $checkbox-size: 18px;
         width: 100%;
         float: left;
         display: block;
-        color: $c-matterhorn;
+        color: #f00;
         font-size: 1.4rem;
         font-weight: 400;
         line-height: $checkbox-size;
