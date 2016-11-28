@@ -3,8 +3,11 @@
 
     &:after {
         clear: both;
+    }
+
+    &:before, &:after {
         content: '';
-        line-height: 0;
         display: table;
+        line-height: 0;
     }
 }

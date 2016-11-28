@@ -2,6 +2,12 @@
 
 function __() {try {for(var i=0; i<arguments.length; i++) {console.log(arguments[i]);}}catch (e) {}}
 
+// использование Math.round() даст неравномерное распределение!
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+
 function sprintf(v) {
   var split = v.toString().split('.'), pad = "00", time = [], x = null;
 

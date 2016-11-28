@@ -23,7 +23,9 @@ body {
     min-width: 320px;
     font-size: 1.6rem;
     line-height: 1.5;
-    letter-spacing: 0em;
+    font-kerning: none;
+    // word-spacing: -5px;
+    // letter-spacing: 0em;
     background-color: $c-body-background;
 }
 
@@ -45,6 +47,69 @@ body {
     background: resolve('icons/baz.png');
     */
 }
+
+@media (max-width: 600px) {
+    body {
+        line-height: 1.4; 
+    }
+}
+
+.phone {
+    &_title {
+        width: 500px;
+        @media (max-width: 500px) {
+            width: auto;
+        }
+        body.is_dark & {
+            color: white;
+        }
+    }
+    img {
+        display: block;
+    }
+}
+
+
+$min_width: 400;
+$max_width: 800;
+
+$min_font: 12;
+$max_font: 24; 
+
+:root { font-size: #{$min_font}px; }
+
+@media (min-width: #{$min_width}px) and (max-width: #{$max_width}px) {
+  :root { 
+    font-size: calc(#{$min_font}px + (#{$max_font} - #{$min_font}) * ( (100vw - #{$min_width}px) / ( #{$max_width} - #{$min_width})));
+  }
+}
+@media (min-width: #{$max_width}px) {
+  :root { 
+    font-size: #{$max_font}px;
+  }
+}
+
+// $type: monster;
+// p {
+//   @if $type == ocean {
+//     color: blue;
+//   } @else if $type == matador {
+//     color: red;
+//   } @else if $type == monster {
+//     color: green;
+//   } @else {
+//     color: black;
+//   }
+// }
+
+// @for $i from 1 to 3 {
+//   .b-$i { 
+//     width: $i px;
+//     @if $i == 2 {
+//       color: green;
+//     }
+//   }
+// }
 
 // @media  (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { 
 // @media only screen and (-webkit-min-device-pixel-ratio:1.5), only screen and (min-resolution: 120dpi)

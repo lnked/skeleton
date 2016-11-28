@@ -3,11 +3,6 @@ svg {
     shape-rendering: geometricPrecision; // auto | optimizeSpeed | crispEdges | geometricPrecision | inherit;
 }
 
-.image {
-    font: 0/0 a;
-    border: 0;
-}
-
 img[src$=".gif"], img[src$=".png"] {
     image-rendering: -moz-crisp-edges;
     image-rendering:   -o-crisp-edges;
