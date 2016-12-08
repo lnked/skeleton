@@ -1,10 +1,12 @@
 ol {
-    counter-reset: numeric; 
+    &:not([class]) {
+        counter-reset: numeric; 
 
-    li {
-        &:before {
-            counter-increment: numeric;
-            content: counter(numeric); 
+        li {
+            &:before {
+                counter-increment: numeric;
+                content: counter(numeric); 
+            }
         }
     }
 }

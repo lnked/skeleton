@@ -31,6 +31,14 @@ server {
         expires 30d;
     }
 
+    location /ajax {
+        rewrite ^ /ajax/index.php last;
+    }
+
+    location /api {
+        rewrite ^ /api/index.php last;
+    }
+
     location /cp {
         rewrite ^ /index.php last;
     }
@@ -41,6 +49,18 @@ server {
 
     location /cp/dumper {
         rewrite ^ /index.php last;
+    }
+    
+    location / {
+        include /usr/local/etc/nginx/conf.d/php-fpm;
+        rewrite ^ /index.php last;
+    }
+
+    location ~ \.php$ {
+        include /usr/local/etc/nginx/conf.d/php-fpm;
+        rewrite ^(.*)$ /index.php;
+        root   /Users/edik/web/$DOMAIN/public_html;
+        break;
     }
     
     location ~ \.htm(l?)$ {
@@ -58,18 +78,6 @@ server {
         break;
     }
     
-    location ~ \.php$ {
-        include /usr/local/etc/nginx/conf.d/php-fpm;
-        rewrite ^(.*)$ /index.php;
-        root   /Users/edik/web/$DOMAIN/public_html;
-        break;
-    }
-
-    location / {
-        include /usr/local/etc/nginx/conf.d/php-fpm;
-        rewrite ^ /index.php last;
-    }
-
     location ~ /\.ht {
        deny all;
     }

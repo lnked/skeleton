@@ -12,7 +12,6 @@ NC='\033[0m'
 
 SOURCE="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 PATH_ROOT="$( dirname "$SOURCE" )"
-# FOLDER_NAME='skeleton'
 
 cd $PATH_ROOT
 
@@ -34,9 +33,10 @@ cd ./$FOLDER_NAME
 # Создаем папку проекта если ее нет
 #
 if [ "$iscopy" = "iscopy" ] ; then
-    cp -r ${SOURCE}/gulpfile.js ${PATH_ROOT}/$FOLDER_NAME/gulpfile.js
-    cp -r ${SOURCE}/package.json ${PATH_ROOT}/$FOLDER_NAME/package.json
-    cp -r ${SOURCE}/node_modules/ ${PATH_ROOT}/$FOLDER_NAME/node_modules
+    ln -s ${SOURCE}/gulpfile.js ${PATH_ROOT}/$FOLDER_NAME/gulpfile.js
+    ln -s ${SOURCE}/package.json ${PATH_ROOT}/$FOLDER_NAME/package.json
+    ln -s ${SOURCE}/node_modules/ ${PATH_ROOT}/$FOLDER_NAME/node_modules
+    
     cp -r ${SOURCE}/.editorconfig ${PATH_ROOT}/$FOLDER_NAME/.editorconfig
     cp -r ${SOURCE}/.bowerrc ${PATH_ROOT}/$FOLDER_NAME/.bowerrc
     cp -r ${SOURCE}/bower.json ${PATH_ROOT}/$FOLDER_NAME/bower.json

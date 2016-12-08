@@ -3,6 +3,26 @@ svg {
     shape-rendering: geometricPrecision; // auto | optimizeSpeed | crispEdges | geometricPrecision | inherit;
 }
 
+// .shape{
+//     width: 20em;
+//     height: 20em;
+//     float: left;
+//     margin: 0.25em 2em 1em 0;
+// }
+
+// @supports (border-radius: 25em) and (shape-outside: circle()) {
+//     .shape {
+//         shape-outside: circle(50%);
+//         border-radius: 25em;
+//     }    
+// }
+
+// @supports not (shape-outside: circle()) {
+//     .shape {
+//         Стили применяться только если shape-outside не поддерживается
+//     }    
+// }
+
 img[src$=".gif"], img[src$=".png"] {
     image-rendering: -moz-crisp-edges;
     image-rendering:   -o-crisp-edges;
