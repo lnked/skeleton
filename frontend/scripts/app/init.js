@@ -1,19 +1,52 @@
-;(function(cb) {
-   return (function(callback){
-      if(callback && typeof callback === 'function'){
-         if((!document.attachEvent || typeof document.attachEvent === "undefined" ? 'not-ie' : 'ie') !== 'ie') {
-            document.addEventListener("DOMContentLoaded", function() {
-               return callback();
-            });
-         } else {
-            document.attachEvent("onreadystatechange", function() {
-               if(document.readyState === "complete") {
-                  return callback();
-               }
-            });
-         }
-      } else {
-         console.error('The callback is not a function!');
-      }
-   })(cb);
+(function(callback) {
+    var ready = false;
+
+    var detach = function() {
+        if(document.addEventListener) {
+            document.removeEventListener("DOMContentLoaded", completed);
+            window.removeEventListener("load", completed);
+        } else {
+            document.detachEvent("onreadystatechange", completed);
+            window.detachEvent("onload", completed);
+        }
+    }
+    var completed = function() {
+        if(!ready && (document.addEventListener || event.type === "load" || document.readyState === "complete")) {
+            ready = true;
+            detach();
+            callback();
+        }
+    };
+
+    if(document.readyState === "complete") {
+        callback();
+    } else if(document.addEventListener) {
+        document.addEventListener("DOMContentLoaded", completed);
+        window.addEventListener("load", completed);
+    } else {
+        document.attachEvent("onreadystatechange", completed);
+        window.attachEvent("onload", completed);
+
+        var top = false;
+
+        try {
+            top = window.frameElement == null && document.documentElement;
+        } catch(e) {}
+
+        if(top && top.doScroll) {
+            (function scrollCheck() {
+                if(ready) return;
+
+                try {
+                    top.doScroll("left");
+                } catch(e) {
+                    return setTimeout(scrollCheck, 50);
+                }
+
+                ready = true;
+                detach();
+                callback();
+            })();
+        }
+    }
 })(function(){app.init()});
