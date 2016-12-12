@@ -3,6 +3,7 @@
 
 # TEAM
 
+  Bulikyan Edik (ed.proff@gmail.com) -- Front-End -- https://github.com/lnked
   <name> -- <role> -- <twitter>
 
 # THANKS
