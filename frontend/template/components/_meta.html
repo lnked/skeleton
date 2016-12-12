@@ -1,12 +1,9 @@
 <!DOCTYPE html>
-<!-- (c) lnk. CELEBRO Studio | http://celebro.ru -->
+<!-- (c) lnk. Celebro Studio | http://celebro.ru -->
 <html lang="ru" class="no-js" itemscope="itemscope" xmlns="http://www.w3.org/1999/xhtml" itemtype="http://schema.org/WebPage">
-<head> 
-    <link rel="stylesheet" href="/css/main.min.css" media="none" onload="if(media!='all')media='all'">
-    <noscript><link rel="stylesheet" href="/css/main.min.css"></noscript>
-
+<head>
     <meta charset="UTF-8">
-    <meta content="ie=edge" http-equiv="x-ua-compatible">
+    <meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta content="width=device-width,initial-scale=1" name="viewport">
     <meta content="skype_toolbar_parser_compatible" name="skype_toolbar">
     <meta content="true" name="HandheldFriendly">
@@ -15,7 +12,61 @@
     <meta content="email=no" name="format-detection">
     <meta content="address=no" name="format-detection">
     <meta content="telephone=no" name="format-detection">
+
+    <link rel="stylesheet" href="/css/main.min.css" media="none" onload="if(media!='all')media='all'">
+    <noscript><link rel="stylesheet" href="/css/main.min.css"></noscript>
     
+    <script>
+    var errors = [];
+    // window.onerror = function(errorMsg, url, lineNumber, column, errorObj) {
+    //     var data = {};
+    //     data.url = document.location.protocol + "//" + document.location.hostname + document.location.pathname + document.location.search + " [referrer: " + document.referrer + "]";
+    //     data.method = "GET";
+    //     if (window.currentUser && window.currentUser.id) {
+    //         data.user = window.currentUser.id;
+    //     }
+    //     var navigatorFields = ["userAgent", "appCodeName", "appName", "appVersion", "platform", "product"];
+    //     for (var i = 0; i < navigatorFields.length; i++) {
+    //         data[navigatorFields[i]] = window.navigator[navigatorFields[i]];
+    //     }
+    //     data.date = new Date().getTime();
+    //     data.message = errorMsg;
+    //     if (url) {
+    //         data.script = url;
+    //     }
+    //     if (lineNumber) {
+    //         data.line = lineNumber;
+    //     }
+    //     if (column) {
+    //         data.column = column;
+    //     }
+    //     if (errorObj) {
+    //         data.stack = errorObj;
+    //     }
+    //     var s = "{";
+    //     var i = 0;
+    //     for (var f in data) {
+    //         if (i > 0) {
+    //             s += ',';
+    //         }
+    //         s += '"' + f + '":"' + data[f] + '"';
+    //         i += 1;
+    //     }
+    //     s += "}";
+    //     errors.push(s);
+    // }
+    // setInterval(function() {
+    //     if (errors.length > 0 && window.$) {
+    //         var data = {};
+    //         for (var i = 0; i < errors.length; i++) {
+    //             data["error" + i] = errors[i];
+    //         }
+    //         $.post("//s.stoloto.ru/service/private/errors", data);
+    //         errors = [];
+    //     }
+    // }, 1000);
+    </script>
+
     <!--[if IEMobile]>
         <meta http-equiv="cleartype" content="on">
         <meta http-equiv="imagetoolbar" content="false">

@@ -25,6 +25,7 @@
     "cleave.js": "0.7.10",
     "jquery": "3.1.1",
     "isMobile": "0.4.1",
-    "cookie": "1.2.1"
+    "cookie": "1.2.1",
+    "gsap": "greensock#1.19.0"
   }
 }

@@ -1,0 +1,154 @@
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-overflow-scrolling: touch;
+    
+    &, &:before, &:after {
+        box-sizing: border-box;
+    }
+}
+
+html, body { height: 100%; }
+
+html {
+    font-size: $font-base;
+    font-family: $font-family;
+    text-size-adjust: 100%;
+    quotes: "“" "”";
+}
+
+body {
+    color: $c-text;
+    min-width: 320px;
+    font-size: 1.6rem;
+    line-height: 1.5;
+    font-kerning: none;
+    // word-spacing: -5px;
+    // letter-spacing: 0em;
+    background-color: $c-body-background;
+}
+
+body, input, textarea, select, button {
+    font-synthesis: none;
+    text-rendering: optimizeLegibility; //auto | optimizeSpeed | optimizeLegibility | geometricPrecision
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-smoothing: antialiased;
+    font-feature-settings: "liga", "kern";
+    direction: ltr;
+    text-align: left;
+}
+
+body {
+    /*
+    transform: translate3d(0,0,0);
+    background: resolve('foobar.jpg');
+    background: resolve('icons/baz.png');
+    */
+}
+
+@media (max-width: 600px) {
+    body {
+        line-height: 1.4; 
+    }
+}
+
+.phone {
+    &_title {
+        width: 500px;
+        @media (max-width: 500px) {
+            width: auto;
+        }
+        body.is_dark & {
+            color: white;
+        }
+    }
+    img {
+        display: block;
+    }
+}
+
+
+$min_width: 400;
+$max_width: 800;
+
+$min_font: 12;
+$max_font: 24; 
+
+:root { font-size: #{$min_font}px; }
+
+@media (min-width: #{$min_width}px) and (max-width: #{$max_width}px) {
+  :root { 
+    font-size: calc(#{$min_font}px + (#{$max_font} - #{$min_font}) * ( (100vw - #{$min_width}px) / ( #{$max_width} - #{$min_width})));
+  }
+}
+@media (min-width: #{$max_width}px) {
+  :root { 
+    font-size: #{$max_font}px;
+  }
+}
+
+// $type: monster;
+// p {
+//   @if $type == ocean {
+//     color: blue;
+//   } @else if $type == matador {
+//     color: red;
+//   } @else if $type == monster {
+//     color: green;
+//   } @else {
+//     color: black;
+//   }
+// }
+
+// @for $i from 1 to 3 {
+//   .b-$i { 
+//     width: $i px;
+//     @if $i == 2 {
+//       color: green;
+//     }
+//   }
+// }
+
+// @media  (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { 
+// @media only screen and (-webkit-min-device-pixel-ratio:1.5), only screen and (min-resolution: 120dpi)
+// }
+
+// $min_width: 400;
+// $max_width: 800;
+
+// $min_font: 12;
+// $max_font: 24; 
+
+// :root { font-size: #{$min_font}px; }
+
+// @media (min-width: #{$min_width}px) and (max-width: #{$max_width}px) {
+//   :root { 
+//     font-size: calc(#{$min_font}px + (#{$max_font} - #{$min_font}) * ( (100vw - #{$min_width}px) / ( #{$max_width} - #{$min_width})));
+//   }
+// }
+// @media (min-width: #{$max_width}px) {
+//   :root { 
+//     font-size: #{$max_font}px;
+//   }
+// }
+
+
+// @media only screen and (min-width: 1200px) {
+//     :root {
+//         content: url('https://gu-st.ru/htdocs/img/svg-sprite/icons-svg-desc.svg?fh=6b24d3d33197815d4796b073e7e5f24a') url('https://gu-st.ru/htdocs/img/svg-sprite/footer-sprite-icon-desc-in.png?fh=23e3b0cfcb9ae481a3c488659f607ba3');
+//     };
+// }
+
+// @media only screen and (min-width: 768px) and (max-width: 1199px) {
+//     :root {
+//         content: url('https://gu-st.ru/htdocs/img/svg-sprite/icons-svg-tablet.svg?fh=328df68f28726dd3e332f9fcf5dc8e54') url('https://gu-st.ru/htdocs/img/svg-sprite/footer-sprite-icon-desc-in.png?fh=23e3b0cfcb9ae481a3c488659f607ba3');
+//     };
+// }
+
+// @media only screen and (max-width: 767px) {
+//     :root {
+//         content: url('https://gu-st.ru/htdocs/img/svg-sprite/icons-svg-phone.svg?fh=502553eda6bf54ef78dc6b5828c87d00') url('https://gu-st.ru/htdocs/img/svg-sprite/footer-sprite-icon-desc-in.png?fh=23e3b0cfcb9ae481a3c488659f607ba3');
+//     };
+// }
