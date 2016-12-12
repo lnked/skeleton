@@ -13,7 +13,7 @@ for (let task_name in config.tasks) {
 
 gulp.task('build',
     gulp.series(
-        'before_build', gulp.parallel('template', 'styles', 'scripts', 'images', 'favicon', 'fonts', 'json', 'extras')
+        'before_build', gulp.parallel('template', 'styles', 'scripts', 'images', 'favicon', 'fonts', 'json', 'misc')
     )
 );
 

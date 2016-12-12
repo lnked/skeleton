@@ -48,6 +48,11 @@ module.exports.tasks = {
         src: src + 'fonts/**/*.{woff2,woff,ttf,eot,svg}',
         app: app + 'fonts'
     },
+
+    'misc': {
+        src: src + 'misc/**/*.*',
+        app: app
+    },
     
     'json': {
         src: src + 'json/**/*.*',
@@ -70,8 +75,6 @@ module.exports.tasks = {
         style: '_sprite.scss'
     },
 
-    'extras': {},
-    
     'before_build': {},
     
     'deploy': {
