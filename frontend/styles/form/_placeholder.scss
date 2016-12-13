@@ -1,18 +1,38 @@
-input, textarea {
-    &:placeholder {
+// /* fadeouts of placeholder in focus */
+// ::placeholder {opacity: 1; transition: opacity 0.3s ease;}
+
+// :focus::placeholder {opacity: 0; transition: opacity 0.3s ease;}
+
+// /* shift right placeholder in focus */
+// ::placeholder {text-indent: 0px;   transition: text-indent 0.3s ease;}
+
+// :focus::placeholder {text-indent: 500px; transition: text-indent 0.3s ease;}
+
+// /* shift down placeholder in focus */
+// ::placeholder {line-height: 20px;  transition: line-height 0.5s ease;}
+
+// :focus::placeholder {line-height: 100px; transition: line-height 0.5s ease;}
+
+input,
+textarea {
+    -webkit-appearance: textfield;
+    -webkit-rtl-ordering: logical;
+    user-select: text;
+    cursor: auto;
+
+    &::placeholder {
         color: $c-placeholder-color;
         opacity: $c-placeholder-opacity;
         transition: opacity $a-time ease;
     }
 
-    &:focus {
-        &:placeholder {
-            color: transparent;
-            opacity: 0;
-        }
+    &:focus::placeholder {
+        color: transparent;
+        opacity: 0;
     }
 
-    &:placeholder, &[placeholder] {
+    &[placeholder],
+    &::placeholder {
         text-overflow: ellipsis;
     }
 }
