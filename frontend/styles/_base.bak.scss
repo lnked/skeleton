@@ -48,6 +48,12 @@ body {
     */
 }
 
+.modal p span {
+    font-family: 'Akkurat-Light-Pro', sans-serif;
+    font-size: 22px;
+    box-shadow: inset 0px -7px 0px 0px rgba(136, 235, 224, 0.53);
+}
+
 @media (max-width: 600px) {
     body {
         line-height: 1.4; 

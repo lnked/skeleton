@@ -5,28 +5,6 @@
     &__inner {
         padding: 20px;
     }
-
-    p {
-        &:not(:last-child) {
-            margin-bottom: 25px;
-        }
-    }
-
-    ul {
-        &:not([class]) {
-            margin-bottom: 25px;
-
-            li {
-                color: #000;
-            }
-        }
-    }
-
-    img {
-        & :not([class]) {
-            max-width: 100%;
-        }
-    }
 }
 
 .sidebar + .content {
