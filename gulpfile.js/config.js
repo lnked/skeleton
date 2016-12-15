@@ -1,6 +1,6 @@
 const src = './frontend/';
 const app = './public_html/';
-const markup = 'markup';
+const markup = 'markup/';
 
 module.exports.app  = app;
 
@@ -87,7 +87,7 @@ module.exports.tasks = {
             port: 3004,
             server: {
                 baseDir: app,
-                index: markup + '/index.html'
+                index: markup + 'index.html'
             },
             browser: [
                 "google chrome", // "firefox"
