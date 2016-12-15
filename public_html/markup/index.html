@@ -3,7 +3,7 @@
 <html lang="ru" class="no-js" itemscope="itemscope" xmlns="http://www.w3.org/1999/xhtml" itemtype="http://schema.org/WebPage">
 <head>
     <meta charset="UTF-8">
-    <meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta content="IE=Edge" http-equiv="X-UA-Compatible">
     <meta content="width=device-width,initial-scale=1" name="viewport">
     <meta content="skype_toolbar_parser_compatible" name="skype_toolbar">
     <meta content="true" name="HandheldFriendly">
@@ -13,8 +13,8 @@
     <meta content="address=no" name="format-detection">
     <meta content="telephone=no" name="format-detection">
 
-    <link rel="stylesheet" href="/css/main.min.css" media="none" onload="if(media!='all')media='all'">
-    <noscript><link rel="stylesheet" href="/css/main.min.css"></noscript>
+    <link rel="stylesheet" href="../css/main.min.css" media="none" onload="if(media!='all')media='all'">
+    <noscript><link rel="stylesheet" href="../css/main.min.css"></noscript>
     
     <script>
     var errors = [];
@@ -96,84 +96,36 @@
 		<a href="/markup/index.html" class="layout-header__logo logo" rel="home" itemprop="url" accesskey="1" data-instant>
 			<span itemprop="name"></span>
 		</a>
+
+		<nav class="navigation" role="navigation">
+    <div class="navigation__wrapper">
+        <ul class="navigation__list">
+            
+            <li class="navigation__item" itemscope="itemscope" itemtype="http://www.schema.org/SiteNavigationElement">
+                <a href="/markup/index.html" itemprop="url" class="navigation__link _current">
+                    <span class="navigation__link__name" itemprop="name">Страница</span>
+                </a>
+            </li>
+
+            <li class="navigation__item" itemscope="itemscope" itemtype="http://www.schema.org/SiteNavigationElement">
+                <a href="/markup/index.html" itemprop="url" class="navigation__link _current">
+                    <span class="navigation__link__name" itemprop="name">Страница</span>
+                </a>
+            </li>
+
+        </ul>
+    </div>
+</nav>
 		
 	</div>
-</header>
-
-<nav class="navigation" id="navigation" role="navigation">
-	<div class="navigation__wrapper">
-		<ul class="navigation__list">
-		    
-		    <li class="navigation__item" itemscope="itemscope" itemtype="http://www.schema.org/SiteNavigationElement">
-		    	<a href="/markup/index.html" itemprop="url" class="navigation__link _current">
-		    		<span class="navigation__link__name" itemprop="name">Страница</span>
-		    	</a>
-	    	</li>
-
-		    <li class="navigation__item" itemscope="itemscope" itemtype="http://www.schema.org/SiteNavigationElement">
-		    	<a href="/markup/index.html" itemprop="url" class="navigation__link _current">
-		    		<span class="navigation__link__name" itemprop="name">Страница</span>
-		    	</a>
-	    	</li>
-
-		</ul>
-	</div>
-</nav>
-
-<!--  -->
-
-<header class="cd-morph-dropdown">
-	<a href="#0" class="nav-trigger">Open Nav<span aria-hidden="true"></span></a>
-	
-	<nav class="main-nav">
-		<ul>
-			<li class="has-dropdown gallery" data-content="about">
-				<a href="#0">About</a>
-			</li>
- 
-			<li class="has-dropdown links" data-content="pricing">
-				<a href="#0">Pricing</a>
-			</li>
- 
-			<li class="has-dropdown button" data-content="contact">
-				<a href="#0">Contact</a>
-			</li>
-		</ul>
-	</nav>
-	
-	<div class="morph-dropdown-wrapper">
-		<div class="dropdown-list">
-			<ul>
-				<li id="about" class="dropdown gallery">
-					<!-- dropdown content here -->
-				</li>
- 
-				<li id="pricing" class="dropdown links">
-					<!-- dropdown content here -->
-				</li>
- 
-				<li id="contact" class="dropdown button">
-					<!-- dropdown content here -->
-				</li>
-			</ul>
- 
-			<div class="bg-layer" aria-hidden="true"></div>
-		</div> <!-- dropdown-list -->
-	</div> <!-- morph-dropdown-wrapper -->
 </header>
 
     <div class="layout-wrapper__pusher">
 
         <div class="layout-wrapper__container clearfix">
 
-            <aside class="sidebar" id="sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
-    <div class="sidebar__trigger j-sidebar-trigger">
-        <div class="sidebar__trigger__hamburger"></div>
-    </div>
+            <aside class="sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
 
-    <div class="sidebar__container j-sidebar-content">
-        
-    </div>
 </aside>
             
             <div class="content clearfix">

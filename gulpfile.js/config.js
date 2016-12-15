@@ -87,7 +87,7 @@ module.exports.tasks = {
             port: 3004,
             server: {
                 baseDir: app,
-                index: 'index.html'
+                index: markup + '/index.html'
             },
             browser: [
                 "google chrome", // "firefox"
