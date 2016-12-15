@@ -92,7 +92,8 @@ module.exports.tasks = {
             browser: [
                 "google chrome", // "firefox"
             ]
-        }
+        },
+        open: true
     },
     
     'screenshot': [

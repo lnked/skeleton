@@ -3,7 +3,7 @@
 const browserSync = require('browser-sync').create();
 
 module.exports = function(config) {
-	config = config || {};
+	config = config || { server: {} };
 
 	return function() {
 		browserSync.init(config.server);
