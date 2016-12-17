@@ -1,6 +1,7 @@
 const src = './frontend/';
 const app = './public_html/';
 const markup = 'markup/';
+const mainPage = 'index.html';
 
 module.exports.app  = app;
 
@@ -87,7 +88,7 @@ module.exports.tasks = {
             port: 3004,
             server: {
                 baseDir: app,
-                index: markup + 'index.html'
+                index: markup + mainPage
             },
             browser: [
                 "google chrome", // "firefox"
@@ -155,7 +156,7 @@ module.exports.tasks = {
         base: app,
 
         // HTML source file 
-        src: 'index.html',
+        src: mainPage,
 
         // Your CSS Files (optional) 
         css: [app + 'css/main.min.css'],
