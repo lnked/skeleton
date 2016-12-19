@@ -62,6 +62,8 @@ module.exports = function(config) {
                 .pipe($.if(global.is.lint, $.eslint.format()))
                 .pipe($.if(global.is.lint, $.eslint.failAfterError()))
                 
+                .pipe($.if(!global.is.build, gulp.dest(config.app)))
+                
                 .pipe($.rename({suffix: '.min'}))
                 
                 .pipe($.if(global.is.build, $.uglify()))

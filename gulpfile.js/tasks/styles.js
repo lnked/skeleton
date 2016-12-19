@@ -29,9 +29,6 @@ module.exports = function(config) {
 
     let processors = {
         watch: [
-            require('postcss-data-packer')({
-                dest: config.app + '/main_data.css'
-            }),
             require('postcss-vmin'),
             require('postcss-for'),
             require('postcss-triangle'),
@@ -140,6 +137,8 @@ module.exports = function(config) {
                 global.is.lint,
                 $.postcss(processors.lint)
             ))
+
+            .pipe($.if(!global.is.build, gulp.dest(config.app)))
 
             .pipe($.rename({suffix: '.min'}))
 
