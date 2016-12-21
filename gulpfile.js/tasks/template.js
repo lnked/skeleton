@@ -62,6 +62,18 @@ module.exports = function(config) {
             ))
 
             .pipe($.if(
+                global.is.htmlmin,
+                $.htmlmin({
+                    minifyJS: true,
+                    minifyCSS: true,
+                    removeComments: true,
+                    collapseWhitespace: true,
+                    removeAttributeQuotes: true,
+                    processConditionalComments: true
+                })
+            ))
+
+            .pipe($.if(
                 global.is.watch,
                 $.htmlhint.reporter()
             ))
