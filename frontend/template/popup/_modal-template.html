@@ -1,0 +1,33 @@
+<template id="tmpl-modal-template">
+    <div class="modal" id="modal-item" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal__dialog">
+            <div class="modal__content size-medium" role="document">
+
+                <button type="button" class="modal__close-button" data-dismiss="modal" aria-label="Close" data-target="#modal-item">
+                    <svg role="image">
+                        <use xlink:href="#close"/>
+                    </svg>
+                </button>
+            
+                {{#header}}
+                <header class="modal__header">
+                    {{header}}
+                </header>
+                {{/header}}
+                
+                {{#body}}
+                <div class="modal__body">
+                    {{body}}
+                </div>
+                {{/body}}
+                
+                {{#footer}}
+                <footer class="modal__footer">
+                    {{footer}}
+                    <button class="modal__default-button" data-dismiss="modal" aria-label="Close" data-toggle="modal" data-target="#modal-item">OK</button>
+                </footer>
+                {{/footer}}
+            </div>
+        </div>
+    </div>
+</template>
