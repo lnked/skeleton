@@ -68,7 +68,6 @@ module.exports = function(config) {
                     minifyCSS: true,
                     removeComments: true,
                     collapseWhitespace: true,
-                    removeAttributeQuotes: true,
                     processConditionalComments: true
                 })
             ))

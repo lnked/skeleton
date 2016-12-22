@@ -49,14 +49,10 @@ module.exports = function(config) {
                 .pipe($.if(!global.is.build, $.sourcemaps.init()))
 
                 .pipe($.if(/[.]coffee$/, $.coffee()))
-                
-                .pipe($.if(/[.]jsx$/, $.react()))
-
-                .pipe($.if(global.is.react, $.react()))
+                .pipe($.if(/[.]jsx$/ || global.is.react, $.react({ harmony: true, es6module: true })))
+                .pipe($.if(/[.]jsx$/ || global.is.react || global.is.es2015, $.babel()))
 
                 .pipe($.concat(folder + '.js'))
-
-                .pipe($.if(global.is.es2015, $.babel({ presets: ['es2015'] })))
 
                 .pipe($.if(global.is.lint, $.eslint()))
                 .pipe($.if(global.is.lint, $.eslint.format()))
