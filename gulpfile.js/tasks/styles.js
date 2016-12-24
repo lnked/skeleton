@@ -43,7 +43,6 @@ module.exports = function(config) {
             require('postcss-quantity-queries'),
             require('postcss-font-magician')({
                 hosted: '/fonts',
-                foundries: 'hosted',
                 formats: 'local woff2 woff ttf eot'
             }),
             require('postcss-fixes'),
