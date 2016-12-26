@@ -7,6 +7,13 @@ svg {
     }
 }
 
+.icon {
+    stroke-width: 0;
+    fill: currentColor;
+    stroke: currentColor;
+    display: inline-block;
+}
+
 // .shape{
 //     width: 20em;
 //     height: 20em;
