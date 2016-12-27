@@ -5,6 +5,19 @@ var app = app || {};
 
     app = {
 
+        _extend: function(source, config)
+        {
+            if (typeof config !== 'undefined')
+            {
+                for (var x in config)
+                {
+                    source[x] = config[x];
+                }
+            }
+
+            return source;
+        },
+
         bind: function()
         {
             for(var _ in this)

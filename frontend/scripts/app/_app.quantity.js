@@ -3,6 +3,8 @@ var app = app || {};
 (function(body){
     "use strict";
 
+    var _this_;
+
     app.quantity = {
 
         config: {
@@ -13,21 +15,6 @@ var app = app || {};
         },
 
         element: null,
-
-        extend: function(config)
-        {
-            var _this = this;
-
-            if (typeof config !== 'undefined')
-            {
-                var x;
-                for (x in config)
-                {
-                    if (typeof _this.config[x] !== 'undefined')
-                        _this.config[x] = config[x];
-                }
-            }
-        },
 
         setValue: function(quantity)
         {
@@ -81,7 +68,7 @@ var app = app || {};
         {
             var _this = this, role = '';
 
-            $('body').on('keydown', _this.config.input, function(e) {
+            $('body').on('keydown', _this_.config.input, function(e) {
                 if ([38, 40].indexOf(e.keyCode) >= 0)
                 {
                     e.preventDefault();
@@ -91,11 +78,11 @@ var app = app || {};
                         40: 'decrease'
                     };
 
-                    _this.element = $(this).closest(_this.config.element);
+                    _this_.element = $(this).closest(_this_.config.element);
 
-                    _this[role[e.keyCode]](parseInt(_this.element.find(_this.config.input).val()));
+                    _this[role[e.keyCode]](parseInt(_this_.element.find(_this_.config.input).val()));
 
-                    _this.callback();
+                    _this_.callback();
 
                     return false;
                 }
@@ -104,21 +91,21 @@ var app = app || {};
 
         bind: function()
         {
-            var _this = this, role = '';
+            var role = '';
 
-            $('body').on('click', _this.config.control, function(e) {
+            $('body').on('click', _this_.config.control, function(e) {
                 e.preventDefault();
 
-                _this.element = $(this).closest(_this.config.element);
+                _this_.element = $(this).closest(_this_.config.element);
 
                 role = $(this).data('role');
          
                 if(['increase', 'decrease'].indexOf(role) >= 0)
                 {
-                    _this[role](parseInt(_this.element.find(_this.config.input).val()));
+                    _this[role](parseInt(_this_.element.find(_this_.config.input).val()));
                 }
 
-                _this.callback();
+                _this_.callback();
 
                 return !1;
             });
@@ -126,13 +113,15 @@ var app = app || {};
 
         init: function(config)
         {
+            _this_ = this;
+
             if (typeof config !== 'undefined')
             {
-                this.extend(config);
+                _this_.config = app._extend(_this_.config, config);
             }
-
-            this.bind();
-            this.keys();
+            
+            _this_.bind();
+            _this_.keys();
         }
 
     };

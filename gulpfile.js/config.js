@@ -79,7 +79,16 @@ module.exports.tasks = {
     'before_build': {},
     
     'deploy': {
-        app: app + '/**/*'
+        app: app + '**/*'
+    },
+    
+    'sync': {
+        app: app + '**/*',
+        root: app,
+        port: 22,
+        username: 'root',
+        hostname: '',
+        destination: ''
     },
     
     'webserver': {

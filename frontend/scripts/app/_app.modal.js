@@ -1,0 +1,65 @@
+var app = app || {};
+
+(function(body){
+    "use strict";
+
+    var _this_;
+
+    app.modal = {
+
+        config: {
+            prefix: 'tmpl-modal-',
+            trigger: '.j-open-popup'
+        },
+
+        prepare: function(selector)
+        {
+            if (typeof(selector) !== 'undefined' && selector.length > 1)
+            {
+                if (selector.substr(0, 1) == '#')
+                {
+                    selector = selector.substr(1);
+                }
+
+                selector = _this_.config.input  + selector;
+            }
+
+            alert(selector);
+
+            return selector;
+        },
+
+        bind: function()
+        {
+            // data-change="true"
+            // autosize($('textarea'));
+
+            $('body').on('click', _this_.config.trigger, function(e){
+                e.preventDefault();
+
+                var modal = $(this).data('target') || $(this).attr('href');
+
+                if ($(_this_.prepare(modal)).length)
+                {
+                    alert(_this_.prepare(modal));
+                }
+
+                return !1;
+            })
+        },
+
+        init: function(config)
+        {
+            _this_ = this;
+
+            if (typeof config !== 'undefined')
+            {
+                _this_.config = app._extend(_this_.config, config);
+            }
+
+            _this_.bind();
+        }
+
+    };
+
+})(document.body);
