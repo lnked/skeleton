@@ -1,36 +1,92 @@
+'use strict';
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+
 var app = app || {};
 
-(function(body){
-    "use strict";
-
+(function (body) {
     app = {
+        _extend: function _extend(source, config) {
+            if (typeof config !== 'undefined') {
+                for (var x in config) {
+                    source[x] = config[x];
+                }
+            }
 
-        bind: function()
-        {
-            for(var _ in this)
-            {
-                if (typeof(this[_]) == 'object' && typeof(this[_].init) !== 'undefined')
-                {
-                    if (typeof(this[_].init) == 'function')
-                    {
+            return source;
+        },
+        bind: function bind() {
+            for (var _ in this) {
+                if (_typeof(this[_]) == 'object' && typeof this[_].init !== 'undefined') {
+                    if (typeof this[_].init == 'function') {
                         this[_].init();
                     }
                 }
             }
         },
-
-        init: function()
-        {
+        init: function init() {
             this.bind();
         }
-
     };
-
 })(document.body);
+'use strict';
+
+;(function (body) {
+    var _this_ = void 0;
+
+    app.modal = {
+
+        config: {
+            prefix: 'tmpl-modal-',
+            trigger: '.j-open-popup'
+        },
+
+        prepare: function prepare(selector) {
+            if (typeof selector !== 'undefined' && selector.length > 1) {
+                if (selector.substr(0, 1) == '#') {
+                    selector = selector.substr(1);
+                }
+
+                selector = _this_.config.input + selector;
+            }
+
+            alert(selector);
+
+            return selector;
+        },
+        bind: function bind() {
+            // data-change="true"
+            // autosize($('textarea'));
+
+            $('body').on('click', _this_.config.trigger, function (e) {
+                e.preventDefault();
+
+                var modal = $(this).data('target') || $(this).attr('href');
+
+                if ($(_this_.prepare(modal)).length) {
+                    alert(_this_.prepare(modal));
+                }
+
+                return !1;
+            });
+        },
+        init: function init(config) {
+            _this_ = this;
+
+            if (typeof config !== 'undefined') {
+                _this_.config = app._extend(_this_.config, config);
+            }
+
+            _this_.bind();
+        }
+    };
+})(document.body);
+'use strict';
+
 var app = app || {};
 
-(function(body){
-    "use strict";
+(function (body) {
+    var _this_ = void 0;
 
     app.quantity = {
 
@@ -43,76 +99,51 @@ var app = app || {};
 
         element: null,
 
-        extend: function(config)
-        {
-            var _this = this;
-
-            if (typeof config !== 'undefined')
-            {
-                var x;
-                for (x in config)
-                {
-                    if (typeof _this.config[x] !== 'undefined')
-                        _this.config[x] = config[x];
-                }
-            }
-        },
-
-        setValue: function(quantity)
-        {
-            var min = 1, max = 100;
+        setValue: function setValue(quantity) {
+            var min = 1;
+            var max = 100;
 
             if (this.element.data('min')) {
-                min = this.element.data('min');   
+                min = this.element.data('min');
             }
-            
+
             if (this.element.data('max')) {
-                max = this.element.data('max');   
+                max = this.element.data('max');
             }
 
             if (quantity > max) {
                 quantity = max;
             }
-            
+
             if (quantity < min) {
                 quantity = min;
             }
 
             this.element.find(this.config.input).val(quantity);
-
         },
-
-        increase: function(quantity)
-        {
+        increase: function increase(quantity) {
             quantity += 1;
 
             this.setValue(quantity);
         },
-
-        decrease: function(quantity)
-        {
+        decrease: function decrease(quantity) {
             if (quantity > 1) {
                 quantity -= 1;
             }
 
             this.setValue(quantity);
         },
-
-        callback: function()
-        {
-            if (typeof(this.element.data('product')) !== 'undefined' && typeof(this.config.complete) == 'function')
-            {
+        callback: function callback() {
+            if (typeof this.element.data('product') !== 'undefined' && typeof this.config.complete == 'function') {
                 this.config.complete.call(null, this.element, this.element.data('product'));
             }
         },
+        keys: function keys() {
+            var _this = this;
+            var role = '';
 
-        keys: function()
-        {
-            var _this = this, role = '';
-
-            $('body').on('keydown', _this.config.input, function(e) {
-                if ([38, 40].indexOf(e.keyCode) >= 0)
-                {
+            $('body').on('keydown', _this_.config.input, function (e) {
+                if ([38, 40].includes(e.keyCode)) {
                     e.preventDefault();
 
                     role = {
@@ -120,52 +151,46 @@ var app = app || {};
                         40: 'decrease'
                     };
 
-                    _this.element = $(this).closest(_this.config.element);
+                    _this_.element = $(this).closest(_this_.config.element);
 
-                    _this[role[e.keyCode]](parseInt(_this.element.find(_this.config.input).val()));
+                    _this[role[e.keyCode]](parseInt(_this_.element.find(_this_.config.input).val()));
 
-                    _this.callback();
+                    _this_.callback();
 
                     return false;
                 }
             });
         },
+        bind: function bind() {
+            var role = '';
 
-        bind: function()
-        {
-            var _this = this, role = '';
-
-            $('body').on('click', _this.config.control, function(e) {
+            $('body').on('click', _this_.config.control, function (e) {
                 e.preventDefault();
 
-                _this.element = $(this).closest(_this.config.element);
+                _this_.element = $(this).closest(_this_.config.element);
 
                 role = $(this).data('role');
-         
-                if(['increase', 'decrease'].indexOf(role) >= 0)
-                {
-                    _this[role](parseInt(_this.element.find(_this.config.input).val()));
+
+                if (['increase', 'decrease'].includes(role)) {
+                    _this[role](parseInt(_this_.element.find(_this_.config.input).val()));
                 }
 
-                _this.callback();
+                _this_.callback();
 
                 return !1;
             });
         },
+        init: function init(config) {
+            _this_ = this;
 
-        init: function(config)
-        {
-            if (typeof config !== 'undefined')
-            {
-                this.extend(config);
+            if (typeof config !== 'undefined') {
+                _this_.config = app._extend(_this_.config, config);
             }
 
-            this.bind();
-            this.keys();
+            _this_.bind();
+            _this_.keys();
         }
-
     };
-
 })(document.body);
 
 // this.quantity.init({
@@ -183,55 +208,11 @@ var app = app || {};
 //     <input type="text" name="count[1000]" value="1" data-role="quantity-input" class="quantity__count j-quantity-count" maxlength="3" autocomplete="off">
 //     <button type="button" class="quantity__control _increase j-quantity-control" data-role="increase"></button>
 // </div>
-(function(callback) {
-    var ready = false;
+'use strict';
 
-    var detach = function() {
-        if(document.addEventListener) {
-            document.removeEventListener("DOMContentLoaded", completed);
-            window.removeEventListener("load", completed);
-        } else {
-            document.detachEvent("onreadystatechange", completed);
-            window.detachEvent("onload", completed);
-        }
-    }
-    var completed = function() {
-        if(!ready && (document.addEventListener || event.type === "load" || document.readyState === "complete")) {
-            ready = true;
-            detach();
-            callback();
-        }
-    };
-
-    if(document.readyState === "complete") {
-        callback();
-    } else if(document.addEventListener) {
-        document.addEventListener("DOMContentLoaded", completed);
-        window.addEventListener("load", completed);
-    } else {
-        document.attachEvent("onreadystatechange", completed);
-        window.attachEvent("onload", completed);
-
-        var top = false;
-
-        try {
-            top = window.frameElement == null && document.documentElement;
-        } catch(e) {}
-
-        if(top && top.doScroll) {
-            (function scrollCheck() {
-                if(ready) return;
-
-                try {
-                    top.doScroll("left");
-                } catch(e) {
-                    return setTimeout(scrollCheck, 50);
-                }
-
-                ready = true;
-                detach();
-                callback();
-            })();
-        }
-    }
-})(function(){app.init()});
+(function (d) {
+    d.addEventListener('DOMContentLoaded', function () {
+        app.init();
+        alert('1');
+    });
+})(document);

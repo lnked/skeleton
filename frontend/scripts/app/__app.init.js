@@ -1,15 +1,12 @@
-var app = app || {};
+let app = app || {};
 
-(function(body){
-    "use strict";
-
+((body => {
     app = {
 
-        _extend: function(source, config)
-        {
+        _extend(source, config) {
             if (typeof config !== 'undefined')
             {
-                for (var x in config)
+                for (const x in config)
                 {
                     source[x] = config[x];
                 }
@@ -18,9 +15,8 @@ var app = app || {};
             return source;
         },
 
-        bind: function()
-        {
-            for(var _ in this)
+        bind() {
+            for(const _ in this)
             {
                 if (typeof(this[_]) == 'object' && typeof(this[_].init) !== 'undefined')
                 {
@@ -32,11 +28,9 @@ var app = app || {};
             }
         },
 
-        init: function()
-        {
+        init() {
             this.bind();
         }
 
     };
-
-})(document.body);
+}))(document.body);

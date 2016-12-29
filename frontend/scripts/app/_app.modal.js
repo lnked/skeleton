@@ -1,9 +1,5 @@
-var app = app || {};
-
-(function(body){
-    "use strict";
-
-    var _this_;
+;((body => {
+    let _this_;
 
     app.modal = {
 
@@ -12,8 +8,7 @@ var app = app || {};
             trigger: '.j-open-popup'
         },
 
-        prepare: function(selector)
-        {
+        prepare(selector) {
             if (typeof(selector) !== 'undefined' && selector.length > 1)
             {
                 if (selector.substr(0, 1) == '#')
@@ -29,15 +24,14 @@ var app = app || {};
             return selector;
         },
 
-        bind: function()
-        {
+        bind() {
             // data-change="true"
             // autosize($('textarea'));
 
             $('body').on('click', _this_.config.trigger, function(e){
                 e.preventDefault();
 
-                var modal = $(this).data('target') || $(this).attr('href');
+                const modal = $(this).data('target') || $(this).attr('href');
 
                 if ($(_this_.prepare(modal)).length)
                 {
@@ -48,8 +42,7 @@ var app = app || {};
             })
         },
 
-        init: function(config)
-        {
+        init(config) {
             _this_ = this;
 
             if (typeof config !== 'undefined')
@@ -61,5 +54,4 @@ var app = app || {};
         }
 
     };
-
-})(document.body);
+}))(document.body);

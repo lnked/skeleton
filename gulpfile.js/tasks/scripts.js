@@ -50,7 +50,8 @@ module.exports = function(config) {
 
                 .pipe($.if(/[.]coffee$/, $.coffee()))
                 .pipe($.if(/[.]jsx$/ || global.is.react, $.react({ harmony: true, es6module: true })))
-                .pipe($.if(/[.]jsx$/ || global.is.react || global.is.es2015, $.babel()))
+
+                .pipe($.babel({ "presets": ["es2015"] }))
 
                 .pipe($.concat(folder + '.js'))
 

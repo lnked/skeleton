@@ -1,9 +1,7 @@
-var app = app || {};
+const app = app || {};
 
-(function(body){
-    "use strict";
-
-    var _this_;
+((body => {
+    let _this_;
 
     app.quantity = {
 
@@ -16,14 +14,14 @@ var app = app || {};
 
         element: null,
 
-        setValue: function(quantity)
-        {
-            var min = 1, max = 100;
+        setValue(quantity) {
+            let min = 1;
+            let max = 100;
 
             if (this.element.data('min')) {
                 min = this.element.data('min');   
             }
-            
+
             if (this.element.data('max')) {
                 max = this.element.data('max');   
             }
@@ -31,24 +29,21 @@ var app = app || {};
             if (quantity > max) {
                 quantity = max;
             }
-            
+
             if (quantity < min) {
                 quantity = min;
             }
 
             this.element.find(this.config.input).val(quantity);
-
         },
 
-        increase: function(quantity)
-        {
+        increase(quantity) {
             quantity += 1;
 
             this.setValue(quantity);
         },
 
-        decrease: function(quantity)
-        {
+        decrease(quantity) {
             if (quantity > 1) {
                 quantity -= 1;
             }
@@ -56,20 +51,19 @@ var app = app || {};
             this.setValue(quantity);
         },
 
-        callback: function()
-        {
+        callback() {
             if (typeof(this.element.data('product')) !== 'undefined' && typeof(this.config.complete) == 'function')
             {
                 this.config.complete.call(null, this.element, this.element.data('product'));
             }
         },
 
-        keys: function()
-        {
-            var _this = this, role = '';
+        keys() {
+            const _this = this;
+            let role = '';
 
             $('body').on('keydown', _this_.config.input, function(e) {
-                if ([38, 40].indexOf(e.keyCode) >= 0)
+                if ([38, 40].includes(e.keyCode))
                 {
                     e.preventDefault();
 
@@ -89,9 +83,8 @@ var app = app || {};
             });
         },
 
-        bind: function()
-        {
-            var role = '';
+        bind() {
+            let role = '';
 
             $('body').on('click', _this_.config.control, function(e) {
                 e.preventDefault();
@@ -100,7 +93,7 @@ var app = app || {};
 
                 role = $(this).data('role');
          
-                if(['increase', 'decrease'].indexOf(role) >= 0)
+                if(['increase', 'decrease'].includes(role))
                 {
                     _this[role](parseInt(_this_.element.find(_this_.config.input).val()));
                 }
@@ -111,8 +104,7 @@ var app = app || {};
             });
         },
 
-        init: function(config)
-        {
+        init(config) {
             _this_ = this;
 
             if (typeof config !== 'undefined')
@@ -125,8 +117,7 @@ var app = app || {};
         }
 
     };
-
-})(document.body);
+}))(document.body);
 
 // this.quantity.init({
 //     complete: function(element, id) {
