@@ -1,0 +1,22 @@
+@function longShadow($color_a, $color_b, $step_num, $opacity: 1) {
+    $gradient_steps: null;
+
+    @for $i from 1 through $step_num {
+        $weight: ( ( $i - 1 ) / $step_num ) * 100;
+        $opacity: $opacity - 0.01;
+        $colour_mix: mix($color_b, rgba($color_a, $opacity), $weight);
+        $separator: null;
+
+        @if ($i != $step_num) {
+            $separator: #{','};
+        }
+
+        $gradient_steps: append(#{$gradient_steps}, #{$i}px #{$i}px $colour_mix $separator);
+    }
+    
+    @return $gradient_steps;
+}
+
+// .selector {
+//     text-shadow: longShadow(darken($color, 15%), $color, 100, 0.8);
+// }

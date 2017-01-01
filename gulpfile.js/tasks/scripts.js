@@ -16,7 +16,7 @@ module.exports = function(config) {
 
         // Bower files
         try {
-            
+
             gulp.src(
                 bowerFiles({
                     filter: '**/*.js',
@@ -24,6 +24,29 @@ module.exports = function(config) {
                         bowerDirectory: config.bower.path,
                         bowerrc: config.bower.config,
                         bowerJson: config.bower.json
+                    },
+                    overrides: {
+                        "jquery": {
+                            "main": "dist/jquery.min.js"
+                        },
+                        "axios": {
+                            "main": "dist/axios.min.js"
+                        },
+                        "react": {
+                            "main": [
+                                "react.min.js",
+                                "react-dom.min.js"
+                            ]
+                        },
+                        "zepto": {
+                            "main": "zepto.min.js"
+                        },
+                        "cookie": {
+                            "main": "cookie.min.js"
+                        },
+                        "reflux": {
+                            "main": "dist/reflux.min.js"
+                        }
                     }
                 })
             )
