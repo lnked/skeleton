@@ -20,7 +20,30 @@ module.exports.tasks = {
         bower: {
             config: './.bowerrc',
             path: src + 'vendors',
-            json: './bower.json'
+            json: './bower.json',
+            overrides: {
+                "jquery": {
+                    "main": "dist/jquery.min.js"
+                },
+                "axios": {
+                    "main": "dist/axios.min.js"
+                },
+                "react": {
+                    "main": [
+                        "react.min.js",
+                        "react-dom.min.js"
+                    ]
+                },
+                "zepto": {
+                    "main": "zepto.min.js"
+                },
+                "cookie": {
+                    "main": "cookie.min.js"
+                },
+                "reflux": {
+                    "main": "dist/reflux.min.js"
+                }
+            }
         }
     },
 

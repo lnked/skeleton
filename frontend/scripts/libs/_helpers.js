@@ -28,3 +28,23 @@ const addEvent = ((() => {
 const $ = el => document.querySelectorAll(el);
 
 // $('.box');
+
+var lazyload = function(container, settings) {
+   var lazyClass = 'js-lazyload-images';
+   require(['jquery', 'lib/jquery.lazyload'], function($) {
+      var node = $(container);
+      var $lazyNode = $('.' + lazyClass, node);
+      $lazyNode.lazyload(settings).removeClass(lazyClass);
+      node.scroll();
+   });
+};
+
+/*
+window.addEventListener('popstate', function(e){
+   var state = e.state;
+   if(!state) return;
+   if(state.layer) {
+      create_layer(state.layer, JSON.parse(state.settings));
+   }
+}, false);
+*/
