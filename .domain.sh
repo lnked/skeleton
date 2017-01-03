@@ -26,6 +26,7 @@ server {
     error_log       /Users/edik/web/$DOMAIN/logs/error.log error;
 
     charset         utf-8;
+    merge_slashes   off;
     
     gzip on;
     gzip_proxied any;
@@ -93,6 +94,10 @@ server {
         }
 
         break;
+    }
+
+    location ~ .+/$ {
+        rewrite (.+)/$ $1 permanent;
     }
     
     location ~ /\.ht {
