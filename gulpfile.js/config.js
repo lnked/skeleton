@@ -28,6 +28,9 @@ module.exports.tasks = {
                 "axios": {
                     "main": "dist/axios.min.js"
                 },
+                "mousetrap": {
+                    "main": "mousetrap.min.js"
+                },
                 "react": {
                     "main": [
                         "react.min.js",
