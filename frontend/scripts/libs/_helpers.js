@@ -1,3 +1,13 @@
+;((d => {
+    function template(id, data) {
+        if (d.getElementById(id) !== null) {
+            return Template7.compile(d.getElementById(id).innerHTML)(data || {});
+        }
+        return '';
+    }
+    window.template = template;
+}))(document);
+
 const addEvent = ((() => {
    const filter = (el, type, fn) => {
       for (let i = 0, len = el.length; i < len; i++) {
@@ -29,19 +39,19 @@ const $ = el => document.querySelectorAll(el);
 
 // $('.box');
 
-var lazyload = function(container, settings) {
-   var lazyClass = 'js-lazyload-images';
-   require(['jquery', 'lib/jquery.lazyload'], function($) {
-      var node = $(container);
-      var $lazyNode = $('.' + lazyClass, node);
+const lazyload = (container, settings) => {
+   const lazyClass = 'js-lazyload-images';
+   require(['jquery', 'lib/jquery.lazyload'], $ => {
+      const node = $(container);
+      const $lazyNode = $(`.${lazyClass}`, node);
       $lazyNode.lazyload(settings).removeClass(lazyClass);
       node.scroll();
    });
 };
 
 /*
-window.addEventListener('popstate', function(e){
-   var state = e.state;
+window.addEventListener('popstate', e => {
+   const state = e.state;
    if(!state) return;
    if(state.layer) {
       create_layer(state.layer, JSON.parse(state.settings));

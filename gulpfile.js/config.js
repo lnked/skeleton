@@ -31,6 +31,9 @@ module.exports.tasks = {
                 "mousetrap": {
                     "main": "mousetrap.min.js"
                 },
+                "Template7": {
+                    "main": "dist/template7.min.js"
+                },
                 "react": {
                     "main": [
                         "react.min.js",
