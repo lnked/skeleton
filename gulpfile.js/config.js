@@ -31,6 +31,15 @@ module.exports.tasks = {
                 "mousetrap": {
                     "main": "mousetrap.min.js"
                 },
+                "gsap": {
+                    "main": [
+                        "src/minified/TweenLite.min.js",
+                        "src/minified/TimelineLite.min.js"
+                    ]
+                },
+                "svg4everybody": {
+                    "main": "dist/svg4everybody.min.js"
+                },
                 "Template7": {
                     "main": "dist/template7.min.js"
                 },
