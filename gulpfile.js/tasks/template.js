@@ -68,6 +68,13 @@ module.exports = function(config) {
                     minifyCSS: true,
                     removeComments: true,
                     collapseWhitespace: true,
+                    collapseBooleanAttributes: true,
+                    removeAttributeQuotes: true,
+                    removeRedundantAttributes: true,
+                    removeEmptyAttributes: true,
+                    removeScriptTypeAttributes: true,
+                    removeStyleLinkTypeAttributes: true,
+                    removeOptionalTags: true,
                     processConditionalComments: true
                 })
             ))
@@ -79,6 +86,8 @@ module.exports = function(config) {
 
             .pipe($.debug({'title': config.task}))
 
+            .pipe($.if('*.html', $.size({title: 'html', showFiles: true})))
+            
             .pipe(gulp.dest(config.app))
 
             .pipe($.if(global.is.notify, $.notify({ message: config.task + ' complete', onLast: true })));

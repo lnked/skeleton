@@ -41,6 +41,7 @@ module.exports = function(config) {
             require('postcss-media-minmax'),
             require('postcss-custom-selectors'),
             require('postcss-quantity-queries'),
+            require('postcss-discard-comments'),
             require('postcss-font-magician')({
                 hosted: '/fonts',
                 formats: 'local woff2 woff ttf eot'
@@ -102,14 +103,14 @@ module.exports = function(config) {
 
             .pipe($.sassBulkImport())
             
-            .pipe($.sass())
+            .pipe($.sass({precision: 10}))
             
             .pipe($.pixrem())
 
             .pipe($.postcss(
                 [
                     require('autoprefixer')({
-                        browsers: ["last 2 version", "safari 5", "ie > 7", "opera 12.1", "ios 6", "android 2.3"]
+                        browsers: config.browsers
                     })
                 ]
             ))
@@ -143,6 +144,8 @@ module.exports = function(config) {
 
             .pipe($.if(global.is.build, $.groupCssMediaQueries()))
             .pipe($.if(global.is.build, $.postcss(processors.build)))
+            
+            .pipe($.size({title: 'styles'}))
             
             .pipe($.if(!global.is.build, $.sourcemaps.write()))
 

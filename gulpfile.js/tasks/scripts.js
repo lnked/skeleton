@@ -51,8 +51,9 @@ module.exports = function(config) {
 
                 .pipe($.if(/[.]coffee$/, $.coffee()))
                 .pipe($.if(/[.]jsx$/ || global.is.react, $.react({ harmony: true, es6module: true })))
-
                 .pipe($.babel({ "presets": ["es2015"] }))
+
+                .pipe($.if(!global.is.build, $.sourcemaps.write()))
 
                 .pipe($.concat(folder + '.js'))
 
@@ -64,7 +65,8 @@ module.exports = function(config) {
                 
                 .pipe($.rename({suffix: '.min'}))
                 
-                .pipe($.if(global.is.build, $.uglify()))
+                .pipe($.if(global.is.build, $.uglify({preserveComments: 'some'})))
+                .pipe($.size({title: 'scripts'}))
 
                 .pipe($.if(!global.is.build, $.sourcemaps.write()))
 

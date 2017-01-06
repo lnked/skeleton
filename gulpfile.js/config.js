@@ -65,7 +65,19 @@ module.exports.tasks = {
     'styles': {
         path: [src + 'styles'],
         src: [src + 'styles/*.scss', src + 'styles/**/*.scss', '!' + src + 'styles/_*.*', '!' + src + 'styles/**/_*.*'],
-        app: app + 'css'
+        app: app + 'css',
+        browsers: [
+            'last 2 version',
+            'ie >= 7',
+            'ie_mob >= 10',
+            'ff >= 30',
+            'chrome >= 34',
+            'safari >= 5',
+            'opera >= 12.1',
+            'ios >= 6',
+            'android >= 2.3',
+            'bb >= 10'
+        ]
     },
 
     'images': {
@@ -133,6 +145,7 @@ module.exports.tasks = {
         app: app,
         server: {
             port: 3004,
+            notify: false,
             server: {
                 baseDir: app,
                 index: markup + mainPage

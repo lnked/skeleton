@@ -36,9 +36,10 @@ module.exports = function(config) {
 
             .pipe($.if(
                 global.is.build,
-                $.imagemin({
+                $.cache($.imagemin({
                     optimizationLevel: 3,
                     progressive: true,
+                    interlaced: true,
                     svgoPlugins: [
                         {removeTitle:true},
                         {removeDesc:true},
@@ -64,10 +65,9 @@ module.exports = function(config) {
                     ],
                     use: [svgo(), gifsicle({interlaced: true})]
                 })
-            ))
+            )))
 
-            .pipe(gulp.dest(config.app))
-            // .pipe($.if(global.is.notify, $.notify({ message: config.task + ' complete', onLast: true })));
+            .pipe(gulp.dest(config.app));
 
         callback();
 
