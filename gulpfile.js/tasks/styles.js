@@ -8,6 +8,19 @@ const error = require('../utils/error');
 module.exports = function(config) {
     config = config || {};
     
+    const AUTOPREFIXER_BROWSERS = config.browsers || [
+        'last 2 version',
+        'ie >= 8',
+        'ie_mob >= 10',
+        'ff >= 30',
+        'chrome >= 34',
+        'safari >= 5',
+        'opera >= 12.1',
+        'ios >= 6',
+        'android >= 2.3',
+        'bb >= 10'
+    ];
+
     let stylelintConfig = {
         "rules": {
             "color-no-invalid-hex": true,
@@ -110,7 +123,7 @@ module.exports = function(config) {
             .pipe($.postcss(
                 [
                     require('autoprefixer')({
-                        browsers: config.browsers
+                        browsers: AUTOPREFIXER_BROWSERS
                     })
                 ]
             ))

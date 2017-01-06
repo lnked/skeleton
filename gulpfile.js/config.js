@@ -68,7 +68,7 @@ module.exports.tasks = {
         app: app + 'css',
         browsers: [
             'last 2 version',
-            'ie >= 7',
+            'ie >= 8',
             'ie_mob >= 10',
             'ff >= 30',
             'chrome >= 34',
