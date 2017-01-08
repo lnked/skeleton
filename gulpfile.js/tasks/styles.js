@@ -42,27 +42,22 @@ module.exports = function(config) {
 
     let processors = {
         watch: [
-            require('postcss-vmin'),
             require('postcss-for'),
             require('postcss-triangle'),
             require('postcss-will-change'),
-            require('postcss-color-rgba-fallback'),
-            require('postcss-at-rules-variables'),
-            require('postcss-custom-properties'),
-            require('postcss-custom-media'),
             require('postcss-conditionals'),
-            require('postcss-media-minmax'),
-            require('postcss-custom-selectors'),
             require('postcss-quantity-queries'),
-            require('postcss-discard-comments'),
             require('postcss-font-magician')({
                 hosted: '/fonts',
                 formats: 'local woff2 woff ttf eot'
             }),
-            require('postcss-fixes'),
             require('postcss-vmin'),
             require('postcss-opacity'),
-            require('postcss-reporter')({ clearMessages: true })
+            require('postcss-color-rgba-fallback'),
+            require('postcss-reporter')({
+                clearMessages: true,
+                throwError: true
+            })
         ],
         modules: [
             require('postcss-modules')({

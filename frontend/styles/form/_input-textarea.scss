@@ -35,7 +35,7 @@ textarea {
     font-weight: 400;
     border-radius: 1px;
     font-family: $font-family;
-    border: 1px solid $c-dark-gray;
+    border: 1px solid $c-border;
     box-sizing: border-box !important;
 
     &.error {
@@ -49,12 +49,12 @@ textarea {
         cursor: default;
     }
 
-    &:focus,
-    &:focus {
-        outline: none;
-    }
-
     &::-ms-clear {
         display: none;
+    }
+
+    &:-webkit-autofill {
+        -webkit-box-shadow: 0 0 0px 1000px white inset;
+        // -webkit-text-fill-color: yellow !important;
     }
 }
