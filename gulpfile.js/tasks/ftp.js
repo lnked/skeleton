@@ -18,6 +18,7 @@ conn         = ftp.create( {
             parallel: 20 // numero di trasferimenti simultanei
     } );
 */
+
 		return gulp.src(config.app)
 			.pipe($.plumber({errorHandler: error}))
 			.pipe($.deployFtp(config.cfg))

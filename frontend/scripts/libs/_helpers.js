@@ -1,3 +1,9 @@
+var i = 1;
+setTimeout(function run() {
+    func(i);
+    setTimeout(run, 100);
+}, 100);
+
 ;((d => {
     function template(id, data) {
         if (d.getElementById(id) !== null) {

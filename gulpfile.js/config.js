@@ -203,6 +203,14 @@ module.exports.tasks = {
         host: 'ftp server host',
         uploadPath: 'target path'
     },
+    
+    'sftp': {
+        host: 'website.com',
+        user: 'johndoe',
+        pass: '1234',
+        remotePath: '1234'
+        remotePlatform: 'unix'
+    },
 
     'tinypng': ['eGm6p86Xxr4aQ3H7SvfoogEUKOwgBQc3'],
 

@@ -1,14 +1,28 @@
 // Screen
-$s-phone:                       320px;
-$s-tablet:                      720px;
-$s-desktop:                     1024px;
-$s-medium-desktop:              1375px;
-$s-large:                       1680px;
-$s-up-phone:                    320px;
-$s-up-tablet:                   720px;
-$s-up-desktop:                  1024px;
-$s-up-medium-desktop:           1375px;
-$s-up-large:                    1680px;
+// Max size
+$max-iphone:                    379px;
+$max-tablet:                    719px;
+$max-desktop:                   1023px;
+$max-medium:                    1374px;
+$max-large:                     1679px;
+
+// Min size
+$min-phone:                     320px;
+$min-iphone:                    380px;
+$min-tablet:                    720px;
+$min-desktop:                   1024px;
+$min-medium:                    1375px;
+$min-large:                     1680px;
+
+// $screen = {
+//   ultra-mega-hd: 2500px,
+//   ultra-hd: 1600px,
+//   laptop-l: 1240px,
+//   laptop: 920px,
+//   tablet: 768px,
+//   mobile-l: 568px,
+//   mobile-s: 320px
+// }
 
 // Animation
 $a-time:                        .3s;
