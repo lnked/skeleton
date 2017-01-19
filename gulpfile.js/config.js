@@ -61,6 +61,12 @@ module.exports.tasks = {
             }
         }
     },
+    
+    'webpack': {
+        path: src + 'scripts',
+        src: [src + 'scripts/*.js', src + 'scripts/**/*.jsx', '!' + src + 'scripts/_*.*', '!' + src + 'scripts/**/_*.*'],
+        app: app + 'webpack'
+    },
 
     'styles': {
         path: [src + 'styles'],
@@ -208,7 +214,7 @@ module.exports.tasks = {
         host: 'website.com',
         user: 'johndoe',
         pass: '1234',
-        remotePath: '1234'
+        remotePath: '1234',
         remotePlatform: 'unix'
     },
 
