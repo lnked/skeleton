@@ -52,6 +52,9 @@ module.exports.tasks = {
                 "zepto": {
                     "main": "zepto.min.js"
                 },
+                "store-js": {
+                    "main": "store.min.js"
+                },
                 "cookie": {
                     "main": "cookie.min.js"
                 },
