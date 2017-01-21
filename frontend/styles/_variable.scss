@@ -36,6 +36,22 @@ $font-arial:                    Arial, Helvetica, sans-serif;
 $font-forms:                    Arial, Helvetica, sans-serif;
 
 // Colors
+$c-border:                      #eee;
+$c-input-color:                 #000;
+$c-label-color:                 #000;
+$c-label-error:                 #f00;
+$c-radio-border:                #0f0;
+$c-radio-fill:                  #f00;
+$c-radio-color:                 #000;
+$c-radio-checked:               #f00;
+$c-star-color:                  #f00;
+$c-switcher-border:             #000;
+$c-switcher-fill:               #f00;
+$c-switcher-label:              #000;
+$c-switcher-checked:            #f00;
+$c-switcher-checked-color:      #f00;
+
+// All
 $c-select-color:                #f00;
 $c-select-background:           #000;
 
@@ -48,8 +64,6 @@ $c-placeholder-opacity:         .5;
 $c-sandwich-overlay:            #000;
 $c-sandwich-background:         #2b65b6;
 $c-sandwich-background-active:  #fff;
-
-$c-border-color:                #eee;
 
 $c-lime:                        lime;
 $c-white:                       #fff;

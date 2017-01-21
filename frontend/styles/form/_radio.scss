@@ -27,7 +27,7 @@ $radio-size: 18px;
         user-select: none;
         background: $c-white;
         box-sizing: border-box;
-        border: 1px solid $c-nobel;
+        border: 1px solid $c-radio-border;
         margin-right: -$radio-size;
 
         // Radio
@@ -41,7 +41,7 @@ $radio-size: 18px;
             content: "";
             display: none;
             border-radius: 50%;
-            background-color: $c-green;
+            background-color: $c-radio-fill;
         }
     }
 
@@ -49,7 +49,7 @@ $radio-size: 18px;
         width: 100%;
         float: left;
         display: block;
-        color: $c-matterhorn;
+        color: $c-radio-color;
         font-size: 1.4rem;
         font-weight: 400;
         line-height: $radio-size;
@@ -66,7 +66,7 @@ $radio-size: 18px;
     }
 
     &__input:checked + &__visible {
-        border-color: $c-green;
+        border-color: $c-radio-checked;
 
         &:before {
             display: block;

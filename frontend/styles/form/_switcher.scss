@@ -22,14 +22,14 @@
         overflow: hidden;
         user-select: none;
         background: $c-white;
-        border: 1px solid $c-gray;
+        border: 1px solid $c-switcher-border;
 
         &:before {
             width: 100%;
             height: 100%;
             content: "";
             display: none;
-            background-color: $c-green;
+            background-color: $c-switcher-fill;
         }
     }
 
@@ -39,7 +39,7 @@
         position: absolute;
         left: 0;
         top: 0;
-        color: $c-matterhorn;
+        color: $c-switcher-label;
         padding: 0 15px;
         font-size: 1.5rem;
         font-weight: 400;
@@ -56,7 +56,7 @@
     }
 
     &__input:checked + &__visible {
-        border-color: $c-green;
+        border-color: $c-switcher-checked;
 
         &:before {
             display: block;
@@ -64,6 +64,6 @@
     }
 
     &__input:checked + &__visible + &__label {
-        color: $c-white;
+        color: $c-switcher-checked-color;
     }
 }
