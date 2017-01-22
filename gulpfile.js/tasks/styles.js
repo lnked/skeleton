@@ -157,6 +157,8 @@ module.exports = function(config) {
             
             .pipe($.if(!global.is.build, $.sourcemaps.write()))
 
+            .pipe($.if(config.gzip, $.gzip()))
+
             .pipe(gulp.dest(config.app))
             .pipe($.if(global.is.notify, $.notify({ message: config.task + ' complete', onLast: true })));
 

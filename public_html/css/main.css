@@ -493,7 +493,7 @@ img {
   overflow: hidden; }
   .layout-wrapper__pusher {
     padding-bottom: 120px; }
-  @media screen and (min-width: 320px) and (max-width: 1024px) {
+  @media screen and (min-width: 320px) and (max-width: 1023px) {
     .layout-wrapper {
       background-color: red; } }
 

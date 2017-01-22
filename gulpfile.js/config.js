@@ -14,6 +14,7 @@ module.exports.tasks = {
     },
 
     'scripts': {
+        gzip: false,
         path: src + 'scripts',
         ignore: '!' + src + 'scripts/**/!_*.*',
         app: app + 'js',
@@ -66,12 +67,14 @@ module.exports.tasks = {
     },
     
     'webpack': {
+        gzip: false,
         path: src + 'scripts',
         src: [src + 'scripts/*.js', src + 'scripts/**/*.jsx', '!' + src + 'scripts/_*.*', '!' + src + 'scripts/**/_*.*'],
         app: app + 'webpack'
     },
 
     'styles': {
+        gzip: false,
         path: [src + 'styles'],
         src: [src + 'styles/*.scss', src + 'styles/**/*.scss', '!' + src + 'styles/_*.*', '!' + src + 'styles/**/_*.*'],
         app: app + 'css',

@@ -35,6 +35,7 @@
     "gulp-filter": "^4.0.0",
     "gulp-gh-pages": "^0.5.4",
     "gulp-group-css-media-queries": "^1.1.0",
+    "gulp-gzip": "^1.4.0",
     "gulp-html-prettify": "0.0.1",
     "gulp-htmlhint": "^0.3.1",
     "gulp-htmlmin": "^3.0.0",

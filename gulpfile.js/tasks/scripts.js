@@ -32,6 +32,7 @@ module.exports = function(config) {
             .pipe($.concat('vendors.js'))
             .pipe($.rename({suffix: '.min'}))
             .pipe($.if(global.is.build, $.uglify()))
+            .pipe($.if(config.gzip, $.gzip()))
             .pipe(gulp.dest(config.app))
             .pipe($.if(global.is.notify, $.notify({ message: 'Bower complete', onLast: true })));
 
@@ -73,6 +74,8 @@ module.exports = function(config) {
 
                 .pipe($.debug({'title': config.task}))
 
+                .pipe($.if(config.gzip, $.gzip()))
+                
                 .pipe(gulp.dest(config.app))
                 .pipe($.if(global.is.notify, $.notify({ message: config.task + ' complete', onLast: true })));
         });

@@ -11,7 +11,7 @@
         @extend %layout;
     }
 
-    @media screen and (min-width: $s-phone) and (max-width: $s-desktop) {
+    @media screen and (min-width: $min-phone) and (max-width: $max-desktop) {
         background-color: red;
     }
 }
