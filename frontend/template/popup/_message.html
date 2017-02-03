@@ -1,0 +1,49 @@
+<template id="tmpl-notification">
+    <div class="notification" id="popup_notification">
+        {{#title}}
+        <div class="notification__header">{{title}}</div>
+        {{/title}}
+        
+        {{#text}}
+        <div class="notification__content clearfix">
+            {{text}}
+        </div>
+        {{/text}}
+    </div>
+</template>
+
+<template id="tmpl-popup-message">
+    <div class="popup popup_simple popup_message" id="popup_message">
+        <b class="popup__close popup__close_simple js-popup-close"></b>
+
+        {{#if title}}
+        <header class="popup__header popup__header_simple">
+            {{title}}
+        </header>
+        {{/if}}
+
+        {{#if text}}
+        <div class="popup__message clearfix">
+            {{text}}
+        </div>
+        {{/if}}
+    </div>
+</template>
+
+<template id="tmpl-popup-error">
+    <div class="popup popup_simple popup_error" id="popup_error">
+        <b class="popup__close popup__close_simple js-popup-close"></b>
+
+        {{#if title}}
+        <header class="popup__header popup__header_simple">
+            {{title}}
+        </header>
+        {{/if}}
+
+        {{#if text}}
+        <div class="popup__message clearfix">
+            {{text}}
+        </div>
+        {{/if}}
+    </div>
+</template>

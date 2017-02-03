@@ -1,0 +1,10 @@
+video.sh-slider__video(
+    ng-if='!$root.isMobile'
+    preload='auto'
+    loop
+    muted
+    autoplay="autoplay"
+    onloadedmetadata="this.muted = true"
+    ng-click='sliderCtrl._openPopup(project.attributes.slug, project.attributes.coverVideo)'
+)
+    source(ng-src='{{ ::sliderCtrl._trustSrc(project.attributes.VideoPreview._url) }}')

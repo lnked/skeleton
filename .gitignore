@@ -53,6 +53,7 @@
 *.sublime-workspace
 ._*
 .cache
+.vscode
 .DS_Store
 .project
 .settings
