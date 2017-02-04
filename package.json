@@ -51,7 +51,7 @@
     "gulp-pixrem": "^1.0.0",
     "gulp-plumber": "^1.1.0",
     "gulp-postcss": "^6.1.1",
-    "gulp-react": "^3.1.0",
+    "gulp-react": "3.1.0",
     "gulp-rename": "^1.2.2",
     "gulp-replace": "^0.5.4",
     "gulp-rsync": "0.0.7",
@@ -117,6 +117,7 @@
     "postcss-vmin": "^2.0.0",
     "postcss-will-change": "^1.1.0",
     "postcss-write-svg": "^2.1.0",
+    "react": "15.4.2",
     "stylelint": "^6.5.1",
     "svgo": "^0.6.6",
     "uncss": "^0.13.0",
@@ -126,7 +127,13 @@
     "webpack-dashboard": "^0.2.1",
     "webpack-stream": "^3.2.0"
   },
-  "dependencies": {},
+  "dependencies": {
+    "autoprefixer": "6.7.2",
+    "browser-sync": "2.18.7",
+    "gulp": "github:gulpjs/gulp#4.0",
+    "gulp-load-plugins": "1.5.0",
+    "install": "0.8.5"
+  },
   "scripts": {
     "test": "mocha",
     "start": "gulp --server",

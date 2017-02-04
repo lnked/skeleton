@@ -50,7 +50,7 @@ module.exports = function(config) {
                 .pipe($.plumber({errorHandler: error}))
                 .pipe($.debug({'title': config.task}))
                 .pipe($.if(!global.is.build, $.sourcemaps.init()))
-                // .pipe($.webpack(require('../webpack.config.js')))
+                
                 .pipe($.if(/[.]coffee$/, $.coffee()))
                 .pipe($.if(/[.]jsx$/ || global.is.react, $.react({ harmony: true, es6module: true })))
                 .pipe($.babel({ "presets": ["es2015"] }))

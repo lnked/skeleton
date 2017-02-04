@@ -1,4 +1,4 @@
-# skeleton
+# Skeleton 
 Web starter kit
 
 # Tasks

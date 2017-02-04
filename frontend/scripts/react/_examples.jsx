@@ -6,4 +6,4 @@ let List = function({ items }) {
             )}
         </ul>
     );
-}
+};

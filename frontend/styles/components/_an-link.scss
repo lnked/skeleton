@@ -1,38 +1,38 @@
-.i-block-header__book:hover:before {
-    -webkit-transform: scaleX(1);
-    -ms-transform: scaleX(1);
-    transform: scaleX(1);
-    -webkit-transform-origin: left center;
-    -ms-transform-origin: left center;
-    transform-origin: left center;
-}
+// .i-block-header__book:hover:before {
+//     -webkit-transform: scaleX(1);
+//     -ms-transform: scaleX(1);
+//     transform: scaleX(1);
+//     -webkit-transform-origin: left center;
+//     -ms-transform-origin: left center;
+//     transform-origin: left center;
+// }
 
-.i-block-header__book {
-    position: relative;
-    display: inline-block;
-    font-size: 9pt;
-    font-weight: 700;
-    letter-spacing: .9px;
-    color: #fa2c61;
-    cursor: pointer;
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
+// .i-block-header__book {
+//     position: relative;
+//     display: inline-block;
+//     font-size: 9pt;
+//     font-weight: 700;
+//     letter-spacing: .9px;
+//     color: #fa2c61;
+//     cursor: pointer;
+//     -webkit-tap-highlight-color: rgba(0,0,0,0);
 
-.i-block-header__book:before {
-    content: ' ';
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    display: block;
-    height: 1px;
-    width: 100%;
-    background: currentColor;
-    transition: -webkit-transform .75s cubic-bezier(0.19,1,0.22,1);
-    transition: transform .75s cubic-bezier(0.19,1,0.22,1);
-    transition: transform .75s cubic-bezier(0.19,1,0.22,1),-webkit-transform .75s cubic-bezier(0.19,1,0.22,1);
-    -webkit-transform: scaleX(0);
-    -ms-transform: scaleX(0);
-    transform: scaleX(0);
-    -webkit-transform-origin: right center;
-    -ms-transform-origin: right center;
-    transform-origin: right center;
-}
+// .i-block-header__book:before {
+//     content: ' ';
+//     position: absolute;
+//     left: 0;
+//     bottom: 0;
+//     display: block;
+//     height: 1px;
+//     width: 100%;
+//     background: currentColor;
+//     transition: -webkit-transform .75s cubic-bezier(0.19,1,0.22,1);
+//     transition: transform .75s cubic-bezier(0.19,1,0.22,1);
+//     transition: transform .75s cubic-bezier(0.19,1,0.22,1),-webkit-transform .75s cubic-bezier(0.19,1,0.22,1);
+//     -webkit-transform: scaleX(0);
+//     -ms-transform: scaleX(0);
+//     transform: scaleX(0);
+//     -webkit-transform-origin: right center;
+//     -ms-transform-origin: right center;
+//     transform-origin: right center;
+// }
