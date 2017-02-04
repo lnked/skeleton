@@ -1,6 +1,8 @@
 const app = app || {};
 
 ((body => {
+    'use strict';
+
     let _this_;
 
     app.quantity = {

@@ -51,6 +51,10 @@ module.exports = function(config) {
                 .pipe($.debug({'title': config.task}))
                 .pipe($.if(!global.is.build, $.sourcemaps.init()))
                 
+                .pipe($.if(global.is.lint, $.eslint()))
+                .pipe($.if(global.is.lint, $.eslint.format()))
+                .pipe($.if(global.is.lint, $.eslint.failAfterError()))
+                
                 .pipe($.if(/[.]coffee$/, $.coffee()))
                 .pipe($.if(/[.]jsx$/ || global.is.react, $.react({ harmony: true, es6module: true })))
                 .pipe($.babel({ "presets": ["es2015"] }))
@@ -59,10 +63,6 @@ module.exports = function(config) {
 
                 .pipe($.concat(folder + '.js'))
 
-                .pipe($.if(global.is.lint, $.eslint()))
-                .pipe($.if(global.is.lint, $.eslint.format()))
-                .pipe($.if(global.is.lint, $.eslint.failAfterError()))
-                
                 .pipe($.if(!global.is.build, gulp.dest(config.app)))
                 
                 .pipe($.rename({suffix: '.min'}))

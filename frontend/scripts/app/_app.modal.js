@@ -1,4 +1,6 @@
 ;((body => {
+    'use strict';
+
     let _this_;
 
     app.modal = {

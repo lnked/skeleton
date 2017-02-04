@@ -1,6 +1,8 @@
 let app = app || {};
 
 ((body => {
+    'use strict';
+
     app = {
 
         _extend(source, config) {
