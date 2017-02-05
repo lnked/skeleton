@@ -9,7 +9,9 @@ module.exports = function(config) {
     config = config || {};
     
     const AUTOPREFIXER_BROWSERS = config.browsers || [
-        'last 2 version',
+        '>1%',
+        'last 4 versions',
+        'Firefox ESR',
         'ie >= 8',
         'ie_mob >= 10',
         'ff >= 30',
@@ -117,14 +119,6 @@ module.exports = function(config) {
 
             .pipe($.postcss(
                 [
-                    require('autoprefixer')({
-                        browsers: AUTOPREFIXER_BROWSERS
-                    })
-                ]
-            ))
-
-            .pipe($.postcss(
-                [
                     require('postcss-use')({ resolveFromFile: true, modules: '*' }),
                 ]
             ))
@@ -134,6 +128,15 @@ module.exports = function(config) {
             .pipe($.if(
                 global.is.modules,
                 $.postcss(processors.modules)
+            ))
+
+            .pipe($.if(
+                global.is.build,
+                $.postcss([
+                    require('autoprefixer')({
+                        browsers: AUTOPREFIXER_BROWSERS
+                    })
+                ])
             ))
 
             .pipe($.if(
