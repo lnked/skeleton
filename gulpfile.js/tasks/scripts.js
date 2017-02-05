@@ -41,7 +41,7 @@ module.exports = function(config) {
         }
 
         // Scripts files
-        
+
         let folders = getFolders(config.path);
 
         folders.map(function(folder) {

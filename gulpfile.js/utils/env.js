@@ -7,7 +7,6 @@ let is, m, env;
 is = {
     pretty: false,  // short: p
     build: false,   // short: b
-    es2015: false,  // short: e
     react: false,   // short: r
     mail: false,    // short: m
     lint: false,    // short: l
@@ -15,7 +14,6 @@ is = {
     uncss: false,   // short: u
     server: false,  // short: s
     notify: false,  // short: n
-    coffee: false,  // short: c
     htmlmin: false  // short: h
 };
 

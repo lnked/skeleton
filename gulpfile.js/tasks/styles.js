@@ -129,6 +129,19 @@ module.exports = function(config) {
                 global.is.modules,
                 $.postcss(processors.modules)
             ))
+            
+            .pipe($.if(
+                global.is.uncss,
+                $.uncss({
+                    timeout : 1000,
+                    htmlroot : config.html,
+                    html: [
+                        '**/*.html',
+                        config.html + '*.html',
+                        config.html + '**/*.html'
+                    ]
+                })
+            ))
 
             .pipe($.if(
                 global.is.build,

@@ -1,6 +1,20 @@
 # Skeleton 
 Web starter kit
 
+# Command line
+
+--pretty   --p
+--build   --b
+--react   --r
+--mail   --m
+--lint   --l
+--watch   --w
+--uncss   --u
+--server   --s
+--notify   --n
+--htmlmin --h
+
+
 # Tasks
 
 # default task

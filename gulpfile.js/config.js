@@ -83,6 +83,7 @@ module.exports.tasks = {
         path: [src + 'styles'],
         src: [src + 'styles/*.scss', src + 'styles/**/*.scss', '!' + src + 'styles/_*.*', '!' + src + 'styles/**/_*.*'],
         app: app + 'css',
+        html: markup,
         browsers: [
             'last 2 version',
             'ie >= 8',
