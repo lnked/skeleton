@@ -1,0 +1,47 @@
+<div class="dada">
+    <label for="myfile" class="chous">Выберите файлы</label>
+    <input type="file" class="my" id="myfile" name="myfile" multiple="multiple"/>
+</div>
+
+<div class="dada">
+    <label for="myfile2" class="chous">Выберите файлы</label>
+    <input type="file" class="my" id="myfile2" name="myfile2" multiple="multiple"/>
+</div>
+
+<script>
+    $('.my').change(function() {
+        if ($(this).val() != '') $(this).prev().text('Выбрано файлов: ' + $(this)[0].files.length);
+        else $(this).prev().text('Выберите файлы');
+    });
+</script>
+
+<style>
+    .chous {
+        width: 180px;
+        height: 50px;
+        border-radius: 4px;
+        text-align: center;
+        margin: 25px;
+        cursor: pointer;
+        display: block;
+        font: 14px/50px Tahoma;
+        transition: all 0.18s ease-in-out;
+        border: 1px solid #4FD666;
+        background: linear-gradient(to top right, #3EC97A, #69EA49 20%, rgba(255, 255, 255, 0) 80%, rgba(255, 255, 255, 0)) top right/500% 500%;
+        color: #4FD666;
+    }
+
+    .chous:hover {
+        color: white;
+        background-position: bottom left;
+    }
+        
+    .my {
+      width: 0.1px;
+      height: 0.1px;
+      opacity: 0;
+      overflow: hidden;
+      position: absolute;
+      z-index: -1;
+    }
+</style>

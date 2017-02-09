@@ -55,6 +55,7 @@ module.exports = function(config) {
             }),
             require('postcss-vmin'),
             require('postcss-opacity'),
+            require('postcss-hexrgba'),
             require('postcss-color-rgba-fallback'),
             require('postcss-reporter')({
                 clearMessages: true,
@@ -135,11 +136,7 @@ module.exports = function(config) {
                 $.uncss({
                     timeout : 1000,
                     htmlroot : config.html,
-                    html: [
-                        '**/*.html',
-                        config.html + '*.html',
-                        config.html + '**/*.html'
-                    ]
+                    html: [ '**/*.html' ]
                 })
             ))
 
