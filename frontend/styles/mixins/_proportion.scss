@@ -1,0 +1,15 @@
+// setProportion($width, $height, $placeholderColor = #fff)
+//     $proportion = $height / ($width * 0.01)
+//     width 100%
+//     height auto
+//     background $placeholderColor no-repeat center
+//     background-size cover
+//     &:before
+//         content ''
+//         display block
+//         height 0
+//         padding-bottom $proportion * 1%
+
+@function remy($pxsize) {
+    @return ($pxsize/16)+rem;
+}

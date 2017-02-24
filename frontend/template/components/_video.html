@@ -1,10 +1,42 @@
-video.sh-slider__video(
-    ng-if='!$root.isMobile'
-    preload='auto'
-    loop
-    muted
-    autoplay="autoplay"
-    onloadedmetadata="this.muted = true"
-    ng-click='sliderCtrl._openPopup(project.attributes.slug, project.attributes.coverVideo)'
-)
-    source(ng-src='{{ ::sliderCtrl._trustSrc(project.attributes.VideoPreview._url) }}')
+<div class="main-cover">
+    <video autoplay loop muted webkit-playsinline onloadedmetadata="this.muted = true" preload="auto" class="main-cover__video">
+        <source src="stoloto-cover-desert.mp4" type="video/mp4">
+        <source src="stoloto-cover-desert.webm" type="video/webm">
+        <source src="stoloto-cover-desert.ogv" type="video/ogg">
+    </video>
+
+    <video preload buffered autoplay loop muted webkit-playsinline playsinline poster="original.jpg">  
+        <source type="video/webm" src="original.webm">
+        <img src="original.gif">
+    </video>
+</div>
+
+<style>
+    .main-cover {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .main-cover__video {
+      width: 100%;
+      height: auto;
+      float: left;
+    }
+
+    @media(max-width: 980px) {
+      .main-cover__video {
+        position: absolute;
+        left: 50%;
+        height: 600px;
+        width: auto;
+        transform: translateX(-50%);
+      }
+    }
+
+      .IIV::-webkit-media-controls-play-button,
+      .IIV::-webkit-media-controls-start-playback-button {
+          opacity: 0;
+          pointer-events: none;
+          width: 5px;
+      }
+</style>

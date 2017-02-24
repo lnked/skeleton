@@ -37,7 +37,7 @@ module.exports = function(config) {
             .pipe($.if(
                 global.is.build,
                 $.cache($.imagemin({
-                    optimizationLevel: 3,
+                    optimizationLevel: 7,
                     progressive: true,
                     interlaced: true,
                     svgoPlugins: [

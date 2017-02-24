@@ -46,7 +46,6 @@ module.exports = function(config) {
         watch: [
             require('postcss-for'),
             require('postcss-triangle'),
-            require('postcss-will-change'),
             require('postcss-conditionals'),
             require('postcss-quantity-queries'),
             require('postcss-font-magician')({
