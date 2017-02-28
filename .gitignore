@@ -74,6 +74,7 @@ Thumbs.db
 bower_components
 .publish
 /frontend/vendors
+codeclimate-config.patch
 
 # Node.JS
 node_modules
