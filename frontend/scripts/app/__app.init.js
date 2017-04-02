@@ -20,9 +20,9 @@ let app = app || {};
         bind() {
             for(const _ in this)
             {
-                if (typeof(this[_]) == 'object' && typeof(this[_].init) !== 'undefined')
+                if (typeof (this[_]) == 'object' && typeof (this[_].init) !== 'undefined')
                 {
-                    if (typeof(this[_].init) == 'function')
+                    if (typeof (this[_].init) == 'function')
                     {
                         this[_].init();
                     }

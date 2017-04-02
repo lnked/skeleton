@@ -54,7 +54,7 @@ const app = app || {};
         },
 
         callback() {
-            if (typeof(this.element.data('product')) !== 'undefined' && typeof(this.config.complete) == 'function')
+            if (typeof (this.element.data('product')) !== 'undefined' && typeof (this.config.complete) == 'function')
             {
                 this.config.complete.call(null, this.element, this.element.data('product'));
             }

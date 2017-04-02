@@ -34,7 +34,7 @@ if (typeof $.util.env !== 'undefined')
             is.htmlmin = true;
         }
 
-        if (typeof(is[env]) !== 'undefined')
+        if (typeof (is[env]) !== 'undefined')
         {
             is[env] = !is[env];
         }

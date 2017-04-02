@@ -8,13 +8,13 @@ module.exports.app  = app;
 module.exports.src  = src;
 
 module.exports.tasks = {
-    'jade': {
-        src: [src + 'template/**/*.jade', '!' + src + 'template/**/*.mustache', '!' + src + 'template/**/*.template', '!' + src + 'template/**/*.tpl', '!' + src + 'template/**/_*.*'],
+    'pug': {
+        src: [src + 'template/**/*.pug', '!' + src + 'template/**/*.template', '!' + src + 'template/**/_*.*'],
         app: app + markup
     },
 
     'template': {
-        src: [src + 'template/**/*.html', '!' + src + 'template/**/*.mustache', '!' + src + 'template/**/*.template', '!' + src + 'template/**/*.tpl', '!' + src + 'template/**/_*.*'],
+        src: [src + 'template/**/*.html', '!' + src + 'template/**/*.template', '!' + src + 'template/**/_*.*'],
         app: app + markup
     },
 

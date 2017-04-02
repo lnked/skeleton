@@ -10,11 +10,6 @@ module.exports = function(config) {
 
     return function(callback) {
 
-        console.log(config);
-
-        callback();
-        return;
-
         gulp.src(config.src)
 
             .pipe($.plumber({errorHandler: error}))
@@ -22,10 +17,7 @@ module.exports = function(config) {
 
             .pipe($.if(/[.]mustache$/, $.mustachePlus()))
           
-            .pipe($.fileInclude({
-                prefix: '@@',
-                basepath: '@file'
-            }))
+            .pipe($.pug())
 
             .pipe($.if(
                 global.is.email,

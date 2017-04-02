@@ -11,7 +11,7 @@
         },
 
         prepare(selector) {
-            if (typeof(selector) !== 'undefined' && selector.length > 1)
+            if (typeof (selector) !== 'undefined' && selector.length > 1)
             {
                 if (selector.substr(0, 1) == '#')
                 {
