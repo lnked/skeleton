@@ -16,7 +16,6 @@ module.exports = function(config) {
 
         // Bower files
         try {
-
             gulp.src(
                 bowerFiles({
                     filter: '**/*.js',

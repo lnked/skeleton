@@ -7,3 +7,122 @@ html(lang="en")
     body
         div.yel
             li.clas
+
+
+include mixins
+
+.sections
+    each how, index in self.c.howitworks
+      .section(class="section_#{how.name}")
+        .icon
+          +svgIcon(how.name)
+        .copy #{how.copy}
+        .cta SEE MORE
+
+.section
+  h1 or more complex structures
+    +form(arg1, arg2)
+      input#1
+      input#2
+
+
+mixin svgIcon(icon)
+  case icon
+    when 'a.svg'
+      | <svg>blahbl;ah</svg>
+    when 'b.svg'
+      | <svg>blahblah</svg>
+
+
+include ./icons
+
++svg_single()
++svg_family()
+
+//- or like pass the local 'svgName' like in jeromew example
++#{"svg_" + svgName}
+
+mixin svg(name, price, year, save, copy)
+  //- create your markup
+  div(title=copy)
+    span=name
+    div.icon
+      //- inject the icon
+      block
+
+mixin svg_single
+  +svg('Individual', 
+    '7.99', 
+    '79', 
+    '16.88', 
+    'Full prevention, detection and resolution services for one adult'
+    )
+      include 'single.svg'
+
+mixin svg_family
+  +svg('Family', 
+    '9.99', 
+    '99', 
+    '20.88', 
+    'Full prevention, detection and resolution services for two adults, plus identity monitoring and reoslution services for up to 4 children or other dependants'
+    )
+      include 'family.svg'
+
+
+    
+    div(class='div-class' (click)='play()')
+
+    div(class='div-class', (click)='play()')
+    div(class='div-class' '(click)'='play()')
+
+    div(escaped="<code>")
+    div(unescaped!="<code>")
+
+    input(type='checkbox' checked)
+    |
+    |
+    input(type='checkbox' checked=true)
+    |
+    |
+    input(type='checkbox' checked=false)
+    |
+    |
+    input(type='checkbox' checked=true.toString())
+
+    doctype html
+    |
+    |
+    input(type='checkbox' checked)
+    |
+    |
+    input(type='checkbox' checked=true)
+    |
+    |
+    input(type='checkbox' checked=false)
+    |
+    |
+    input(type='checkbox' checked=true && 'checked')
+
+    mixin labeldiv(myLabel)
+        div.otherClass
+            div.label
+                #{myLabel}
+
+    mixin labeldiv(myLabel)
+        div.otherClass
+            div.label
+                #{myLabel}
+
+    include myMixins
+    div.anyClass
+        +labelDiv("the label")
+
+    div.anyClass
+        +labelDiv("the label")
+
+
+    - var currentUrl = '/about'
+    a(class={active: currentUrl === '/'} href='/') Home
+    |
+    |
+    a(class={active: currentUrl === '/about'} href='/about') About

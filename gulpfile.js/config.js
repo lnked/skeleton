@@ -37,6 +37,12 @@ module.exports.tasks = {
                 "mousetrap": {
                     "main": "mousetrap.min.js"
                 },
+                "cleave.js": {
+                    "main": [
+                        "dist/cleave.min.js",
+                        "dist/addons/cleave-phone.ru.js"
+                    ]
+                },
                 "gsap": {
                     "main": [
                         "src/minified/TweenLite.min.js",
@@ -201,6 +207,7 @@ module.exports.tasks = {
     
     'watch': {
         tasks: {
+            pug:        [src + 'template/*.pug', src + 'template/**/*.pug', src + 'template/**/**/*.pug', src + 'template/**/_*.*'],
             template:   [src + 'template/*.html', src + 'template/**/*.html', src + 'template/**/**/*.html', src + 'template/**/_*.*'],
             scripts:    [src + 'scripts/**/*.{js,jsx,coffee}'],
             video:      [src + 'video/**/*.*'],
