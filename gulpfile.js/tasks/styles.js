@@ -90,7 +90,6 @@ module.exports = function(config) {
         build: [
             require('postcss-discard-comments'),
             require('postcss-emptymediaqueries'),
-            require('css-mqpacker'),
             require('postcss-flexboxfixer'),
             require('postcss-gradientfixer'),
             require('cssnano')({

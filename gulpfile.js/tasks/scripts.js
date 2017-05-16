@@ -13,7 +13,6 @@ module.exports = function(config) {
     config = config || {};
 
     return function(callback) {
-
         // Bower files
         try {
             gulp.src(
@@ -27,7 +26,6 @@ module.exports = function(config) {
                     overrides: config.bower.overrides
                 })
             )
-            // .pipe($.webpack(require('../webpack.config.js')))
             .pipe($.concat('vendors.js'))
             .pipe($.rename({suffix: '.min'}))
             .pipe($.if(global.is.build, $.uglify()))
