@@ -1,8 +1,8 @@
 {
     "directory": "frontend/vendors/",
     "scripts": {
-        "preinstall": "",
-        "postinstall": "./.bower-postinstall.sh",
+        "preinstall": "rm -rf ./frontend/vendors/*",
+        "postinstall": "bower cache clean && node_modules/.bin/bower install",
         "preuninstall": ""
     },
     "save": true,
