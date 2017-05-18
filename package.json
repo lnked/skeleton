@@ -145,6 +145,7 @@
     "gulp-load-plugins": "1.5.0",
     "gulp-postcss": "6.4.0",
     "gulp-sourcemaps": "2.5.1",
+    "gulp-svgmin": "1.2.4",
     "gulp-uglify": "2.1.2",
     "gulp.spritesmith": "6.4.0",
     "imagemin-svgo": "5.2.1",

@@ -23,6 +23,8 @@ module.exports = function(config) {
                         bowerrc: config.bower.config,
                         bowerJson: config.bower.json
                     },
+                    debugging: true,
+                    checkExistence: true,
                     overrides: config.bower.overrides
                 })
             )

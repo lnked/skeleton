@@ -31,8 +31,29 @@ module.exports.tasks = {
                 "jquery": {
                     "main": "dist/jquery.min.js"
                 },
+                "chosen": {
+                    "main": "chosen.jquery.js"
+                },
+                "clipboard": {
+                    "main": "dist/clipboard.min.js"
+                },
                 "axios": {
                     "main": "dist/axios.min.js"
+                },
+                "fine-uploader": {
+                    "main": "dist/fine-uploader.min.js"
+                },
+                "nestable": {
+                    "main": "jquery.nestable.js"
+                },
+                "pass-gen-js": {
+                    "main": "PassGenJS.js"
+                },
+                "nouislider": {
+                    "main": "distribute/nouislider.min.js"
+                },
+                "jquery.maskedinput": {
+                    "main": "dist/jquery.maskedinput.min.js"
                 },
                 "mousetrap": {
                     "main": "mousetrap.min.js"
