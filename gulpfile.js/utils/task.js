@@ -1,8 +1,9 @@
 'use strict';
 
-module.exports = function(name, config, bower) {
-    const gulp      = require('gulp');
+module.exports = function(name, config) {
     const folder    = '../tasks/';
+    const gulp      = require('gulp');
+    const bower     = require('../bower.js').config;
 
     config = config || {};
     config.task = name;

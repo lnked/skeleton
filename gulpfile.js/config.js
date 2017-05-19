@@ -8,9 +8,6 @@ module.exports.app  = app;
 module.exports.src  = src;
 
 module.exports.tasks = {
-
-    'bower': require('./bower.js').config,
-
     'pug': {
         src: [src + 'template/**/*.pug', '!' + src + 'template/**/*.template', '!' + src + 'template/**/_*.*'],
         app: app + markup
