@@ -67,7 +67,6 @@ module.exports = function(config, bower) {
             require('postcss-modules')({
                 scopeBehaviour: 'global',
                 getJSON: function(cssFileName, json) {
-                  var path          = require('path');
                   var cssName       = path.basename(cssFileName, '.scss');
                   var jsonFileName  = path.resolve(config.app + cssName + '.json');
                   fs.writeFileSync(jsonFileName, JSON.stringify(json));
