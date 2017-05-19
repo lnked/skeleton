@@ -18,7 +18,7 @@ module.exports = function(config, bower) {
             gulp.src(
                 bowerFiles({
                     paths: {
-                        bowerDirectory: bower.path,
+                        bowerDirectory: path.resolve(path.dirname(config.path), bower.path),
                         bowerrc: bower.config,
                         bowerJson: bower.json
                     },

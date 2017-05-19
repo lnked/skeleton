@@ -1,6 +1,7 @@
 'use strict';
 
 const $     = require('gulp-load-plugins')({ pattern: ['gulp-*', 'gulp.*', 'postcss-*'] });
+const path  = require('path');
 const gulp  = require('gulp');
 const clean = require('../utils/clean')
 const error = require('../utils/error');
@@ -106,13 +107,12 @@ module.exports = function(config, bower) {
     };
 
     return function(callback) {
-
         // Bower files
         try {
             gulp.src(
                 bowerFiles({
                     paths: {
-                        bowerDirectory: bower.path,
+                        bowerDirectory: path.resolve(path.dirname(config.path), bower.path),
                         bowerrc: bower.config,
                         bowerJson: bower.json
                     },
