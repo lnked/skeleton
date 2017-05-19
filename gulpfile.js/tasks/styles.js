@@ -4,10 +4,11 @@ const $     = require('gulp-load-plugins')({ pattern: ['gulp-*', 'gulp.*', 'post
 const gulp  = require('gulp');
 const clean = require('../utils/clean')
 const error = require('../utils/error');
+const bowerFiles    = require('main-bower-files');
 
-module.exports = function(config) {
+module.exports = function(config, bower) {
     config = config || {};
-    
+
     const AUTOPREFIXER_BROWSERS = config.browsers || [
         '>1%',
         'last 4 versions',
@@ -105,6 +106,38 @@ module.exports = function(config) {
     };
 
     return function(callback) {
+
+        // Bower files
+        try {
+            gulp.src(
+                bowerFiles({
+                    paths: {
+                        bowerDirectory: bower.path,
+                        bowerrc: bower.config,
+                        bowerJson: bower.json
+                    },
+                    debugging: true,
+                    checkExistence: true,
+                    overrides: bower.overrides
+                })
+            )
+            .pipe($.filter('**/*.css'))
+            .pipe($.concat('vendors.css'))
+            .pipe($.rename({suffix: '.min'}))
+            .pipe($.if(
+                global.is.build,
+                $.postcss([
+                    require('autoprefixer')({
+                        browsers: AUTOPREFIXER_BROWSERS
+                    })
+                ])
+            ))
+            .pipe(gulp.dest(config.app))
+            .pipe($.if(global.is.notify, $.notify({ message: 'Bower complete', onLast: true })));
+
+        } catch(e) {
+            console.log(e);
+        }
 
         gulp.src(config.src)
             .pipe($.plumber({errorHandler: error}))            

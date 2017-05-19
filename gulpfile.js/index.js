@@ -7,8 +7,14 @@ const gulp          = require('gulp');
 const task          = require("./utils/task.js");
 const config        = require("./config.js");
 
+let bower = [];
+
+if (config.tasks.bower) {
+    bower = config.tasks.bower;
+}
+
 for (let task_name in config.tasks) {
-    task(task_name, config.tasks[task_name]);
+    task(task_name, config.tasks[task_name], bower);
 }
 
 gulp.task('build',

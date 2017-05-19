@@ -9,7 +9,7 @@ const error         = require('../utils/error');
 const getFolders    = require('../utils/folders');
 const bowerFiles    = require('main-bower-files');
 
-module.exports = function(config) {
+module.exports = function(config, bower) {
     config = config || {};
 
     return function(callback) {
@@ -17,17 +17,17 @@ module.exports = function(config) {
         try {
             gulp.src(
                 bowerFiles({
-                    filter: '**/*.js',
                     paths: {
-                        bowerDirectory: config.bower.path,
-                        bowerrc: config.bower.config,
-                        bowerJson: config.bower.json
+                        bowerDirectory: bower.path,
+                        bowerrc: bower.config,
+                        bowerJson: bower.json
                     },
                     debugging: true,
                     checkExistence: true,
-                    overrides: config.bower.overrides
+                    overrides: bower.overrides
                 })
             )
+            .pipe($.filter('**/*.js'))
             .pipe($.concat('vendors.js'))
             .pipe($.rename({suffix: '.min'}))
             .pipe($.if(global.is.build, $.uglify()))
