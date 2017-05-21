@@ -128,9 +128,7 @@
         "stylelint": "^7.10.1",
         "svgo": "^0.7.2",
         "uncss": "^0.14.1",
-        "util": "^0.10.3",
-        "vinyl-named": "^1.1.0",
-        "webpack": "^2.5.1"
+        "util": "^0.10.3"
     },
     "bugs": {
         "url": "https://github.com/lnked/skeleton/issues",

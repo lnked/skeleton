@@ -24,13 +24,6 @@ module.exports.tasks = {
         ignore: '!' + src + 'scripts/**/!_*.*',
         app: app + 'js'
     },
-    
-    'webpack': {
-        gzip: false,
-        path: src + 'scripts',
-        src: [src + 'scripts/*.js', src + 'scripts/**/*.jsx', '!' + src + 'scripts/_*.*', '!' + src + 'scripts/**/_*.*'],
-        app: app + 'webpack'
-    },
 
     'styles': {
         gzip: false,
