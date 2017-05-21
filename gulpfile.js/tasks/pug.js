@@ -15,8 +15,6 @@ module.exports = function(config) {
             .pipe($.plumber({errorHandler: error}))
             .pipe($.debug({'title': config.task}))
 
-            .pipe($.if(/[.]mustache$/, $.mustachePlus()))
-          
             .pipe($.pug())
 
             .pipe($.if(
