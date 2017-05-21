@@ -66,7 +66,7 @@ module.exports = function(config, bower) {
                 
                 .pipe($.rename({suffix: '.min'}))
                 
-                .pipe($.if(global.is.build, $.uglify({preserveComments: 'some'})))
+                .pipe($.if(global.is.build, $.uglify()))
                 .pipe($.size({title: 'scripts'}))
 
                 .pipe($.if(!global.is.build, $.sourcemaps.write()))
