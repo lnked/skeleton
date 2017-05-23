@@ -14,7 +14,9 @@
         "deploy": "gulp deploy",
         "clean": "rm -rf ./public_html"
     },
-    "dependencies": {},
+    "dependencies": {
+        "gulp": "gulpjs/gulp.git#4.0"
+    },
     "devDependencies": {
         "autoprefixer": "^7.1.1",
         "babel-core": "^6.24.1",
@@ -33,7 +35,6 @@
         "eslint-plugin-standard": "^3.0.1",
         "event-stream": "^3.3.2",
         "fs": "0.0.2",
-        "gulp": "^3.9.1",
         "gulp-babel": "^6.1.2",
         "gulp-cache": "^0.4.6",
         "gulp-cheerio": "^0.6.2",
