@@ -1,3 +1,44 @@
+// .sandwich {
+//     width: 40px;
+//     height: 40px;
+//     display: block;
+//     position: fixed;
+//     right: 20px;
+//     top: 25px;
+//     user-select: none;
+//     cursor: pointer;
+//     z-index: 99999999;
+//     background-size: cover;
+//     background-repeat: no-repeat;
+//     background-color: $c-black;
+//     transition: background-color 0.3s ease;
+    
+//     &:before {
+//         content: ' ';
+//         width: 51%;
+//         height: 4px;
+//         display: block;
+//         position: absolute;
+//         left: 50%;
+//         top: 50%;
+//         margin: -2px 0 0 -25.5%;
+//         background-color: $c-white;
+//     }
+
+//     &:after {
+//         content: ' ';
+//         width: 51%;
+//         height: 51%;
+//         display: block;
+//         position: absolute;
+//         left: 50%;
+//         top: 50%;
+//         margin: -25.5% 0 0 -25.5%;
+//         border-top: solid 4px $c-white;
+//         border-bottom: solid 4px $c-white;
+//     }
+// }
+
 .menu-overlay {
     width: 100%;
     height: 100%;
