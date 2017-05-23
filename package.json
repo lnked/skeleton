@@ -1,6 +1,6 @@
 {
     "name": "skeleton",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "Web starter kit",
     "main": "gulpfile.js",
     "homepage": "https://github.com/lnked/skeleton#readme",
