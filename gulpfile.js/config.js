@@ -1,6 +1,6 @@
 const src = './frontend/';
 const app = './public_html/';
-const markup = 'markup/';
+const markup = './';
 const mainPage = 'index.html';
 
 module.exports.app  = app;
@@ -28,7 +28,13 @@ module.exports.tasks = {
     'styles': {
         gzip: false,
         path: src + 'styles',
-        src: [src + 'styles/*.scss', src + 'styles/**/*.scss', '!' + src + 'styles/_*.*', '!' + src + 'styles/**/_*.*'],
+        src: [
+            src + 'styles/*.scss',
+            src + 'styles/**/*.scss',
+            '!' + src + 'styles/_*.*',
+            '!' + src + 'styles/**/_*.*',
+            '!' + src + 'components/**/_*.*'
+        ],
         app: app + 'css',
         html: markup,
         browsers: [

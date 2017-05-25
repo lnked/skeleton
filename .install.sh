@@ -33,6 +33,7 @@ cd ./$FOLDER_NAME
 # Создаем папку проекта если ее нет
 #
 if [ "$iscopy" = "iscopy" ] ; then
+    echo "Копирование файлов";
     ln -s ${SOURCE}/node_modules/ ${PATH_ROOT}/$FOLDER_NAME/node_modules
 
     cp -r ${SOURCE}/gulpfile.js ${PATH_ROOT}/$FOLDER_NAME/gulpfile.js
@@ -43,6 +44,7 @@ if [ "$iscopy" = "iscopy" ] ; then
     cp -r ${SOURCE}/bower.json ${PATH_ROOT}/$FOLDER_NAME/bower.json
     cp -r ${SOURCE}/yarn.lock ${PATH_ROOT}/$FOLDER_NAME/yarn.lock
 else
+    echo "Создание символических ссылок";
     mkdir gulpfile.js
 
     cp -r ${SOURCE}/gulpfile.js/config.js ${PATH_ROOT}/$FOLDER_NAME/gulpfile.js/config.js

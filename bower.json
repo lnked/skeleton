@@ -30,6 +30,7 @@
     "svg4everybody": "2.1.4",
     "Template7": "template7#1.2.3",
     "store-js": "1.3.20",
-    "photoswipe": "4.1.2"
+    "photoswipe": "4.1.2",
+    "xregexp": "3.2.0"
   }
 }

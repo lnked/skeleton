@@ -6,6 +6,12 @@ module.exports.config = {
         "jquery": {
             "main": "dist/jquery.min.js"
         },
+        "tingle": {
+            "main": [
+                "dist/tingle.min.js",
+                "dist/tingle.min.css"
+            ]
+        },
         "photoswipe": {
             "main": [
                 "dist/photoswipe.min.js",
