@@ -108,31 +108,32 @@ module.exports = function(config, bower) {
     return function(callback) {
         // Bower files
         try {
-            gulp.src(
-                bowerFiles({
+            var filterCSS = $.filter('**/*.css', { restore: true });
+
+            gulp.src(bower.json)
+                .pipe($.mainBowerFiles(['**/*.css'], {
                     paths: {
-                        bowerDirectory: path.resolve(path.dirname(config.path), bower.path),
                         bowerrc: bower.config,
-                        bowerJson: bower.json
+                        bowerJson: bower.json,
+                        bowerDirectory: path.resolve(path.dirname(config.path), bower.path)
                     },
                     debugging: false,
                     checkExistence: true,
                     overrides: bower.overrides
-                })
-            )
-            .pipe($.filter('**/*.css'))
-            .pipe($.concat('vendors.css'))
-            .pipe($.rename({suffix: '.min'}))
-            .pipe($.if(
-                global.is.build,
-                $.postcss([
-                    require('autoprefixer')({
-                        browsers: AUTOPREFIXER_BROWSERS
-                    })
-                ])
-            ))
-            .pipe(gulp.dest(config.app))
-            .pipe($.if(global.is.notify, $.notify({ message: 'Bower complete', onLast: true })));
+                }))
+                .pipe(filterCSS)
+                .pipe($.concat('vendors.css'))
+                .pipe($.rename({suffix: '.min'}))
+                .pipe($.if(
+                    global.is.build,
+                    $.postcss([
+                        require('autoprefixer')({
+                            browsers: AUTOPREFIXER_BROWSERS
+                        })
+                    ])
+                ))
+                .pipe(gulp.dest(config.app))
+                .pipe($.if(global.is.notify, $.notify({ message: 'Bower complete', onLast: true })));
 
         } catch(e) {
             console.log(e);

@@ -12,6 +12,46 @@ const bowerFiles    = require('main-bower-files');
 module.exports = function(config, bower) {
     config = config || {};
 
+    const uglifyConfig = {
+        minimize: true,
+        sourceMap: false,
+        compress: {
+            warnings: false,
+            drop_console: false,
+            side_effects: false,
+            properties: true,
+            sequences: true,
+            dead_code: true,
+            conditionals: true,
+            comparisons: true,
+            evaluate: true,
+            booleans: true,
+            unused: true,
+            loops: true,
+            hoist_funs: true,
+            cascade: true,
+            if_return: true,
+            join_vars: true,
+            drop_debugger: true,
+            unsafe: true,
+            hoist_vars: true,
+            negate_iife: true,
+            unsafe_comps: true,
+            screw_ie8: true,
+            pure_getters: true
+        },
+        mangle: {
+            sort: true,
+            eval: true,
+            properties: true
+        },
+        output: {
+            comments: false,
+            beautify: false,
+            space_colon: false
+        }
+    };
+
     return function(callback) {
         // Bower files
         try {
@@ -30,7 +70,7 @@ module.exports = function(config, bower) {
             .pipe($.filter('**/*.js'))
             .pipe($.concat('vendors.js'))
             .pipe($.rename({suffix: '.min'}))
-            .pipe($.if(global.is.build, $.uglify()))
+            .pipe($.if(global.is.build, $.uglify(uglifyConfig)))
             .pipe($.if(config.gzip, $.gzip()))
             .pipe(gulp.dest(config.app))
             .pipe($.if(global.is.notify, $.notify({ message: 'Bower complete', onLast: true })));
@@ -70,7 +110,7 @@ module.exports = function(config, bower) {
                 
                 .pipe($.rename({suffix: '.min'}))
                 
-                .pipe($.if(global.is.build, $.uglify()))
+                .pipe($.if(global.is.build, $.uglify(uglifyConfig)))
                 .pipe($.size({title: 'scripts'}))
 
                 .pipe($.if(!global.is.build, $.sourcemaps.write()))

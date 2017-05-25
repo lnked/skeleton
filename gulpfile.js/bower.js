@@ -12,6 +12,13 @@ module.exports.config = {
                 "dist/tingle.min.css"
             ]
         },
+        "bootstrap": {
+            "main": [
+                'dist/js/bootstrap.js',
+                'dist/css/*.min.*',
+                'dist/fonts/*.*'
+            ]
+        },
         "photoswipe": {
             "main": [
                 "dist/photoswipe.min.js",
