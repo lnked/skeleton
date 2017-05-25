@@ -3,8 +3,8 @@
 /__bunch
 /public_html
 /info.mdown
-/.domain.sh
-/.install.sh
+# /.domain.sh
+# /.install.sh
 
 # Numerous always-ignore extensions
 *.bak
