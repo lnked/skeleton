@@ -72,6 +72,7 @@ module.exports = function(config, bower) {
             .pipe($.rename({suffix: '.min'}))
             .pipe($.if(global.is.build, $.uglify(uglifyConfig)))
             .pipe($.if(config.gzip, $.gzip()))
+            .pipe($.size({title: 'vendors'}))
             .pipe(gulp.dest(config.app))
             .pipe($.if(global.is.notify, $.notify({ message: 'Bower complete', onLast: true })));
 
