@@ -75,7 +75,6 @@ module.exports = function(config, bower) {
             .pipe($.size({title: 'vendors'}))
             .pipe(gulp.dest(config.app))
             .pipe($.if(global.is.notify, $.notify({ message: 'Bower complete', onLast: true })));
-
         } catch(e) {
             console.log(e);
         }

@@ -12,6 +12,39 @@ module.exports.config = {
                 "dist/tingle.min.css"
             ]
         },
+        "dropzone": {
+            "main": [
+                "dist/min/dropzone.min.js"
+            ]
+        },
+        "bootstrap-datepicker": {
+            "main": [
+                "dist/js/bootstrap-datepicker.min.js",
+                "dist/css/bootstrap-datepicker.min.css",
+                "dist/locales/bootstrap-datepicker.ru.min.js"
+                // "dist/css/bootstrap-datepicker.standalone.css"
+            ]
+        },
+        "flatpickr": {
+            "main": [
+                "dist/l10n/ru.js",
+                "dist/flatpickr.min.js",
+                "dist/flatpickr.min.css",
+                "dist/themes/airbnb.css"
+            ]
+        },
+        "moment": {
+            "main": [
+                "locale/ru.js",
+                "min/moment.min.js"
+            ]
+        },
+        "moment-datepicker": {
+            "main": [
+                "moment-datepicker/moment-datepicker.min.js",
+                "moment-datepicker/datepicker2.css"
+            ]
+        },
         "bootstrap": {
             "main": [
                 'dist/js/bootstrap.js',
