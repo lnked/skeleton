@@ -12,6 +12,11 @@ module.exports.config = {
                 "dist/tingle.min.css"
             ]
         },
+        "a11y.css": {
+            "main": [
+                "css/a11y-en.css"
+            ]
+        },
         "dropzone": {
             "main": [
                 "dist/min/dropzone.min.js"
