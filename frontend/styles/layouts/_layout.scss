@@ -2,6 +2,7 @@
     width: 100%;
     min-height: 100%;
     overflow: hidden;
+    position: relative;
 
     &__pusher {
         padding-bottom: $footer-height + $footer-margin;
@@ -28,9 +29,10 @@
 //     }
 // }
 
-/* Lenovo ThinkPad X230    12.5″   1366×768
-MacBook Pro 13.3″   1280×800
-MacBook Pro 15.4″   1440×900
-iMac    21.5″   1920×1080
-iMac    27″ 2560×1440
+/*
+Lenovo ThinkPad X230    12.5″   1366×768
+MacBook Pro             13.3″   1280×800
+MacBook Pro             15.4″   1440×900
+iMac                    21.5″   1920×1080
+iMac                    27″     2560×1440
 */

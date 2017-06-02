@@ -12,61 +12,23 @@ const bowerFiles    = require('main-bower-files');
 module.exports = function(config, bower) {
     config = config || {};
 
-    // const uglifyConfig = {
-    //     ie8: false,
-    //     mangle: true,
-    //     toplevel: false,
-    //     warnings: false,
-    //     sourceMap: false,
-    //     compress: {
-    //         dead_code: true,
-    //         global_defs: {
-    //             DEBUG: false
-    //         }
-    //     },
-    //     output: {
-    //         ast: true,
-    //         code: true
-    //     }
-    // };
-
     const uglifyConfig = {
-        minimize: true,
+        ie8: false,
+        mangle: true,
+        toplevel: false,
+        warnings: false,
         sourceMap: false,
         compress: {
             warnings: false,
-            drop_console: false,
-            side_effects: false,
-            properties: true,
-            sequences: true,
             dead_code: true,
-            conditionals: true,
-            comparisons: true,
-            evaluate: true,
-            booleans: true,
-            unused: true,
-            loops: true,
-            hoist_funs: true,
-            cascade: true,
-            if_return: true,
-            join_vars: true,
-            drop_debugger: true,
-            unsafe: true,
-            hoist_vars: true,
-            negate_iife: true,
-            unsafe_comps: true,
-            screw_ie8: true,
-            pure_getters: true
-        },
-        mangle: {
-            sort: true,
-            eval: true,
-            properties: true
+            drop_console: true,
+            global_defs: {
+                DEBUG: false
+            }
         },
         output: {
-            comments: false,
-            beautify: false,
-            space_colon: false
+            ast: true,
+            code: true
         }
     };
 

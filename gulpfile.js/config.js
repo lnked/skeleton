@@ -151,11 +151,9 @@ module.exports.tasks = {
 
         '1920x1080'
     ],
-    
+
     'watch': {
         tasks: {
-            pug:        [src + 'template/*.pug', src + 'template/**/*.pug', src + 'template/**/**/*.pug', src + 'template/**/_*.*'],
-            template:   [src + 'template/*.html', src + 'template/**/*.html', src + 'template/**/**/*.html', src + 'template/**/_*.*'],
             scripts:    [src + 'scripts/**/*.{js,jsx,coffee}'],
             video:      [src + 'video/**/*.*'],
             files:      [src + 'files/**/*.*'],
