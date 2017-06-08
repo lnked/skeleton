@@ -6,6 +6,30 @@ module.exports.config = {
         "jquery": {
             "main": "dist/jquery.min.js"
         },
+        "object-fit": {
+            "main": [
+                "dist/polyfill.object-fit.css",
+                "dist/polyfill.object-fit.min.js"
+            ]
+        },
+        "lazyloadxt": {
+            "main": [
+                "dist/jquery.lazyloadxt.fadein.min.css",
+                "dist/jquery.lazyloadxt.extra.min.js"
+            ]
+        },
+        "fancybox": {
+            "main": [
+                "dist/jquery.fancybox.min.js",
+                "dist/jquery.fancybox.min.css"
+            ]
+        },
+        "slick-carousel": {
+            "main": [
+                "slick/slick.min.js",
+                "slick/slick.css"
+            ]
+        },
         "tingle": {
             "main": [
                 "dist/tingle.min.js",

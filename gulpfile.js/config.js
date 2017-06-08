@@ -72,7 +72,7 @@ module.exports.tasks = {
     },
 
     'misc': {
-        src: src + 'misc/**/*.*',
+        src: [src + 'misc/**/.*', src + 'misc/**/*.*'],
         app: app
     },
     
