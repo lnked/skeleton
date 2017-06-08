@@ -5,7 +5,7 @@ let app = app || {};
 
     app = {
 
-        _extend(source, config) {
+        _extend (source, config) {
             if (typeof config !== 'undefined')
             {
                 for (const x in config)
@@ -17,7 +17,7 @@ let app = app || {};
             return source;
         },
 
-        bind() {
+        bind () {
             for(const _ in this)
             {
                 if (typeof (this[_]) == 'object' && typeof (this[_].init) !== 'undefined')
@@ -30,9 +30,9 @@ let app = app || {};
             }
         },
 
-        init() {
+        init () {
             this.bind();
         }
-
     };
+
 }))(document.body);

@@ -1,0 +1,7 @@
+AddDefaultCharSet UTF-8
+
+DirectoryIndex index.php
+
+RewriteEngine on
+RewriteBase /api/
+RewriteRule ^([a-zA-Z0-9_/\-\:]*)$ index.php
