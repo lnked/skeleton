@@ -8617,6 +8617,12 @@ postcss-ordered-values@^2.1.0:
     postcss "^5.0.4"
     postcss-value-parser "^3.0.1"
 
+postcss-position@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/postcss-position/-/postcss-position-0.5.0.tgz#8653d4f0b84ffb07e544fb7f7eae08c6551b73a0"
+  dependencies:
+    postcss "^5.0.0"
+
 postcss-quantity-queries@^0.5.0:
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/postcss-quantity-queries/-/postcss-quantity-queries-0.5.0.tgz#52b6717fcc8d9925ae64cff43340870fe15516ab"

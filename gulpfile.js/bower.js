@@ -6,6 +6,11 @@ module.exports.config = {
         "jquery": {
             "main": "dist/jquery.min.js"
         },
+        "history.js": {
+            "main": [
+                "scripts/bundled/html4+html5/jquery.history.js"
+            ]
+        },
         "object-fit": {
             "main": [
                 "dist/polyfill.object-fit.css",

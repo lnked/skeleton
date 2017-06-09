@@ -47,6 +47,7 @@ module.exports = function(config, bower) {
     let processors = {
         watch: [
             require('postcss-for'),
+            require('postcss-position'),
             require('postcss-triangle'),
             require('postcss-conditionals'),
             require('postcss-quantity-queries'),

@@ -117,6 +117,7 @@
     "postcss-mixins": "^6.0.0",
     "postcss-modules": "^0.8.0",
     "postcss-opacity": "^4.0.0",
+    "postcss-position": "^0.5.0",
     "postcss-quantity-queries": "^0.5.0",
     "postcss-reporter": "^4.0.0",
     "postcss-safe-parser": "^3.0.0",
