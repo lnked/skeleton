@@ -109,32 +109,40 @@ module.exports = function(config, bower) {
     return function(callback) {
         // Bower files
         try {
-            var filterCSS = $.filter('**/*.css', { restore: true });
-
-            gulp.src(bower.json)
-                .pipe($.mainBowerFiles(['**/*.css'], {
+            gulp.src(
+                bowerFiles({
                     paths: {
+                        bowerDirectory: path.resolve(path.dirname(config.path), bower.path),
                         bowerrc: bower.config,
-                        bowerJson: bower.json,
-                        bowerDirectory: path.resolve(path.dirname(config.path), bower.path)
+                        bowerJson: bower.json
                     },
                     debugging: false,
                     checkExistence: true,
                     overrides: bower.overrides
-                }))
-                .pipe(filterCSS)
-                .pipe($.concat('vendors.css'))
-                .pipe($.rename({suffix: '.min'}))
-                .pipe($.if(
-                    global.is.build,
-                    $.postcss([
-                        require('autoprefixer')({
-                            browsers: AUTOPREFIXER_BROWSERS
-                        })
-                    ])
-                ))
-                .pipe(gulp.dest(config.app))
-                .pipe($.if(global.is.notify, $.notify({ message: 'Bower complete', onLast: true })));
+                })
+            )
+            .pipe($.filter('**/*.css'))
+            .pipe($.concat('vendors.css'))
+            .pipe($.rename({suffix: '.min'}))
+            .pipe($.if(
+                global.is.build,
+                $.postcss([
+                    require('autoprefixer')({
+                        browsers: AUTOPREFIXER_BROWSERS
+                    })
+                ])
+            ))
+
+            .pipe($.if(global.is.build, $.groupCssMediaQueries()))
+            .pipe($.if(global.is.build, $.postcss(processors.build)))
+            .pipe($.size({title: 'vendors'}))
+            .pipe(gulp.dest(config.app))
+
+            .pipe($.if(global.is.build, $.gzip()))
+            .pipe($.if(global.is.build, gulp.dest(config.app)))
+            .pipe($.if(global.is.build, $.size({title: 'vendors.css.gz'})))
+
+            .pipe($.if(global.is.notify, $.notify({ message: 'Bower complete', onLast: true })));
 
         } catch(e) {
             console.log(e);
@@ -202,9 +210,12 @@ module.exports = function(config, bower) {
             
             .pipe($.if(!global.is.build, $.sourcemaps.write()))
 
-            .pipe($.if(config.gzip, $.gzip()))
-
             .pipe(gulp.dest(config.app))
+
+            .pipe($.if(global.is.build, $.gzip()))
+            .pipe($.if(global.is.build, gulp.dest(config.app)))
+            .pipe($.if(global.is.build, $.size({title: `${config.task}.css.gz`})))
+
             .pipe($.if(global.is.notify, $.notify({ message: config.task + ' complete', onLast: true })));
 
         callback();

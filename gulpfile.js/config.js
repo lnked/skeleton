@@ -19,14 +19,14 @@ module.exports.tasks = {
     },
 
     'scripts': {
-        gzip: false,
+        gzip: true,
         path: src + 'scripts',
         ignore: '!' + src + 'scripts/**/!_*.*',
         app: app + 'js'
     },
 
     'styles': {
-        gzip: false,
+        gzip: true,
         path: src + 'styles',
         src: [
             src + 'styles/*.scss',

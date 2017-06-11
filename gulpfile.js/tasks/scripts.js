@@ -51,9 +51,13 @@ module.exports = function(config, bower) {
             .pipe($.concat('vendors.js'))
             .pipe($.rename({suffix: '.min'}))
             .pipe($.if(global.is.build, $.uglify(uglifyConfig)))
-            .pipe($.if(config.gzip, $.gzip()))
             .pipe($.size({title: 'vendors'}))
             .pipe(gulp.dest(config.app))
+
+            .pipe($.if(global.is.build, $.gzip()))
+            .pipe($.if(global.is.build, gulp.dest(config.app)))
+            .pipe($.if(global.is.build, $.size({title: 'vendors.js.gz'})))
+
             .pipe($.if(global.is.notify, $.notify({ message: 'Bower complete', onLast: true })));
         } catch(e) {
             console.log(e);
@@ -97,9 +101,12 @@ module.exports = function(config, bower) {
 
                 .pipe($.debug({'title': config.task}))
 
-                .pipe($.if(config.gzip, $.gzip()))
-                
                 .pipe(gulp.dest(config.app))
+
+                .pipe($.if(global.is.build, $.gzip()))
+                .pipe($.if(global.is.build, gulp.dest(config.app)))
+                .pipe($.if(global.is.build, $.size({title: `${folder}.js.gz`})))
+
                 .pipe($.if(global.is.notify, $.notify({ message: config.task + ' complete', onLast: true })));
         });
 

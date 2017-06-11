@@ -127,7 +127,43 @@ module.exports.config = {
         },
         "codemirror": {
             "main": [
-                "lib/codemirror.js"
+                "lib/codemirror.css",
+                "lib/codemirror.js",
+
+                "addon/search/searchcursor.js",
+                "addon/edit/continuelist.js",
+                "addon/edit/matchbrackets.js",
+                "addon/comment/continuecomment.js",
+                "addon/comment/comment.js",
+                
+                "mode/clike/clike.js",
+                
+                "mode/markdown/markdown.js",
+                "mode/htmlembedded/htmlembedded.js",
+                "mode/htmlmixed/htmlmixed.js",
+
+                "mode/php/php.js",
+                "mode/nginx/nginx.js",
+                "mode/smarty/smarty.js",
+
+                "mode/xml/xml.js",
+                "mode/yaml/yaml.js",
+
+                "mode/sql/sql.js",
+
+                "mode/sass/sass.js",
+                "mode/css/css.js",
+
+                "mode/scheme/scheme.js",
+                "mode/shell/shell.js",
+
+                "mode/javascript/javascript.js",
+                "mode/jsx/jsx.js"
+            ]
+        },
+        "codemirror-emmet": {
+            "main": [
+                "dist/emmet.min.js"
             ]
         },
         "cleave.js": {
