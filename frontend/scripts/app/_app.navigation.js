@@ -1,71 +1,123 @@
-(function($) {
+let app = app || {};
+
+((body => {
     "use strict";
 
-    var that, top, changeItem, scrollToAnchor, $target, $element, $current, $navigationMap, $navigation = $('#navigation'), $hasScroll = $('html, body');
-    var is_mobile = $(window).width() <= 667;
+    let isAnimated = false;
 
-    $navigationMap = $('.j-section').map(function(){
-        return {
-            offset: $(this).offset().top - 0,
-            element: $(this)
-        }
-    });
+    const History = window.History;
 
-    changeItem = function(scrollTop) {
-        $element = null;
+    const isMobile = $(window).width() <= 667;
+    const $hasScroll = $('html, body');
+    const $navigation = $('#navigation');
+    const navHeight = $navigation.height();
+    const winHeight = $(window).height();
 
-        $navigationMap.map(function(){
-            that = $(this)[0];
-            if (that.offset < scrollTop) {
-                $element = that.element; 
+    app.navigation = {
+
+        elements: [],
+
+        compose () {
+            this.elements = $('.j-section').map((key, item) => {
+                return {
+                    offset: $(item).offset().top - navHeight,
+                    element: $(item)
+                }
+            });
+        },
+
+        scrollToAnchor (hash, animate) {
+            hash = hash.split('?')[0];
+
+            const $target = $(`#${hash}-anchor`);
+
+            if ($target.length) {
+                isAnimated = true;
+                const top = $target.offset().top - navHeight;
+
+                if (animate) {
+                    $hasScroll.stop().animate({ 'scrollTop': top }, 'medium', () => {
+                        isAnimated = false;
+                        $navigation.removeClass('is-disabled');
+                    });
+                } else {
+                    $hasScroll.scrollTop(top);
+                }
             }
-        })
+        },
 
-        if ($element !== null && $element.attr('id')) {
-           
-            $current = $navigation.find('.j-navigation[href="#' + $element.attr('id').split('-')[0] + '-section"]');
+        setCurrent ($current, slug, title) {
+            $navigation.find('.j-navigation.is-current').removeClass('is-current');
+            $current.addClass('is-current');
 
-            if (!$current.hasClass('is-current')) {
-                $navigation.find('.j-navigation.is-current').removeClass('is-current');
-                $current.addClass('is-current');
+            History.pushState(null, title, slug);
+        },
+
+        changeItem (scrollTop) {
+            let $element = null;
+
+            this.elements.map((key, item) => {
+                const element = item.element;
+
+                if (scrollTop > (item.offset - winHeight / 4)) {
+                    $element = element;
+                }
+            });
+
+            if ($element !== null && $element.attr('id')) {
+                const title = $element.data('title') || '';
+                const slug = $element.attr('id').split('-')[0];
+                const $current = $navigation.find('.j-navigation[href="/' + slug + '"]');
+
+                if (!$current.hasClass('is-current')) {
+                    this.setCurrent($current, slug, title);
+                }
             }
-        }
-    }
+        },
 
-    scrollToAnchor = function(hash, animate) {
-        hash = hash.replace('-section', '').split('?')[0];
+        check () {
+            const State = History.getState();
 
-        $target = $(hash + '-anchor');
+            if (State.url) {
+                const slug = State.url.split('/')[3];
+                const $current = $navigation.find('.j-navigation[href="/' + slug + '"]');
 
-        if ($target.length)
-        {
-            top = $target.offset().top - 0;
-            is_mobile = $(window).width() <= 667;
-
-            if (animate) {
-                $hasScroll.stop().animate({ 'scrollTop': top }, 'medium', function(){
-                    $navigation.removeClass('is-disabled');
-                });
+                this.setCurrent($current, slug, $(`#${slug}-anchor`).data('title'));
             }
-            else {
-                $hasScroll.scrollTop(top);
-            }
+        },
+
+        init () {
+            const _this = this;
+
+            $('body').on('click', '.j-navigation', function(e) {
+                e.preventDefault();
+
+                const $current = $(this);
+                const slug = $current.attr('href').substr(1);
+                $navigation.addClass('is-disabled');
+
+                _this.scrollToAnchor(slug, true);
+                _this.setCurrent($current, slug, $(`#${slug}-anchor`).data('title'));
+            });
+
+            setTimeout(() => {
+                _this.compose();
+                _this.check();
+            }, 50);
+
+            let last = Date.now();
+
+            $(window).scroll(() => {
+                if (!isAnimated) {
+                    const differance = Date.now() - last;
+
+                    if (differance >= 500) {
+                        _this.changeItem($(window).scrollTop());
+                        last = Date.now();
+                    }
+                }
+            });
         }
-    }
+    };
 
-    $('body').on('click', '.j-navigation', function(e) {
-        $navigation.addClass('is-disabled');
-        scrollToAnchor(this.hash, true);
-    });
-
-    setTimeout(function(){
-        if (window.location.hash.length > 1) {
-            $navigation.addClass('is-disabled');
-            scrollToAnchor(window.location.hash, false);
-        }
-    }, 50);
-
-    $(window).scroll(function(){
-        changeItem($(window).scrollTop())
-    });
-})(jQuery);
+}))(document.body);
