@@ -9,8 +9,12 @@ let app = app || {};
 
         count: 0,
         current: 0,
-        timeout: 6000,
+        timeout: 26000,
         interval: null,
+
+        preload ($current) {
+            app.preloader.preload($current.attr('id'));
+        },
 
         drop (callback) {
             const $target = $slider.find('.j-slide.is-active');
@@ -22,10 +26,10 @@ let app = app || {};
         },
 
         bind () {
-            const $target = $slider.find('.j-slide').eq((this.current - 1));
-
+            const $target = $slider.find('.j-slide').eq((this.current));
             $target.addClass('is-active');
 
+            this.preload($target);
             this.activateDot();
 
             setTimeout(function(){
@@ -85,12 +89,7 @@ let app = app || {};
             const _this = this;
 
             for (i=0; i<_this.count; i++) {
-                if (i === 0) {
-                    item = '<a href="#'+i+'" class="s-slider__dots__item j-slider-goto is-active"></a>';
-                } else {
-                    item = '<a href="#'+i+'" class="s-slider__dots__item j-slider-goto"></a>';
-                }
-
+                item = '<a href="#'+i+'" class="s-slider__dots__item j-slider-goto"></a>';
                 dots.push(item);
             }
 
@@ -129,6 +128,11 @@ let app = app || {};
 
         startInterval () {
             this.interval = setInterval(() => { this.next() }, this.timeout);
+
+            if (this.count) {
+                this.preload($slider.find('.j-slide.is-active'));
+                this.activateDot();
+            }
         },
 
         make () {
