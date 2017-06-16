@@ -133,7 +133,7 @@
     "postcss-use": "^2.1.0",
     "postcss-vmin": "^3.0.0",
     "react": "^15.6.1",
-    "stylelint": "^7.11.0",
+    "stylelint": "^7.11.1",
     "svgo": "^0.7.2",
     "uncss": "^0.14.1",
     "util": "^0.10.3"
