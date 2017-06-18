@@ -6,15 +6,14 @@ module.exports.config = {
         "jquery": {
             "main": "dist/jquery.min.js"
         },
+        "rellax": {
+            "main": [
+                "rellax.min.js"
+            ]
+        },
         "history.js": {
             "main": [
                 "scripts/bundled/html4+html5/jquery.history.js"
-            ]
-        },
-        "xregexp": {
-            "main": [
-                "build/mediaelementplayer.min.js",
-                "build/mediaelementplayer.min.css"
             ]
         },
         "mediaelement": {
