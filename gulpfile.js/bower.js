@@ -11,6 +11,18 @@ module.exports.config = {
                 "scripts/bundled/html4+html5/jquery.history.js"
             ]
         },
+        "xregexp": {
+            "main": [
+                "build/mediaelementplayer.min.js",
+                "build/mediaelementplayer.min.css"
+            ]
+        },
+        "mediaelement": {
+            "main": [
+                "build/mediaelementplayer.min.js",
+                "build/mediaelementplayer.min.css"
+            ]
+        },
         "object-fit": {
             "main": [
                 "dist/polyfill.object-fit.css",
