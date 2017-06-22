@@ -16,7 +16,7 @@ class mMail
     var $Boundary;
         var $Priority;
     
-    function mMail()
+    function __construct()
     {
         $this->To = null;
         $this->Cc = null;
