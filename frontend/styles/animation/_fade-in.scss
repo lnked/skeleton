@@ -1,0 +1,8 @@
+.animate .fade-in > * {
+    transition: opacity .5s ease;
+    opacity: 0;
+}
+
+.fade-in--visible .fade-in > * {
+    opacity: 1;
+}

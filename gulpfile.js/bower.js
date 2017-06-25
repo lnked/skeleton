@@ -6,6 +6,21 @@ module.exports.config = {
         "jquery": {
             "main": "dist/jquery.min.js"
         },
+        "trix": {
+            "main": [
+                "dist/trix.js",
+                "dist/trix.css"
+            ]
+        },
+        "summernote": {
+            "main": [
+                "dist/summernote.css",
+                "dist/summernote.min.js"
+            ]
+        },
+        "quill": {
+            "main": []
+        },
         "rellax": {
             "main": [
                 "rellax.min.js"

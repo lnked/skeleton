@@ -25,9 +25,10 @@ $min-large:                     1680px;
 // }
 
 // Animation
-$a-time:                        .3s;
-$a-micro-time:                  .15s;
-$a-long-time:                   .7s;
+$a-func:                        ease;
+$a-time:                        .5s;
+$a-micro-time:                  .2s;
+$a-long-time:                   .9s;
 
 // Fonts
 $font-base:                     10px;
@@ -78,7 +79,7 @@ $c-webflow-blue:                #4353ff;
 $c-select-color:                #f00;
 $c-select-background:           #000;
 
-$c-text:                        #121212;
+$c-text:                        #222223;
 $c-body-background:             #fff !default;
 
 $c-placeholder-color:           #000;

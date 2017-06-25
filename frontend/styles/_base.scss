@@ -40,7 +40,7 @@ body {
 body, input, textarea, select, button {
     font-synthesis: none;
     text-rendering: optimizeLegibility;
-    font-feature-settings: "liga", "kern";
+    font-feature-settings: 'kern','onum','liga';
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-smoothing: antialiased;
