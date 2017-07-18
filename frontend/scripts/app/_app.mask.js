@@ -4,6 +4,7 @@ let app = app || {};
     "use strict";
 
     app.mask = {
+
         bind(selector = '.mask-phone') {
             new Cleave(selector, {
                 phone: true,
