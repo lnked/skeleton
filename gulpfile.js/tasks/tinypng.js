@@ -14,11 +14,13 @@ module.exports = function(config) {
 			.pipe($.debug({title: config.task}))
             .pipe($.newer(config.app))
 
-			.pipe($.tinypngCompress({
-				key: config.token,
-				sigFile: 'images/.tinypng-sigs',
-				log: true
-			}))
+	        .pipe($.tinypngNokey())
+
+			// .pipe($.tinypngCompress({
+			// 	key: config.token,
+			// 	sigFile: 'images/.tinypng-sigs',
+			// 	log: true
+			// }))
 
 			.pipe($.debug({title: config.task}))
 			.pipe(gulp.dest(config.app))
