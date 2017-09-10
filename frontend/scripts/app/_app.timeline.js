@@ -29,8 +29,8 @@ let app = app || {};
                     speed: 259,
                     slidesToShow: 4,
                     slidesToScroll: 1,
-                    prevArrow: '<button class="carousel__nav carousel__nav--left slick-prev"><svg class="carousel__nav__ico" role="image"><use xlink:href="#left-arrow"/></svg></button>',
-                    nextArrow: '<button class="carousel__nav carousel__nav--right slick-next"><svg class="carousel__nav__ico" role="image"><use xlink:href="#right-arrow"/></svg></button>',
+                    prevArrow: '<button class="carousel__nav carousel__nav--left slick-prev"><svg class="carousel__nav__ico" role="img"><use xlink:href="#left-arrow"/></svg></button>',
+                    nextArrow: '<button class="carousel__nav carousel__nav--right slick-next"><svg class="carousel__nav__ico" role="img"><use xlink:href="#right-arrow"/></svg></button>',
                     responsive: [
                         {
                             breakpoint: 768,
