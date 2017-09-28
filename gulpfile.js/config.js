@@ -161,6 +161,7 @@ module.exports.tasks = {
             images:     [src + 'images/**/*.*'],
             favicon:    [src + 'favicon/**/*.*'],
             fonts:      [src + 'fonts/**/*.*'],
+            misc:       [src + 'misc/**/*.*'],
             json:       [src + 'json/**/*.json'],
             styles:     [src + 'styles/**/*.css', src + 'styles/**/*.scss'],
             svgstore:   [src + 'svgstore/**/*.svg']

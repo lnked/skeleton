@@ -15,6 +15,11 @@
     "start": "gulp",
     "build": "gulp build",
     "deploy": "gulp deploy",
+    "template": "gulp template && gulp pug",
+    "styles": "gulp styles",
+    "scripts": "gulp scripts",
+    "images": "gulp images && gulp favicon",
+    "misc": "gulp fonts && gulp json && gulp misc",
     "clean": "rm -rf ./public_html"
   },
   "dependencies": {
@@ -29,6 +34,7 @@
     "babel-eslint": "^7.2.3",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
+    "barba.js": "1.0.0",
     "basisjs-tools": "^1.8.0",
     "basisjs-tools-instrumenter": "^2.1.0",
     "browser-sync": "^2.18.13",
@@ -137,6 +143,7 @@
     "postcss-use": "^2.1.0",
     "postcss-vmin": "^3.0.0",
     "react": "^15.6.1",
+    "sass-lint": "^1.11.1",
     "stickybits": "^1.5.3",
     "stylelint": "^8.0.0",
     "svgo": "^0.7.2",

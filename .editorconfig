@@ -4,7 +4,7 @@ root = true
 [*]
 indent_style = space
 end_of_line = lf
-charset = utf-8
+charset = Windows-1251
 trim_trailing_whitespace = true
 insert_final_newline = true
 

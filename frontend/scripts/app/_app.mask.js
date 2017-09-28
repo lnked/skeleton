@@ -6,10 +6,12 @@ let app = app || {};
     app.mask = {
 
         bind(selector = '.mask-phone') {
-            new Cleave(selector, {
-                phone: true,
-                phoneRegionCode: 'ru'
-            });
+            if (document.querySelectorAll(selector).length) {
+                new Cleave(selector, {
+                    phone: true,
+                    phoneRegionCode: 'ru'
+                });
+            }
         },
 
         init() {

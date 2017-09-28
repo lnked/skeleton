@@ -6,6 +6,58 @@ module.exports.config = {
         "jquery": {
             "main": "dist/jquery.min.js"
         },
+        "horwheel": {
+            "main": "dist/horwheel.min.js"
+        },
+        "is-touch-device": {
+            "main": [
+                "dist/is-touch-device.min.js"
+            ]
+        },
+        "jquery-easing": {
+            "main": "jquery.easing.min.js"
+        },
+        "scroll-with-ease": {
+            "main": [
+                "dist/jquery.scroll-with-ease.min.js"
+            ]
+        },
+        "smoothscroll-for-websites": {
+            "main": [
+                "SmoothScroll.js"
+            ]
+        },
+        "iscroll": {
+            "main": [
+                "build/iscroll.js"
+            ]
+        },
+        "smooth-scrollbar": {
+            "main": [
+                "dist/smooth-scrollbar.js",
+                "dist/smooth-scrollbar.css"
+            ]
+        },
+        "jScrollPane": {
+            "main": [
+                "style/jquery.jscrollpane.css",
+                "script/jquery.jscrollpane.min.js"
+            ]
+        },
+        "jquery-mousewheel": {
+            "main": "jquery.mousewheel.min.js"
+        },
+        "rellax": {
+            "main": "rellax.min.js"
+        },
+        "raf.js": {
+            "main": [
+                "raf.min.js"
+            ]
+        },
+        "image-preloader": {
+            "main": "build/imagePreloader.min.js"
+        },
         "trix": {
             "main": [
                 "dist/trix.js",
@@ -161,9 +213,9 @@ module.exports.config = {
                 "addon/edit/matchbrackets.js",
                 "addon/comment/continuecomment.js",
                 "addon/comment/comment.js",
-                
+
                 "mode/clike/clike.js",
-                
+
                 "mode/markdown/markdown.js",
                 "mode/htmlembedded/htmlembedded.js",
                 "mode/htmlmixed/htmlmixed.js",
@@ -200,8 +252,8 @@ module.exports.config = {
         },
         "gsap": {
             "main": [
-                "src/minified/TweenLite.min.js",
-                "src/minified/TimelineLite.min.js"
+                "src/minified/easing/EasePack.min.js",
+                "src/minified/TweenMax.min.js"
             ]
         },
         "svg4everybody": {

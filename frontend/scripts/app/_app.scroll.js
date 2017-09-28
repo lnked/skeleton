@@ -3,7 +3,22 @@ let app = app || {};
 ((body => {
     "use strict";
 
-    app.mask = {
+    app.scroll = {
+
+        disableHover () {
+            var timer;
+            window.addEventListener('scroll', function() {
+                clearTimeout(timer);
+                
+                if(!body.hasClass('disable-hover')) {
+                    body.addClass('disable-hover');
+                }
+
+                timer = setTimeout(function(){
+                    body.removeClass('disable-hover');
+                },500);
+            }, false);
+        },
 
         bind() {
             $(window).on('scroll', function(){
@@ -15,6 +30,7 @@ let app = app || {};
 
         init() {
             this.bind();
+            this.disableHover();
         }
     };
 
