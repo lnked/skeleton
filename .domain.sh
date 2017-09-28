@@ -17,36 +17,31 @@ if [ ! -f "/usr/local/etc/nginx/sites-available/$DOMAIN" ]; then
 cat <<EOT >> /usr/local/etc/nginx/sites-available/$DOMAIN
 server {
     listen          80;
-    server_name     $DOMAIN www.$DOMAIN;
+    server_name     $DOMAIN.dev www.$DOMAIN.dev;
     
-    root            /Users/edik/web/$DOMAIN/public_html;
+    root            /Users/edik/web/$DOMAIN.dev/public_html;
     index           index.php index.html index.htm;
 
     access_log      off;
-    error_log       /Users/edik/web/$DOMAIN/logs/error.log error;
+    error_log       off;
 
     charset         utf-8;
-    merge_slashes   off;
     
-    gzip on;
-    gzip_proxied any;
-    gzip_vary on;
-    gzip_disable "MSIE [1-6]\.(?!.*SV1)";
-    gzip_types
-        text/plain
-        text/css
-        text/js
-        text/xml
-        text/javascript
-        application/javascript
-        application/x-javascript
-        application/json
-        application/xml
-        application/rss+xml
-        image/svg+xml;
-
-    location ~* \.(jpe?g|gif|png|zip|tgz|gz|rar|bz2|doc|xls|exe|pdf|ppt|txt|tar|wav|bmp|rtf|html|css|js|ico|woff|woff2|eot|svg|ttf)$ {
+    # Match assets
+    location ~* \.(jpe?g|gif|png|zip|tgz|gz|rar|bz2|doc|xls|exe|pdf|ppt|txt|tar|wav|bmp|rtf|html|css|js|ico|woff|woff2|eot|svg|ttf|webm|mp4|ogv)$ {
         expires 30d;
+    }
+    
+    location ~ \.htm(l?)$ {
+        fastcgi_param  SCRIPT_FILENAME  /Users/edik/web/$DOMAIN.dev/$fastcgi_script_name;
+        include fastcgi_params;
+        if (!-f $request_filename) {
+            rewrite  ^ /index.php  last;
+        }
+        if (-f /Users/edik/web/$DOMAIN.dev/.parse_html) {
+            fastcgi_pass   127.0.0.1:9000;
+        }
+        break;
     }
 
     location /ajax {
@@ -57,53 +52,38 @@ server {
         rewrite ^ /api/index.php last;
     }
 
+    location /cpanel {
+        rewrite ^ /cpanel/index.html last;
+    }
+
     location /cp {
-        rewrite ^ /index.php last;
+        rewrite ^ /cp/index.php last;
     }
 
     location /cp/db {
-        rewrite ^ /index.php last;
+        rewrite ^ /cp/db/index.php last;
     }
 
     location /cp/dumper {
-        rewrite ^ /index.php last;
+        rewrite ^ /cp/dumper/index.php last;
     }
-    
+
     location / {
-        include /usr/local/etc/nginx/conf.d/php-fpm;
-        rewrite ^ /index.php last;
+        rewrite  ^ /index.php last;
     }
 
     location ~ \.php$ {
         include /usr/local/etc/nginx/conf.d/php-fpm;
         rewrite ^(.*)$ /index.php;
-        root   /Users/edik/web/$DOMAIN/public_html;
-        break;
-    }
-    
-    location ~ \.htm(l?)$ {
-        fastcgi_param  SCRIPT_FILENAME  /Users/edik/web/$DOMAIN/\$fastcgi_script_name;
-        include fastcgi_params;
-
-        if (!-f \$request_filename) {
-            rewrite  ^ /index.php  last;
-        }
-
-        if (-f /Users/edik/web/$DOMAIN/.parse_html) {
-            fastcgi_pass   127.0.0.1:9000;
-        }
-
+        root   /Users/edik/web/$DOMAIN.dev/public_html;
         break;
     }
 
-    location ~ .+/$ {
-        rewrite (.+)/$ $1 permanent;
-    }
-    
     location ~ /\.ht {
-       deny all;
+       deny  all;
     }
 }
+
 # React
 # server {
 #     listen          80;
@@ -147,7 +127,7 @@ fi
 sudo launchctl unload /Library/LaunchDaemons/homebrew.mxcl.nginx.plist
 sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.nginx.plist
 
-/Users/edik/web/skeleton/.install.sh $DOMAIN
+# /Users/edik/web/skeleton/.install.sh $DOMAIN
 
 # sudo apachectl restart
 dscacheutil -flushcache
