@@ -38,6 +38,7 @@
     "mediaelement": "4.1.3",
     "bootstrap-datepicker": "1.7.1",
     "smoothscroll-for-websites": "1.4.6",
-    "scroll-with-ease": "1.0.0"
+    "scroll-with-ease": "1.0.0",
+    "scrollmagic": "2.0.5"
   }
 }

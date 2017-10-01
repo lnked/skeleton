@@ -9,6 +9,13 @@ module.exports.config = {
         "horwheel": {
             "main": "dist/horwheel.min.js"
         },
+        "scrollmagic": {
+            "main": [
+                "scrollmagic/minified/ScrollMagic.min.js",
+                "scrollmagic/minified/plugins/animation.gsap.min.js",
+                "scrollmagic/minified/plugins/debug.addIndicators.min.js"
+            ]
+        },
         "is-touch-device": {
             "main": [
                 "dist/is-touch-device.min.js"
