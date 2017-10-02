@@ -7,6 +7,9 @@ const gifsicle  = require('imagemin-gifsicle');
 const clean     = require('../utils/clean');
 const error     = require('../utils/error');
 
+const imageminWebp = require('imagemin-webp');
+const imageminGuetzli = require('imagemin-guetzli');
+
 module.exports = function(config) {
     config = config || {};
 
@@ -15,11 +18,17 @@ module.exports = function(config) {
         // clean(config.app, global.is.build);
 
         gulp.src(config.src)
+
+            .pipe($.if(/\.jpg/, $.webp({
+                quality: 60
+            })))
+
+            .pipe(gulp.dest(config.app));
+
+        gulp.src(config.src)
             .pipe($.plumber({errorHandler: error}))
             .pipe($.debug({'title': config.task}))
             .pipe($.newer(config.app))
-
-            .pipe($.if(/[.]webp$/, $.webp()))
 
             // .pipe(
             //     $.if(/[.]svg$/,
@@ -63,7 +72,18 @@ module.exports = function(config) {
                         }},
                         {removeUselessStrokeAndFill:false}
                     ],
-                    use: [svgo(), gifsicle({interlaced: true})]
+                    use: [
+                        svgo(),
+                        gifsicle({
+                            interlaced: true
+                        }),
+                        imageminWebp({
+                            quality: 60,
+                        }),
+                        imageminGuetzli({
+                            quality: 60
+                        })
+                    ]
                 })
             )))
 
