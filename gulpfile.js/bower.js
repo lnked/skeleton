@@ -36,7 +36,7 @@ module.exports.config = {
         },
         "iscroll": {
             "main": [
-                "build/iscroll.js"
+                "build/iscroll-probe.js"
             ]
         },
         "smooth-scrollbar": {
