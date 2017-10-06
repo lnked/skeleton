@@ -9,6 +9,12 @@ module.exports.config = {
         "horwheel": {
             "main": "dist/horwheel.min.js"
         },
+        "lozad": {
+            "main": "dist/lozad.min.js"
+        },
+        "intersection-observer-polyfill": {
+            "main": "dist/IntersectionObserver.global.js"
+        },
         "scrollmagic": {
             "main": [
                 "scrollmagic/minified/ScrollMagic.min.js",
@@ -110,8 +116,8 @@ module.exports.config = {
         },
         "fancybox": {
             "main": [
-                "dist/jquery.fancybox.min.js",
-                "dist/jquery.fancybox.min.css"
+                "source/jquery.fancybox.css",
+                "source/jquery.fancybox.pack.js"
             ]
         },
         "slick-carousel": {

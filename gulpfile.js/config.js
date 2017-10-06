@@ -52,6 +52,7 @@ module.exports.tasks = {
     },
 
     'images': {
+        webp: false,
         src: src + 'images/**/*.{gif,svg,png,jpg,jpeg,webp}',
         app: app + 'images'
     },

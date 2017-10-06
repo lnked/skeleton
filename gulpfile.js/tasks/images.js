@@ -17,13 +17,15 @@ module.exports = function(config) {
 
         // clean(config.app, global.is.build);
 
-        gulp.src(config.src)
+        if (config.webp) {
+            gulp.src(config.src)
 
-            .pipe($.if(/\.jpg/, $.webp({
-                quality: 60
-            })))
+                .pipe($.if(/\.jpg/, $.webp({
+                    quality: 60
+                })))
 
-            .pipe(gulp.dest(config.app));
+                .pipe(gulp.dest(config.app));    
+        }
 
         gulp.src(config.src)
             .pipe($.plumber({errorHandler: error}))

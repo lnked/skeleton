@@ -18,7 +18,8 @@
     "template": "gulp template && gulp pug",
     "styles": "gulp styles",
     "scripts": "gulp scripts",
-    "images": "gulp images && gulp favicon",
+    "images": "gulp images",
+    "favicon": "gulp favicon",
     "misc": "gulp fonts && gulp json && gulp misc",
     "clean": "rm -rf ./public_html"
   },
