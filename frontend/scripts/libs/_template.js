@@ -1,5 +1,9 @@
 ;((d => {
-    window.template = function(id, data, precompile: false) {
+    window.template = (id, data, precompile) => {
+        if (typeof precompile === 'undefined') {
+            precompile = false;
+        }
+
         if (d.getElementById(id) !== null) {
             const pattern = d.getElementById(id).innerHTML;
 
@@ -8,7 +12,7 @@
                     window.precompiledT7 = Template7.compile(pattern);
                 }
 
-                return window.precompiledT7(data || {});    
+                return window.precompiledT7(data || {});
             }
 
             return Template7.compile(pattern)(data || {});
