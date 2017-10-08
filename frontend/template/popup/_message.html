@@ -1,14 +1,14 @@
 <template id="tmpl-notification">
     <div class="notification" id="popup_notification">
-        {{#title}}
+        {{#if title}}
         <div class="notification__header">{{title}}</div>
-        {{/title}}
+        {{/if}}
         
-        {{#text}}
+        {{#if text}}
         <div class="notification__content clearfix">
             {{text}}
         </div>
-        {{/text}}
+        {{/if}}
     </div>
 </template>
 

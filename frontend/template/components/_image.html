@@ -1,6 +1,6 @@
 <picture>
-  <source srcset="/path/to/image.webp" type="image/webp">
-  <img src="/path/to/image.jpg" alt="">
+    <source srcset="/path/to/image.webp" type="image/webp">
+    <img src="/path/to/image.jpg" alt="">
 </picture>
 
 <picture>   
@@ -11,8 +11,14 @@
 </picture>
 
 <picture>
-   <source srcset="photo.jxr" type="image/vnd.ms-photo">
-   <source srcset="photo.jp2" type="image/jp2">
-   <source srcset="photo.webp" type="image/webp">
-   <img src="photo.jpg" alt="My beautiful face">
+    <source srcset="photo.jxr" type="image/vnd.ms-photo">
+    <source srcset="photo.jp2" type="image/jp2">
+    <source srcset="photo.webp" type="image/webp">
+    <img src="photo.jpg" alt="My beautiful face">
 </picture>
+
+<img class="b-lazy"
+    src="placeholder-image.jpg"
+    data-src="image.jpg"
+    data-src-small="small-image.jpg"
+    alt="Image description" />

@@ -6,29 +6,35 @@ let app = app || {};
     app.mask = {
         phone(selector = '.mask-phone') {
             if (document.querySelectorAll(selector).length) {
-                new Cleave(selector, {
-                    phone: true,
-                    phoneRegionCode: 'ru'
+                $(selector).each(function(){
+                    new Cleave($(this), {
+                        phone: true,
+                        phoneRegionCode: 'ru'
+                    });
                 });
             }
         },
 
         date(selector = '.mask-date') {
             if (document.querySelectorAll(selector).length) {
-                new Cleave(selector, {
-                    date: true,
-                    datePattern: ['d', 'm', 'Y']
+                $(selector).each(function(){
+                    new Cleave($(this), {
+                        date: true,
+                        datePattern: ['d', 'm', 'Y']
+                    });
                 });
             }
         },
 
         card(selector = '.mask-card') {
             if (document.querySelectorAll(selector).length) {
-                new Cleave(selector, {
-                    numericOnly: true,
-                    prefix: '00',
-                    delimiter: '',
-                    blocks: [2, 4]
+                $(selector).each(function(){
+                    new Cleave($(this), {
+                        numericOnly: true,
+                        prefix: '00',
+                        delimiter: '',
+                        blocks: [2, 4]
+                    });
                 });
             }
         },

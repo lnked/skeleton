@@ -12,8 +12,16 @@ module.exports.config = {
         "lozad": {
             "main": "dist/lozad.min.js"
         },
+        "blazy": {
+            "main": "blazy.min.js"
+        },
+        "rgrove-lazyload": {
+            "main": "lazyload.js"
+        },
         "intersection-observer-polyfill": {
-            "main": "dist/IntersectionObserver.global.js"
+            "main": [
+                "dist/IntersectionObserver.js"
+            ]
         },
         "scrollmagic": {
             "main": [
@@ -116,8 +124,8 @@ module.exports.config = {
         },
         "fancybox": {
             "main": [
-                "source/jquery.fancybox.css",
-                "source/jquery.fancybox.pack.js"
+                "dist/jquery.fancybox.min.css",
+                "dist/jquery.fancybox.min.js"
             ]
         },
         "slick-carousel": {

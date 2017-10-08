@@ -7,21 +7,18 @@ let app = app || {};
 
         init: function()
         {
-            lozad('img[data-src]', {
-                load: function(el) {
-                    el.src = el.dataset.src;
-
-                    el.onload = function() {
-                        el.classList.add('fade')
-                        el.removeAttribute('data-src');
-                    }
+            var bLazy = new Blazy({
+                breakpoints: [{
+                    width: 420,
+                    src: 'data-src-small'
+                }],
+                success: function(element){
+                    setTimeout(function(){
+                        var parent = element.parentNode;
+                        parent.className = parent.className.replace(/\bloading\b/,'');
+                    }, 200);
                 }
-            }).observe();
-
-            // $(window).lazyLoadXT({
-            //     edgeY:  200,
-            //     srcAttr: 'data-src'
-            // });
+            });
         }
 
     };

@@ -78,6 +78,7 @@ module.exports = function(config, bower) {
                 .pipe($.if(global.is.lint, $.eslint.format()))
                 .pipe($.if(global.is.lint, $.eslint.failAfterError()))
                 
+                .pipe($.imports())
                 .pipe($.if(/[.]coffee$/, $.coffee()))
                 .pipe($.if(/[.]jsx$/ || global.is.react, $.react({ harmony: true, es6module: true })))
                 .pipe($.babel({
