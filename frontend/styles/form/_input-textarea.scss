@@ -1,66 +1,15 @@
-input,
-textarea {
-    -webkit-appearance: textfield;
-    -webkit-rtl-ordering: logical;
-    -webkit-user-select: text;
-    cursor: auto;
-
-    &:focus {
-        outline: none;
-    }
-}
-
-select {
-    -webkit-appearance: none;
-    -webkit-border-radius: 0px;
-}
-
-label {
-    cursor: pointer;
-}
-
-input, button {
-    -webkit-appearance: none;
-}
-
-textarea {
-    resize: vertical;
-}
-
 .f-input,
 .f-textarea {
-    width: 100%;
     color: $c-input-color;
     font-size: 1.4rem;
     font-weight: 400;
     border-radius: 1px;
     font-family: $font-family;
     border: 1px solid $c-border;
-    box-sizing: border-box !important;
 
     &.error {
         background: rgba(255, 0, 0, 0.1);
         border-color: rgb(255, 0, 0);
         border-color: rgba(255, 0, 0, 0.5);
-    }
-    
-    &:disabled {
-        opacity: 0.4;
-        cursor: default;
-    }
-
-    &::-ms-clear {
-        display: none;
-    }
-
-    &:-webkit-autofill {
-        -webkit-box-shadow: 0 0 0px 1000px white inset;
-        // -webkit-text-fill-color: yellow !important;
-    }
-
-    &::-webkit-inner-spin-button,
-    &::-webkit-calendar-picker-indicator {
-        display: none;
-        appearance: none;
     }
 }
