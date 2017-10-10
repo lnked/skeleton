@@ -9169,8 +9169,8 @@ postcss-calc@^5.2.0:
     reduce-css-calc "^1.2.6"
 
 postcss-calc@^6.0.0:
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/postcss-calc/-/postcss-calc-6.0.0.tgz#b681b279c6d24fbe0e33ed9045803705445d613b"
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/postcss-calc/-/postcss-calc-6.0.1.tgz#3d24171bbf6e7629d422a436ebfe6dd9511f4330"
   dependencies:
     css-unit-converter "^1.1.1"
     postcss "^6.0.0"
@@ -9663,11 +9663,12 @@ postcss-svg-fallback@^1.4.0:
     when "~3.7.3"
 
 postcss-svg@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/postcss-svg/-/postcss-svg-2.1.0.tgz#afddc042e5ab98794080cffa97f0c38536613949"
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/postcss-svg/-/postcss-svg-2.2.0.tgz#52f60435baef6f9c01444fef50e4bd9d3b106958"
   dependencies:
     postcss "6.x"
     postcss-value-parser "3.x"
+    svgo "0.x"
     xmldoc "1.x"
 
 postcss-svgo@^2.1.1:
@@ -11646,7 +11647,7 @@ svgo@0.7.0:
     sax "~1.2.1"
     whet.extend "~0.9.9"
 
-svgo@0.7.2, svgo@^0.7.0, svgo@^0.7.2:
+svgo@0.7.2, svgo@0.x, svgo@^0.7.0, svgo@^0.7.2:
   version "0.7.2"
   resolved "https://registry.yarnpkg.com/svgo/-/svgo-0.7.2.tgz#9f5772413952135c6fefbf40afe6a4faa88b4bb5"
   dependencies:

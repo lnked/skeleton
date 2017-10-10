@@ -1,14 +1,20 @@
 %button {
+    border: 0;
+    margin: 0;
     padding-top: 0;
     padding-bottom: 0;
     outline: none;
     cursor: pointer;
-    border: none;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+    font: inherit;
+    overflow: visible;
     position: relative;
     user-select: none;
     text-decoration: none;
     display: inline-block;
-    -webkit-appearance: none;
+    appearance: none;
     background-color: transparent;
-    transition: border-color $a-time, background-color $a-time, color $a-time;
+    transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
