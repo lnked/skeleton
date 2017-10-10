@@ -1,89 +1,69 @@
-$quantity-control-size: 30px;
-$quantity-control-line-size: ($quantity-control-size / 2) + 2;
-
 .quantity {
-    clear: both;
-    float: left;
-    width: 100%;
-    max-width: 160px;
-    padding: 0 35px;
+    width: 80px;
+    height: 33px;
     position: relative;
     user-select: none;
+    font-size: 0;
+    line-height: 0;
+
+    border-radius: 18px;
+    border: 1px solid #cfcfcf;
+    background-color: #f5f5f5;
 
     &__count {
         width: 100%;
-        height: 36px;
-        color: $c-black;
-        font-size: 18px;
-        font-size: 1.8rem;
-        font-weight: 400;
+        height: 31px;
+        border: 0;
         padding: 0;
+        color: #232323;
         outline: none;
-        text-align: center;
-        border: 1px solid #cecece;
-        border-radius: 4px;
         background: none;
+        text-align: center;
+
+        font-size: 1.4rem;
+        font-weight: 400;
+        letter-spacing: 0.001rem;
     }
 
     &__control {
-        width: $quantity-control-size;
-        height: $quantity-control-size;
-        color: $c-white;
+        width: 26px;
+        height: 31px;
+        border: 0;
+        outline: 0;
+        padding: 0;
+        color: #2f2f2f;
+        cursor: pointer;
+        background: none;
+        line-height: 30px;
         position: absolute;
         top: 50%;
-        border: 0;
-        outline: none;
-        font-family: sans-serif;
-        font-size: 2.4rem;
-        font-style: normal;
-        font-weight: 400;
-        cursor: pointer;
-        margin-top: -14px;
-        text-align: center;
-        border-radius: 50%;
-        background-color: $c-green;
-        background-image: linear-gradient(to top,rgba(0,0,0,.01) 0,hsla(0,0%,100%,.01) 100%);
-        transition: background-color $a-time;
-        
-        &:before, &:after {
-            content: "";
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            z-index: 1;
-            background-color: $c-white;
-        }
+        margin-top: -16px;
+        letter-spacing: 0.001rem;
+        transition: color $a-time $a-func;
 
-        &:before {
-            width: $quantity-control-line-size;
-            height: 2px;
-            margin-left: -($quantity-control-line-size / 2);
-            margin-top: -1px;
+        &:hover {
+            color: #000;
         }
 
         &._decrease {
-            left: 0;
-            line-height: 28px;
+            left: 0px;
+            text-align: right;
+            padding-right: 5px;
+            border-radius: 18px 0 0 18px;
         }
 
         &._increase {
-            right: 0;
-            line-height: 26px;
-
-            &:after {
-                width: 2px;
-                height: $quantity-control-line-size;
-                margin-top: -($quantity-control-line-size / 2);
-                margin-left: -1px;
-            }
+            right: 0px;
+            text-align: left;
+            padding-left: 5px;
+            border-radius: 0 18px 18px 0;
         }
 
-        i {
-            font-style: normal;
-        }
-
-        &:hover {
-            background-color: $c-lime;
+        &__ico {
+            max-width: 10px;
+            max-height: 10px;
+            display: inline-block;
+            vertical-align: middle;
         }
     }
 }
