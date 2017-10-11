@@ -1,3 +1,10 @@
+$c-sandwich-overlay:            #000;
+$c-sandwich-background:         #fff;
+$c-sandwich-background-active:  #fff;
+
+$sandwich-size: 24px;
+$sandwich-layer-height: 2px;
+
 // .sandwich {
 //     width: 40px;
 //     height: 40px;
@@ -54,11 +61,9 @@
 }
 
 .sandwich {
-    width: 48px;
-    height: 37px;
-    position: absolute;
-    right: 15px;
-    top: 10px;
+    width: $sandwich-size;
+    height: $sandwich-size;
+    position: fixed 15px 15px auto auto;
     margin: 0;
     z-index: -1;
     cursor: pointer;
@@ -67,13 +72,13 @@
 
     &__layer {
         width: 100%;
-        max-width: 37px;
-        height: 4px;
+        max-width: $sandwich-size;
+        height: 2px;
         position: absolute;
         top: 50%;
         left: 50%;
-        margin-left: -18px;
-        margin-top: -2px;
+        margin-left: -($sandwich-size / 2);
+        margin-top: -1px;
         font-size: 0;
         display: block;
         user-select: none;
@@ -93,36 +98,22 @@
         }
 
         &:before {
-            transform: translateY(-10px);
+            transform: translateY(-350%);
         }
 
         &:after {
-            transform: translateY(10px);
-        }
-    }
-
-    &:hover &__layer {
-        &:before {
-            transform: translateY(-12px);
-        }
-
-        &:after {
-            transform: translateY(12px);
+            transform: translateY(350%);
         }
     }
 }
 
-.page-visible {
-    .header {
-        visibility: visible;
-    }
-
+.menu-visible {
     .navigation {
         visibility: visible;
     }
 }
 
-.page-open {
+.menu-animate {
     width: 100%;
     height: 100%;
     overflow: hidden;
@@ -132,11 +123,6 @@
         overflow: hidden;
     }
 
-    .menu-overlay {
-        transform: scale(1, 1);
-        opacity: .9;
-    }
-    
     .navigation {
         &__list {
             transform: scale(1, 1);
@@ -162,7 +148,7 @@
     }
 }
 
-@media only screen and (max-width: 868px) {
+@media (max-width: 480px) {
     .sandwich {
         z-index: 10030;
         opacity: 1;

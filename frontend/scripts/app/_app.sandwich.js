@@ -3,7 +3,7 @@ var app = app || {};
 ;(function(body){
     "use strict";
 
-    var _this;
+    const $body = $('body');
 
     app.sandwich = {
 
@@ -14,9 +14,9 @@ var app = app || {};
             overlay: '.overlay'
         },
 
-        extend: function(config)
+        extend (config)
         {
-            _this = this;
+            const _this = this;
 
             if (typeof config !== 'undefined')
             {
@@ -29,62 +29,61 @@ var app = app || {};
             }
         },
 
-        isOpen: function()
+        isOpen ()
         {
-            return $('body').hasClass('page-visible');
+            return $body.hasClass('page-visible');
         },
 
-        hide: function()
+        hide ()
         {
-            $('body').removeClass('page-open');
+            const _this = this;
+            $body.removeClass('page-open');
 
             setTimeout(function(){
-                $('body').removeClass('page-visible');
+                $body.removeClass('page-visible');
+            }, 200);
+
+            if (_this.config.overlay) {
+                $(_this.config.overlay).css({
+                    'visibility': 'hidden'
+                });
+            }
+        },
+
+        show () {
+            const _this = this;
+            $body.addClass('page-open');
+
+            setTimeout(function(){
+                $body.addClass('page-visible');
             }, 10);
-
-            $(this.config.overlay).css({
-                'visibility': 'hidden'
-            });
-        },
-
-        toggle: function()
-        {
-            if ($('body').hasClass('page-visible'))
-            {
-                $('body').removeClass('page-open');
-
-                setTimeout(function(){
-                    $('body').removeClass('page-visible');
-                }, 200);
-            }
-            else
-            {
-                $('body').addClass('page-open');
-
-                setTimeout(function(){
-                    $('body').addClass('page-visible');
-                }, 10);
-            }
-
-            var visibility = 'visible';
-
-            if (!$('body').hasClass('page-open'))
-            {
-                visibility = 'hidden'
-            }
             
-            $(_this.config.overlay).css({
-                'visibility': visibility
-            });
+            if (_this.config.overlay) {
+                $(_this.config.overlay).css({
+                    'visibility': 'visible'
+                });
+            }
         },
 
-        sandwichTrigger: function()
+        toggle ()
         {
-            _this = this;
+            const _this = this;
+
+            if ($body.hasClass('page-visible')) {
+                _this.hide();
+            }
+            else {
+                _this.show();
+            }
+        },
+
+        sandwichTrigger ()
+        {
+            const _this = this;
 
             if (_this.config.keyHooks)
             {
-                $('body').on('keydown', function(e) {
+                $body.on('keydown', function(e) {
                     if(e.keyCode == 27 && _this.isOpen())
                     {
                         _this.toggle();
@@ -92,30 +91,53 @@ var app = app || {};
                 });
             };
 
-            $('body').on('click', _this.config.selector, function(e){
+            $body.on('click', _this.config.selector, function(e){
                 e.preventDefault ? e.preventDefault() : e.returnValue = false;
                 _this.toggle();
             });
         },
 
-        overlayTrigger: function()
+        overlayTrigger ()
         {
-            _this = this;
+            const _this = this;
 
-            $('body').on('click', _this.config.overlay, function(e){
+            if (_this.config.overlay) {
+                $body.on('click', _this.config.overlay, function(e){
+                    _this.hide();
+                });   
+            }
+        },
+
+        events ()
+        {
+            const _this = this;
+
+            var hammertime = new Hammer(document.body, {
+                enable: true,
+                recognizers: [
+                    [Hammer.Swipe, { direction: Hammer.DIRECTION_HORIZONTAL }]
+                ]
+            });
+
+            hammertime.on('swipeleft', function(ev) {
                 _this.hide();
+            });
+
+            hammertime.on('swiperight', function(ev) {
+                _this.show();
             });
         },
 
-        init: function()
+        init ()
         {
             this.extend({
                 keyHooks: !0,
-                selector: '.js-sandwich-menu',
+                selector: '.j-sandwich-menu',
                 wrapper: '.layout-wrapper',
-                overlay: '#menu-overlay'
+                overlay: false
             });
 
+            this.events();
             this.sandwichTrigger();
             this.overlayTrigger();
         }

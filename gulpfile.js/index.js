@@ -1,5 +1,12 @@
 'use strict';
 
+/**
+ * CELEBRO.CMS (https://cms.celebro.ru)
+ * @copyright Copyright (c) CELEBRO lab. (https://celebro.ru)
+ * @license http://cms.celebro.ru/license.txt
+ * https://github.com/lnked/skeleton
+ */
+
 require("./utils/env.js");
 
 const $             = require('gulp-load-plugins')({ pattern: ['gulp-*', 'gulp.*', 'postcss-*'] });

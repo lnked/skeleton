@@ -6,6 +6,9 @@ module.exports.config = {
         "jquery": {
             "main": "dist/jquery.min.js"
         },
+        "hammerjs": {
+            "main": "hammer.min.js"
+        },
         "horwheel": {
             "main": "dist/horwheel.min.js"
         },
