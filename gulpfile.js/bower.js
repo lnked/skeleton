@@ -125,18 +125,18 @@ module.exports.config = {
                 "dist/jquery.lazyloadxt.extra.min.js"
             ]
         },
-        "fancybox": {
-            "main": [
-                "source/jquery.fancybox.css",
-                "source/jquery.fancybox.pack.js"
-            ]
-        },
         // "fancybox": {
         //     "main": [
-        //         "dist/jquery.fancybox.min.css",
-        //         "dist/jquery.fancybox.min.js"
+        //         "source/jquery.fancybox.css",
+        //         "source/jquery.fancybox.pack.js"
         //     ]
         // },
+        "fancybox": {
+            "main": [
+                "dist/jquery.fancybox.min.css",
+                "dist/jquery.fancybox.min.js"
+            ]
+        },
         "slick-carousel": {
             "main": [
                 "slick/slick.min.js",
@@ -196,8 +196,10 @@ module.exports.config = {
         },
         "photoswipe": {
             "main": [
+                "dist/photoswipe.css",
                 "dist/photoswipe.min.js",
-                "dist/photoswipe.css"
+                "dist/photoswipe-ui-default.min.js",
+                "dist/default-skin/default-skin.css"
             ]
         },
         "js-md5": {

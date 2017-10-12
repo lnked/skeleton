@@ -1,0 +1,49 @@
+.video-background {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: fixed 0;
+    z-index: 1;
+    pointer-events: none;
+    backface-visibility: hidden;
+
+    &__video {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        z-index: 0;
+        overflow: hidden;
+        min-width: 100%;
+        min-height: 100%;
+        max-height: 150%;
+        max-width: 150%;
+        width: auto;
+        height: auto;
+        background: transparent;
+        transform: translate3d(-50%, -50%, 0);
+    
+        @media only screen and (min-width: 1024px) {
+            &::-webkit-media-controls-overlay-enclosure,
+            &::-webkit-media-controls-enclosure,
+            &::-webkit-media-controls,
+            &::-webkit-media-controls-panel,
+            &::-webkit-media-controls-play-button,
+            &::-webkit-media-controls-current-time-display,
+            &::-webkit-media-controls-time-remaining-display,
+            &::-webkit-media-controls-timeline,
+            &::-webkit-media-controls-mute-button,
+            &::-webkit-media-controls-volume-slider,
+            &::-webkit-media-controls-fullscreen-button,
+            &::-internal-media-controls-download-button,
+            &::-webkit-media-controls-start-playback-button {
+                opacity: 0 !important;
+                display: none !important;
+                pointer-events: none !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            display: none;
+        }
+    }
+}
