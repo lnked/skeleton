@@ -1,0 +1,16 @@
+<div id="vk_groups"></div>
+
+<script>
+    (function start() {
+        if (window.VK) {
+            VK.Widgets.Group("vk_groups", {mode: 3, wide: 1, no_cover: 1, width: "auto", color3: '215435'}, 104885732);
+        } else setTimeout( start, 500 );
+    })();
+
+    (function(d) {
+        var wf = d.createElement('script'), s = d.scripts[0];
+        wf.src = 'https://vk.com/js/api/openapi.js?139';
+        wf.async = true;
+        s.parentNode.insertBefore(wf, s);
+    })(document);
+</script>

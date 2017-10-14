@@ -5,37 +5,43 @@ let app = app || {};
 
     app.mask = {
         phone(selector = '.mask-phone') {
-            if (document.querySelectorAll(selector).length) {
-                $(selector).each(function(){
-                    new Cleave($(this), {
+            const phone = document.querySelectorAll(selector);
+
+            if (phone.length) {
+                for (var i = phone.length - 1; i >= 0; i--) {
+                    new Cleave(phone[i], {
                         phone: true,
                         phoneRegionCode: 'ru'
                     });
-                });
+                }
             }
         },
 
         date(selector = '.mask-date') {
-            if (document.querySelectorAll(selector).length) {
-                $(selector).each(function(){
-                    new Cleave($(this), {
+            const date = document.querySelectorAll(selector);
+
+            if (date.length) {
+                for (var i = date.length - 1; i >= 0; i--) {
+                    new Cleave(date[i], {
                         date: true,
                         datePattern: ['d', 'm', 'Y']
                     });
-                });
+                }
             }
         },
 
         card(selector = '.mask-card') {
-            if (document.querySelectorAll(selector).length) {
-                $(selector).each(function(){
-                    new Cleave($(this), {
+            const card = document.querySelectorAll(selector);
+
+            if (card.length) {
+                for (var i = card.length - 1; i >= 0; i--) {
+                    new Cleave(card[i], {
                         numericOnly: true,
                         prefix: '00',
                         delimiter: '',
-                        blocks: [2, 4]
+                        blocks: [2, 4]    
                     });
-                });
+                }
             }
         },
 
