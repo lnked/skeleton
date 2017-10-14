@@ -5,6 +5,8 @@ const path  = require('path');
 const gulp  = require('gulp');
 const clean = require('../utils/clean')
 const error = require('../utils/error');
+
+const mqpacker      = require('css-mqpacker');
 const bowerFiles    = require('main-bower-files');
 
 module.exports = function(config, bower) {
@@ -43,6 +45,31 @@ module.exports = function(config, bower) {
             "value-no-vendor-prefix": true
         }
     };
+
+    function isMax(mq) {
+        return /max-width/.test(mq);
+    }
+
+    function isMin(mq) {
+        return /min-width/.test(mq);
+    }
+
+    function sortMediaQueries(a, b) {
+        let A = a.replace(/\D/g, '');
+        let B = b.replace(/\D/g, '');
+
+        if (isMax(a) && isMax(b)) {
+            return B - A;
+        } else if (isMin(a) && isMin(b)) {
+            return A - B;
+        } else if (isMax(a) && isMin(b)) {
+            return 1;
+        } else if (isMin(a) && isMax(b)) {
+            return -1;
+        }
+
+        return 1;
+    }
 
     let processors = {
         watch: [
@@ -94,6 +121,10 @@ module.exports = function(config, bower) {
             require('postcss-emptymediaqueries'),
             require('postcss-flexboxfixer'),
             require('postcss-gradientfixer'),
+            require('lost'),
+            mqpacker({
+                sort: sortMediaQueries
+            }),
             require('cssnano')({
                 safe: true,
                 calc: false,
@@ -128,7 +159,8 @@ module.exports = function(config, bower) {
                 global.is.build,
                 $.postcss([
                     require('autoprefixer')({
-                        browsers: AUTOPREFIXER_BROWSERS
+                        browsers: AUTOPREFIXER_BROWSERS,
+                        cascade: false
                     })
                 ])
             ))
@@ -154,8 +186,12 @@ module.exports = function(config, bower) {
 
             .pipe($.sassBulkImport())
             
-            .pipe($.sass({precision: 10}))
-            
+            .pipe($.sass({
+                outputStyle: global.is.build ? 'compact' : 'expanded', // nested, expanded, compact, compressed
+                // precision: 10
+                precision: 5
+            }))
+
             .pipe($.pixrem())
 
             .pipe($.postcss(
@@ -184,7 +220,8 @@ module.exports = function(config, bower) {
                 global.is.build,
                 $.postcss([
                     require('autoprefixer')({
-                        browsers: AUTOPREFIXER_BROWSERS
+                        browsers: AUTOPREFIXER_BROWSERS,
+                        cascade: false
                     })
                 ])
             ))

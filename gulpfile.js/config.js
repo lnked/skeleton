@@ -29,8 +29,8 @@ module.exports.tasks = {
         gzip: true,
         path: src + 'styles',
         src: [
-            src + 'styles/*.scss',
-            src + 'styles/**/*.scss',
+            src + 'styles/*.{sass,scss}',
+            src + 'styles/**/*.{sass,scss}',
             '!' + src + 'styles/_*.*',
             '!' + src + 'styles/**/_*.*',
             '!' + src + 'components/**/_*.*'
@@ -164,7 +164,7 @@ module.exports.tasks = {
             fonts:      [src + 'fonts/**/*.*'],
             misc:       [src + 'misc/**/*.*'],
             json:       [src + 'json/**/*.json'],
-            styles:     [src + 'styles/**/*.css', src + 'styles/**/*.scss'],
+            styles:     [src + 'styles/**/*.css', src + 'styles/**/*.{sass,scss}'],
             svgstore:   [src + 'svgstore/**/*.svg']
         }
     },

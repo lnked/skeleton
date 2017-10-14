@@ -72,101 +72,46 @@ module.exports = function(config) {
 
 };
 
-// const webpack = require('webpack');
-// const path = require('path');
-// const util = require('gulp-util');
-// const config = require('./gulp/config');
-// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+// AKELLA
+var gulp          = require('gulp');
+var webpack       = require('webpack');
+var gutil         = require('gulp-util');
+var notify        = require('gulp-notify');
+var server        = require('./server');
+var config        = require('../config');
+var webpackConfig = require('../../webpack.config').createConfig;
 
-// function createConfig(env) {
-//   let isProduction,
-//     webpackConfig;
+function handler(err, stats, cb) {
+    var errors = stats.compilation.errors;
 
-//   if (env === undefined) {
-//     env = process.env.NODE_ENV;
-//   }
+    if (err) throw new gutil.PluginError('webpack', err);
 
-//   isProduction = env === 'production';
+    if (errors.length > 0) {
+        notify.onError({
+            title: 'Webpack Error',
+            message: '<%= error.message %>',
+            sound: 'Submarine'
+        }).call(null, errors[0]);
+    }
 
-//   webpackConfig = {
-//     context: path.join(__dirname, config.src.js),
-//     entry: {
-//       // vendor: ['jquery'],
-//       app: './app.js',
-//     },
-//     output: {
-//       path: path.join(__dirname, config.dest.js),
-//       filename: '[name].js',
-//       publicPath: 'js/',
-//     },
-//     devtool: isProduction ?
-//       '#source-map' :
-//       '#cheap-module-eval-source-map',
-//     plugins: [
-//       // new webpack.optimize.CommonsChunkPlugin({
-//       //     name: 'vendor',
-//       //     filename: '[name].js',
-//       //     minChunks: Infinity
-//       // }),
-//       // new webpack.LoaderOptionsPlugin({
-//       //   options: {
-//       //     eslint: {
-//       //       formatter: require('eslint-formatter-pretty')
-//       //     }
-//       //   }
-//       // }),
-//       new webpack.ProvidePlugin({
-//         $: 'jquery',
-//         jQuery: 'jquery',
-//         'window.jQuery': 'jquery',
-//       }),
-//       new webpack.NoEmitOnErrorsPlugin(),
+    gutil.log('[webpack]', stats.toString({
+        colors: true,
+        chunks: false
+    }));
 
-//       new BundleAnalyzerPlugin({
-//         analyzerMode: 'static',
-//         analyzerPort: 4000,
-//         openAnalyzer: false,
-//       }),
-//     ],
-//     resolve: {
-//       extensions: ['.js'],
-//       alias: {
-//         TweenLite: path.resolve('node_modules', 'gsap/src/uncompressed/TweenLite.js'),
-//         TweenMax: path.resolve('node_modules', 'gsap/src/uncompressed/TweenMax.js'),
-//         TimelineLite: path.resolve('node_modules', 'gsap/src/uncompressed/TimelineLite.js'),
-//         TimelineMax: path.resolve('node_modules', 'gsap/src/uncompressed/TimelineMax.js'),
-//         ScrollMagic: path.resolve('node_modules', 'scrollmagic/scrollmagic/uncompressed/ScrollMagic.js'),
-//         'animation.gsap': path.resolve('node_modules', 'scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap.js'),
-//         'debug.addIndicators': path.resolve('node_modules', 'scrollmagic/scrollmagic/uncompressed/plugins/debug.addIndicators.js'),
-//       },
-//     },
-//     module: {
-//       rules: [
-//          {
-//           test: /\.js$/,
-//           loader: 'babel-loader',
-//           exclude: [
-//             path.resolve(__dirname, 'node_modules'),
-//           ],
-//         }],
-//     },
-//   };
+    server.reload();
+    if (typeof cb === 'function') cb();
+}
 
-//   if (isProduction) {
-//     webpackConfig.plugins.push(
-//       new webpack.LoaderOptionsPlugin({
-//         minimize: true,
-//       }),
-//       new webpack.optimize.UglifyJsPlugin({
-//         compress: {
-//           warnings: false,
-//         },
-//       })
-//     );
-//   }
+gulp.task('webpack', function(cb) {
+    webpack(webpackConfig(config.env)).run(function(err, stats) {
+        handler(err, stats, cb);
+    });
+});
 
-//   return webpackConfig;
-// }
-
-// module.exports = createConfig();
-// module.exports.createConfig = createConfig;
+gulp.task('webpack:watch', function() {
+    webpack(webpackConfig(config.env)).watch({
+        aggregateTimeout: 100,
+        poll: false
+    }, handler);
+});
