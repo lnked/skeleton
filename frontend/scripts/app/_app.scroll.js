@@ -3,24 +3,31 @@ let app = app || {};
 ((body => {
     "use strict";
 
+    const $body = $('body');
+
     app.scroll = {
 
         disableHover () {
-            var timer;
-            window.addEventListener('scroll', function() {
+            let timer;
+
+            $(window).on('scroll', () => {
                 clearTimeout(timer);
-                
-                if(!body.hasClass('disable-hover')) {
-                    body.addClass('disable-hover');
+
+                if (!$body.hasClass('disable-hover')) {
+                    $body.addClass('disable-hover');
                 }
 
-                timer = setTimeout(function(){
-                    body.removeClass('disable-hover');
-                },500);
-            }, false);
+                timer = setTimeout(() => {
+                    $body.removeClass('disable-hover');
+                }, 500);
+            });
         },
 
         bind() {
+            $(document).ready(function() {
+                $('html').scrollWithEase();
+            });
+
             $(window).on('scroll', function(){
                 if( $(window).scrollTop() > $(document).height() - $(window).height() ) {
                     //вызов апи
