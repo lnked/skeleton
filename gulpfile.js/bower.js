@@ -9,6 +9,9 @@ module.exports.config = {
         "hammerjs": {
             "main": "hammer.min.js"
         },
+        "verge": {
+            "main": "verge.min.js"
+        },
         "horwheel": {
             "main": "dist/horwheel.min.js"
         },
