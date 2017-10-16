@@ -41,6 +41,7 @@
     "scrollmagic": "2.0.5",
     "Template7": "template7#1.2.5",
     "bLazy": "blazy#1.8.2",
-    "verge": "1.10.2"
+    "verge": "1.10.2",
+    "pubsub-js": "1.5.7"
   }
 }

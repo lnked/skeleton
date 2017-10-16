@@ -12,6 +12,9 @@ module.exports.config = {
         "verge": {
             "main": "verge.min.js"
         },
+        "pubsub-js": {
+            "main": "src/pubsub.js"
+        },
         "horwheel": {
             "main": "dist/horwheel.min.js"
         },
