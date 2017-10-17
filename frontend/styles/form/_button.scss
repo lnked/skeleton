@@ -14,9 +14,9 @@
     padding-bottom: 0;
     cursor: pointer;
     user-select: none;
-    -webkit-appearance: none;
+    appearance: none;
     border-color: rgba(0, 0, 0, 0);
-    transition: border-color $a-time ease, background-color $a-time ease, color $a-time ease;
+    transition: background-color $a-time $a-func, border-color $a-time $a-func, color $a-time $a-func;
 
     &:focus {
         outline: 0;
