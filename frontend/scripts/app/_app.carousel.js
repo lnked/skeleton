@@ -5,61 +5,54 @@ var app = app || {};
 
     app.carousel = {
 
-        init: function() {
-            if ($('.j-carousel').length && $('.j-carousel').find('.slick-slide').length)
+        init: function()
+        {
+            if ($('.j-carousel').length)
             {
-                var count = 4, classname = 'carousel';
-
                 $('.j-carousel').each(function(){
-                    count = 4;
-                    classname = 'carousel';
+                    const $carousel = $(this);
 
-                    if ($(this).data('viewcount'))
+                    if ($carousel.find('.slick-slide').length)
                     {
-                        count = parseInt($(this).data('viewcount'));
-                    }
+                        const count = 4;
 
-                    if ($(this).data('classname'))
-                    {
-                        classname = $(this).data('classname');
+                        $carousel.slick({
+                            infinite: true,
+                            dots: false,
+                            draggable: true,
+                            speed: 170,
+                            slidesToShow: count,
+                            slidesToScroll: 1,
+                            swipeToSlide: true,
+                            prevArrow: '<button type="button" class="carousel__control _prev slick-prev"></button>',
+                            nextArrow: '<button type="button" class="carousel__control _next slick-next"></button>',
+                            responsive: [
+                                {
+                                    breakpoint: 1024,
+                                    settings: {
+                                        slidesToShow: 3,
+                                        slidesToScroll: 3,
+                                        infinite: true,
+                                        dots: true
+                                    }
+                                },
+                                {
+                                    breakpoint: 600,
+                                    settings: {
+                                        slidesToShow: 2,
+                                        slidesToScroll: 2
+                                    }
+                                },
+                                {
+                                    breakpoint: 480,
+                                    settings: {
+                                        slidesToShow: 1,
+                                        slidesToScroll: 1
+                                    }
+                                }
+                            ]
+                        });
                     }
-
-                    $(this).slick({
-                        infinite: true,
-                        dots: false,
-                        draggable: true,
-                        speed: 170,
-                        slidesToShow: count,
-                        slidesToScroll: 1,
-                        swipeToSlide: true,
-                        prevArrow: '<button type="button" class="'+classname+'__control _prev slick-prev"></button>',
-                        nextArrow: '<button type="button" class="'+classname+'__control _next slick-next"></button>',
-                        responsive: [
-                            {
-                                breakpoint: 1024,
-                                settings: {
-                                    slidesToShow: 3,
-                                    slidesToScroll: 3,
-                                    infinite: true,
-                                    dots: true
-                                }
-                            },
-                            {
-                                breakpoint: 600,
-                                settings: {
-                                    slidesToShow: 2,
-                                    slidesToScroll: 2
-                                }
-                            },
-                            {
-                                breakpoint: 480,
-                                settings: {
-                                    slidesToShow: 1,
-                                    slidesToScroll: 1
-                                }
-                            }
-                        ]
-                    });
                 });
             }
         }

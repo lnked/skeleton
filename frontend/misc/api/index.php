@@ -25,74 +25,79 @@ if( !empty( $_SERVER['HTTP_X_REQUESTED_WITH'] ) && strtolower( $_SERVER['HTTP_X_
 	$empty = $config['message']['empty'];
     $empty_correct = $config['message']['empty_correct'];
 
-	if ($controller == 'send')
-	{
+    if ($controller)
+    {
         $response = [];
 
-		if (count($_POST))
-	    {
-	        unset($_SESSION[$model]);
+	    switch ($controller) {
 
-	        $validate = validate($model, $config['fields'], $_POST);
+	    	case 'send':
 
-	        if (!empty($_SESSION[$model]['error']))
-	        {
-	        	$response = [
-	    			'status'	=> false,
-	    			'title'		=> $config['message']['title'],
-		    		'errors'	=> $_SESSION[$model]['error']
-	    		];
-	        }
-	        else
-	        {
-				$body = message($config['fields'], $_POST);
+	    		if (count($_POST)) {
+			        unset($_SESSION[$model]);
 
-				if ($body)
-				{
-					$mail = new mMail();
+			        $validate = validate($model, $config['fields'], $_POST);
 
-		            foreach ($config['emails'] as $email)
-		            {
-		            	$mail->addTo($email);
-		            }
-
-					$mail->setSubject($config['subject']);
-
-		            $mail->setFrom($config['from']);
-		            $mail->setHtmlBody(iconv('utf-8', 'windows-1251', $body));
-
-		            if ($mail->send())
-		            {
-		                unset($_SESSION[$model]);
-
-		                $response = [
-			    			'status'	=> true,
-				    		'title'		=> $config['message']['title'],
-				    		'message'   => $config['message']['success']
-			    		];
-		            }
-					else
-		            {
-		                $response = [
+			        if (!empty($_SESSION[$model]['error']))
+			        {
+			        	$response = [
 			    			'status'	=> false,
 			    			'title'		=> $config['message']['title'],
-				    		'message'   => $config['message']['failure']
+				    		'errors'	=> $_SESSION[$model]['error']
 			    		];
-					}
-				}
-				else
-	            {
-	                $response = [
-		    			'status'	=> false,
-		    			'title'		=> $config['message']['title'],
-			    		'message'   => $config['message']['failure']
-		    		];
-				}
-	        }
+			        }
+			        else
+			        {
+						$body = message($config['fields'], $_POST);
+
+						if ($body)
+						{
+							$mail = new mMail();
+
+				            foreach ($config['emails'] as $email)
+				            {
+				            	$mail->addTo($email);
+				            }
+
+							$mail->setSubject($config['subject']);
+
+				            $mail->setFrom($config['from']);
+				            $mail->setHtmlBody(iconv('utf-8', 'windows-1251', $body));
+
+				            if ($mail->send())
+				            {
+				                unset($_SESSION[$model]);
+
+				                $response = [
+					    			'status'	=> true,
+						    		'title'		=> $config['message']['title'],
+						    		'message'   => $config['message']['success']
+					    		];
+				            }
+							else
+				            {
+				                $response = [
+					    			'status'	=> false,
+					    			'title'		=> $config['message']['title'],
+						    		'message'   => $config['message']['failure']
+					    		];
+							}
+						}
+						else
+			            {
+			                $response = [
+				    			'status'	=> false,
+				    			'title'		=> $config['message']['title'],
+					    		'message'   => $config['message']['failure']
+				    		];
+						}
+			        }
+			    }
+			break;
 	    }
 
 	    exit(json_encode($response, 64 | 256));
-	}
+    }
 
 	return true ;
 }
