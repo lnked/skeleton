@@ -42,6 +42,7 @@
     "Template7": "template7#1.2.5",
     "bLazy": "blazy#1.8.2",
     "verge": "1.10.2",
-    "pubsub-js": "1.5.7"
+    "pubsub-js": "1.5.7",
+    "jquery.nicescroll": "3.7.6"
   }
 }
