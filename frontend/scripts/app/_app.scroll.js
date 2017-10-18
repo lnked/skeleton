@@ -24,9 +24,7 @@ let app = app || {};
         },
 
         bind() {
-            $(document).ready(function() {
-                $('html').scrollWithEase();
-            });
+            $('html').scrollWithEase();
 
             $(window).on('scroll', function(){
                 if( $(window).scrollTop() > $(document).height() - $(window).height() ) {
