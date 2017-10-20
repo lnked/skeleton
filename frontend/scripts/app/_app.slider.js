@@ -1,164 +1,167 @@
-let app = app || {};
+var app = app || {};
 
-((body => {
+(function(body){
     "use strict";
 
-    const $slider = $('#carousel-slider');
+    const $body = $('body');
 
     app.slider = {
 
-        count: 0,
-        current: 0,
-        timeout: 26000,
+        config: {
+            item: '.j-slider-item',
+            prev: '.j-slider-prev',
+            next: '.j-slider-next',
+            point: '.j-slider-point'
+        },
+
+        limit: 0,
+
+        current: 1,
+
+        autoplay: true,
+
+        autoplaySpeed: 4000,
+
+        timeout: 500,
+
         interval: null,
 
-        preload ($current) {
-            app.preloader.preload($current.attr('id'));
+        lock () {
+            $(`${this.config.prev}, ${this.config.next}, ${this.config.point}`).addClass('is-lock');
         },
 
-        drop (callback) {
-            const $target = $slider.find('.j-slide.is-active');
-
-            $target.addClass('is-last-active');
-            $target.removeClass('is-active');
-
-            callback();
+        unlock () {
+            $(`${this.config.prev}, ${this.config.next}, ${this.config.point}`).removeClass('is-lock');
         },
 
-        bind () {
-            const $target = $slider.find('.j-slide').eq((this.current));
-            $target.addClass('is-active');
-
-            this.preload($target);
-            this.activateDot();
-
-            setTimeout(function(){
-                $slider.find('.j-slide.is-last-active').removeClass('is-last-active');
-            }, 1000);
-
-            this.startInterval();
-        },
-
-        prev () {
+        reset () {
             const _this = this;
 
-            _this.stopInterval();
+            const $active = $(`${_this.config.item}.is-active`);
 
-            _this.drop(() => {
-                _this.current -= 1;
+            $active.removeClass('is-animate');
 
-                if (_this.current === 0) {
-                    _this.current = _this.count;
+            $(`${_this.config.point}.is-current`).removeClass('is-current');
+
+            setTimeout(() => {
+                $active.removeClass('is-active');
+            }, _this.timeout);
+        },
+
+        go (slide, start) {
+            const _this = this;
+
+            _this.reset();
+            _this.current = slide;
+
+            $(`${this.config.point}[data-index="${slide}"]`).addClass('is-current');
+
+            const $slide = $(`${this.config.item}[data-index="${slide}"]`);
+
+            $slide.addClass('is-active');
+
+            setTimeout(() => {
+                $slide.addClass('is-animate');
+            }, 16);
+
+            setTimeout(() => {
+                _this.unlock();
+
+                if (start) {
+                    _this.start();
                 }
 
-                _this.bind();
-            });
+            }, _this.timeout);
         },
 
-        next () {
-            const _this = this;
+        prev (start) {
+            this.lock();
 
-            _this.stopInterval();
+            let prev = this.current - 1;
 
-            _this.drop(() => {
-                _this.current += 1;
-
-                if (_this.current >= _this.count) {
-                    _this.current = 0;
-                }
-
-                _this.bind();
-            });
-        },
-
-        goTo (index) {
-            const _this = this;
-
-            _this.stopInterval();
-
-            _this.drop(() => {
-                _this.current = index;
-                _this.bind();
-            });
-        },
-
-        dots () {
-            let i = 0;
-            let item = '';
-            const dots = [];
-            const _this = this;
-
-            for (i=0; i<_this.count; i++) {
-                item = '<a href="#'+i+'" class="s-slider__dots__item j-slider-goto"></a>';
-                dots.push(item);
+            if (prev <= 0) {
+                prev = this.limit;
             }
 
-            _this.dotsItem.html(dots.join(''));
-            _this.dotsItem.addClass('is-active');
-
-            $('body').on('click', '.j-slider-goto', function(e) {
-                e.preventDefault();
-
-                if (!$(this).hasClass('is-active')) {
-                    _this.goTo($(this).attr('href').substr(-1));
-                }
-            });
+            this.go(prev, start);
         },
 
-        activateDot () {
-            this.dotsItem.find('.j-slider-goto.is-active').removeClass('is-active');
-            this.dotsItem.find('.j-slider-goto').eq(this.current).addClass('is-active');
+        next (start) {
+            this.lock();
+
+            let next = this.current + 1;
+
+            if (next > this.limit) {
+                next = 1;
+            }
+
+            this.go(next, start);
+        },
+
+        prepare () {
+            this.limit = $(`${this.config.point}`).length;
         },
 
         events () {
-            this.arrowPrev.on('click', (e) => {
+            const _this = this;
+
+            $body.on('click', `${this.config.prev}`, (e) => {
                 e.preventDefault();
-                this.prev();
+
+                _this.stop();
+
+                _this.prev(true);
+
+                return false;
             });
 
-            this.arrowNext.on('click', (e) => {
+            $body.on('click', `${this.config.next}`, (e) => {
                 e.preventDefault();
-                this.next();
+
+                _this.stop();
+
+                _this.next(true);
+
+                return false;
+            });
+
+            $body.on('click', `${this.config.point}`, (e) => {
+                e.preventDefault();
+
+                _this.stop();
+
+                _this.lock();
+
+                const $this = $(e.currentTarget);
+
+                _this.go(parseInt($this.data('index'), 10), true);
+
+                return false;
             });
         },
 
-        stopInterval () {
+        stop () {
             clearInterval(this.interval);
         },
 
-        startInterval () {
-            this.interval = setInterval(() => { this.next() }, this.timeout);
+        start () {
+            const _this = this;
 
-            if (this.count) {
-                this.preload($slider.find('.j-slide.is-active'));
-                this.activateDot();
+            if (_this.autoplay) {
+                _this.stop();
+
+                _this.interval = setInterval(() => {
+                    _this.next(false);
+                }, _this.autoplaySpeed);
             }
-        },
-
-        make () {
-            this.count = $slider.find('.j-slide').length;
-            this.current = $slider.find('.j-slide.is-active').index();
-
-            this.dotsItem = $('#carousel-slider--dots');
-            this.arrowPrev = $('#carousel-slider--prev');
-            this.arrowNext = $('#carousel-slider--next');
-
-            this.arrowPrev.addClass('is-active');
-            this.arrowNext.addClass('is-active');
-
-            this.dots();
-
-            this.events();
-
-            this.startInterval();
         },
 
         init () {
-            if ($slider.length && $slider.find('.j-slide').length) {
-                this.make();
-            }
+            this.prepare();
+            this.events();
+            this.start();
         }
 
     };
 
-}))(document.body);
+})(document.body);

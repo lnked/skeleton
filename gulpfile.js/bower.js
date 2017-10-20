@@ -134,18 +134,18 @@ module.exports.config = {
                 "dist/jquery.lazyloadxt.extra.min.js"
             ]
         },
-        // "fancybox": {
-        //     "main": [
-        //         "source/jquery.fancybox.css",
-        //         "source/jquery.fancybox.pack.js"
-        //     ]
-        // },
         "fancybox": {
             "main": [
-                "dist/jquery.fancybox.min.css",
-                "dist/jquery.fancybox.min.js"
+                "source/jquery.fancybox.css",
+                "source/jquery.fancybox.pack.js"
             ]
         },
+        // "fancybox": {
+        //     "main": [
+        //         "dist/jquery.fancybox.min.css",
+        //         "dist/jquery.fancybox.min.js"
+        //     ]
+        // },
         "slick-carousel": {
             "main": [
                 "slick/slick.min.js",
