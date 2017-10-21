@@ -76,6 +76,9 @@ module.exports = function(config, bower) {
             require('postcss-for'),
             require('postcss-position'),
             require('postcss-triangle'),
+            require('postcss-selector-not'),
+            require('postcss-custom-media'),
+            require('postcss-media-minmax'),
             require('postcss-conditionals'),
             require('postcss-quantity-queries'),
             require('postcss-font-magician')({
