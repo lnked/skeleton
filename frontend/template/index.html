@@ -1,46 +1,25 @@
-@@include('./components/_meta.html', {
-    "title": "Index",
-    "bodyclass": ""
-})
+---
+title: Index
+current: index
+page1: Главная
+---
+{% include "./components/_meta.html" %}
 
-@@include('./components/_svgstore.html')
+{% include "./components/_svgstore.html" %}
 
 <div class="layout-wrapper">
-
-    @@include('./components/_header.html', {
-        "current": "index"
-    })
+    
+    {% include "./components/_header.html" %}
 
     <div class="layout-wrapper__pusher">
 
         <div class="layout-wrapper__container clearfix">
-
-            @@include('./components/_drag-drop.html')
-            @@include('./components/_sidebar.html')
+    
+            {% include "./components/_sidebar.html" %}
             
             <div class="content clearfix">
                 
-                @@include('./components/_breadcrumbs.html', {
-                    "page1": "Главная",
-                    "page2": "",
-                    "page3": ""
-                })
-
-                <h1></h1>
-
-                <input type="search">
-                <input type="email">
-                <input type="url">
-                <input type="tel">
-                <input type="number">
-                <input type="range">
-                <input type="date">
-                <input type="month">
-                <input type="week">
-                <input type="time">
-                <input type="datetime">
-                <input type="datetime-local">
-                <input type="color">
+                {% include "./components/_breadcrumbs.html" %}
 
             </div>
             
@@ -50,5 +29,5 @@
 
 </div>
 
-@@include('./components/_footer.html')
-@@include('./components/_scripts.html')
+{% include "./components/_footer.html" %}
+{% include "./components/_scripts.html" %}

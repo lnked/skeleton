@@ -1,54 +1,103 @@
-const gulp           = require('gulp');
-const nunjucksRender = require('gulp-nunjucks-render');
-const plumber        = require('gulp-plumber');
-const gulpif         = require('gulp-if');
-const changed        = require('gulp-changed');
-const prettify       = require('gulp-prettify');
-const frontMatter    = require('gulp-front-matter');
-const config         = require('../config');
+'use strict';
 
-function renderHtml(onlyChanged) {
-    nunjucksRender.nunjucks.configure({
-        watch: false,
-        trimBlocks: true,
-        lstripBlocks: false
-    });
+const $     = require('gulp-load-plugins')({ pattern: ['gulp-*', 'gulp.*', 'postcss-*'] });
+const gulp  = require('gulp');
+const clean = require('../utils/clean')
+const error = require('../utils/error');
 
-    return gulp
-        .src([config.src.templates + '/**/[^_]*.html'])
-        .pipe(plumber({
-            errorHandler: config.errorHandler
-        }))
-        .pipe(gulpif(onlyChanged, changed(config.dest.html)))
-        .pipe(frontMatter({ property: 'data' }))
-        .pipe(nunjucksRender({
-            PRODUCTION: config.production,
-            path: [config.src.templates]
-        }))
-        .pipe(prettify({
-            indent_size: 2,
-            wrap_attributes: 'auto', // 'force'
-            preserve_newlines: false,
-            // unformatted: [],
-            end_with_newline: true
-        }))
-        .pipe(gulp.dest(config.dest.html));
-}
+module.exports = function(config) {
+    config = config || {};
 
-gulp.task('nunjucks', function() {
-    return renderHtml();
-});
+    return function(callback) {
 
-gulp.task('nunjucks:changed', function() {
-    return renderHtml(true);
-});
+        $.nunjucksRender.nunjucks.configure({
+            watch: global.is.watch,
+            trimBlocks: true,
+            lstripBlocks: false
+        });
 
-gulp.task('nunjucks:watch', function() {
-    gulp.watch([
-        config.src.templates + '/**/[^_]*.html'
-    ], ['nunjucks:changed']);
+        gulp.src(config.src)
 
-    gulp.watch([
-        config.src.templates + '/**/_*.html'
-    ], ['nunjucks']);
-});
+            .pipe($.plumber({errorHandler: error}))
+            .pipe($.debug({'title': config.task}))
+
+            .pipe($.if(global.is.watch, $.changed(config.app)))
+
+            .pipe($.frontMatter({ property: 'data' }))
+
+            .pipe($.nunjucksRender({
+                path: [ config.path ],
+                PRODUCTION: global.is.build
+            }))
+
+            .pipe($.if(
+                global.is.build,
+                $.prettify({
+                    indent_size: 4,
+                    indent_char: ' ',
+                    wrap_attributes: 'auto', // 'force'
+                    preserve_newlines: false,
+                    end_with_newline: true,
+                    brace_style: 'expand',
+                    indent_handlebars: false,
+                    indent_inner_html: false,
+                    max_preserve_newlines: 1,
+                    unformatted: ['pre', 'code', 'script', 'style']
+                })
+            ))
+
+            .pipe($.if(
+                global.is.watch,
+                $.htmlhint({
+                    "attr-value-double-quotes": false,
+                    "tagname-lowercase": false,
+                    "attr-lowercase": false,
+                    "doctype-first": false,
+                    "id-unique": true,
+                    "tag-pair": false,
+                    "attr-no-duplication": true,
+                    "spec-char-escape": false,
+                    "src-not-empty": false
+                })
+            ))
+
+            .pipe($.if(
+                global.is.htmlmin,
+                $.htmlmin({
+                    minifyJS: true,
+                    minifyCSS: true,
+                    removeComments: true,
+                    collapseWhitespace: true,
+                    collapseBooleanAttributes: true,
+                    removeAttributeQuotes: true,
+                    removeRedundantAttributes: true,
+                    removeEmptyAttributes: true,
+                    removeScriptTypeAttributes: true,
+                    removeStyleLinkTypeAttributes: true,
+                    removeOptionalTags: true,
+                    processConditionalComments: true
+                })
+            ))
+
+            .pipe($.if(
+                global.is.watch,
+                $.htmlhint.reporter()
+            ))
+
+            .pipe($.debug({'title': config.task}))
+
+            .pipe($.if('*.html', $.size({title: 'html', showFiles: true})))
+            
+            .pipe(gulp.dest(config.app))
+
+            .pipe($.if(
+                global.is.notify,
+                $.notify({
+                    message: config.task + ' complete',
+                    onLast: true
+                })
+            ));
+
+        callback();
+    };
+};

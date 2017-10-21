@@ -26,7 +26,8 @@ for (let task_name in config.tasks) {
 
 gulp.task('build',
     gulp.series(
-        'before_build', gulp.parallel('template', 'pug', 'styles', 'scripts', 'images', 'favicon', 'fonts', 'json', 'misc')
+        // 'template', 'pug',
+        'before_build', gulp.parallel('nunjucks', 'styles', 'scripts', 'images', 'favicon', 'fonts', 'json', 'misc')
     )
 );
 

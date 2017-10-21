@@ -1,16 +1,18 @@
 <!DOCTYPE html>
-
 <!-- (c) lnk. CELEBRO Studio | https://celebro.ru -->
+
 <html class="no-js" lang="ru" itemscope="itemscope" itemtype="http://schema.org/WebPage">
 <head>
     <meta charset="utf-8">
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
-    <meta content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1" name="viewport">
 
-    <title itemprop="name">@@title</title>
+    <meta name="viewport"  content="width=device-width, initial-scale=1.0">
 
-    <meta name="description" content="">
-    <meta name="keywords" content="">
+    <title itemprop="name">{{ title }}</title>
+
+    <meta name="description" content="{{ description }}">
+    <meta name="keywords" content="{{ keywords }}">
+
     <meta name="author" content="">
     <meta name="copyright" content="(c)"> 
 
@@ -58,4 +60,4 @@
 
     <script>(function(d) { d.className = d.className.replace(/\bno-js/, ''); })(document.documentElement);</script>
 </head>
-<body@@if (typeof(bodyclass) !== 'undefined' && bodyclass !== ''){ class="@@bodyclass"}>
+<body{% if bodyclass %} class="{{ bodyclass }}"{% endif %}>
