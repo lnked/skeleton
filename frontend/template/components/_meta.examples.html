@@ -14,7 +14,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
 
-    <title itemprop="name">@@title</title>
+    <title itemprop="name">{{ title }}</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
 
@@ -165,7 +165,7 @@
     //     }
     // }, 1000);
     </script>
-    
+
     <!--
     <script>
         WebFontConfig = {
@@ -186,7 +186,7 @@
             s.parentNode.insertBefore(wf, s);
         })(document);
     </script>
-    
+
     <style type="text/css">
         @font-face {
             font-family:"My Font";
@@ -194,12 +194,3 @@
         }
     </style>
     -->
-
-    <!--[if IEMobile]>
-        <meta http-equiv="cleartype" content="on">
-        <meta http-equiv="imagetoolbar" content="false">
-    <![endif]-->
-
-    <script>(function(d) { d.className = d.className.replace(/\bno-js/, ''); })(document.documentElement);</script>
-</head>
-<body@@if (typeof(bodyclass) !== 'undefined' && bodyclass !== ''){ class="@@bodyclass"}>
