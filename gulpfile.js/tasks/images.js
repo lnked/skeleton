@@ -24,7 +24,7 @@ module.exports = function(config) {
                     quality: 60
                 })))
 
-                .pipe(gulp.dest(config.app));    
+                .pipe(gulp.dest(config.app));
         }
 
         gulp.src(config.src)
