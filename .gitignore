@@ -3,12 +3,13 @@
 /__bunch
 /public_html
 /info.mdown
-# /.domain.sh
-# /.install.sh
 
 git
 git.pub
+
 .cfont
+.install
+.domain
 
 # Numerous always-ignore extensions
 *.bak
