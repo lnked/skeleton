@@ -11,21 +11,16 @@
 // Сброс стилей
 @import 'reset';
 
+@import "helpers";
+
 @import "base";
 
 // Хелперы
-@import "helpers/button";
-@import "helpers/layout";
-@import "helpers/images";
-@import "helpers/selection";
-@import "helpers/attributes";
-@import "helpers/visible";
-@import "helpers/clearfix";
-@import "helpers/print";
-@import "helpers/input-textarea";
+@import "helpers";
 
-@import "modal/base";
-@import "modal/animation";
+@import "modal";
+
+@import "form/*";
 
 @import "layouts/*";
 

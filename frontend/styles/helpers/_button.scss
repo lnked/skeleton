@@ -15,6 +15,12 @@
     text-decoration: none;
     display: inline-block;
     appearance: none;
-    background-color: transparent;
+    background: transparent;
+    border-color: transparent;
     transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+    transition: background-color $a-time $a-func, border-color $a-time $a-func, color $a-time $a-func;
+
+    &:focus {
+        outline: 0;
+    }
 }

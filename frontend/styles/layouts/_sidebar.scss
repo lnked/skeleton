@@ -61,7 +61,7 @@
         transform: translate3d(0, -20px, 0);
         box-shadow: 0 5px 15px rgba(0, 0, 0, .2);
         transition: transform $a-time, opacity $a-time;
-        
+
         &.active {
             display: block;
         }

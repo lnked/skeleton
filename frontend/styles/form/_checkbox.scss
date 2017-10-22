@@ -8,7 +8,7 @@ $checkbox-size: 18px;
     display: block;
     position: relative;
     font-size: 0;
-    
+
     &__input {
         width: 0;
         height: 0;
@@ -17,7 +17,7 @@ $checkbox-size: 18px;
         opacity: 0;
         position: absolute;
     }
-    
+
     &__visible {
         width: $checkbox-size;
         height: $checkbox-size;
