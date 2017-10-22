@@ -6,6 +6,10 @@
 # /.domain.sh
 # /.install.sh
 
+git
+git.pub
+.cfont
+
 # Numerous always-ignore extensions
 *.bak
 *.diff
