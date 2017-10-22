@@ -19,10 +19,10 @@ Web starter kit
 
 # default task
 watch
- 
+
 # build
 
-# template jade
+# template
 # scripts webpack
 # styles
 # images

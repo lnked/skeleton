@@ -1,16 +1,27 @@
-# editorconfig.org
+# Корневой файл EditorConfig
 root = true
 
+# Для всех файлов используем unix-совместимые переносы строк
 [*]
-indent_style = space
 end_of_line = lf
+indent_style = space
 charset = Windows-1251
 trim_trailing_whitespace = true
 insert_final_newline = true
 
+# отступы в 4 пробела
+[*.py]
+indent_style = space
+indent_size = 4
+
 [*.{json,js,jsx,html,css}]
 indent_style = space
 indent_size = 4
+
+# Только для файлов package.json or .travis.yml
+[{package.json,.travis.yml}]
+indent_size = 4
+indent_style = space
 
 [.eslintrc]
 indent_style = space
