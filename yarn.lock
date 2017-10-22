@@ -9718,11 +9718,11 @@ postcss-minify-selectors@^2.0.4:
     postcss-selector-parser "^2.0.0"
 
 postcss-mixins@^6.1.0:
-  version "6.1.1"
-  resolved "https://registry.yarnpkg.com/postcss-mixins/-/postcss-mixins-6.1.1.tgz#d77b9cfeab082d9674770e463757657ff7274d4e"
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/postcss-mixins/-/postcss-mixins-6.2.0.tgz#fa9d2c2166b2ae7745956c727ab9dd2de4b96a40"
   dependencies:
     globby "^6.1.0"
-    postcss "^6.0.12"
+    postcss "^6.0.13"
     postcss-js "^1.0.1"
     postcss-simple-vars "^4.1.0"
     sugarss "^1.0.0"
@@ -10036,28 +10036,12 @@ postcss@^5.0.0, postcss@^5.0.10, postcss@^5.0.11, postcss@^5.0.12, postcss@^5.0.
     source-map "^0.5.6"
     supports-color "^3.2.3"
 
-postcss@^6.0.0, postcss@^6.0.10, postcss@^6.0.13:
+postcss@^6.0.0, postcss@^6.0.10, postcss@^6.0.11, postcss@^6.0.13:
   version "6.0.13"
   resolved "https://registry.yarnpkg.com/postcss/-/postcss-6.0.13.tgz#b9ecab4ee00c89db3ec931145bd9590bbf3f125f"
   dependencies:
     chalk "^2.1.0"
     source-map "^0.6.1"
-    supports-color "^4.4.0"
-
-postcss@^6.0.11:
-  version "6.0.11"
-  resolved "https://registry.yarnpkg.com/postcss/-/postcss-6.0.11.tgz#f48db210b1d37a7f7ab6499b7a54982997ab6f72"
-  dependencies:
-    chalk "^2.1.0"
-    source-map "^0.5.7"
-    supports-color "^4.4.0"
-
-postcss@^6.0.12:
-  version "6.0.12"
-  resolved "https://registry.yarnpkg.com/postcss/-/postcss-6.0.12.tgz#6b0155089d2d212f7bd6a0cecd4c58c007403535"
-  dependencies:
-    chalk "^2.1.0"
-    source-map "^0.5.7"
     supports-color "^4.4.0"
 
 postcss@^6.0.4, postcss@^6.0.8:
@@ -11462,7 +11446,7 @@ source-map@^0.1.38, source-map@^0.1.39, source-map@~0.1.31, source-map@~0.1.33:
   dependencies:
     amdefine ">=0.0.4"
 
-source-map@^0.5.6, source-map@^0.5.7, source-map@~0.5.6:
+source-map@^0.5.6, source-map@~0.5.6:
   version "0.5.7"
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.5.7.tgz#8a039d2d1021d22d1ea14c80d8ea468ba2ef3fcc"
 
