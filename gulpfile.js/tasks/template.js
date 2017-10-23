@@ -32,7 +32,7 @@ module.exports = function(config) {
 
             .pipe($.if(
                 global.is.build,
-                $.htmlPrettify({
+                $.prettify({
                     indent_size: 4,
                     indent_char: ' ',
                     brace_style: 'expand',

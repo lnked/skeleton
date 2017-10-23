@@ -15,6 +15,7 @@
     "build": "gulp build",
     "deploy": "gulp deploy",
     "template": "gulp nunjucks",
+    "o-template": "gulp template",
     "styles": "gulp styles",
     "scripts": "gulp scripts",
     "images": "gulp images",
