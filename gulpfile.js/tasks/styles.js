@@ -158,6 +158,15 @@ module.exports = function(config, bower) {
             .pipe($.filter('**/*.css'))
             .pipe($.concat('vendors.css'))
             .pipe($.rename({suffix: '.min'}))
+
+            .pipe($.if(
+                global.is.uncss,
+                $.purifycss([
+                    `${config.html}**/*.html`,
+                    `${config.scripts}**/*.js`
+                ])
+            ))
+
             .pipe($.if(
                 global.is.build,
                 $.postcss([
@@ -184,11 +193,11 @@ module.exports = function(config, bower) {
         }
 
         gulp.src(config.src)
-            .pipe($.plumber({errorHandler: error}))            
+            .pipe($.plumber({errorHandler: error}))
             .pipe($.if(!global.is.build, $.sourcemaps.init()))
 
             .pipe($.sassBulkImport())
-            
+
             .pipe($.sass({
                 outputStyle: global.is.build ? 'compact' : 'expanded', // nested, expanded, compact, compressed
                 // precision: 10
@@ -209,15 +218,23 @@ module.exports = function(config, bower) {
                 global.is.modules,
                 $.postcss(processors.modules)
             ))
-            
+
             .pipe($.if(
                 global.is.uncss,
-                $.uncss({
-                    timeout : 1000,
-                    htmlroot : config.html,
-                    html: [ '**/*.html' ]
-                })
+                $.purifycss([
+                    `${config.html}**/*.html`,
+                    `${config.scripts}**/*.js`
+                ])
             ))
+
+            // .pipe($.if(
+            //     global.is.uncss,
+            //     $.uncss({
+            //         timeout : 1000,
+            //         htmlroot : config.html,
+            //         html: [ '**/*.html' ]
+            //     })
+            // ))
 
             .pipe($.if(
                 global.is.build,
@@ -245,9 +262,9 @@ module.exports = function(config, bower) {
 
             .pipe($.if(global.is.build, $.groupCssMediaQueries()))
             .pipe($.if(global.is.build, $.postcss(processors.build)))
-            
+
             .pipe($.size({title: 'styles'}))
-            
+
             .pipe($.if(!global.is.build, $.sourcemaps.write()))
 
             .pipe(gulp.dest(config.app))
