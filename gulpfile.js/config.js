@@ -44,6 +44,7 @@ module.exports.tasks = {
         app: app + 'css',
         html: markup,
         scripts: src + 'js',
+        template: app,
         browsers: [
             'last 2 version',
             'ie >= 8',

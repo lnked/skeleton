@@ -140,6 +140,16 @@ module.exports = function(config, bower) {
         ]
     };
 
+    const scriptsPath = config.scripts.replace(/^|\/$/g, '');
+    const templatePath = config.template.replace(/^|\/$/g, '');
+
+    const uncssPath = [
+        `${scriptsPath}/*.js`,
+        `${scriptsPath}/**/*.js`,
+        `${templatePath}/*.html`,
+        `${templatePath}/**/*.html`
+    ];
+
     return function(callback) {
         // Bower files
         try {
@@ -161,10 +171,7 @@ module.exports = function(config, bower) {
 
             .pipe($.if(
                 global.is.uncss,
-                $.purifycss([
-                    `${config.html}**/*.html`,
-                    `${config.scripts}**/*.js`
-                ])
+                $.purifycss(uncssPath)
             ))
 
             .pipe($.if(
@@ -221,10 +228,7 @@ module.exports = function(config, bower) {
 
             .pipe($.if(
                 global.is.uncss,
-                $.purifycss([
-                    `${config.html}**/*.html`,
-                    `${config.scripts}**/*.js`
-                ])
+                $.purifycss(uncssPath)
             ))
 
             // .pipe($.if(
