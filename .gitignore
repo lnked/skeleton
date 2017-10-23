@@ -63,6 +63,7 @@ git.pub
 ._*
 .cache
 .vscode
+.phpintel
 .DS_Store
 .project
 .settings

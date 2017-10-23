@@ -11,14 +11,12 @@
 // Сброс стилей
 @import 'reset';
 
-@import "helpers";
-
 @import "base";
 
 // Хелперы
-@import "helpers";
+@import "helpers/*";
 
-@import "modal";
+@import "modal/*";
 
 @import "form/*";
 

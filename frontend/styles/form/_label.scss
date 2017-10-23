@@ -32,7 +32,7 @@
             display: inline-block;
 
             &._middle {
-                vertical-align: middle;   
+                vertical-align: middle;
             }
 
             &._top {
@@ -74,13 +74,5 @@
             float: none;
             padding-left: 0;
         }
-    }
-}
-
-&.is-hidden {
-    display: none;
-
-    &.is-show {
-        display: block;
     }
 }

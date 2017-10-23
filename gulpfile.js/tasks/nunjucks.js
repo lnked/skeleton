@@ -33,10 +33,12 @@ module.exports = function(config) {
             .pipe($.if(
                 global.is.build,
                 $.prettify({
+                    eol: "\n",
                     indent_size: 4,
+                    indent_level: 0,
                     indent_char: ' ',
                     wrap_attributes: 'auto', // 'force'
-                    preserve_newlines: false,
+                    preserve_newlines: true,
                     end_with_newline: true,
                     brace_style: 'expand',
                     indent_handlebars: false,
@@ -87,7 +89,7 @@ module.exports = function(config) {
             .pipe($.debug({'title': config.task}))
 
             .pipe($.if('*.html', $.size({title: 'html', showFiles: true})))
-            
+
             .pipe(gulp.dest(config.app))
 
             .pipe($.if(

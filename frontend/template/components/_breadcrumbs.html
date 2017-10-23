@@ -1,3 +1,4 @@
+{% if page1 or page2 or page3 %}
 <nav class="breadcrumbs clearfix">
     <ol class="breadcrumbs__list" itemscope itemtype="http://schema.org/BreadcrumbList">
 
@@ -21,5 +22,7 @@
             <meta itemprop="position" content="3" />
         </li>
         {% endif %}
+
     </ol>
 </nav>
+{% endif %}

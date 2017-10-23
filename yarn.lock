@@ -2105,10 +2105,6 @@ clone@^1.0.0, clone@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/clone/-/clone-1.0.2.tgz#260b7a99ebb1edfe247538175f783243cb19d149"
 
-clone@~0.1.11:
-  version "0.1.19"
-  resolved "https://registry.yarnpkg.com/clone/-/clone-0.1.19.tgz#613fb68639b26a494ac53253e15b1a6bd88ada85"
-
 cloneable-readable@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/cloneable-readable/-/cloneable-readable-1.0.0.tgz#a6290d413f217a61232f95e458ff38418cfb0117"
@@ -3846,18 +3842,6 @@ event-stream@^3.1.0, event-stream@^3.3.2:
     stream-combiner "~0.0.4"
     through "~2.3.1"
 
-event-stream@~3.0.16:
-  version "3.0.20"
-  resolved "https://registry.yarnpkg.com/event-stream/-/event-stream-3.0.20.tgz#038bbb2ea9ea90385b26fbc1854d0b539f2abea3"
-  dependencies:
-    duplexer "~0.1.1"
-    from "~0"
-    map-stream "~0.0.3"
-    pause-stream "0.0.11"
-    split "0.2"
-    stream-combiner "~0.0.3"
-    through "~2.3.1"
-
 event-stream@~3.1.0:
   version "3.1.7"
   resolved "https://registry.yarnpkg.com/event-stream/-/event-stream-3.1.7.tgz#b4c540012d0fe1498420f3d8946008db6393c37a"
@@ -5204,15 +5188,6 @@ gulp-gzip@^1.4.0:
     stream-to-array "~1.0.0"
     through2 "^0.4.1"
 
-gulp-html-prettify@0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/gulp-html-prettify/-/gulp-html-prettify-0.0.1.tgz#37926366e71a1f869b4ef518d0e3a0d6580fc5af"
-  dependencies:
-    clone "~0.1.11"
-    event-stream "~3.0.16"
-    gulp-util "0.0.1"
-    html "git://github.com/colynb/commonjs-html-prettyprinter.git"
-
 gulp-htmlhint@^0.3.1:
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/gulp-htmlhint/-/gulp-htmlhint-0.3.1.tgz#68604533da2b3f8c5972b43b516606255218dd1e"
@@ -5295,14 +5270,6 @@ gulp-load-plugins@^1.5.0:
     has-gulplog "^0.1.0"
     micromatch "^2.3.8"
     resolve "^1.1.7"
-
-gulp-main-bower-files@^1.6.2:
-  version "1.6.2"
-  resolved "https://registry.yarnpkg.com/gulp-main-bower-files/-/gulp-main-bower-files-1.6.2.tgz#42ee785af6b84df53c877faf3dd35a54e4853aaa"
-  dependencies:
-    gulp-util "3.0.8"
-    main-bower-files "2.13.1"
-    through2 "2.0.3"
 
 gulp-match@^1.0.3:
   version "1.0.3"
@@ -5555,11 +5522,7 @@ gulp-uncss@1.0.6:
     object-assign "^4.0.1"
     uncss "^0.14.1"
 
-gulp-util@0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/gulp-util/-/gulp-util-0.0.1.tgz#f144175d8bfd6018517385c49cde9841556637a0"
-
-gulp-util@3.0.8, "gulp-util@>=3.0.0 <3.1.0-0", gulp-util@^3, gulp-util@^3.0, gulp-util@^3.0.0, gulp-util@^3.0.1, gulp-util@^3.0.2, gulp-util@^3.0.4, gulp-util@^3.0.6, gulp-util@^3.0.7, gulp-util@^3.0.8, gulp-util@~3.0.0, gulp-util@~3.0.6, gulp-util@~3.0.8:
+"gulp-util@>=3.0.0 <3.1.0-0", gulp-util@^3, gulp-util@^3.0, gulp-util@^3.0.0, gulp-util@^3.0.1, gulp-util@^3.0.2, gulp-util@^3.0.4, gulp-util@^3.0.6, gulp-util@^3.0.7, gulp-util@^3.0.8, gulp-util@~3.0.0, gulp-util@~3.0.6, gulp-util@~3.0.8:
   version "3.0.8"
   resolved "https://registry.yarnpkg.com/gulp-util/-/gulp-util-3.0.8.tgz#0054e1e744502e27c04c187c3ecc505dd54bbb4f"
   dependencies:
@@ -5900,10 +5863,6 @@ html-tags@^1.0.0:
 html-tags@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/html-tags/-/html-tags-2.0.0.tgz#10b30a386085f43cede353cc8fa7cb0deeea668b"
-
-"html@git://github.com/colynb/commonjs-html-prettyprinter.git":
-  version "0.0.7"
-  resolved "git://github.com/colynb/commonjs-html-prettyprinter.git#6c0a0fd91e44070ff528dd003b9a81d34a3d547d"
 
 htmlhint@^0.9.5:
   version "0.9.13"
@@ -7740,7 +7699,7 @@ magic-string@^0.14.0:
   dependencies:
     vlq "^0.2.1"
 
-main-bower-files@2.13.1, main-bower-files@^2.13.1:
+main-bower-files@^2.13.1:
   version "2.13.1"
   resolved "https://registry.yarnpkg.com/main-bower-files/-/main-bower-files-2.13.1.tgz#7e1bc5c498352ccecd5df087f13d5f31bc057d3e"
   dependencies:
@@ -7785,10 +7744,6 @@ map-obj@^1.0.0, map-obj@^1.0.1:
 map-stream@0.0.4:
   version "0.0.4"
   resolved "https://registry.yarnpkg.com/map-stream/-/map-stream-0.0.4.tgz#5ec6de90213ef6c7b2eb9367e9ade8da4efdb68b"
-
-map-stream@~0.0.3:
-  version "0.0.7"
-  resolved "https://registry.yarnpkg.com/map-stream/-/map-stream-0.0.7.tgz#8a1f07896d82b10926bd3744a2420009f88974a8"
 
 map-stream@~0.1.0:
   version "0.1.0"
@@ -11595,10 +11550,6 @@ stdout-stream@^1.4.0:
   dependencies:
     readable-stream "^2.0.1"
 
-stickybits@^1.5.3:
-  version "1.5.3"
-  resolved "https://registry.yarnpkg.com/stickybits/-/stickybits-1.5.3.tgz#399cb46ba886e38f89eefbbdadf7c9f3fab4c30a"
-
 stream-browserify@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/stream-browserify/-/stream-browserify-2.0.1.tgz#66266ee5f9bdb9940a4e4514cafb43bb71e5c9db"
@@ -11613,7 +11564,7 @@ stream-combiner2@^1.1.1:
     duplexer2 "~0.1.0"
     readable-stream "^2.0.2"
 
-stream-combiner@~0.0.3, stream-combiner@~0.0.4:
+stream-combiner@~0.0.4:
   version "0.0.4"
   resolved "https://registry.yarnpkg.com/stream-combiner/-/stream-combiner-0.0.4.tgz#4d5e433c185261dde623ca3f44c586bcf5c4ad14"
   dependencies:
@@ -12151,7 +12102,7 @@ through2-filter@^2.0.0:
     through2 "~2.0.0"
     xtend "~4.0.0"
 
-through2@2.0.3, through2@2.X, through2@^2, through2@^2.0.0, through2@^2.0.1, through2@^2.0.3, through2@~2.0.0, through2@~2.0.3:
+through2@2.X, through2@^2, through2@^2.0.0, through2@^2.0.1, through2@^2.0.3, through2@~2.0.0, through2@~2.0.3:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/through2/-/through2-2.0.3.tgz#0004569b37c7c74ba39c43f3ced78d1ad94140be"
   dependencies:
