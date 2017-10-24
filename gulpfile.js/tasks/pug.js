@@ -29,7 +29,7 @@ module.exports = function(config) {
 
             .pipe($.if(
                 global.is.build,
-                $.htmlPrettify({
+                $.prettify({
                     indent_size: 4,
                     indent_char: ' ',
                     brace_style: 'expand',
@@ -82,7 +82,7 @@ module.exports = function(config) {
             .pipe($.debug({'title': config.task}))
 
             .pipe($.if('*.html', $.size({title: 'html', showFiles: true})))
-            
+
             .pipe(gulp.dest(config.app))
 
             .pipe($.if(global.is.notify, $.notify({ message: config.task + ' complete', onLast: true })));
