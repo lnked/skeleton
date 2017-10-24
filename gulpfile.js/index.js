@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * CELEBRO.CMS (https://cms.celebro.ru)
+ * CELEBRO.CMS (https://celebro.ru)
  * @copyright Copyright (c) CELEBRO lab. (https://celebro.ru)
- * @license http://cms.celebro.ru/license.txt
+ * @license http://celebro.ru/license.txt
  * https://github.com/lnked/skeleton
  */
 
@@ -44,22 +44,6 @@ gulp.task('ssh:unzip', ssh.unzip);
 gulp.task('ssh', gulp.series('ssh:clean', 'ssh:upload', 'ssh:unzip'));
 
 gulp.task('w3c:html', w3cHTML);
-
-gulp.task('default',
-    gulp.series('bower', 'images', 'styles', 'scripts', 'templates', 'sprites')
-);
-
-gulp.task('dev',
-    gulp.series('default', 'browsersync', 'watch')
-);
-
-gulp.task('minify',
-    gulp.series('images:min', 'styles:min', 'scripts:min')
-);
-
-gulp.task('production',
-    gulp.series('default', 'styles:rtl', 'minify')
-);
 
 gulp.task('deploy',
     gulp.series('production', 'archive', 'ssh')
