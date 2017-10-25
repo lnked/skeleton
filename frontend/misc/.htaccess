@@ -444,7 +444,7 @@ ServerSignature Off
     # https://httpd.apache.org/docs/current/mod/mod_filter.html#addoutputfilterbytype
 
     <IfModule mod_filter.c>
-        
+
         AddOutputFilter DEFLATE js css
 
         AddOutputFilterByType DEFLATE "application/atom+xml" \
@@ -532,7 +532,7 @@ ServerSignature Off
 # </IfModule>
 
 <ifModule mod_headers.c>
-  
+
     <FilesMatch ".(gif|png|jpe?g|ico|svg|svgz|mp3|flv|ogg|mpe?g|avi|zip|gz|bz2?|rar|pdf|swf)$">
         Header set Cache-Control "max-age=2592000, public"
     </FilesMatch>
@@ -715,7 +715,7 @@ FileETag None
         ForceType text/javascript
         Header set Content-Encoding: gzip
     </FilesMatch>
-    
+
     <FilesMatch .*\.css\.gz$>
         ForceType text/css
         Header set Content-Encoding: gzip
@@ -763,7 +763,7 @@ FileETag None
 
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    
+
     RewriteBase /
 
     RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /(.*)index\.(php|htm|html)($|\ |\?)
@@ -784,6 +784,6 @@ FileETag None
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-l
 
-    RewriteCond $1 !\.(css|js|png|json|ico|jpe?g|gif|woff|eot|svg|ttf|txt|webp)$ [NC]
+        RewriteCond $1 !\.(jpe?g|png|gif|bmp|json|ico|svg|tif|tiff|css|js|htm|html|ttf|otf|webp|woff|woff2|txt|csv|rtf|doc|docx|xls|xlsx|ppt|pptx|odf|odp|ods|odt|pdf|psd|ai|eot|eps|ps|zip|tar|tgz|gz|rar|bz2|7z|aac|m4a|mp3|mp4|ogg|wav|wma|3gp|avi|flv|m4v|mkv|mov|mpeg|mpg|wmv|exe|iso|dmg|xml|swf)$ [NC]
     RewriteRule ^(.*)$ index.html [L,QSA]
 </IfModule>

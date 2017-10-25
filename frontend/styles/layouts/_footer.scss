@@ -2,18 +2,11 @@
     clear: both;
     position: relative;
     height: $footer-height;
-    margin-top: -$footer-height;
+    // margin-top: -$footer-height;
 
     &__wrapper {
         @extend %layout;
     }
 
     &__copiright {}
-
-    &__navigation {
-        &__list {}
-        &__item {
-            &__link {}
-        }
-    }
 }
