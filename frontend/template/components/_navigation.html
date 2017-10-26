@@ -1,19 +1,41 @@
+{% set nav = [
+        {
+            name: "Анонсы",
+            slug: "announcements",
+            link: "./announcements.html"
+        },
+        {
+            name: "Фотоотчеты",
+            slug: "photoreports",
+            link: "./photoreports.html"
+        },
+        {
+            name: "Меню",
+            slug: "menu",
+            link: "./menu.html"
+        },
+        {
+            name: "3D тур",
+            slug: "3dtour",
+            link: "./3dtour.html"
+        },
+        {
+            name: "Контакты",
+            slug: "contacts",
+            link: "./contacts.html"
+        }
+    ]
+-%}
 <nav class="navigation" role="navigation">
-    <div class="navigation__wrapper">
-        <ul class="navigation__list">
-
-            <li class="navigation__item" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
-                <a href="./main.html" itemprop="url" class="navigation__link{% if current == 'main' %} is-current{% endif %}">
-                    <span class="navigation__link__name" itemprop="name">Главная</span>
-                </a>
-            </li>
-
-            <li class="navigation__item" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
-                <a href="./index.html" itemprop="url" class="navigation__link{% if current == 'index' %} is-current{% endif %}">
-                    <span class="navigation__link__name" itemprop="name">Страница</span>
-                </a>
-            </li>
-
-        </ul>
-    </div>
+    <ul class="navigation__list">
+    {%- if nav -%}
+        {% for item in nav %}
+        <li class="navigation__item" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+            <a href="{{ item.link }}" itemprop="url" class="navigation__link{% if current == item.slug %} is-current{% endif %}">
+                <span class="navigation__link__name" itemprop="name">{{ item.name }}</span>
+            </a>
+        </li>
+        {% endfor %}
+    {%- endif -%}
+    </ul>
 </nav>

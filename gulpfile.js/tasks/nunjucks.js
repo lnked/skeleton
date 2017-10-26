@@ -27,6 +27,9 @@ module.exports = function(config) {
 
             .pipe($.nunjucksRender({
                 path: [ config.path ],
+                envOptions: {
+                    watch: global.is.watch
+                },
                 PRODUCTION: global.is.build
             }))
 
