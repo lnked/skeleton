@@ -31,7 +31,7 @@
     {%- if nav -%}
         {% for item in nav %}
         <li class="navigation__item" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
-            <a href="{{ item.link }}" itemprop="url" class="navigation__link{% if current == item.slug %} is-current{% endif %}">
+            <a href="{{ item.link }}" itemprop="url" class="navigation__link{% if current == item.slug %} is-current{% endif %}" accesskey="{{ loop.index }}">
                 <span class="navigation__link__name" itemprop="name">{{ item.name }}</span>
             </a>
         </li>

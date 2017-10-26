@@ -21,6 +21,10 @@ function currency(input) {
     return formatMoney(number, 0, ' ', '');
 }
 
+function is_undefined(x)
+{
+    return typeof(x) == 'undefined';
+}
 
 // var i = 1;
 // setTimeout(function run() {
@@ -53,7 +57,7 @@ function currency(input) {
 //          }
 //       };
 //    }
- 
+
 //    return (el, type, fn) => {
 //       if (el && el.nodeName || el === window) {
 //          el.attachEvent(`on${type}`, () => fn.call(el, window.event));
