@@ -21,6 +21,11 @@ module.exports = function(config) {
             .pipe($.plumber({errorHandler: error}))
             .pipe($.debug({'title': config.task}))
 
+            .pipe($.fileInclude({
+                prefix: '@@',
+                basepath: '@file'
+            }))
+
             .pipe($.if(global.is.watch, $.changed(config.app)))
 
             .pipe($.frontMatter({ property: 'data' }))

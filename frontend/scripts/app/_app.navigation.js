@@ -5,12 +5,13 @@ let app = app || {};
 
     let isAnimated = false;
 
+    const myState = [];
     const History = window.History;
 
     const isMobile = $(window).width() <= 667;
     const $hasScroll = $('html, body');
     const $navigation = $('#navigation');
-    const navHeight = $navigation.height();
+    const navHeight = parseInt(($navigation.height() + 50), 10);
     const winHeight = $(window).height();
 
     app.navigation = {
@@ -26,7 +27,7 @@ let app = app || {};
             });
         },
 
-        scrollToAnchor (hash, animate) {
+        scrollToAnchor (hash, animate, callback) {
             hash = hash.split('?')[0];
 
             const $target = $(`#${hash}-anchor`);
@@ -39,9 +40,17 @@ let app = app || {};
                     $hasScroll.stop().animate({ 'scrollTop': top }, 'medium', () => {
                         isAnimated = false;
                         $navigation.removeClass('is-disabled');
+
+                        if (typeof callback === 'function') {
+                            callback();
+                        }
                     });
                 } else {
                     $hasScroll.scrollTop(top);
+
+                    if (typeof callback === 'function') {
+                        callback();
+                    }
                 }
             }
         },
@@ -50,7 +59,18 @@ let app = app || {};
             $navigation.find('.j-navigation.is-current').removeClass('is-current');
             $current.addClass('is-current');
 
-            History.pushState(null, title, slug);
+            this.pushState(title, slug);
+        },
+
+        pushState (title, slug) {
+            const State = History.getState();
+
+            if (myState.length) {
+                History.replaceState(State, title, slug);
+            } else {
+                History.pushState(State, title, slug);
+                myState.push(State);
+            }
         },
 
         changeItem (scrollTop) {
@@ -67,7 +87,7 @@ let app = app || {};
             if ($element !== null && $element.attr('id')) {
                 const title = $element.data('title') || '';
                 const slug = $element.attr('id').split('-')[0];
-                const $current = $navigation.find('.j-navigation[href="/' + slug + '"]');
+                const $current = $navigation.find(`.j-navigation[href="/${slug}"]`);
 
                 if (!$current.hasClass('is-current')) {
                     this.setCurrent($current, slug, title);
@@ -76,13 +96,17 @@ let app = app || {};
         },
 
         check () {
+            const _this = this;
             const State = History.getState();
 
             if (State.url) {
                 const slug = State.url.split('/')[3];
-                const $current = $navigation.find('.j-navigation[href="/' + slug + '"]');
 
-                this.setCurrent($current, slug, $(`#${slug}-anchor`).data('title'));
+                const $current = $navigation.find(`.j-navigation[href="/${slug}"]`);
+
+                this.scrollToAnchor(slug, false, function() {
+                    _this.setCurrent($current, slug, $(`${slug}-anchor`).data('title'));
+                });
             }
         },
 
@@ -97,7 +121,7 @@ let app = app || {};
                 $navigation.addClass('is-disabled');
 
                 _this.scrollToAnchor(slug, true);
-                _this.setCurrent($current, slug, $(`#${slug}-anchor`).data('title'));
+                _this.setCurrent($current, slug, $(`${slug}-anchor`).data('title'));
             });
 
             setTimeout(() => {
