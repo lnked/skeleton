@@ -5393,7 +5393,7 @@ gulp-replace@^0.6.1:
     readable-stream "^2.0.1"
     replacestream "^4.0.0"
 
-gulp-rsync@^0.0.8:
+gulp-rsync@0.0.8:
   version "0.0.8"
   resolved "https://registry.yarnpkg.com/gulp-rsync/-/gulp-rsync-0.0.8.tgz#b3e64835cd6059a4eb121ad58ff71746b4d898cc"
   dependencies:

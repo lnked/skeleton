@@ -11,10 +11,10 @@ module.exports = function(config) {
 
 /*
 ftp          = require('vinyl-ftp'), // trasferisce i files @link https://github.com/morris/vinyl-ftp
-conn         = ftp.create( { 
-            host: 'YOURHOST', 
-            user: 'FTPUSER', 
-            password: 'FTPPASSWORD', 
+conn         = ftp.create( {
+            host: 'YOURHOST',
+            user: 'FTPUSER',
+            password: 'FTPPASSWORD',
             parallel: 20 // numero di trasferimenti simultanei
     } );
 */
@@ -28,3 +28,30 @@ conn         = ftp.create( {
 	};
 
 };
+
+// var gulp = require('gulp');
+// var rsync = require('gulp-rsync');
+
+// gulp.task('deploy', function() {
+//   return gulp.src('build/**')
+//     .pipe(rsync({
+//       root: 'build/',
+//       hostname: 'example.com',
+//       destination: 'path/to/site/'
+//     }));
+// });
+
+// var gulp = require('gulp');
+// var rsync = require('gulp-rsync');
+
+// gulp.task('deploy', function() {
+//   gulp.src('build/**')
+//     .pipe(rsync({
+//       root: 'build/',
+//       hostname: 'example.com',
+//       destination: 'path/to/site/',
+//       archive: true,
+//       silent: false,
+//       compress: true
+//     }));
+// });
