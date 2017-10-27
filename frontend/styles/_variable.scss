@@ -1,29 +1,3 @@
-// Screen
-// Max size
-$max-iphone:                    379px;
-$max-tablet:                    719px;
-$max-desktop:                   1023px;
-$max-medium:                    1374px;
-$max-large:                     1679px;
-
-// Min size
-$min-phone:                     320px;
-$min-iphone:                    380px;
-$min-tablet:                    720px;
-$min-desktop:                   1024px;
-$min-medium:                    1375px;
-$min-large:                     1680px;
-
-// $screen = {
-//   ultra-mega-hd: 2500px,
-//   ultra-hd: 1600px,
-//   laptop-l: 1240px,
-//   laptop: 920px,
-//   tablet: 768px,
-//   mobile-l: 568px,
-//   mobile-s: 320px
-// }
-
 // Animation
 $a-func:                        ease;
 $a-time:                        .5s;
@@ -60,7 +34,7 @@ $c-webflow-blue:                #4353ff;
 // #53FF43
 // #FF4353
 // #FF5343
-// 
+//
 // Triadic Colors
 
 //  #FF4353  #53FF43
@@ -89,7 +63,10 @@ $c-sandwich-overlay:            #000;
 $c-sandwich-background:         #2b65b6;
 $c-sandwich-background-active:  #fff;
 
-$c-lime:                        lime;
+$c-lime:                        #95c527;
+$c-red:                         #b20100
+$c-grey:                        #737578;
+
 $c-white:                       #fff;
 $c-black:                       #000;
 $c-green:                       #00f;
