@@ -20,15 +20,35 @@ module.exports = function(config, bower) {
         sourceMap: false,
         compress: {
             warnings: false,
+            side_effects: false,
+            properties: true,
+            sequences: true,
             dead_code: true,
-            drop_console: true,
+            conditionals: true,
+            comparisons: true,
+            evaluate: true,
+            booleans: true,
+            unused: true,
+            loops: true,
+            hoist_funs: true,
+            cascade: true,
+            if_return: true,
+            join_vars: true,
+            drop_debugger: true,
+            unsafe: true,
+            hoist_vars: true,
+            negate_iife: true,
+            unsafe_comps: true,
+            pure_getters: true,
             global_defs: {
                 DEBUG: false
-            }
+            },
+            drop_console: global.is.build
         },
         output: {
             ast: true,
-            code: true
+            code: true,
+            comments: false
         }
     };
 
@@ -73,11 +93,11 @@ module.exports = function(config, bower) {
                 .pipe($.plumber({errorHandler: error}))
                 .pipe($.debug({'title': config.task}))
                 .pipe($.if(!global.is.build, $.sourcemaps.init()))
-                
+
                 .pipe($.if(global.is.lint, $.eslint()))
                 .pipe($.if(global.is.lint, $.eslint.format()))
                 .pipe($.if(global.is.lint, $.eslint.failAfterError()))
-                
+
                 .pipe($.imports())
                 .pipe($.if(/[.]coffee$/, $.coffee()))
                 .pipe($.if(/[.]jsx$/ || global.is.react, $.react({ harmony: true, es6module: true })))
@@ -92,9 +112,9 @@ module.exports = function(config, bower) {
                 .pipe($.concat(folder + '.js'))
 
                 .pipe($.if(!global.is.build, gulp.dest(config.app)))
-                
+
                 .pipe($.rename({suffix: '.min'}))
-                
+
                 .pipe($.if(global.is.build, $.uglify(uglifyConfig)))
                 .pipe($.size({title: 'scripts'}))
 
