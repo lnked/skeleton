@@ -2,6 +2,7 @@ const src = './frontend/';
 const app = './public_html/';
 const markup = './';
 const mainPage = 'index.html';
+const localWatch = true;
 
 module.exports.app  = app;
 
@@ -134,7 +135,7 @@ module.exports.tasks = {
                 "google chrome", // "firefox"
             ]
         },
-        open: true
+        open: localWatch
     },
 
     'screenshot': [

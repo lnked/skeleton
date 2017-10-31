@@ -137,7 +137,8 @@ module.exports.config = {
         "fancybox": {
             "main": [
                 "dist/jquery.fancybox.min.css",
-                "dist/jquery.fancybox.min.js",
+                "dist/jquery.fancybox.js",
+                // "dist/jquery.fancybox.min.js",
                 // "source/jquery.fancybox.css",
                 // "source/jquery.fancybox.pack.js"
             ]

@@ -178,11 +178,33 @@ var app = app || {};
 
             try {
 
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
+                // $.ajaxSetup({
+                //     headers: {
+                //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                //     }
+                // });
+
+                // $.ajax({
+                //     cache: true,
+                //     dataType: "json",
+                //     url: "/api/get",
+                //     success: (data) => {
+                //         console.log(data);
+                //     }
+                // });
+
+                // $.ajaxSetup({
+                //     crossDomain: true,
+                //     xhrFields: {
+                //         withCredentials: true
+                //     },
+                //     beforeSend: function (xhr, type) {
+                //         if (type.type !== "GET") {
+                //             var token = Cookies.get("XSRF-TOKEN");
+                //             xhr.setRequestHeader('X-XSRF-Token', token);
+                //         }
+                //     }
+                // });
 
                 $.ajax({
                     url: action,

@@ -3,48 +3,82 @@ let app = app || {};
 ((body => {
     "use strict";
 
+    // <div class="list" id="preload-list">
+    //     {# item #}
+    // </div>
+
+    // <div class="preloader" id="preload-spinner">
+    //     <div class="spinner"></div>
+    // </div>
+
     const $content = $('#content');
-    const $catalog = $('#catalog-list');
-    const $preload = $('#catalog-preload');
     const $scroller = $('#scroller');
 
-    app.lla = {
+    const $preload = $('#preload-list');
+    const $spinner = $('#preload-spinner');
+
+    app.lazyload = {
+
+        page: null,
+
+        element: '',
 
         destroy () {
             $scroller.off('scroll.preload');
-            $preload.removeClass('is-active');
+            $spinner.removeClass('is-active');
         },
 
-        processData (data) {
+        processData (data)
+        {
+            const _this = this;
 
-            if (!data.length) {
-                this.destroy();
+            if (!data.length)
+            {
+                _this.destroy();
             }
             else
             {
-                const $products = $(template('tmpl-catalog-products', {
-                    products: data
+                const $list = $(template(`tmpl-${_this.page}-list`, {
+                    list: data
                 }));
 
-                $catalog.append($products);
+                $preload.append($list);
 
-                $preload.removeClass('is-active');
+                $spinner.removeClass('is-active');
             }
         },
 
-        scroll () {
+        scroll (page, element)
+        {
+            this.page = page;
+            this.element = element;
+
             const _this = this;
+
+            let compareTime = new Date().getTime();
 
             $scroller.on('scroll.preload', () => {
 
                 const difference = Math.ceil($content.height() - $scroller.height());
+                const currentTime = new Date().getTime();
 
-                if ($scroller.scrollTop() == difference)
+                if ($scroller.scrollTop() == difference && (currentTime - compareTime) > 300)
                 {
-                    $preload.addClass('is-active');
+                    compareTime = new Date().getTime();
+
+                    $spinner.addClass('is-active');
+
+                    const action = [];
+
+                    action.push('ajax/load');
+                    action.push(_this.page);
+
+                    if (_this.element) {
+                        action.push(_this.element);
+                    }
 
                     $.ajax({
-                        url: '/ajax/load',
+                        url: `/${action.join('/')}`,
                         type: 'get',
                         dataType: 'JSON',
                         contentType: false,
@@ -65,7 +99,17 @@ let app = app || {};
 
         init () {
 
-            this.scroll();
+            if (typeof lazyLoadPage !== 'undefined')
+            {
+                let element = '';
+
+                if (typeof lazyLoadItem !== 'undefined')
+                {
+                    element = lazyLoadItem;
+                }
+
+                this.scroll(lazyLoadPage, element);
+            }
 
         }
 
