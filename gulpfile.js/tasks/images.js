@@ -39,7 +39,7 @@ module.exports = function(config) {
             .pipe($.plumber({errorHandler: error}))
             .pipe($.debug({'title': config.task}))
 
-            .pipe($.newer(config.app))
+            // .pipe($.newer(config.app))
 
             .pipe($.if(global.is.build,
                 imagemin([
@@ -50,7 +50,7 @@ module.exports = function(config) {
                         plugins: [
                             {removeTitle:true},
                             {removeDesc:true},
-                            {removeViewBox:true},
+                            {removeViewBox:false},
                             {removeDoctype:true},
                             {removeMetadata:true},
                             {removeComments:true},
@@ -60,7 +60,7 @@ module.exports = function(config) {
                             {cleanupNumericValues: {
                                 floatPrecision: 2
                             }},
-                            {cleanupIDs: false},
+                            {cleanupIDs:true},
                             {convertColors: {
                                 names2hex: true,
                                 rgb2hex: true
@@ -70,6 +70,8 @@ module.exports = function(config) {
                     })
                 ], { verbose: true })
             ))
+
+            .pipe(gulp.dest(config.app))
 
             .pipe($.if(/[.]svg$/,
                 $.svg2z({
