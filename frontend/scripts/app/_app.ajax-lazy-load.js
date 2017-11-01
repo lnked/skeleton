@@ -11,11 +11,22 @@ let app = app || {};
     //     <div class="spinner"></div>
     // </div>
 
-    const $content = $('#content');
-    const $scroller = $('#scroller');
+    const width = $(window).width();
+
+    let $content = '';
+    let $scroller = '';
 
     const $preload = $('#preload-list');
     const $spinner = $('#preload-spinner');
+
+    if (width <= 667) {
+        $scroller = $(window);
+        $content = $('#content');
+    }
+    else {
+        $scroller = $('#scroller');
+        $content = $('#content');
+    }
 
     app.lazyload = {
 
@@ -55,15 +66,17 @@ let app = app || {};
 
             const _this = this;
 
+            let progress = false;
             let compareTime = new Date().getTime();
 
             $scroller.on('scroll.preload', () => {
 
-                const difference = Math.ceil($content.height() - $scroller.height());
+                const difference = Math.floor($content.height() - $scroller.height()) - 100;
                 const currentTime = new Date().getTime();
 
-                if ($scroller.scrollTop() == difference && (currentTime - compareTime) > 300)
+                if ($scroller.scrollTop() >= difference && (currentTime - compareTime) > 300 && !progress)
                 {
+                    progress = true;
                     compareTime = new Date().getTime();
 
                     $spinner.addClass('is-active');
@@ -84,6 +97,7 @@ let app = app || {};
                         contentType: false,
                         processData: true,
                         success: (response) => {
+                            progress = false;
                             _this.processData(response);
                         },
                         error: (response) => {
