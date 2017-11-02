@@ -39,7 +39,7 @@ module.exports = function(config) {
             .pipe($.plumber({errorHandler: error}))
             .pipe($.debug({'title': config.task}))
 
-            // .pipe($.newer(config.app))
+            .pipe($.newer(config.app))
 
             .pipe($.if(global.is.build,
                 imagemin([

@@ -7,6 +7,8 @@ var app = app || {};
 
     app.sandwich = {
 
+        width: 0,
+
         config: {
             keyHooks: !1,
             selector: '.js-sandwich-menu',
@@ -31,17 +33,17 @@ var app = app || {};
 
         isOpen ()
         {
-            return $body.hasClass('page-visible');
+            return $body.hasClass('menu-visible');
         },
 
         hide ()
         {
             const _this = this;
-            $body.removeClass('page-open');
+            $body.removeClass('menu-animate');
 
             setTimeout(function(){
-                $body.removeClass('page-visible');
-            }, 200);
+                $body.removeClass('menu-visible');
+            }, 300);
 
             if (_this.config.overlay) {
                 $(_this.config.overlay).css({
@@ -52,12 +54,12 @@ var app = app || {};
 
         show () {
             const _this = this;
-            $body.addClass('page-open');
+            $body.addClass('menu-visible');
 
             setTimeout(function(){
-                $body.addClass('page-visible');
+                $body.addClass('menu-animate');
             }, 10);
-            
+
             if (_this.config.overlay) {
                 $(_this.config.overlay).css({
                     'visibility': 'visible'
@@ -69,7 +71,7 @@ var app = app || {};
         {
             const _this = this;
 
-            if ($body.hasClass('page-visible')) {
+            if ($body.hasClass('menu-visible')) {
                 _this.hide();
             }
             else {
@@ -104,7 +106,7 @@ var app = app || {};
             if (_this.config.overlay) {
                 $body.on('click', _this.config.overlay, function(e){
                     _this.hide();
-                });   
+                });
             }
         },
 
@@ -112,19 +114,29 @@ var app = app || {};
         {
             const _this = this;
 
-            var hammertime = new Hammer(document.body, {
-                enable: true,
-                recognizers: [
-                    [Hammer.Swipe, { direction: Hammer.DIRECTION_HORIZONTAL }]
-                ]
-            });
+            var hammertime = new Hammer(document.getElementById('wrapper'));
 
             hammertime.on('swipeleft', function(ev) {
-                _this.hide();
+                if (_this.width <= 480) {
+                    _this.hide();
+                }
             });
 
             hammertime.on('swiperight', function(ev) {
-                _this.show();
+                if (_this.width <= 480) {
+                    _this.show();
+                }
+            });
+
+            let timeout;
+
+            $(window).on('resize', () => {
+                clearTimeout(timeout);
+
+                timeout = setTimeout(() => {
+                    _this.hide();
+                    _this.width = $(window).width();
+                }, 20);
             });
         },
 
@@ -136,6 +148,8 @@ var app = app || {};
                 wrapper: '.layout-wrapper',
                 overlay: false
             });
+
+            this.width = $(window).width();
 
             this.events();
             this.sandwichTrigger();

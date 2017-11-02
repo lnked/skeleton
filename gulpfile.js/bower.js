@@ -9,6 +9,9 @@ module.exports.config = {
         "hammerjs": {
             "main": "hammer.min.js"
         },
+        "picturePolyfill": {
+            "main": "dist/picturePolyfill.min.js"
+        },
         "jquery.nicescroll": {
             "main": "dist/jquery.nicescroll.min.js"
         },
