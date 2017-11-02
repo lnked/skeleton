@@ -43,7 +43,7 @@
     "browser-sync": "^2.18.13",
     "critical": "^0.9.0",
     "css-mqpacker": "6.0.1",
-    "cssnano": "^3.6.2",
+    "cssnano": "4.0.0-rc.2",
     "del": "^3.0.0",
     "eslint": "^4.6.0",
     "eslint-plugin-import": "^2.7.0",

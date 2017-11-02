@@ -135,7 +135,10 @@ module.exports = function(config, bower) {
                 autoprefixer: false,
                 normalizeCharset: true,
                 convertValues: { length: false },
-                colormin: true
+                colormin: true,
+                discardUnused: {
+                    fontFace: false
+                }
             })
         ]
     };

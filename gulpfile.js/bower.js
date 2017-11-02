@@ -12,6 +12,9 @@ module.exports.config = {
         "picturePolyfill": {
             "main": "dist/picturePolyfill.min.js"
         },
+        "decouple": {
+            "main": "dist/decouple.min.js"
+        },
         "jquery.nicescroll": {
             "main": "dist/jquery.nicescroll.min.js"
         },
