@@ -9,6 +9,9 @@ module.exports.config = {
         "hammerjs": {
             "main": "hammer.min.js"
         },
+        "nanoscroller": {
+            "main": "bin/javascripts/jquery.nanoscroller.min.js"
+        },
         "picturePolyfill": {
             "main": "dist/picturePolyfill.min.js"
         },
