@@ -4,12 +4,15 @@ let app = app || {};
     "use strict";
 
     app.mask = {
-        phone(selector = '.mask-phone') {
-            const phone = document.querySelectorAll(selector);
 
-            if (phone.length) {
-                for (var i = phone.length - 1; i >= 0; i--) {
-                    new Cleave(phone[i], {
+        phone (phones)
+        {
+            if (phones.length) {
+                for (var i = phones.length - 1; i >= 0; i--)
+                {
+                    const phone = phones[i];
+
+                    new Cleave(phone, {
                         phone: true,
                         phoneRegionCode: 'ru'
                     });
@@ -17,12 +20,14 @@ let app = app || {};
             }
         },
 
-        date(selector = '.mask-date') {
-            const date = document.querySelectorAll(selector);
+        date (dates)
+        {
+            if (dates.length) {
+                for (var i = dates.length - 1; i >= 0; i--)
+                {
+                    const date = dates[i];
 
-            if (date.length) {
-                for (var i = date.length - 1; i >= 0; i--) {
-                    new Cleave(date[i], {
+                    new Cleave(date, {
                         date: true,
                         datePattern: ['d', 'm', 'Y']
                     });
@@ -30,27 +35,30 @@ let app = app || {};
             }
         },
 
-        card(selector = '.mask-card') {
-            const card = document.querySelectorAll(selector);
+        card (cards)
+        {
+            if (cards.length) {
+                for (var i = cards.length - 1; i >= 0; i--)
+                {
+                    const card = cards[i];
 
-            if (card.length) {
-                for (var i = card.length - 1; i >= 0; i--) {
-                    new Cleave(card[i], {
+                    new Cleave(card, {
                         numericOnly: true,
                         prefix: '00',
                         delimiter: '',
-                        blocks: [2, 4]    
+                        blocks: [2, 4]
                     });
                 }
             }
         },
 
-        init() {
+        init ()
+        {
             const _this_ = this;
 
-            _this_.card('.mask-card');
-            _this_.date('.mask-date');
-            _this_.phone('.mask-phone');
+            _this_.card($('.mask-card'));
+            _this_.date($('.mask-date'));
+            _this_.phone($('.mask-phone'));
 
             $('body').on('popup.after_open', function(e, popup) {
                 setTimeout(() => {
@@ -60,6 +68,7 @@ let app = app || {};
                 }, 50);
             });
         }
+
     };
 
 }))(document.body);

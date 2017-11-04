@@ -114,7 +114,12 @@ var app = app || {};
         {
             const _this = this;
 
-            var hammertime = new Hammer(document.getElementById('wrapper'));
+            var hammertime = new Hammer(document.body, {
+                enable: true,
+                recognizers: [
+                    [Hammer.Swipe, { direction: Hammer.DIRECTION_HORIZONTAL }]
+                ]
+            });
 
             hammertime.on('swipeleft', function(ev) {
                 if (_this.width <= 480) {

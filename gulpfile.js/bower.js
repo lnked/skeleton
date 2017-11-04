@@ -299,8 +299,9 @@ module.exports.config = {
         },
         "gsap": {
             "main": [
-                "src/minified/easing/EasePack.min.js",
-                "src/minified/TweenMax.min.js"
+                "src/minified/TweenMax.min.js",
+                "src/minified/TimelineMax.min.js"
+                // "src/minified/easing/EasePack.min.js",
             ]
         },
         "svg4everybody": {
@@ -318,8 +319,11 @@ module.exports.config = {
         "zepto": {
             "main": "zepto.min.js"
         },
+        "store2": {
+            "main": "dist/store2.min.js"
+        },
         "store-js": {
-            "main": "store.min.js"
+            "main": "dist/store.legacy.min.js"
         },
         "cookie": {
             "main": "cookie.min.js"

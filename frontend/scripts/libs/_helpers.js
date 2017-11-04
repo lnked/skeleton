@@ -26,6 +26,11 @@ function is_undefined(x)
     return typeof(x) == 'undefined';
 }
 
+function is_null (x)
+{
+    return typeof x === 'object' && x === null;
+}
+
 // var i = 1;
 // setTimeout(function run() {
 //     func(i);
