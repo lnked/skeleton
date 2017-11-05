@@ -98,8 +98,11 @@ module.exports.tasks = {
     },
 
     'favicon': {
-        src: src + 'favicon/**/*.*',
-        app: app + 'favicon'
+        src: [
+            src + 'favicons/*.*',
+            src + 'favicons/**/*.*'
+        ],
+        app: app + 'favicons'
     },
 
     'svgstore': {

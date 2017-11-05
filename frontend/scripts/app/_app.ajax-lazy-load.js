@@ -49,7 +49,9 @@ let app = app || {};
             }
             else
             {
-                const $list = $(template(`tmpl-${_this.page}-list`, {
+                const page = _this.page.split('.')[0];
+
+                const $list = $(template(`tmpl-${page}-list`, {
                     list: data
                 }));
 
@@ -66,12 +68,21 @@ let app = app || {};
 
             const _this = this;
 
+            let isFocused = false;
             let progress = false;
             let compareTime = new Date().getTime();
 
-            $scroller.on('scroll.preload', () => {
+            $(window).on("blur focus", function(e) {
+                if (e.type === 'focus' && !isFocused)
+                {
+                    isFocused = true;
+                    compareTime = new Date().getTime();
+                    $scroller.trigger('scroll.preload');
+                }
+            });
 
-                const difference = Math.floor($content.height() - $scroller.height()) - 100;
+            $scroller.on('scroll.preload', () => {
+                const difference = Math.floor($content.height() - $scroller.height()) - 200;
                 const currentTime = new Date().getTime();
 
                 if ($scroller.scrollTop() >= difference && (currentTime - compareTime) > 300 && !progress)
@@ -107,7 +118,7 @@ let app = app || {};
 
                 }
 
-            }).trigger('scroll');
+            });
 
         },
 
@@ -122,7 +133,10 @@ let app = app || {};
                     element = lazyLoadItem;
                 }
 
-                this.scroll(lazyLoadPage, element);
+                if (typeof lazyLoadCount !== 'undefined' && typeof lazyLoadLimit !== 'undefined' && lazyLoadCount > lazyLoadLimit)
+                {
+                    this.scroll(lazyLoadPage, element);
+                }
             }
 
         }
