@@ -15,7 +15,8 @@
     justify-content: center;
     transform: translate3d(0, 0, 0);
     background-color: rgba(#000, 0.7);
-    transition: opacity .5s ease, transform .6s ease;
+    transition: opacity .4s ease-in-out, transform .5s ease;
+    will-change: transform, opacity;
 
     &.is-hidden {
         width: 1px;
@@ -24,10 +25,6 @@
         margin: -1px;
         overflow: hidden;
         clip: rect(0 0 0 0);
-    }
-
-    &.is-visible {
-        //
     }
 
     &.is-animated {
@@ -47,6 +44,10 @@
         font-size: 0;
         line-height: 0;
         cursor: pointer;
+        background: none;
+        border: 1px solid lime;
+
+        @extend %outline;
 
         &__ico {
             max-width: 100%;
@@ -63,6 +64,13 @@
         max-height: 100%;
         max-width: 960px;
         position: relative;
+        will-change: transform;
+        transform: translate3d(0, -60px, 0);
+        transition: transform .5s ease;
+
+        .is-animated & {
+            transform: translate3d(0, 0, 0);
+        }
     }
 
     &__header {

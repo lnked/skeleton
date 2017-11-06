@@ -1,4 +1,8 @@
 %outline {
     outline: none;
-    box-shadow: 0 0 0 3px #fff, 0 0 0 6px $c-focus-color;
+
+    &:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px #fff, 0 0 0 6px $c-focus-color;
+    }
 }
