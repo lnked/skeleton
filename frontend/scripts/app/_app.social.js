@@ -1,12 +1,12 @@
-// _social.js
+let app = app || {};
 
-;(function($) {
+((body => {
     "use strict";
 
     var $body = $('body');
 
-    $.app.social = {
-        init: function() {
+    app.social = {
+        init () {
 
             $body.on('click', '.social-trigger', function(e) {
                 var $this = $(this), authPopup, x = 200, y = 200;
@@ -20,7 +20,7 @@
             });
         },
 
-        command: function(command, data) {
+        command (command, data) {
             if (command == 'NEW')
             {
                 $.popup.open('#popup-user/user-registry');
@@ -38,4 +38,4 @@
         }
     }
 
-})(jQuery);
+}))(document.body);

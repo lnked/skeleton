@@ -15,6 +15,9 @@ module.exports.config = {
         "picturePolyfill": {
             "main": "dist/picturePolyfill.min.js"
         },
+        "inert-polyfill": {
+            "main": "inert-polyfill.min.js"
+        },
         "decouple": {
             "main": "dist/decouple.min.js"
         },

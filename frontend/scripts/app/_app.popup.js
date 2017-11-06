@@ -4,8 +4,14 @@ let app = app || {};
     "use strict";
 
     app.popup = {
-        init: function()
+        init ()
         {
+            Modal.init({
+                hashChange: false,
+                cssPosition: false,
+                wrapper: '.layout-wrapper'
+            });
+
             const windowHeight = $(window).height();
 
             $.popup.init('.j-open-popup', {

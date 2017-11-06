@@ -6,7 +6,7 @@ textarea {
     cursor: auto;
 
     &:focus {
-        outline: none;
+        outline: 1px solid $c-focus-color;
     }
 }
 

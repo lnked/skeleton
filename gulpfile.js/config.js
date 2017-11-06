@@ -176,7 +176,7 @@ module.exports.tasks = {
             // template:   [src + 'template/**/*.html', src + 'template/**/_*.*'],
             // pug:        [src + 'template/**/*.pug', src + 'template/**/_*.*'],
             nunjucks:   [src + 'template/**/*.html', src + 'template/**/_*.*'],
-            scripts:    [src + 'scripts/**/*.{js,jsx,coffee}'],
+            scripts:    [src + 'scripts/*.{js,jsx,coffee}', src + 'scripts/**/*.{js,jsx,coffee}'],
             video:      [src + 'video/**/*.*'],
             files:      [src + 'files/**/*.*'],
             images:     [src + 'images/**/*.*'],

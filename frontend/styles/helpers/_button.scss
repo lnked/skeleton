@@ -3,7 +3,6 @@
     margin: 0;
     padding-top: 0;
     padding-bottom: 0;
-    outline: none;
     cursor: pointer;
     text-align: center;
     vertical-align: middle;
@@ -21,6 +20,6 @@
     transition: background-color $a-time $a-func, border-color $a-time $a-func, color $a-time $a-func;
 
     &:focus {
-        outline: 0;
+        @extend %outline;
     }
 }

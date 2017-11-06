@@ -1,6 +1,6 @@
 {% verbatim %}
 <template id="tmpl-notification">
-    <div class="notification" id="popup_notification">
+    <div class="notification" id="popup_notification" aria-hidden="true" tabindex="-1">
         {{#if title}}
         <div class="notification__header">{{title}}</div>
         {{/if}}
@@ -14,8 +14,8 @@
 </template>
 
 <template id="tmpl-popup-message">
-    <div class="popup popup_simple popup_message" id="popup_message">
-        <b class="popup__close popup__close_simple js-popup-close"></b>
+    <div class="popup popup_simple popup_message" id="popup_message" aria-hidden="true" tabindex="-1">
+        <button class="modal__close popup__close j-popup-close" aria-label="Закрыть"></button>
 
         {{#if title}}
         <header class="popup__header popup__header_simple">
@@ -32,8 +32,8 @@
 </template>
 
 <template id="tmpl-popup-error">
-    <div class="popup popup_simple popup_error" id="popup_error">
-        <b class="popup__close popup__close_simple js-popup-close"></b>
+    <div class="popup popup_simple popup_error" id="popup_error" aria-hidden="true" tabindex="-1">
+        <button class="modal__close popup__close j-popup-close" aria-label="Закрыть"></button>
 
         {{#if title}}
         <header class="popup__header popup__header_simple">

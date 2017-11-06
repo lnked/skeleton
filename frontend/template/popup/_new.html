@@ -1,48 +1,27 @@
-<div class="overlay" id="overlay"></div>
+{% verbatim %}
+<template id="tmpl-modal-feedback">
+    <div class="modal is-hidden" id="modal-feedback" aria-hidden="false" tabindex="-1">
+        <div class="modal__dialog" role="dialog" aria-modal="true">
+            <button class="modal__close j-close-modal" type="button" aria-label="Закрыть" data-target="#modal-feedback">
+                <svg role="img" class="modal__close__ico">
+                    <use xlink:href="#close"/>
+                </svg>
+            </button>
 
-<template id="tmpl-popup-demo">
-    <div class="popup" id="popup-demo">
-        <div class="popup__dialog">
-            <section class="popup__content">
-                <b class="popup__close js-popup-close">Закрыть</b>
-                
-            </section>
+            <header class="modal__header">
+                <div class="modal__header__title">Заказать услуги</div>
+            </header>
+
+            <article class="modal__body" role="document">
+
+            </article>
+
+            <footer class="modal__footer">
+                <button class="j-close-modal" type="button" aria-label="Закрыть" data-target="#modal-feedback">
+                    Закрыть
+                </button>
+            </footer>
         </div>
     </div>
 </template>
-
-<template id="tmpl-popup-service">
-    <div class="popup" id="popup-service">
-        <div class="popup__dialog">
-            <section class="popup__content">
-                <b class="popup__close js-popup-close">Закрыть</b>
-                
-                <header class="popup__header">
-                    <h4 class="popup__header__title">Заказать услуги</h4>
-                </header>
-
-                <article class="popup__body">
-
-                </article>
-            </section>
-        </div>
-    </div>
-</template>
-
-<script type="text/html" id="tmpl-popup-feedback">
-    <div class="popup" id="popup-feedback">
-        <div class="popup__dialog">
-            <section class="popup__content">
-                <b class="popup__close js-popup-close">Закрыть</b>
-                
-                <header class="popup__header">
-                    <h4 class="popup__header__title">Заказать услуги</h4>
-                </header>
-
-                <article class="popup__body">
-
-                </article>
-            </section>
-        </div>
-    </div>
-</script>
+{% endverbatim %}

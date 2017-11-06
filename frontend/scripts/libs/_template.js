@@ -17,6 +17,7 @@
 
             return Template7.compile(pattern)(data || {});
         }
+
         return '';
     }
 }))(document);

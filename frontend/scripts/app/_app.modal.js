@@ -21,8 +21,6 @@
                 selector = _this_.config.input  + selector;
             }
 
-            alert(selector);
-
             return selector;
         },
 

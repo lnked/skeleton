@@ -6,7 +6,7 @@ html {
 	.modal-lock {
 	    overflow: visible!important;
 	    width: auto;
-	}	
+	}
 }
 
 .modal-lock body {
@@ -49,7 +49,7 @@ html {
 	background-color: #fff;
 	transition: opacity $a-time;
 	opacity: 0;
-	
+
 	&.visible {
 		display: block;
 	}
@@ -98,7 +98,7 @@ html {
 		vertical-align: middle;
 		position: relative;
 		padding: 5rem 0;
-	
+
 		&.is-scrolling {
 			position: relative;
 			left: auto;
@@ -132,7 +132,7 @@ html {
 			font-weight: 400;
 		}
 	}
-	
+
 	&__body {
 		padding: 35px 40px;
 		background-color: #fff;

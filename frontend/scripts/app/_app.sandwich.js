@@ -114,24 +114,24 @@ var app = app || {};
         {
             const _this = this;
 
-            var hammertime = new Hammer(document.body, {
-                enable: true,
-                recognizers: [
-                    [Hammer.Swipe, { direction: Hammer.DIRECTION_HORIZONTAL }]
-                ]
-            });
+            // var hammertime = new Hammer(document.body, {
+            //     enable: true,
+            //     recognizers: [
+            //         [Hammer.Swipe, { direction: Hammer.DIRECTION_HORIZONTAL }]
+            //     ]
+            // });
 
-            hammertime.on('swipeleft', function(ev) {
-                if (_this.width <= 480) {
-                    _this.hide();
-                }
-            });
+            // hammertime.on('swipeleft', function(ev) {
+            //     if (_this.width <= 480) {
+            //         _this.hide();
+            //     }
+            // });
 
-            hammertime.on('swiperight', function(ev) {
-                if (_this.width <= 480) {
-                    _this.show();
-                }
-            });
+            // hammertime.on('swiperight', function(ev) {
+            //     if (_this.width <= 480) {
+            //         _this.show();
+            //     }
+            // });
 
             let timeout;
 

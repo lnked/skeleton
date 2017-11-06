@@ -32,6 +32,9 @@
     "pubsub-js": "1.5.7",
     "bLazy": "blazy#1.8.2",
     "Template7": "template7#1.3.1",
-    "picturePolyfill": "4.2.1"
+    "picturePolyfill": "4.2.1",
+    "inert-polyfill": "0.2.4",
+    "hammerjs": "2.0.8",
+    "history.js": "1.8.0"
   }
 }
