@@ -33,34 +33,36 @@ module.exports = function(config, bower) {
     };
 
     return function(callback) {
-        // Bower files
-        try {
-            gulp.src(
-                bowerFiles({
-                    paths: {
-                        bowerDirectory: path.resolve(path.dirname(config.path), bower.path),
-                        bowerrc: bower.config,
-                        bowerJson: bower.json
-                    },
-                    debugging: false,
-                    checkExistence: true,
-                    overrides: bower.overrides
-                })
-            )
-            .pipe($.filter('**/*.js'))
-            .pipe($.concat('vendors.js'))
-            .pipe($.rename({suffix: '.min'}))
-            .pipe($.if(global.is.build, $.uglify(uglifyConfig)))
-            .pipe($.size({title: 'vendors'}))
-            .pipe(gulp.dest(config.app))
+        const vendorFiles = bowerFiles({
+            paths: {
+                bowerDirectory: path.resolve(path.dirname(config.path), bower.path),
+                bowerrc: bower.config,
+                bowerJson: bower.json
+            },
+            debugging: false,
+            checkExistence: true,
+            overrides: bower.overrides
+        });
 
-            .pipe($.if(global.is.build, $.gzip()))
-            .pipe($.if(global.is.build, gulp.dest(config.app)))
-            .pipe($.if(global.is.build, $.size({title: 'vendors.js.gz'})))
+        if (vendorFiles.length)
+        {
+            try {
+                gulp.src(vendorFiles)
+                .pipe($.filter('**/*.js'))
+                .pipe($.concat('vendors.js'))
+                .pipe($.rename({suffix: '.min'}))
+                .pipe($.if(global.is.build, $.uglify(uglifyConfig)))
+                .pipe($.size({title: 'vendors'}))
+                .pipe(gulp.dest(config.app))
 
-            .pipe($.if(global.is.notify, $.notify({ message: 'Bower complete', onLast: true })));
-        } catch(e) {
-            console.log(e);
+                .pipe($.if(global.is.build, $.gzip()))
+                .pipe($.if(global.is.build, gulp.dest(config.app)))
+                .pipe($.if(global.is.build, $.size({title: 'vendors.js.gz'})))
+
+                .pipe($.if(global.is.notify, $.notify({ message: 'Bower complete', onLast: true })));
+            } catch(e) {
+                console.log(e);
+            }
         }
 
         // Scripts files

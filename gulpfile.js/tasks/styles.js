@@ -154,52 +154,54 @@ module.exports = function(config, bower) {
     ];
 
     return function(callback) {
-        // Bower files
-        try {
-            gulp.src(
-                bowerFiles({
-                    paths: {
-                        bowerDirectory: path.resolve(path.dirname(config.path), bower.path),
-                        bowerrc: bower.config,
-                        bowerJson: bower.json
-                    },
-                    debugging: false,
-                    checkExistence: true,
-                    overrides: bower.overrides
-                })
-            )
-            .pipe($.filter('**/*.css'))
-            .pipe($.concat('vendors.css'))
-            .pipe($.rename({suffix: '.min'}))
+        const vendorFiles = bowerFiles({
+            paths: {
+                bowerDirectory: path.resolve(path.dirname(config.path), bower.path),
+                bowerrc: bower.config,
+                bowerJson: bower.json
+            },
+            debugging: false,
+            checkExistence: true,
+            overrides: bower.overrides
+        });
 
-            .pipe($.if(
-                global.is.uncss,
-                $.purifycss(uncssPath)
-            ))
+        if (vendorFiles.length)
+        {
+            try {
+                gulp.src(bowerFiles(vendorFiles))
+                .pipe($.filter('**/*.css'))
+                .pipe($.concat('vendors.css'))
+                .pipe($.rename({suffix: '.min'}))
 
-            .pipe($.if(
-                global.is.build,
-                $.postcss([
-                    require('autoprefixer')({
-                        browsers: AUTOPREFIXER_BROWSERS,
-                        cascade: false
-                    })
-                ])
-            ))
+                .pipe($.if(
+                    global.is.uncss,
+                    $.purifycss(uncssPath)
+                ))
 
-            .pipe($.if(global.is.build, $.groupCssMediaQueries()))
-            .pipe($.if(global.is.build, $.postcss(processors.build)))
-            .pipe($.size({title: 'vendors'}))
-            .pipe(gulp.dest(config.app))
+                .pipe($.if(
+                    global.is.build,
+                    $.postcss([
+                        require('autoprefixer')({
+                            browsers: AUTOPREFIXER_BROWSERS,
+                            cascade: false
+                        })
+                    ])
+                ))
 
-            .pipe($.if(global.is.build, $.gzip()))
-            .pipe($.if(global.is.build, gulp.dest(config.app)))
-            .pipe($.if(global.is.build, $.size({title: 'vendors.css.gz'})))
+                .pipe($.if(global.is.build, $.groupCssMediaQueries()))
+                .pipe($.if(global.is.build, $.postcss(processors.build)))
+                .pipe($.size({title: 'vendors'}))
+                .pipe(gulp.dest(config.app))
 
-            .pipe($.if(global.is.notify, $.notify({ message: 'Bower complete', onLast: true })));
+                .pipe($.if(global.is.build, $.gzip()))
+                .pipe($.if(global.is.build, gulp.dest(config.app)))
+                .pipe($.if(global.is.build, $.size({title: 'vendors.css.gz'})))
 
-        } catch(e) {
-            console.log(e);
+                .pipe($.if(global.is.notify, $.notify({ message: 'Bower complete', onLast: true })));
+
+            } catch(e) {
+                console.log(e);
+            }
         }
 
         gulp.src(config.src)
