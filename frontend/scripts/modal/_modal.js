@@ -18,7 +18,7 @@ const Modal = (function (w,d,b) {
 
     function _render (t)
     {
-        let div = document.createElement('div');
+        const div = document.createElement('div');
         div.innerHTML = t.trim();
         return div.firstChild;
     }
@@ -33,7 +33,7 @@ const Modal = (function (w,d,b) {
 
     function _valid (s)
     {
-        if (d.getElementById(`${s}`)) {
+        if (d.getElementById(s)) {
             return s;
         }
 
