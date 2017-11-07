@@ -9,6 +9,12 @@ module.exports.config = {
         "hammerjs": {
             "main": "hammer.min.js"
         },
+        "modal": {
+            "main": [
+                "dist/modal.min.js",
+                "dist/modal.min.css"
+            ]
+        },
         "nanoscroller": {
             "main": "bin/javascripts/jquery.nanoscroller.min.js"
         },

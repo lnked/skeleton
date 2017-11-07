@@ -35,6 +35,7 @@
     "picturePolyfill": "4.2.1",
     "inert-polyfill": "0.2.4",
     "hammerjs": "2.0.8",
-    "history.js": "1.8.0"
+    "history.js": "1.8.0",
+    "modal": "modaljs#undefined"
   }
 }
