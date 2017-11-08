@@ -100,7 +100,7 @@ else
 fi
 
 mkdir logs frontend public_html frontend/template frontend/styles frontend/scripts
-mkdir frontend/images frontend/sprite frontend/favicon frontend/fonts frontend/json frontend/svgstore
+mkdir frontend/images frontend/favicon frontend/svgstore
 
 # Копируем файлы и папки
 cp -r ${SOURCE}/frontend/* ${PATH_ROOT}/$FOLDER_NAME/frontend/
