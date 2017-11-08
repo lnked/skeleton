@@ -1,27 +1,38 @@
-{% import "partials/_mixins.html" as mixins %}
-
 <!doctype html>
 <!-- (c) lnk. CELEBRO Studio | https://celebro.ru -->
-
 <html class="no-js" lang="ru" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+
+{% import "partials/_mixins.html" as mixins %}
 
 {% include "partials/_head.html" %}
 
 <body{% if bodyclass %} class="{{ bodyclass }}"{% endif %}>
 
-    {% include "components/_svgstore.html" %}
+{% include "components/_svgstore.html" %}
 
-    <!-- BEGIN content -->
-    <div class="out">
+<div class="layout-wrapper">
 
-        {% block content %}{% endblock %}
+    {% include "components/_header.html" %}
+
+    <div class="layout-wrapper__pusher">
+
+        <div class="layout-wrapper__container clearfix">
+
+            {% include "components/_sidebar.html" %}
+
+            <main class="content">
+
+                {% include "./components/_breadcrumbs.html" %}
+
+                {% block content %}{% endblock %}
+
+            </main>
+
+        </div>
 
     </div>
-    <!-- END content -->
 
-    <!-- BEGIN scripts -->
-    <script type="text/javascript" src="js/app.js"></script>
-    <!-- END scripts -->
+</div>
 
 {% include "components/_footer.html" %}
 
