@@ -41,7 +41,7 @@
     "basisjs-tools": "^1.8.0",
     "basisjs-tools-instrumenter": "^2.1.0",
     "browser-sync": "^2.18.13",
-    "critical": "^0.9.0",
+    "critical": "1.0.0",
     "css-mqpacker": "6.0.1",
     "cssnano": "4.0.0-rc.2",
     "del": "^3.0.0",

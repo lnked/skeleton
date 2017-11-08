@@ -19,12 +19,14 @@
     will-change: transform, opacity;
 
     &.is-hidden {
+        position: absolute;
         width: 1px;
         height: 1px;
-        padding: 0;
         margin: -1px;
-        overflow: hidden;
+        border: 0;
+        padding: 0;
         clip: rect(0 0 0 0);
+        overflow: hidden;
     }
 
     &.is-animated {
@@ -47,7 +49,7 @@
         background: none;
         border: 1px solid lime;
 
-        @extend %outline;
+        @include outline($c-focus-color);
 
         &__ico {
             max-width: 100%;

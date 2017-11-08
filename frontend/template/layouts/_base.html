@@ -1,0 +1,31 @@
+{% import "partials/_mixins.html" as mixins %}
+
+<!doctype html>
+<!-- (c) lnk. CELEBRO Studio | https://celebro.ru -->
+
+<html class="no-js" lang="ru" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+
+{% include "partials/_head.html" %}
+
+<body{% if bodyclass %} class="{{ bodyclass }}"{% endif %}>
+
+    {% include "components/_svgstore.html" %}
+
+    <!-- BEGIN content -->
+    <div class="out">
+
+        {% block content %}{% endblock %}
+
+    </div>
+    <!-- END content -->
+
+    <!-- BEGIN scripts -->
+    <script type="text/javascript" src="js/app.js"></script>
+    <!-- END scripts -->
+
+{% include "components/_footer.html" %}
+
+{% include "components/_scripts.html" %}
+
+</body>
+</html>

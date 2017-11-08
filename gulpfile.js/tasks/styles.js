@@ -5,7 +5,6 @@ const path  = require('path');
 const gulp  = require('gulp');
 const clean = require('../utils/clean')
 const error = require('../utils/error');
-
 const mqpacker      = require('css-mqpacker');
 const bowerFiles    = require('main-bower-files');
 

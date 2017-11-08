@@ -1,0 +1,23 @@
+<head>
+    <meta charset="utf-8">
+
+    <title itemprop="name">{{ title }}</title>
+
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% include "../partials/_styles.html" %}
+    {% include "../partials/_preload.html" %}
+
+    {% include "../partials/_styles.html" %}
+
+    {% include "../partials/_fonts.html" %}
+
+    <!--[if lt IE 9]>
+        <meta http-equiv="cleartype" content="on">
+        <meta http-equiv="imagetoolbar" content="no">
+        <meta http-equiv="msthemecompatible" content="no">
+    <![endif]-->
+
+    <script>(function(d) { d.className = d.className.replace(/\bno-js/, ''); })(document.documentElement);</script>
+</head>
