@@ -27,6 +27,12 @@ module.exports.config = {
         "decouple": {
             "main": "dist/decouple.min.js"
         },
+        "simplePagination.js": {
+            "main": [
+                // "simplePagination.css",
+                "jquery.simplePagination.js"
+            ]
+        },
         "jquery.nicescroll": {
             "main": "dist/jquery.nicescroll.min.js"
         },
