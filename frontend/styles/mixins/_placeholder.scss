@@ -1,0 +1,61 @@
+@mixin placeholder($color: #000, $opacity: 1) {
+    &::placeholder {
+        color: #959595;
+        color: $color;
+        opacity: $opacity;
+        transition: opacity $a-micro-time ease;
+    }
+
+    &:focus::placeholder {
+        color: transparent;
+        opacity: 0;
+    }
+
+    &[placeholder],
+    &::placeholder {
+        text-overflow: ellipsis;
+    }
+}
+
+// /* fadeouts of placeholder in focus */
+// ::placeholder {opacity: 1; transition: opacity 0.3s ease;}
+
+// :focus::placeholder {opacity: 0; transition: opacity 0.3s ease;}
+
+// /* shift right placeholder in focus */
+// ::placeholder {text-indent: 0px;   transition: text-indent 0.3s ease;}
+
+// :focus::placeholder {text-indent: 500px; transition: text-indent 0.3s ease;}
+
+// /* shift down placeholder in focus */
+// ::placeholder {line-height: 20px;  transition: line-height 0.5s ease;}
+
+// :focus::placeholder {line-height: 100px; transition: line-height 0.5s ease;}
+
+// /* плавное изменение прозрачности  placeholder-а при фокусе */
+// .input1::-webkit-input-placeholder       {opacity: 1; transition: opacity 0.3s ease;}
+// .input1::-moz-placeholder                {opacity: 1; transition: opacity 0.3s ease;}
+// .input1:-moz-placeholder                 {opacity: 1; transition: opacity 0.3s ease;}
+// .input1:-ms-input-placeholder            {opacity: 1; transition: opacity 0.3s ease;}
+// .input1:focus::-webkit-input-placeholder {opacity: 0; transition: opacity 0.3s ease;}
+// .input1:focus::-moz-placeholder          {opacity: 0; transition: opacity 0.3s ease;}
+// .input1:focus:-moz-placeholder           {opacity: 0; transition: opacity 0.3s ease;}
+// .input1:focus:-ms-input-placeholder      {opacity: 0; transition: opacity 0.3s ease;}
+// /* сдвиг placeholder-а вправо при фокусе*/
+// .input2::-webkit-input-placeholder       {text-indent: 0px;   transition: text-indent 0.3s ease;}
+// .input2::-moz-placeholder                {text-indent: 0px;   transition: text-indent 0.3s ease;}
+// .input2:-moz-placeholder                 {text-indent: 0px;   transition: text-indent 0.3s ease;}
+// .input2:-ms-input-placeholder            {text-indent: 0px;   transition: text-indent 0.3s ease;}
+// .input2:focus::-webkit-input-placeholder {text-indent: 500px; transition: text-indent 0.3s ease;}
+// .input2:focus::-moz-placeholder          {text-indent: 500px; transition: text-indent 0.3s ease;}
+// .input2:focus:-moz-placeholder           {text-indent: 500px; transition: text-indent 0.3s ease;}
+// .input2:focus:-ms-input-placeholder      {text-indent: 500px; transition: text-indent 0.3s ease;}
+// /* сдвиг placeholder-а вниз при фокусе*/
+// .input3::-webkit-input-placeholder       {line-height: 20px;  transition: line-height 0.5s ease;}
+// .input3::-moz-placeholder                {line-height: 20px;  transition: line-height 0.5s ease;}
+// .input3:-moz-placeholder                 {line-height: 20px;  transition: line-height 0.5s ease;}
+// .input3:-ms-input-placeholder            {line-height: 20px;  transition: line-height 0.5s ease;}
+// .input3:focus::-webkit-input-placeholder {line-height: 100px; transition: line-height 0.5s ease;}
+// .input3:focus::-moz-placeholder          {line-height: 100px; transition: line-height 0.5s ease;}
+// .input3:focus:-moz-placeholder           {line-height: 100px; transition: line-height 0.5s ease;}
+// .input3:focus:-ms-input-placeholder      {line-height: 100px; transition: line-height 0.5s ease;}
