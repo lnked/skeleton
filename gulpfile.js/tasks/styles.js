@@ -5,6 +5,7 @@ const path  = require('path');
 const gulp  = require('gulp');
 const clean = require('../utils/clean')
 const error = require('../utils/error');
+const brotli        = require('gulp-brotli');
 const mqpacker      = require('css-mqpacker');
 const bowerFiles    = require('main-bower-files');
 
@@ -229,6 +230,13 @@ module.exports = function(config, bower) {
             .pipe(gulp.dest(config.app))
 
             .pipe($.if(global.is.build, $.gzip()))
+            .pipe($.if(global.is.build, brotli.compress({
+                extension: 'brotli',
+                skipLarger: true,
+                mode: 0,
+                quality: 11,
+                lgblock: 0
+            })))
             .pipe($.if(global.is.build, gulp.dest(config.app)))
             .pipe($.if(global.is.build, $.size({title: `${config.task}.css.gz`})))
 
@@ -275,6 +283,13 @@ module.exports = function(config, bower) {
                     .pipe(gulp.dest(config.app))
 
                     .pipe($.if(global.is.build, $.gzip()))
+                    .pipe($.if(global.is.build, brotli.compress({
+                        extension: 'brotli',
+                        skipLarger: true,
+                        mode: 0,
+                        quality: 11,
+                        lgblock: 0
+                    })))
                     .pipe($.if(global.is.build, gulp.dest(config.app)))
                     .pipe($.if(global.is.build, $.size({title: 'vendors.css.gz'})))
 

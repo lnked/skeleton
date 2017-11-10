@@ -8,6 +8,7 @@ const clean         = require('../utils/clean');
 const error         = require('../utils/error');
 const getFolders    = require('../utils/folders');
 const bowerFiles    = require('main-bower-files');
+const brotli        = require('gulp-brotli');
 
 module.exports = function(config, bower) {
     config = config || {};
@@ -56,6 +57,13 @@ module.exports = function(config, bower) {
                 .pipe(gulp.dest(config.app))
 
                 .pipe($.if(global.is.build, $.gzip()))
+                .pipe($.if(global.is.build, brotli.compress({
+                    extension: 'brotli',
+                    skipLarger: true,
+                    mode: 0,
+                    quality: 11,
+                    lgblock: 0
+                })))
                 .pipe($.if(global.is.build, gulp.dest(config.app)))
                 .pipe($.if(global.is.build, $.size({title: 'vendors.js.gz'})))
 
@@ -107,6 +115,13 @@ module.exports = function(config, bower) {
                 .pipe(gulp.dest(config.app))
 
                 .pipe($.if(global.is.build, $.gzip()))
+                .pipe($.if(global.is.build, brotli.compress({
+                    extension: 'brotli',
+                    skipLarger: true,
+                    mode: 0,
+                    quality: 11,
+                    lgblock: 0
+                })))
                 .pipe($.if(global.is.build, gulp.dest(config.app)))
                 .pipe($.if(global.is.build, $.size({title: `${folder}.js.gz`})))
 
