@@ -34,45 +34,6 @@ module.exports = function(config, bower) {
     };
 
     return function(callback) {
-        const vendorFiles = bowerFiles({
-            paths: {
-                bowerDirectory: path.resolve(path.dirname(config.path), bower.path),
-                bowerrc: bower.config,
-                bowerJson: bower.json
-            },
-            debugging: false,
-            checkExistence: true,
-            overrides: bower.overrides
-        });
-
-        if (vendorFiles.length)
-        {
-            try {
-                gulp.src(vendorFiles)
-                .pipe($.filter('**/*.js'))
-                .pipe($.concat('vendors.js'))
-                .pipe($.rename({suffix: '.min'}))
-                .pipe($.if(global.is.build, $.uglify(uglifyConfig)))
-                .pipe($.size({title: 'vendors'}))
-                .pipe(gulp.dest(config.app))
-
-                .pipe($.if(global.is.build, $.gzip()))
-                .pipe($.if(global.is.build, brotli.compress({
-                    extension: 'brotli',
-                    skipLarger: true,
-                    mode: 0,
-                    quality: 11,
-                    lgblock: 0
-                })))
-                .pipe($.if(global.is.build, gulp.dest(config.app)))
-                .pipe($.if(global.is.build, $.size({title: 'vendors.js.gz'})))
-
-                .pipe($.if(global.is.notify, $.notify({ message: 'Bower complete', onLast: true })));
-            } catch(e) {
-                console.log(e);
-            }
-        }
-
         // Scripts files
 
         let folders = getFolders(config.path);
@@ -128,8 +89,67 @@ module.exports = function(config, bower) {
                 .pipe($.if(global.is.notify, $.notify({ message: config.task + ' complete', onLast: true })));
         });
 
-        callback();
+        // VENDORS
+        const vendorFiles = bowerFiles({
+            paths: {
+                bowerDirectory: path.resolve(path.dirname(config.path), bower.path),
+                bowerrc: bower.config,
+                bowerJson: bower.json
+            },
+            debugging: false,
+            checkExistence: true,
+            overrides: bower.overrides
+        });
 
+        if (vendorFiles.length)
+        {
+            let exists = false;
+            const files = [];
+
+            function _vendorsCallback(files)
+            {
+                gulp.src(files)
+                    .pipe($.filter('**/*.js'))
+                    .pipe($.concat('vendors.js'))
+                    .pipe($.rename({suffix: '.min'}))
+                    .pipe($.if(global.is.build, $.uglify(uglifyConfig)))
+                    .pipe($.size({title: 'vendors'}))
+                    .pipe(gulp.dest(config.app))
+
+                    .pipe($.if(global.is.build, $.gzip()))
+                    .pipe($.if(global.is.build, brotli.compress({
+                        extension: 'brotli',
+                        skipLarger: true,
+                        mode: 0,
+                        quality: 11,
+                        lgblock: 0
+                    })))
+                    .pipe($.if(global.is.build, gulp.dest(config.app)))
+                    .pipe($.if(global.is.build, $.size({title: 'vendors.js.gz'})))
+
+                    .pipe($.if(global.is.notify, $.notify({ message: 'Bower complete', onLast: true })));
+            }
+
+            for (var i = vendorFiles.length - 1; i >= 0; i--)
+            {
+                const basename = path.basename(vendorFiles[i]);
+                const template = basename.split('.');
+                const extension = template[template.length - 1];
+
+                if (extension.indexOf(['js']) >= 0)
+                {
+                    exists = true;
+                    files.push(vendorFiles[i]);
+                }
+
+                if (i === 0 && exists)
+                {
+                    _vendorsCallback(files);
+                }
+            }
+        }
+
+        callback();
     };
 
 };

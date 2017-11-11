@@ -256,8 +256,12 @@ module.exports = function(config, bower) {
 
         if (vendorFiles.length)
         {
-            try {
-                gulp.src(bowerFiles(vendorFiles))
+            let exists = false;
+            const files = [];
+
+            function _vendorsCallback(files)
+            {
+                gulp.src(files)
                     .pipe($.filter('**/*.css'))
                     .pipe($.concat('vendors.css'))
                     .pipe($.rename({suffix: '.min'}))
@@ -294,9 +298,24 @@ module.exports = function(config, bower) {
                     .pipe($.if(global.is.build, $.size({title: 'vendors.css.gz'})))
 
                     .pipe($.if(global.is.notify, $.notify({ message: 'Bower complete', onLast: true })));
+            }
 
-            } catch(e) {
-                console.log(e);
+            for (var i = vendorFiles.length - 1; i >= 0; i--)
+            {
+                const basename = path.basename(vendorFiles[i]);
+                const template = basename.split('.');
+                const extension = template[template.length - 1];
+
+                if (extension.indexOf(['sass', 'scss', 'css']) >= 0)
+                {
+                    exists = true;
+                    files.push(vendorFiles[i]);
+                }
+
+                if (i === 0 && exists)
+                {
+                    _vendorsCallback(files);
+                }
             }
         }
 
