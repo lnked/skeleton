@@ -15,11 +15,11 @@
     "build": "gulp build",
     "deploy": "gulp deploy",
     "template": "gulp nunjucks",
-    "o-template": "gulp template",
     "styles": "gulp styles",
     "scripts": "gulp scripts",
     "images": "gulp images",
     "favicon": "gulp favicon",
+    "fonts": "gulp fonts",
     "misc": "gulp fonts && gulp json && gulp misc",
     "clean": "rm -rf ./public_html"
   },
