@@ -233,7 +233,7 @@ module.exports.config = {
             ]
         },
         "js-md5": {
-            "main": "build/md5.min.js"
+            "main": "js/md5.min.js"
         },
         "jquery-sortable": {
             "main": "source/js/jquery-sortable-min.js"

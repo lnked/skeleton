@@ -14,6 +14,7 @@
     "start": "gulp",
     "build": "gulp build",
     "deploy": "gulp deploy",
+    "json": "gulp json",
     "template": "gulp nunjucks",
     "styles": "gulp styles",
     "scripts": "gulp scripts",

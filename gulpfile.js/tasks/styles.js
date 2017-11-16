@@ -243,7 +243,7 @@ module.exports = function(config, bower) {
             .pipe($.if(global.is.notify, $.notify({ message: config.task + ' complete', onLast: true })));
 
         // VENDORS
-        const vendorFiles = bowerFiles({
+        const vendorFiles = bowerFiles(['*.css', '**/*.css'], {
             paths: {
                 bowerDirectory: path.resolve(path.dirname(config.path), bower.path),
                 bowerrc: bower.config,
@@ -262,7 +262,6 @@ module.exports = function(config, bower) {
             function _vendorsCallback(files)
             {
                 gulp.src(files)
-                    .pipe($.filter('**/*.css'))
                     .pipe($.concat('vendors.css'))
                     .pipe($.rename({suffix: '.min'}))
 

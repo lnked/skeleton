@@ -90,7 +90,7 @@ module.exports = function(config, bower) {
         });
 
         // VENDORS
-        const vendorFiles = bowerFiles({
+        const vendorFiles = bowerFiles(['*.js', '**/*.js'], {
             paths: {
                 bowerDirectory: path.resolve(path.dirname(config.path), bower.path),
                 bowerrc: bower.config,
@@ -104,12 +104,13 @@ module.exports = function(config, bower) {
         if (vendorFiles.length)
         {
             let exists = false;
+
+            const glob = [];
             const files = [];
 
-            function _vendorsCallback(files)
+            function _vendorsCallback(glob)
             {
                 gulp.src(files)
-                    .pipe($.filter('**/*.js'))
                     .pipe($.concat('vendors.js'))
                     .pipe($.rename({suffix: '.min'}))
                     .pipe($.if(global.is.build, $.uglify(uglifyConfig)))
@@ -130,7 +131,9 @@ module.exports = function(config, bower) {
                     .pipe($.if(global.is.notify, $.notify({ message: 'Bower complete', onLast: true })));
             }
 
-            for (var i = vendorFiles.length - 1; i >= 0; i--)
+            const length = vendorFiles.length - 1;
+
+            for (var i = 0; i <= length; i++)
             {
                 const basename = path.basename(vendorFiles[i]);
                 const template = basename.split('.');
@@ -139,12 +142,34 @@ module.exports = function(config, bower) {
                 if (extension.indexOf(['js']) >= 0)
                 {
                     exists = true;
-                    files.push(vendorFiles[i]);
+
+                    if (basename.indexOf('jquery.min.js') >= 0 || basename.indexOf('codemirror.js') >= 0)
+                    {
+                        glob.push(vendorFiles[i]);
+                    }
+                    else
+                    {
+                        files.push(vendorFiles[i]);
+                    }
                 }
 
-                if (i === 0 && exists)
+                if (i === length && exists)
                 {
-                    _vendorsCallback(files);
+                    if (glob.length)
+                    {
+                        for (var x = glob.length - 1; x >= 0; x--) {
+                            files.unshift(glob[x]);
+
+                            if (x === 0)
+                            {
+                                _vendorsCallback(files);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        _vendorsCallback(files);
+                    }
                 }
             }
         }
