@@ -11,13 +11,10 @@ module.exports = function(config) {
     return function(callback) {
 
         gulp.src(config.src)
-            .pipe($.if(
-                !global.is.build,
-                $.newer(config.app)
-            ))
+            .pipe($.stripComments())
             .pipe(gulp.dest(config.app))
             .pipe($.if(global.is.notify, $.notify({ message: config.task + ' complete', onLast: true })));
-            
+
         callback();
 
     };
