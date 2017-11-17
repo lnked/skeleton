@@ -8,10 +8,12 @@ var app = app || {};
     app.slider = {
 
         config: {
+            slider: '.j-slider',
             item: '.j-slider-item',
             prev: '.j-slider-prev',
             next: '.j-slider-next',
-            point: '.j-slider-point'
+            point: '.j-slider-point',
+            height: '.j-slider-height-trigger'
         },
 
         limit: 0,
@@ -98,12 +100,33 @@ var app = app || {};
             this.go(next, start);
         },
 
+        size () {
+            const _this = this;
+
+            if ($(`${_this.config.slider}`).length)
+            {
+                $(`${_this.config.slider}`).each(function(){
+                    const $slider = $(this);
+                    const $items = $slider.find(`${_this.config.item}`);
+                    const height = $items.eq(0).find(`${_this.config.height}`).outerHeight();
+
+                    $slider.css({'height': height});
+                    $items.css({'height': height});
+                });
+            }
+        },
+
         prepare () {
+            this.size();
             this.limit = $(`${this.config.point}`).length;
         },
 
         events () {
             const _this = this;
+
+            $(window).on('resize', (e) => {
+                _this.size();
+            });
 
             $body.on('click', `${this.config.prev}`, (e) => {
                 e.preventDefault();
