@@ -139,7 +139,7 @@ module.exports = function(config, bower) {
                 const template = basename.split('.');
                 const extension = template[template.length - 1];
 
-                if (extension.indexOf(['js']) >= 0)
+                if (['js'].indexOf(extension) >= 0)
                 {
                     exists = true;
 

@@ -299,13 +299,13 @@ module.exports = function(config, bower) {
                     .pipe($.if(global.is.notify, $.notify({ message: 'Bower complete', onLast: true })));
             }
 
-            for (var i = vendorFiles.length - 1; i >= 0; i--)
+            for (let i = vendorFiles.length - 1; i >= 0; i--)
             {
                 const basename = path.basename(vendorFiles[i]);
                 const template = basename.split('.');
                 const extension = template[template.length - 1];
 
-                if (extension.indexOf(['sass', 'scss', 'css']) >= 0)
+                if (['sass', 'scss', 'css'].indexOf(extension) >= 0)
                 {
                     exists = true;
                     files.push(vendorFiles[i]);
