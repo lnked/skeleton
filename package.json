@@ -22,7 +22,8 @@
     "favicon": "gulp favicon",
     "fonts": "gulp fonts",
     "misc": "gulp fonts && gulp json && gulp misc",
-    "clean": "rm -rf ./public_html"
+    "clean": "rm -rf ./public_html",
+    "python-server": "python -m SimpleHTTPServer 8000"
   },
   "dependencies": {
     "fontfaceobserver": "^2.0.13",
