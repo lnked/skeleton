@@ -24,8 +24,17 @@ indent_size = 4
 indent_style = space
 
 [.eslintrc]
+file_type = yaml
 indent_style = space
 indent_size = 4
 
 [*.md]
+syntax = markdown, md, Mark Down
 trim_trailing_whitespace = false
+
+[*.{css, scss, sass}]
+syntax = postcss, scss, sass, css
+file_type = postcss, scss, sass, css
+
+[*.nunjucks,html]
+syntax = nunjucks, jinja2, html

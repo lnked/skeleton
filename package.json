@@ -104,7 +104,7 @@
     "gulp-template": "^4.0.0",
     "gulp-tinypng": "^1.0.2",
     "gulp-tinypng-compress": "^1.2.1",
-    "gulp-tinypng-nokey": "^1.1.0",
+    "gulp-tinypng-nokey": "1.1.0",
     "gulp-uglify": "^3.0.0",
     "gulp-uncss": "1.0.6",
     "gulp-util": "^3.0.7",
