@@ -1,28 +1,24 @@
 var app = app || {};
 
-(function(body){
-    "use strict";
-
+(function(body) {
     app.pagination = {
-
-        addQuery: function (params)
-        {
+        addQuery(params) {
             if (location.search.length && params.length) {
-                var query = location.search.substr(1);
-                var x = '';
-                var sample = '';
-                var result = {};
+                const query = location.search.substr(1);
+                let x = "";
+                let sample = "";
+                const result = {};
 
-                query.split("&").forEach(function(part) {
-                    var item = part.split("=");
+                query.split("&").forEach(part => {
+                    const item = part.split("=");
                     result[item[0]] = decodeURIComponent(item[1]);
                 });
 
-                for(x in params) {
-                    var opt = params[x];
+                for (x in params) {
+                    const opt = params[x];
 
-                    if (typeof(result[opt]) !== 'undefined') {
-                        sample += '&' + opt + '=' + result[opt]
+                    if (typeof result[opt] !== "undefined") {
+                        sample += `&${opt}=${result[opt]}`;
                     }
                 }
 
@@ -30,22 +26,21 @@ var app = app || {};
             }
         },
 
-        use: function ()
-        {
-            if ($('.j-pagination').length)
-            {
-                var _this = this;
+        use() {
+            if ($(".j-pagination").length) {
+                const _this = this;
 
-                $('.j-pagination').each(function(){
-                    if (typeof($(this).data('pagination')) !== 'undefined')
-                    {
-                        var config = $(this).data('pagination'), p, options = {};
-                        var width = $(window).width();
+                $(".j-pagination").each(function() {
+                    if (typeof $(this).data("pagination") !== "undefined") {
+                        let config = $(this).data("pagination"),
+                            p,
+                            options = {};
+                        const width = $(window).width();
 
-                        options.cssStyle = 'light-theme';
+                        options.cssStyle = "light-theme";
                         options.selectOnClick = false;
                         options.ellipsePageSet = true;
-                        options.hrefTextPrefix = '?page=';
+                        options.hrefTextPrefix = "?page=";
 
                         if (width <= 375) {
                             options.edges = 0;
@@ -59,14 +54,17 @@ var app = app || {};
                             options.displayedPages = 8;
                         }
 
-                        options.hrefTextSuffix = _this.addQuery(['sort', 'direction']);
+                        options.hrefTextSuffix = _this.addQuery([
+                            "sort",
+                            "direction"
+                        ]);
 
                         options.onPageClick = function(pageNumber, event) {
-                            window.location.href = options.hrefTextPrefix + pageNumber;
+                            window.location.href =
+                                options.hrefTextPrefix + pageNumber;
                         };
 
-                        for (p in config)
-                        {
+                        for (p in config) {
                             options[p] = config[p];
                         }
 
@@ -76,13 +74,10 @@ var app = app || {};
             }
         },
 
-        init: function()
-        {
+        init() {
             this.use();
         }
-
     };
-
 })(document.body);
 
 // this.pagination.init();

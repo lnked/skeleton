@@ -1,8 +1,6 @@
-let app = app || {};
+const app = app || {};
 
-((body => {
-    "use strict";
-
+(body => {
     // <div class="list" id="preload-list">
     //     {# item #}
     // </div>
@@ -13,56 +11,51 @@ let app = app || {};
 
     const width = $(window).width();
 
-    let $content = '';
-    let $scroller = '';
+    let $content = "";
+    let $scroller = "";
 
-    const $preload = $('#preload-list');
-    const $spinner = $('#preload-spinner');
+    const $preload = $("#preload-list");
+    const $spinner = $("#preload-spinner");
 
     if (width <= 667) {
         $scroller = $(window);
-        $content = $('#content');
-    }
-    else {
-        $scroller = $('#scroller');
-        $content = $('#content');
+        $content = $("#content");
+    } else {
+        $scroller = $("#scroller");
+        $content = $("#content");
     }
 
     app.lazyload = {
-
         page: null,
 
-        element: '',
+        element: "",
 
-        destroy () {
-            $scroller.off('scroll.preload');
-            $spinner.removeClass('is-active');
+        destroy() {
+            $scroller.off("scroll.preload");
+            $spinner.removeClass("is-active");
         },
 
-        processData (data)
-        {
+        processData(data) {
             const _this = this;
 
-            if (!data.length)
-            {
+            if (!data.length) {
                 _this.destroy();
-            }
-            else
-            {
-                const page = _this.page.split('.')[0];
+            } else {
+                const page = _this.page.split(".")[0];
 
-                const $list = $(template(`tmpl-${page}-list`, {
-                    list: data
-                }));
+                const $list = $(
+                    template(`tmpl-${page}-list`, {
+                        list: data
+                    })
+                );
 
                 $preload.append($list);
 
-                $spinner.removeClass('is-active');
+                $spinner.removeClass("is-active");
             }
         },
 
-        scroll (page, element)
-        {
+        scroll(page, element) {
             this.page = page;
             this.element = element;
 
@@ -72,29 +65,32 @@ let app = app || {};
             let progress = false;
             let compareTime = new Date().getTime();
 
-            $(window).on("blur focus", function(e) {
-                if (e.type === 'focus' && !isFocused)
-                {
+            $(window).on("blur focus", e => {
+                if (e.type === "focus" && !isFocused) {
                     isFocused = true;
                     compareTime = new Date().getTime();
-                    $scroller.trigger('scroll.preload');
+                    $scroller.trigger("scroll.preload");
                 }
             });
 
-            $scroller.on('scroll.preload', () => {
-                const difference = Math.floor($content.height() - $scroller.height()) - 200;
+            $scroller.on("scroll.preload", () => {
+                const difference =
+                    Math.floor($content.height() - $scroller.height()) - 200;
                 const currentTime = new Date().getTime();
 
-                if ($scroller.scrollTop() >= difference && (currentTime - compareTime) > 300 && !progress)
-                {
+                if (
+                    $scroller.scrollTop() >= difference &&
+                    currentTime - compareTime > 300 &&
+                    !progress
+                ) {
                     progress = true;
                     compareTime = new Date().getTime();
 
-                    $spinner.addClass('is-active');
+                    $spinner.addClass("is-active");
 
                     const action = [];
 
-                    action.push('ajax/load');
+                    action.push("ajax/load");
                     action.push(_this.page);
 
                     if (_this.element) {
@@ -102,45 +98,39 @@ let app = app || {};
                     }
 
                     $.ajax({
-                        url: `/${action.join('/')}`,
-                        type: 'get',
-                        dataType: 'JSON',
+                        url: `/${action.join("/")}`,
+                        type: "get",
+                        dataType: "JSON",
                         contentType: false,
                         processData: true,
-                        success: (response) => {
+                        success: response => {
                             progress = false;
                             _this.processData(response);
                         },
-                        error: (response) => {
+                        error: response => {
                             _this.destroy();
                         }
                     });
-
                 }
-
             });
-
         },
 
-        init () {
+        init() {
+            if (typeof lazyLoadPage !== "undefined") {
+                let element = "";
 
-            if (typeof lazyLoadPage !== 'undefined')
-            {
-                let element = '';
-
-                if (typeof lazyLoadItem !== 'undefined')
-                {
+                if (typeof lazyLoadItem !== "undefined") {
                     element = lazyLoadItem;
                 }
 
-                if (typeof lazyLoadCount !== 'undefined' && typeof lazyLoadLimit !== 'undefined' && lazyLoadCount > lazyLoadLimit)
-                {
+                if (
+                    typeof lazyLoadCount !== "undefined" &&
+                    typeof lazyLoadLimit !== "undefined" &&
+                    lazyLoadCount > lazyLoadLimit
+                ) {
                     this.scroll(lazyLoadPage, element);
                 }
             }
-
         }
-
     };
-
-}))(document.body);
+})(document.body);

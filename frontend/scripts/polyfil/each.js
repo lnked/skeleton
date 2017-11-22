@@ -11,8 +11,7 @@ function forEachElement(selector, fn) {
 // });
 
 function forEach(array, fn) {
-  for (var i = 0; i < array.length; i++)
-    fn(array[i], i);
+    for (var i = 0; i < array.length; i++) fn(array[i], i);
 }
 
 // forEach(array, function(item, i){
@@ -20,12 +19,9 @@ function forEach(array, fn) {
 // });
 
 function map(arr, fn) {
-  var results = [];
-  for (var i = 0; i < arr.length; i++)
-    results.push(fn(arr[i], i));
-  return results;
+    var results = [];
+    for (var i = 0; i < arr.length; i++) results.push(fn(arr[i], i));
+    return results;
 }
 
-map(array, function(value, index){
-
-});
+map(array, function(value, index) {});

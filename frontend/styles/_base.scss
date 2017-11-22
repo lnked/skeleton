@@ -14,19 +14,25 @@ html {
     quotes: "“" "”";
     overflow-x: hidden;
     font-size: $font-base;
-    font-family: $font-family;
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
 }
 
+html, body {
+    overscroll-behavior-y: none; /* disable pull to refresh */ // contain
+}
+
+
 body {
     color: $c-text;
     min-width: 320px;
-    line-height: 1.42857143;
     font-kerning: none;
+    font-family: $font-family;
+    line-height: 1.42857143;
+    background-color: $c-body-background;
+
     overflow-x: hidden;
     overflow-y: auto;
-    background-color: $c-body-background;
 }
 
 /*

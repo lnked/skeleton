@@ -108,7 +108,6 @@
 // //   return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
 // // }
 
-
 // // function youTubeGetId(url) {
 // //     const expression = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be[.]?\/|youtube\.com[.]?\/(?:embed\/|v\/|watch\/?\?(?:\S+=\S*&)*v=))([\w-]{11})\S*$/;
 // //     return url.match(expression) ? RegExp.$1 : undefined;

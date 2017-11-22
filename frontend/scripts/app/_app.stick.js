@@ -1,37 +1,31 @@
 var app = app || {};
 
-(function(body){
-    "use strict";
-
-    var _this, _scrollTop, _timeout;
+(function(body) {
+    let _this, _scrollTop, _timeout;
 
     app.stick = {
-
         config: {
             delay: 20,
-            element: '.js-stick'
+            element: ".js-stick"
         },
 
         cache: [],
 
         offset: [],
 
-        calc: function()
-        {
+        calc() {
             _this = this;
 
-            if ($(_this.config.element).length)
-            {
-                var top = 0;
+            if ($(_this.config.element).length) {
+                let top = 0;
 
                 $(_this.config.element).map(function(index) {
-                    $(this).addClass('js-stick-' + index);
+                    $(this).addClass(`js-stick-${index}`);
 
                     top = $(this).offset().top;
 
-                    if ($(this).data('offset'))
-                    {
-                        top -= parseInt($(this).data('offset'));
+                    if ($(this).data("offset")) {
+                        top -= parseInt($(this).data("offset"));
                     }
 
                     _this.cache[index] = top;
@@ -40,74 +34,56 @@ var app = app || {};
             }
         },
 
-        resize: function()
-        {
+        resize() {
             _this = this;
 
-            $(window).on('resize', function() {
+            $(window).on("resize", () => {
                 _this.calc();
             });
         },
 
-        check: function()
-        {
+        check() {
             _this = this;
 
             _scrollTop = $(window).scrollTop();
 
-            var x, stick;
+            let x, stick;
 
-            for(x in _this.cache)
-            {
-                stick = $('.js-stick-' + x);
+            for (x in _this.cache) {
+                stick = $(`.js-stick-${x}`);
 
-                if (_scrollTop >= _this.cache[x])
-                {
-                    if (!stick.hasClass('sticked'))
-                    {
-                        stick.addClass('sticked');
+                if (_scrollTop >= _this.cache[x]) {
+                    if (!stick.hasClass("sticked")) {
+                        stick.addClass("sticked");
                         stick.css({
-                            left: _this.offset[x] + 'px'
+                            left: `${_this.offset[x]}px`
                         });
                     }
-                }
-                else
-                {
-                    if (stick.hasClass('sticked'))
-                    {
-                        stick.removeAttr('style');
-                        stick.removeClass('sticked');
-                    }
+                } else if (stick.hasClass("sticked")) {
+                    stick.removeAttr("style");
+                    stick.removeClass("sticked");
                 }
             }
         },
 
-        initScroll: function()
-        {
+        initScroll() {
             _this = this;
 
-            $(window).on('scroll', function(e){
-
+            $(window).on("scroll", e => {
                 clearTimeout(_timeout);
 
-                _timeout = setTimeout(function() {
-
+                _timeout = setTimeout(() => {
                     _this.check();
-
                 }, _this.config.delay);
-                
             });
         },
 
-        init: function()
-        {
+        init() {
             this.calc();
             this.check();
             this.resize();
-            
+
             this.initScroll();
         }
-
     };
-
 })(jQuery);

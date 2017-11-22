@@ -26,7 +26,6 @@
 // console.log(memoizedAdd(4));  // вычислено
 // console.log(memoizedAdd(4));  // взято из кэша
 
-
 // // уже знакомая нам функция memoize
 // const memoize = (fn) => {
 //   let cache = {};

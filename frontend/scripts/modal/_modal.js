@@ -1,38 +1,31 @@
-const Modal = (function (w,d,b) {
-
+const Modal = (function(w, d, b) {
     const settings = {
-        close: '.j-close-modal',
-        trigger: '.j-open-modal',
+        close: ".j-close-modal",
+        trigger: ".j-open-modal",
         timeout: 400
     };
 
-    function _clean (s)
-    {
-        if (s.substr(0, 1) == '#')
-        {
+    function _clean(s) {
+        if (s.substr(0, 1) == "#") {
             s = s.substr(1);
         }
 
         return s;
     }
 
-    function _render (t)
-    {
-        const div = document.createElement('div');
+    function _render(t) {
+        const div = document.createElement("div");
         div.innerHTML = t.trim();
         return div.firstChild;
     }
 
-    function _callback (c)
-    {
-        if (typeof(c) === 'function')
-        {
+    function _callback(c) {
+        if (typeof c === "function") {
             c.call(null);
         }
     }
 
-    function _valid (s)
-    {
+    function _valid(s) {
         if (d.getElementById(s)) {
             return s;
         }
@@ -48,13 +41,12 @@ const Modal = (function (w,d,b) {
         return false;
     }
 
-    function _close (modal, callback, remove)
-    {
-        modal.classList.remove('is-animated');
-        modal.classList.remove('is-open');
+    function _close(modal, callback, remove) {
+        modal.classList.remove("is-animated");
+        modal.classList.remove("is-open");
 
         setTimeout(() => {
-            modal.classList.add('is-hidden');
+            modal.classList.add("is-hidden");
 
             if (remove) {
                 modal.parentNode.removeChild(modal);
@@ -64,89 +56,79 @@ const Modal = (function (w,d,b) {
         }, settings.timeout);
     }
 
-    function _show (modal)
-    {
-        modal.classList.remove('is-hidden');
+    function _show(modal) {
+        modal.classList.remove("is-hidden");
 
         setTimeout(() => {
-            modal.classList.add('is-animated');
-            modal.classList.add('is-open');
+            modal.classList.add("is-animated");
+            modal.classList.add("is-open");
         }, 16);
 
         _focus(modal);
     }
 
-    function _focus (modal)
-    {
+    function _focus(modal) {
         modal.focus();
 
-        const button = d.createElement('button');
+        const button = d.createElement("button");
 
-        button.style = 'position:absolute;width:1px;height:1px;opacity:0;right:0px;bottom:0px;background-color:#f00;outline:0;';
+        button.style =
+            "position:absolute;width:1px;height:1px;opacity:0;right:0px;bottom:0px;background-color:#f00;outline:0;";
 
         modal.appendChild(button);
 
         button.onfocus = function() {
             modal.focus();
-        }
+        };
     }
 
     return {
-        hooks () {
-            w.onkeydown = (e) => {
-                if ((e.which || e.keyCode) == 27)
-                {
-                    this.close(d.querySelectorAll('.modal.is-open'));
+        hooks() {
+            w.onkeydown = e => {
+                if ((e.which || e.keyCode) == 27) {
+                    this.close(d.querySelectorAll(".modal.is-open"));
                 }
-            }
+            };
         },
 
-        open (target)
-        {
-            let selector = '';
+        open(target) {
+            let selector = "";
 
-            if (target.getAttribute('href'))
-            {
-                selector = _clean(target.getAttribute('href'));
+            if (target.getAttribute("href")) {
+                selector = _clean(target.getAttribute("href"));
             }
 
-            if (target.dataset.modal)
-            {
+            if (target.dataset.modal) {
                 selector = _clean(target.dataset.modal);
             }
 
-            if ((selector = _valid(selector)))
-            {
+            if ((selector = _valid(selector))) {
                 this.show(selector);
             }
         },
 
-        bind (modal)
-        {
+        bind(modal) {
             const close = modal.querySelectorAll(settings.close);
 
-            if (close.length)
-            {
-                for (var i = close.length - 1; i >= 0; i--)
-                {
-                    close[i].onclick = (e) => {
+            if (close.length) {
+                for (var i = close.length - 1; i >= 0; i--) {
+                    close[i].onclick = e => {
                         e.preventDefault();
                         this.close(e.target);
-                    }
+                    };
                 }
             }
         },
 
-        show (selector)
-        {
+        show(selector) {
             const modal = _render(template(selector, {}));
 
             this.bind(modal);
 
-            this.close(d.querySelectorAll('.modal.is-open'), () => {
-                modal.classList.add('is-temp');
+            this.close(d.querySelectorAll(".modal.is-open"), () => {
+                modal.classList.add("is-temp");
 
-                modal.setAttribute('aria-hidden', false);
+                modal.setAttribute("aria-hidden", false);
 
                 b.appendChild(modal);
 
@@ -154,51 +136,41 @@ const Modal = (function (w,d,b) {
             });
         },
 
-        close (element, callback) {
-            if (element.length)
-            {
-                for (var i = element.length - 1; i >= 0; i--)
-                {
+        close(element, callback) {
+            if (element.length) {
+                for (var i = element.length - 1; i >= 0; i--) {
                     _close(element[i], callback, true);
                 }
-            }
-            else if (typeof element.dataset !== 'undefined' && element.dataset.target)
-            {
+            } else if (
+                typeof element.dataset !== "undefined" &&
+                element.dataset.target
+            ) {
                 _close(d.querySelector(element.dataset.target), callback, true);
-            }
-            else
-            {
+            } else {
                 _callback(callback);
             }
         },
 
-        nested () {},
+        nested() {},
 
-        events ()
-        {
+        events() {
             const selectors = d.querySelectorAll(settings.trigger);
 
-            if (selectors.length)
-            {
-                for (var i = selectors.length - 1; i >= 0; i--)
-                {
-                    selectors[i].onclick = (e) => {
+            if (selectors.length) {
+                for (var i = selectors.length - 1; i >= 0; i--) {
+                    selectors[i].onclick = e => {
                         e.preventDefault();
                         this.open(e.target);
                         return false;
-                    }
+                    };
                 }
             }
         },
 
-        init (options)
-        {
-            if (typeof options !== 'undefined')
-            {
-                for (let x in options)
-                {
-                    if (typeof settings[x] !== 'undefined')
-                    {
+        init(options) {
+            if (typeof options !== "undefined") {
+                for (let x in options) {
+                    if (typeof settings[x] !== "undefined") {
                         settings[x] = options[x];
                     }
                 }
@@ -207,5 +179,5 @@ const Modal = (function (w,d,b) {
             this.events();
             this.hooks();
         }
-    }
-}(window, document, document.body));
+    };
+})(window, document, document.body);

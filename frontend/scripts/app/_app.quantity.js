@@ -1,16 +1,13 @@
 const app = app || {};
 
-((body => {
-    'use strict';
-
+(body => {
     let _this_;
 
     app.quantity = {
-
         config: {
-            element: '.j-quantity',
-            input: '.j-quantity-count',
-            control: '.j-quantity-control',
+            element: ".j-quantity",
+            input: ".j-quantity-count",
+            control: ".j-quantity-control",
             complete: null
         },
 
@@ -20,12 +17,12 @@ const app = app || {};
             let min = 1;
             let max = 100;
 
-            if (this.element.data('min')) {
-                min = this.element.data('min');   
+            if (this.element.data("min")) {
+                min = this.element.data("min");
             }
 
-            if (this.element.data('max')) {
-                max = this.element.data('max');   
+            if (this.element.data("max")) {
+                max = this.element.data("max");
             }
 
             if (quantity > max) {
@@ -54,29 +51,36 @@ const app = app || {};
         },
 
         callback() {
-            if (typeof (this.element.data('product')) !== 'undefined' && typeof (this.config.complete) == 'function')
-            {
-                this.config.complete.call(null, this.element, this.element.data('product'));
+            if (
+                typeof this.element.data("product") !== "undefined" &&
+                typeof this.config.complete == "function"
+            ) {
+                this.config.complete.call(
+                    null,
+                    this.element,
+                    this.element.data("product")
+                );
             }
         },
 
         keys() {
             const _this = this;
-            let role = '';
+            let role = "";
 
-            $('body').on('keydown', _this_.config.input, function(e) {
-                if ([38, 40].includes(e.keyCode))
-                {
+            $("body").on("keydown", _this_.config.input, function(e) {
+                if ([38, 40].includes(e.keyCode)) {
                     e.preventDefault();
 
                     role = {
-                        38: 'increase',
-                        40: 'decrease'
+                        38: "increase",
+                        40: "decrease"
                     };
 
                     _this_.element = $(this).closest(_this_.config.element);
 
-                    _this[role[e.keyCode]](parseInt(_this_.element.find(_this_.config.input).val()));
+                    _this[role[e.keyCode]](
+                        parseInt(_this_.element.find(_this_.config.input).val())
+                    );
 
                     _this_.callback();
 
@@ -86,18 +90,19 @@ const app = app || {};
         },
 
         bind() {
-            let role = '';
+            let role = "";
 
-            $('body').on('click', _this_.config.control, function(e) {
+            $("body").on("click", _this_.config.control, function(e) {
                 e.preventDefault();
 
                 _this_.element = $(this).closest(_this_.config.element);
 
-                role = $(this).data('role');
-         
-                if(['increase', 'decrease'].includes(role))
-                {
-                    _this[role](parseInt(_this_.element.find(_this_.config.input).val()));
+                role = $(this).data("role");
+
+                if (["increase", "decrease"].includes(role)) {
+                    _this[role](
+                        parseInt(_this_.element.find(_this_.config.input).val())
+                    );
                 }
 
                 _this_.callback();
@@ -109,17 +114,15 @@ const app = app || {};
         init(config) {
             _this_ = this;
 
-            if (typeof config !== 'undefined')
-            {
+            if (typeof config !== "undefined") {
                 _this_.config = app._extend(_this_.config, config);
             }
-            
+
             _this_.bind();
             _this_.keys();
         }
-
     };
-}))(document.body);
+})(document.body);
 
 // this.quantity.init({
 //     complete: function(element, id) {

@@ -1,15 +1,10 @@
 let app = app || {};
 
-((body => {
-    'use strict';
-
+(body => {
     app = {
-
-        _extend (source, config) {
-            if (typeof config !== 'undefined')
-            {
-                for (const x in config)
-                {
+        _extend(source, config) {
+            if (typeof config !== "undefined") {
+                for (const x in config) {
                     source[x] = config[x];
                 }
             }
@@ -17,22 +12,21 @@ let app = app || {};
             return source;
         },
 
-        bind () {
-            for(const _ in this)
-            {
-                if (typeof (this[_]) == 'object' && typeof (this[_].init) !== 'undefined')
-                {
-                    if (typeof (this[_].init) == 'function')
-                    {
+        bind() {
+            for (const _ in this) {
+                if (
+                    typeof this[_] == "object" &&
+                    typeof this[_].init !== "undefined"
+                ) {
+                    if (typeof this[_].init == "function") {
                         this[_].init();
                     }
                 }
             }
         },
 
-        init () {
+        init() {
             this.bind();
         }
     };
-
-}))(document.body);
+})(document.body);

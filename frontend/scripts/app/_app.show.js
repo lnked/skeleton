@@ -1,32 +1,25 @@
-let app = app || {};
+const app = app || {};
 
-((body => {
-    "use strict";
-
+(body => {
     app.show = {
-
-        trigger: function()
-        {
-            $('body').on('click', '.j-show', function(e) {
+        trigger() {
+            $("body").on("click", ".j-show", function(e) {
                 e.preventDefault();
 
-                var href = $(this).attr('href');
+                const href = $(this).attr("href");
 
                 if ($(href).length) {
-                    $(href).addClass('is-show');
+                    $(href).addClass("is-show");
                 }
-                
+
                 $(this).hide();
 
                 return false;
             });
         },
 
-        init: function()
-        {
+        init() {
             this.trigger();
         }
-
     };
-
-}))(document.body);
+})(document.body);

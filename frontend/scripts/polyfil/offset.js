@@ -4,7 +4,7 @@ function ofset(el) {
     return {
         top: rect.top + document.body.scrollTop,
         left: rect.left + document.body.scrollLeft
-    }  
+    };
 }
 
 function offsetParent(el) {

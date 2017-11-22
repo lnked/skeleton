@@ -22,14 +22,14 @@ function add_hint(type, url) {
 // (function () {
 //     var o = document.createElement('object'),
 //         url = "/style/next.css";
- 
+
 //     if (navigator.appName.indexOf('Microsoft') === 0) {
 //         new Image().src = url;
 //     } else {
 //         o.data = url;
 //         o.width  = 0;
 //         o.height = 0;
- 
+
 //         document.body.appendChild(o);
 //     }
 // })();

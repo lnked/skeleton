@@ -5,113 +5,174 @@ const gulp  = require('gulp');
 const path  = require('path');
 const clean = require('../utils/clean')
 const error = require('../utils/error');
-const named = require('vinyl-named');
-const webpackStream  = require('webpack-stream');
-const webpack = webpackStream.webpack;
-const DashboardPlugin = require('webpack-dashboard/plugin');
+const getFiles      = require('../utils/files');
+const getFolders    = require('../utils/folders');
+const bowerFiles    = require('main-bower-files');
+const brotli        = require('gulp-brotli');
 
-module.exports = function(config) {
+const webpackStream  = require('webpack-stream');
+const webpackConfig = require('../webpack.config');
+
+module.exports = function(config, bower) {
     config = config || {};
+
+    const uglifyConfig = {
+        ie8: false,
+        mangle: true,
+        toplevel: false,
+        warnings: false,
+        sourceMap: false,
+        compress: {
+            warnings: false,
+            dead_code: true,
+            drop_console: true,
+            global_defs: {
+                DEBUG: false
+            }
+        },
+        output: {
+            ast: true,
+            code: true
+        }
+    };
 
     return function(callback) {
 
-        let plugins = [];
+        let folders = getFolders(config.path);
 
-        if (global.is.build) {
-            plugins.push(
-                new webpack.NoErrorsPlugin(),
-                new webpack.optimize.DedupePlugin(),
-                new webpack.optimize.UglifyJsPlugin({
-                    compress: {
-                        warnings: false
-                    },
-                    mangle: false
-                }),
-                new webpack.optimize.OccurenceOrderPlugin()
-            );
-        } else {
-            plugins.push(
-                new DashboardPlugin()
-            );
-        }
+        const rootPath = path.resolve(__dirname, '../..');
 
-        console.log(config);
+        folders.map((folder) => {
+            const entry = getFiles(path.resolve(rootPath, config.path, folder));
+            const output = path.resolve(rootPath, config.app);
+            const dirname = path.resolve(rootPath, config.path, folder);
 
-        gulp.src(config.src)
-            .pipe($.plumber({errorHandler: error}))
-            .pipe($.debug({title: config.task}))
-            .pipe(named())
-            .pipe(webpackStream({
-                watch: !global.is.build,
-                devtool: !global.is.build ? 'eval-source-map' : null,
-                module: {
-                    // preLoaders: [
-                    //     {
-                    //         test: /\.(js|ts|jsx)$/,
-                    //         loader: "eslint",
-                    //         exclude: /node_modules/
-                    //     }
-                    // ],
-                    loaders: [
-                        {
-                            test: /\.(js|ts|jsx)$/,
-                            include: path.resolve(config.path),
-                            loader: 'babel?presets[]=es2015',
-                            exclude: /node_modules/
+            gulp.src([path.join(config.path, folder, '/*.*'), path.join(config.path, folder, '/**/*.*'), config.ignore])
+                .pipe($.plumber({errorHandler: error}))
+                .pipe($.debug({title: config.task}))
+
+                .pipe(
+                    webpackStream(
+                        webpackConfig.createConfig(
+                            folder,
+                            entry,
+                            output,
+                            dirname,
+                            global.is.build
+                        )
+                    )
+                )
+
+                .pipe($.concat(folder + '.js'))
+
+                .pipe($.rename({suffix: '.min'}))
+
+                .pipe(gulp.dest(config.app))
+
+                .pipe($.if(global.is.build, $.gzip()))
+                .pipe($.if(global.is.build, brotli.compress({
+                    extension: 'brotli',
+                    skipLarger: true,
+                    mode: 0,
+                    quality: 11,
+                    lgblock: 0
+                })))
+
+                .pipe($.if(global.is.build, gulp.dest(config.app)))
+
+                .pipe(gulp.dest(config.app))
+
+                .pipe($.if(global.is.build, $.size({title: `${folder}.js.gz`})))
+                .pipe($.if(global.is.notify, $.notify({ message: config.task + ' complete', onLast: true })));
+        });
+
+        // VENDORS
+        const vendorFiles = bowerFiles(['*.js', '**/*.js'], {
+            paths: {
+                bowerDirectory: path.resolve(path.dirname(config.path), bower.path),
+                bowerrc: bower.config,
+                bowerJson: bower.json
+            },
+            debugging: false,
+            checkExistence: true,
+            overrides: bower.overrides
+        });
+
+        if (vendorFiles.length)
+        {
+            let exists = false;
+
+            const glob = [];
+            const files = [];
+
+            function _vendorsCallback(glob)
+            {
+                gulp.src(files)
+                    .pipe($.concat('vendors.js'))
+                    .pipe($.rename({suffix: '.min'}))
+                    .pipe($.if(global.is.build, $.uglify(uglifyConfig)))
+                    .pipe($.size({title: 'vendors'}))
+                    .pipe(gulp.dest(config.app))
+
+                    .pipe($.if(global.is.build, $.gzip()))
+                    .pipe($.if(global.is.build, brotli.compress({
+                        extension: 'br',
+                        skipLarger: true,
+                        mode: 0,
+                        quality: 11,
+                        lgblock: 0
+                    })))
+                    .pipe($.if(global.is.build, gulp.dest(config.app)))
+                    .pipe($.if(global.is.build, $.size({title: 'vendors.js.gz'})))
+
+                    .pipe($.if(global.is.notify, $.notify({ message: 'Bower complete', onLast: true })));
+            }
+
+            const length = vendorFiles.length - 1;
+
+            for (var i = 0; i <= length; i++)
+            {
+                const basename = path.basename(vendorFiles[i]);
+                const template = basename.split('.');
+                const extension = template[template.length - 1];
+
+                if (['js'].indexOf(extension) >= 0)
+                {
+                    exists = true;
+
+                    if (basename.indexOf('jquery.min.js') >= 0 || basename.indexOf('codemirror.js') >= 0)
+                    {
+                        glob.push(vendorFiles[i]);
+                    }
+                    else
+                    {
+                        files.push(vendorFiles[i]);
+                    }
+                }
+
+                if (i === length && exists)
+                {
+                    if (glob.length)
+                    {
+                        for (var x = glob.length - 1; x >= 0; x--) {
+                            files.unshift(glob[x]);
+
+                            if (x === 0)
+                            {
+                                _vendorsCallback(files);
+                            }
                         }
-                    ]   
-                },
-                plugins: plugins
-            }))
-            .pipe(gulp.dest(config.app))
-            .pipe($.if(global.is.notify, $.notify({ message: config.task + ' complete', onLast: true })));
+                    }
+                    else
+                    {
+                        _vendorsCallback(files);
+                    }
+                }
+            }
+        }
 
         callback();
 
     };
 
 };
-
-// AKELLA
-var gulp          = require('gulp');
-var webpack       = require('webpack');
-var gutil         = require('gulp-util');
-var notify        = require('gulp-notify');
-var server        = require('./server');
-var config        = require('../config');
-var webpackConfig = require('../../webpack.config').createConfig;
-
-function handler(err, stats, cb) {
-    var errors = stats.compilation.errors;
-
-    if (err) throw new gutil.PluginError('webpack', err);
-
-    if (errors.length > 0) {
-        notify.onError({
-            title: 'Webpack Error',
-            message: '<%= error.message %>',
-            sound: 'Submarine'
-        }).call(null, errors[0]);
-    }
-
-    gutil.log('[webpack]', stats.toString({
-        colors: true,
-        chunks: false
-    }));
-
-    server.reload();
-    if (typeof cb === 'function') cb();
-}
-
-gulp.task('webpack', function(cb) {
-    webpack(webpackConfig(config.env)).run(function(err, stats) {
-        handler(err, stats, cb);
-    });
-});
-
-gulp.task('webpack:watch', function() {
-    webpack(webpackConfig(config.env)).watch({
-        aggregateTimeout: 100,
-        poll: false
-    }, handler);
-});

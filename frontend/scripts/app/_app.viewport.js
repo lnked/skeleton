@@ -1,4 +1,3 @@
-
 // function checkOpacity (elements, scrollTop, direction) {
 //     elements.forEach((item) => {
 //         ((element) => {

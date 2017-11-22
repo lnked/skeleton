@@ -1,58 +1,152 @@
 const webpack = require('webpack');
 const path = require('path');
 const util = require('gulp-util');
-const config = require('./gulp/config');
+
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const PrettierPlugin = require('prettier-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-// uncomment in case of emergency code formatter need
-// const PrettierPlugin = require('prettier-webpack-plugin');
 
-function createConfig(env) {
-    const isProduction, webpackConfig;
+const BrotliPlugin = require('brotli-webpack-plugin');
+const CompressionPlugin = require('compression-webpack-plugin');
 
-    if (env === undefined) {
-        env = process.env.NODE_ENV;
+function createConfig(name, entry, outputPath, dirname, isProduction)
+{
+    let env = 'development';
+    let plugins = [];
+    let webpackConfig;
+
+    if (isProduction) {
+        env = 'production';
     }
 
-    isProduction = env === 'production';
+    plugins.push(
+        new webpack.ProvidePlugin({
+            $: "jquery",
+            jQuery: "jquery",
+            'window.jQuery': "jquery"
+        }),
+        new webpack.DefinePlugin({
+            'process.env.NODE_ENV': JSON.stringify(env)
+        }),
+        new webpack.NoEmitOnErrorsPlugin()
+    );
 
-    webpackConfig = {
-        context: path.join(__dirname, config.src.js),
-        entry: {
-            // vendor: ['jquery'],
-            app: './app.js'
-        },
-        output: {
-            path: path.join(__dirname, config.dest.js),
-            filename: '[name].js',
-            publicPath: 'js/'
-        },
-        devtool: isProduction ?
-            '#source-map' :
-            '#cheap-module-eval-source-map',
-        plugins: [
-            // new webpack.optimize.CommonsChunkPlugin({
-            //     name: 'vendor',
-            //     filename: '[name].js',
-            //     minChunks: Infinity
-            // }),
-            // uncomment in case of emergency code formatter need
-            // new PrettierPlugin({
-            //     printWidth: 80,
-            //     tabWidth: 4
-            // }),
-            new webpack.ProvidePlugin({
-                $: "jquery",
-                jQuery: "jquery",
-                'window.jQuery': "jquery"
+    if (!isProduction)
+    {
+        plugins.push(
+            new PrettierPlugin({
+                printWidth: 80,
+                tabWidth: 4
             }),
-            new webpack.NoEmitOnErrorsPlugin(),
+        )
+    }
 
+    if (isProduction)
+    {
+        plugins.push(
+            new webpack.optimize.ModuleConcatenationPlugin(),
+            new webpack.optimize.AggressiveMergingPlugin(),
+            new webpack.LoaderOptionsPlugin({
+                minimize: true
+            }),
+            new UglifyJSPlugin({
+                cache: true,
+                parallel: true,
+                sourceMap: false,
+                uglifyOptions: {
+                    ecma: 8,
+                    ie8: false,
+                    mangle: true,
+                    parse: {
+                        html5_comments: false
+                    },
+                    compress: {
+                        cascade: true,
+                        booleans: true,
+                        drop_console: true,
+                        drop_debugger: true,
+                        global_defs: {
+                            DEBUG: false
+                        }
+                    },
+                    output: {
+                        comments: false,
+                        beautify: false,
+                        indent_level: 0
+                    },
+                    warnings: false
+                },
+                exclude: [/\.min\.js$/gi]
+            }),
             new BundleAnalyzerPlugin({
                 analyzerMode: 'static',
                 analyzerPort: 4000,
-                openAnalyzer: false
-            })
-        ],
+                openAnalyzer: false,
+                reportFilename: [name, '.html'].join('')
+            }),
+            // new BrotliPlugin({
+            //     asset: '[path].br[query]',
+            //     test: /\.(js)$/,
+            //     threshold: 10240,
+            //     minRatio: 0.8
+            // }),
+            // new CompressionPlugin({
+            //     asset: '[path].gz[query]',
+            //     algorithm: 'gzip',
+            //     test: /\.(js)$/,
+            //     threshold: 10240,
+            //     minRatio: 0.8
+            // })
+        );
+    }
+
+    webpackConfig = {
+
+        context: dirname,
+
+        devtool: isProduction ? '#source-map' : '#cheap-module-eval-source-map',
+
+        entry: {
+            [name]: entry
+        },
+
+        output: {
+            path: outputPath,
+            pathinfo: false,
+            publicPath: '',
+            filename: '[name].js',
+            jsonpFunction: 'WJ',
+            hotUpdateFunction: 'UF'
+        },
+
+        module: {
+            rules: [
+                // {
+                //     enforce: 'pre',
+                //     test: /\.jsx?$/,
+                //     options: {
+                //         fix: isProduction
+                //     },
+                //     loader: 'eslint-loader',
+                //     exclude: /(node_modules|bower_components)/,
+                // },
+                {
+                    test: /\.js[x]?$/,
+                    exclude: /(node_modules|bower_components)/,
+                    include: dirname,
+                    exclude: /(node_modules|bower_components)/,
+                    use: [
+                        {
+                            loader: 'babel-loader',
+                            options: {
+                                cacheDirectory: !isProduction
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+
         resolve: {
             extensions: ['.js'],
             alias: {
@@ -65,32 +159,32 @@ function createConfig(env) {
                 "debug.addIndicators": path.resolve('node_modules', 'scrollmagic/scrollmagic/uncompressed/plugins/debug.addIndicators.js')
             }
         },
-        module: {
-            rules: [{
-                test: /\.js$/,
-                loader: 'babel-loader',
-                exclude: [
-                    path.resolve(__dirname, "node_modules")
-                ]
-            }]
-        }
+
+        watch: !isProduction,
+
+        plugins: plugins
     };
 
-    if (isProduction) {
-        webpackConfig.plugins.push(
-            new webpack.LoaderOptionsPlugin({
-                minimize: true
-            }),
-            new webpack.optimize.UglifyJsPlugin({
-                compress: {
-                    warnings: false
-                }
-            })
-        );
+    if (!isProduction)
+    {
+        webpackConfig.devServer = {
+            compress: false,
+            contentBase: outputPath,
+            watchContentBase: true,
+            historyApiFallback: true,
+            watchOptions: {
+                aggregateTimeout: 100,
+                poll: 300
+            },
+            overlay: {
+                warnings: true,
+                errors: true
+            }
+        };
     }
 
     return webpackConfig;
 }
 
-module.exports = createConfig();
+module.exports.default = null;
 module.exports.createConfig = createConfig;

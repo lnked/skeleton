@@ -1,246 +1,243 @@
-let app = app || {};
+const app = app || {};
 
-((body => {
-    "use strict";
-
+(body => {
     app.google = {
+        id: "map-conteiner",
 
-        id: 'map-conteiner',
-
-        coords: [ 45.046996, 39.030319 ],
+        coords: [45.046996, 39.030319],
 
         style: [
             {
-                "featureType": "all",
-                "elementType": "labels.text.fill",
-                "stylers": [
+                featureType: "all",
+                elementType: "labels.text.fill",
+                stylers: [
                     {
-                        "saturation": 36
+                        saturation: 36
                     },
                     {
-                        "color": "#000000"
+                        color: "#000000"
                     },
                     {
-                        "lightness": 40
+                        lightness: 40
                     }
                 ]
             },
             {
-                "featureType": "all",
-                "elementType": "labels.text.stroke",
-                "stylers": [
+                featureType: "all",
+                elementType: "labels.text.stroke",
+                stylers: [
                     {
-                        "visibility": "on"
+                        visibility: "on"
                     },
                     {
-                        "color": "#000000"
+                        color: "#000000"
                     },
                     {
-                        "lightness": 16
+                        lightness: 16
                     }
                 ]
             },
             {
-                "featureType": "all",
-                "elementType": "labels.icon",
-                "stylers": [
+                featureType: "all",
+                elementType: "labels.icon",
+                stylers: [
                     {
-                        "visibility": "off"
+                        visibility: "off"
                     }
                 ]
             },
             {
-                "featureType": "administrative",
-                "elementType": "geometry.fill",
-                "stylers": [
+                featureType: "administrative",
+                elementType: "geometry.fill",
+                stylers: [
                     {
-                        "color": "#000000"
+                        color: "#000000"
                     },
                     {
-                        "lightness": 20
+                        lightness: 20
                     }
                 ]
             },
             {
-                "featureType": "administrative",
-                "elementType": "geometry.stroke",
-                "stylers": [
+                featureType: "administrative",
+                elementType: "geometry.stroke",
+                stylers: [
                     {
-                        "color": "#000000"
+                        color: "#000000"
                     },
                     {
-                        "lightness": 17
+                        lightness: 17
                     },
                     {
-                        "weight": 1.2
+                        weight: 1.2
                     }
                 ]
             },
             {
-                "featureType": "landscape",
-                "elementType": "all",
-                "stylers": [
+                featureType: "landscape",
+                elementType: "all",
+                stylers: [
                     {
-                        "visibility": "on"
+                        visibility: "on"
                     }
                 ]
             },
             {
-                "featureType": "landscape",
-                "elementType": "geometry",
-                "stylers": [
+                featureType: "landscape",
+                elementType: "geometry",
+                stylers: [
                     {
-                        "color": "#000000"
+                        color: "#000000"
                     },
                     {
-                        "lightness": 20
+                        lightness: 20
                     }
                 ]
             },
             {
-                "featureType": "landscape",
-                "elementType": "labels.icon",
-                "stylers": [
+                featureType: "landscape",
+                elementType: "labels.icon",
+                stylers: [
                     {
-                        "saturation": "-100"
+                        saturation: "-100"
                     },
                     {
-                        "lightness": "-54"
+                        lightness: "-54"
                     }
                 ]
             },
             {
-                "featureType": "poi",
-                "elementType": "all",
-                "stylers": [
+                featureType: "poi",
+                elementType: "all",
+                stylers: [
                     {
-                        "visibility": "on"
+                        visibility: "on"
                     },
                     {
-                        "lightness": "0"
+                        lightness: "0"
                     }
                 ]
             },
             {
-                "featureType": "poi",
-                "elementType": "geometry",
-                "stylers": [
+                featureType: "poi",
+                elementType: "geometry",
+                stylers: [
                     {
-                        "color": "#000000"
+                        color: "#000000"
                     },
                     {
-                        "lightness": 21
+                        lightness: 21
                     }
                 ]
             },
             {
-                "featureType": "poi",
-                "elementType": "labels.icon",
-                "stylers": [
+                featureType: "poi",
+                elementType: "labels.icon",
+                stylers: [
                     {
-                        "saturation": "-89"
+                        saturation: "-89"
                     },
                     {
-                        "lightness": "-55"
+                        lightness: "-55"
                     }
                 ]
             },
             {
-                "featureType": "road",
-                "elementType": "labels.icon",
-                "stylers": [
+                featureType: "road",
+                elementType: "labels.icon",
+                stylers: [
                     {
-                        "visibility": "off"
+                        visibility: "off"
                     }
                 ]
             },
             {
-                "featureType": "road.highway",
-                "elementType": "geometry.fill",
-                "stylers": [
+                featureType: "road.highway",
+                elementType: "geometry.fill",
+                stylers: [
                     {
-                        "color": "#000000"
+                        color: "#000000"
                     },
                     {
-                        "lightness": 17
+                        lightness: 17
                     }
                 ]
             },
             {
-                "featureType": "road.highway",
-                "elementType": "geometry.stroke",
-                "stylers": [
+                featureType: "road.highway",
+                elementType: "geometry.stroke",
+                stylers: [
                     {
-                        "color": "#000000"
+                        color: "#000000"
                     },
                     {
-                        "lightness": 29
+                        lightness: 29
                     },
                     {
-                        "weight": 0.2
+                        weight: 0.2
                     }
                 ]
             },
             {
-                "featureType": "road.arterial",
-                "elementType": "geometry",
-                "stylers": [
+                featureType: "road.arterial",
+                elementType: "geometry",
+                stylers: [
                     {
-                        "color": "#000000"
+                        color: "#000000"
                     },
                     {
-                        "lightness": 18
+                        lightness: 18
                     }
                 ]
             },
             {
-                "featureType": "road.local",
-                "elementType": "geometry",
-                "stylers": [
+                featureType: "road.local",
+                elementType: "geometry",
+                stylers: [
                     {
-                        "color": "#000000"
+                        color: "#000000"
                     },
                     {
-                        "lightness": 16
+                        lightness: 16
                     }
                 ]
             },
             {
-                "featureType": "transit",
-                "elementType": "geometry",
-                "stylers": [
+                featureType: "transit",
+                elementType: "geometry",
+                stylers: [
                     {
-                        "color": "#000000"
+                        color: "#000000"
                     },
                     {
-                        "lightness": 19
+                        lightness: 19
                     }
                 ]
             },
             {
-                "featureType": "transit.station",
-                "elementType": "labels.icon",
-                "stylers": [
+                featureType: "transit.station",
+                elementType: "labels.icon",
+                stylers: [
                     {
-                        "visibility": "on"
+                        visibility: "on"
                     },
                     {
-                        "saturation": "-100"
+                        saturation: "-100"
                     },
                     {
-                        "lightness": "-51"
+                        lightness: "-51"
                     }
                 ]
             },
             {
-                "featureType": "water",
-                "elementType": "geometry",
-                "stylers": [
+                featureType: "water",
+                elementType: "geometry",
+                stylers: [
                     {
-                        "color": "#000000"
+                        color: "#000000"
                     },
                     {
-                        "lightness": 17
+                        lightness: 17
                     }
                 ]
             }
@@ -271,10 +268,13 @@ let app = app || {};
                 center: new google.maps.LatLng(coords[0], coords[1])
             };
 
-            const map = new google.maps.Map(document.getElementById(_this_.id), mapOptions);
+            const map = new google.maps.Map(
+                document.getElementById(_this_.id),
+                mapOptions
+            );
 
             const image = {
-                url: '/images/ico/marker.svg',
+                url: "/images/ico/marker.svg",
                 size: new google.maps.Size(18, 27),
                 origin: new google.maps.Point(0, 0),
                 scaledSize: new google.maps.Size(18, 27),
@@ -283,19 +283,17 @@ let app = app || {};
 
             const marker = new google.maps.Marker({
                 position: new google.maps.LatLng(coords[0], coords[1]),
-                map: map,
+                map,
                 icon: image,
                 flat: true
             });
 
-            google.maps.event.addListener(marker, 'click', function() {
+            google.maps.event.addListener(marker, "click", () => {
                 if (infowindow) {
                     infowindow.close();
                 }
                 infowindow.open(map, marker);
             });
         }
-
     };
-
-}))(document.body);
+})(document.body);

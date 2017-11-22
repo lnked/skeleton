@@ -1,7 +1,7 @@
-function position (el, relative) {
+function position(el, relative) {
     if (relative) {
         return el.getBoundingClientRect();
     } else {
-        return {left: el.offsetLeft, top: el.offsetTop};
+        return { left: el.offsetLeft, top: el.offsetTop };
     }
 }

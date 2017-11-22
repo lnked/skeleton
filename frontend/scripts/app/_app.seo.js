@@ -1,15 +1,7 @@
-let app = app || {};
+const app = app || {};
 
-((body => {
-    "use strict";
-
+(body => {
     app.seo = {
-
-        init: function()
-        {
-
-        }
-
+        init() {}
     };
-
-}))(document.body);
+})(document.body);

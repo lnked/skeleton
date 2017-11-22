@@ -9,20 +9,22 @@ module.exports.app  = app;
 module.exports.src  = src;
 
 module.exports.tasks = {
-    // 'pug': {
-    //     src: [src + 'template/**/*.pug', '!' + src + 'template/**/*.template', '!' + src + 'template/**/_*.*'],
-    //     app: app + markup
-    // },
-
-    // 'template': {
-    //     src: [src + 'template/**/*.html', '!' + src + 'template/**/*.template', '!' + src + 'template/**/_*.*'],
-    //     app: app + markup
-    // },
+    'pug': {
+        src: [src + 'template/**/*.pug', '!' + src + 'template/**/*.template', '!' + src + 'template/**/_*.*'],
+        app: app + markup
+    },
 
     'nunjucks': {
         src: [src + 'template/**/*.html', '!' + src + 'template/**/*.template', '!' + src + 'template/**/_*.*'],
         path: src + 'template',
         app: app + markup
+    },
+
+    'webpack': {
+        gzip: true,
+        path: src + 'scripts',
+        ignore: '!' + src + 'scripts/**/!_*.*',
+        app: app + 'js'
     },
 
     'scripts': {

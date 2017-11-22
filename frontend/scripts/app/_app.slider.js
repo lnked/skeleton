@@ -1,19 +1,16 @@
 var app = app || {};
 
-(function(body){
-    "use strict";
-
-    const $body = $('body');
+(function(body) {
+    const $body = $("body");
 
     app.slider = {
-
         config: {
-            slider: '.j-slider',
-            item: '.j-slider-item',
-            prev: '.j-slider-prev',
-            next: '.j-slider-next',
-            point: '.j-slider-point',
-            height: '.j-slider-height-trigger'
+            slider: ".j-slider",
+            item: ".j-slider-item",
+            prev: ".j-slider-prev",
+            next: ".j-slider-next",
+            point: ".j-slider-point",
+            height: ".j-slider-height-trigger"
         },
 
         limit: 0,
@@ -28,42 +25,48 @@ var app = app || {};
 
         interval: null,
 
-        lock () {
-            $(`${this.config.prev}, ${this.config.next}, ${this.config.point}`).addClass('is-lock');
+        lock() {
+            $(
+                `${this.config.prev}, ${this.config.next}, ${this.config.point}`
+            ).addClass("is-lock");
         },
 
-        unlock () {
-            $(`${this.config.prev}, ${this.config.next}, ${this.config.point}`).removeClass('is-lock');
+        unlock() {
+            $(
+                `${this.config.prev}, ${this.config.next}, ${this.config.point}`
+            ).removeClass("is-lock");
         },
 
-        reset () {
+        reset() {
             const _this = this;
 
             const $active = $(`${_this.config.item}.is-active`);
 
-            $active.removeClass('is-animate');
+            $active.removeClass("is-animate");
 
-            $(`${_this.config.point}.is-current`).removeClass('is-current');
+            $(`${_this.config.point}.is-current`).removeClass("is-current");
 
             setTimeout(() => {
-                $active.removeClass('is-active');
+                $active.removeClass("is-active");
             }, _this.timeout);
         },
 
-        go (slide, start) {
+        go(slide, start) {
             const _this = this;
 
             _this.reset();
             _this.current = slide;
 
-            $(`${this.config.point}[data-index="${slide}"]`).addClass('is-current');
+            $(`${this.config.point}[data-index="${slide}"]`).addClass(
+                "is-current"
+            );
 
             const $slide = $(`${this.config.item}[data-index="${slide}"]`);
 
-            $slide.addClass('is-active');
+            $slide.addClass("is-active");
 
             setTimeout(() => {
-                $slide.addClass('is-animate');
+                $slide.addClass("is-animate");
             }, 16);
 
             setTimeout(() => {
@@ -72,11 +75,10 @@ var app = app || {};
                 if (start) {
                     _this.start();
                 }
-
             }, _this.timeout);
         },
 
-        prev (start) {
+        prev(start) {
             this.lock();
 
             let prev = this.current - 1;
@@ -88,7 +90,7 @@ var app = app || {};
             this.go(prev, start);
         },
 
-        next (start) {
+        next(start) {
             this.lock();
 
             let next = this.current + 1;
@@ -100,35 +102,37 @@ var app = app || {};
             this.go(next, start);
         },
 
-        size () {
+        size() {
             const _this = this;
 
-            if ($(`${_this.config.slider}`).length)
-            {
-                $(`${_this.config.slider}`).each(function(){
+            if ($(`${_this.config.slider}`).length) {
+                $(`${_this.config.slider}`).each(function() {
                     const $slider = $(this);
                     const $items = $slider.find(`${_this.config.item}`);
-                    const height = $items.eq(0).find(`${_this.config.height}`).outerHeight();
+                    const height = $items
+                        .eq(0)
+                        .find(`${_this.config.height}`)
+                        .outerHeight();
 
-                    $slider.css({'height': height});
-                    $items.css({'height': height});
+                    $slider.css({ height });
+                    $items.css({ height });
                 });
             }
         },
 
-        prepare () {
+        prepare() {
             this.size();
             this.limit = $(`${this.config.point}`).length;
         },
 
-        events () {
+        events() {
             const _this = this;
 
-            $(window).on('resize', (e) => {
+            $(window).on("resize", e => {
                 _this.size();
             });
 
-            $body.on('click', `${this.config.prev}`, (e) => {
+            $body.on("click", `${this.config.prev}`, e => {
                 e.preventDefault();
 
                 _this.stop();
@@ -138,7 +142,7 @@ var app = app || {};
                 return false;
             });
 
-            $body.on('click', `${this.config.next}`, (e) => {
+            $body.on("click", `${this.config.next}`, e => {
                 e.preventDefault();
 
                 _this.stop();
@@ -148,7 +152,7 @@ var app = app || {};
                 return false;
             });
 
-            $body.on('click', `${this.config.point}`, (e) => {
+            $body.on("click", `${this.config.point}`, e => {
                 e.preventDefault();
 
                 _this.stop();
@@ -157,17 +161,17 @@ var app = app || {};
 
                 const $this = $(e.currentTarget);
 
-                _this.go(parseInt($this.data('index'), 10), true);
+                _this.go(parseInt($this.data("index"), 10), true);
 
                 return false;
             });
         },
 
-        stop () {
+        stop() {
             clearInterval(this.interval);
         },
 
-        start () {
+        start() {
             const _this = this;
 
             if (_this.autoplay) {
@@ -179,12 +183,10 @@ var app = app || {};
             }
         },
 
-        init () {
+        init() {
             this.prepare();
             this.events();
             this.start();
         }
-
     };
-
 })(document.body);

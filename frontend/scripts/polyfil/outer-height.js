@@ -1,12 +1,12 @@
-function outerHeight (el, margin) {
+function outerHeight(el, margin) {
     if (margin) {
         var height = el.offsetHeight;
         var style = el.currentStyle || getComputedStyle(el);
 
         height += parseInt(style.marginTop) + parseInt(style.marginBottom);
-        return height;    
+        return height;
     } else {
-        return el.offsetHeight;    
+        return el.offsetHeight;
     }
 }
 

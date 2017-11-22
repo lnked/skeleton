@@ -132,7 +132,6 @@
 //   );
 // });
 
-
 // document.querySelector('.cache-article').addEventListener('click', function(event) {
 //   event.preventDefault();
 //   var id = this.dataset.articleId;
@@ -146,7 +145,6 @@
 //     });
 //   });
 // });
-
 
 // var networkDataReceived = false;
 
@@ -174,7 +172,6 @@
 //   return networkUpdate;
 // }).catch(showErrorMessage).then(stopSpinner());
 
-
 // self.addEventListener('fetch', function(event) {
 //   event.respondWith(
 //     caches.open('mysite-dynamic').then(function(cache) {
@@ -185,7 +182,6 @@
 //     })
 //   );
 // });
-
 
 // self.addEventListener('fetch', function(event) {
 //   event.respondWith(
@@ -202,7 +198,6 @@
 //     })
 //   );
 // });
-
 
 // self.addEventListener('fetch', function(event) {
 //   event.respondWith(
@@ -223,7 +218,6 @@
 //     })
 //   );
 // });
-
 
 // self.addEventListener('activate', function(event) {
 //   event.waitUntil(

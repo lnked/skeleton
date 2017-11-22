@@ -38,7 +38,7 @@ module.exports = function(config, bower) {
 
         let folders = getFolders(config.path);
 
-        folders.map(function(folder) {
+        folders.map((folder) => {
 
             gulp.src([path.join(config.path, folder, '/*.*'), path.join(config.path, folder, '/**/*.*'), config.ignore])
                 .pipe($.plumber({errorHandler: error}))
@@ -84,6 +84,7 @@ module.exports = function(config, bower) {
                     quality: 11,
                     lgblock: 0
                 })))
+
                 .pipe($.if(global.is.build, gulp.dest(config.app)))
                 .pipe($.if(global.is.build, $.size({title: `${folder}.js.gz`})))
 
@@ -120,7 +121,7 @@ module.exports = function(config, bower) {
 
                     .pipe($.if(global.is.build, $.gzip()))
                     .pipe($.if(global.is.build, brotli.compress({
-                        extension: 'brotli',
+                        extension: 'br',
                         skipLarger: true,
                         mode: 0,
                         quality: 11,

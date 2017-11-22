@@ -1,117 +1,103 @@
 var app = app || {};
 
-;(function(body){
-    "use strict";
-
-    const $body = $('body');
+(function(body) {
+    const $body = $("body");
 
     app.sandwich = {
-
         width: 0,
 
         config: {
             keyHooks: !1,
-            selector: '.js-sandwich-menu',
-            wrapper: '.layout-wrapper',
-            overlay: '.overlay'
+            selector: ".js-sandwich-menu",
+            wrapper: ".layout-wrapper",
+            overlay: ".overlay"
         },
 
-        extend (config)
-        {
+        extend(config) {
             const _this = this;
 
-            if (typeof config !== 'undefined')
-            {
-                var x;
-                for (x in config)
-                {
-                    if (typeof _this.config[x] !== 'undefined')
+            if (typeof config !== "undefined") {
+                let x;
+                for (x in config) {
+                    if (typeof _this.config[x] !== "undefined") {
                         _this.config[x] = config[x];
+                    }
                 }
             }
         },
 
-        isOpen ()
-        {
-            return $body.hasClass('menu-visible');
+        isOpen() {
+            return $body.hasClass("menu-visible");
         },
 
-        hide ()
-        {
+        hide() {
             const _this = this;
-            $body.removeClass('menu-animate');
+            $body.removeClass("menu-animate");
 
-            setTimeout(function(){
-                $body.removeClass('menu-visible');
+            setTimeout(() => {
+                $body.removeClass("menu-visible");
             }, 300);
 
             if (_this.config.overlay) {
                 $(_this.config.overlay).css({
-                    'visibility': 'hidden'
+                    visibility: "hidden"
                 });
             }
         },
 
-        show () {
+        show() {
             const _this = this;
-            $body.addClass('menu-visible');
+            $body.addClass("menu-visible");
 
-            setTimeout(function(){
-                $body.addClass('menu-animate');
+            setTimeout(() => {
+                $body.addClass("menu-animate");
             }, 10);
 
             if (_this.config.overlay) {
                 $(_this.config.overlay).css({
-                    'visibility': 'visible'
+                    visibility: "visible"
                 });
             }
         },
 
-        toggle ()
-        {
+        toggle() {
             const _this = this;
 
-            if ($body.hasClass('menu-visible')) {
+            if ($body.hasClass("menu-visible")) {
                 _this.hide();
-            }
-            else {
+            } else {
                 _this.show();
             }
         },
 
-        sandwichTrigger ()
-        {
+        sandwichTrigger() {
             const _this = this;
 
-            if (_this.config.keyHooks)
-            {
-                $body.on('keydown', function(e) {
-                    if(e.keyCode == 27 && _this.isOpen())
-                    {
+            if (_this.config.keyHooks) {
+                $body.on("keydown", e => {
+                    if (e.keyCode == 27 && _this.isOpen()) {
                         _this.toggle();
                     }
                 });
-            };
+            }
 
-            $body.on('click', _this.config.selector, function(e){
-                e.preventDefault ? e.preventDefault() : e.returnValue = false;
+            $body.on("click", _this.config.selector, e => {
+                e.preventDefault ? e.preventDefault() : (e.returnValue = false);
                 _this.toggle();
             });
         },
 
-        overlayTrigger ()
-        {
+        overlayTrigger() {
             const _this = this;
 
             if (_this.config.overlay) {
-                $body.on('click', _this.config.overlay, function(e){
+                $body.on("click", _this.config.overlay, e => {
                     _this.hide();
                 });
             }
         },
 
-        events ()
-        {
+        events() {
             const _this = this;
 
             // var hammertime = new Hammer(document.body, {
@@ -135,7 +121,7 @@ var app = app || {};
 
             let timeout;
 
-            $(window).on('resize', () => {
+            $(window).on("resize", () => {
                 clearTimeout(timeout);
 
                 timeout = setTimeout(() => {
@@ -145,12 +131,11 @@ var app = app || {};
             });
         },
 
-        init ()
-        {
+        init() {
             this.extend({
                 keyHooks: !0,
-                selector: '.j-sandwich-menu',
-                wrapper: '.layout-wrapper',
+                selector: ".j-sandwich-menu",
+                wrapper: ".layout-wrapper",
                 overlay: false
             });
 
@@ -161,5 +146,4 @@ var app = app || {};
             this.overlayTrigger();
         }
     };
-
 })(document.body);

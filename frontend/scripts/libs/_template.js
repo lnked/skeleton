@@ -1,6 +1,6 @@
-;((d => {
+(d => {
     window.template = (id, data, precompile) => {
-        if (typeof precompile === 'undefined') {
+        if (typeof precompile === "undefined") {
             precompile = false;
         }
 
@@ -18,6 +18,6 @@
             return Template7.compile(pattern)(data || {});
         }
 
-        return '';
-    }
-}))(document);
+        return "";
+    };
+})(document);

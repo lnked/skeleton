@@ -1,18 +1,15 @@
-let app = app || {};
+const app = app || {};
 
-((body => {
-    'use strict';
-
+(body => {
     app.timeline = {
-
         data: {},
         filter: null,
         years: null,
         months: null,
 
-        _initCarousel () {
-            var width = $(window).width(),
-                slides = $('#timeline-carousel').find('.slick-slide').length;
+        _initCarousel() {
+            let width = $(window).width(),
+                slides = $("#timeline-carousel").find(".slick-slide").length;
 
             if (
                 (width > 768 && slides >= 4) ||
@@ -20,23 +17,24 @@ let app = app || {};
                 (width > 375 && slides >= 2) ||
                 (width < 375 && slides >= 1)
             ) {
-
-                $('#timeline-carousel').slick({
-                    lazyLoad: 'ondemand',
+                $("#timeline-carousel").slick({
+                    lazyLoad: "ondemand",
                     dots: false,
                     infinite: true,
                     draggable: true,
                     speed: 259,
                     slidesToShow: 4,
                     slidesToScroll: 1,
-                    prevArrow: '<button class="carousel__nav carousel__nav--left slick-prev"><svg class="carousel__nav__ico" role="img"><use xlink:href="#left-arrow"/></svg></button>',
-                    nextArrow: '<button class="carousel__nav carousel__nav--right slick-next"><svg class="carousel__nav__ico" role="img"><use xlink:href="#right-arrow"/></svg></button>',
+                    prevArrow:
+                        '<button class="carousel__nav carousel__nav--left slick-prev"><svg class="carousel__nav__ico" role="img"><use xlink:href="#left-arrow"/></svg></button>',
+                    nextArrow:
+                        '<button class="carousel__nav carousel__nav--right slick-next"><svg class="carousel__nav__ico" role="img"><use xlink:href="#right-arrow"/></svg></button>',
                     responsive: [
                         {
                             breakpoint: 768,
                             settings: {
                                 slidesToShow: 3,
-                                slidesToScroll: 3,
+                                slidesToScroll: 3
                             }
                         },
                         {
@@ -59,47 +57,44 @@ let app = app || {};
             }
         },
 
-        _currentYear ()
-        {
-            return parseInt(this.years.find('.is-current').data('value'));
+        _currentYear() {
+            return parseInt(this.years.find(".is-current").data("value"));
         },
 
-        _currentMonth ()
-        {
-            return parseInt(this.months.find('.is-current').data('value'));
+        _currentMonth() {
+            return parseInt(this.months.find(".is-current").data("value"));
         },
 
-        _handle ()
-        {
+        _handle() {
             this.data.current = this._currentYear();
             this.data.months = [];
 
-            this.months.find('.j-timeline-months-item').each((key, item) => {
-                var years = [], strings = $(item).data('if') + '';
+            this.months.find(".j-timeline-months-item").each((key, item) => {
+                let years = [],
+                    strings = `${$(item).data("if")}`;
 
-                if (typeof strings !== 'undefined' && strings !== '') {
-                    years = strings.split(',');
+                if (typeof strings !== "undefined" && strings !== "") {
+                    years = strings.split(",");
 
-                    for (var x in years) {
+                    for (const x in years) {
                         years[x] = parseInt(years[x]);
                     }
                 }
 
                 this.data.months.push({
-                    item: item,
+                    item,
                     year: years
                 });
             });
         },
 
-        _reinitCarousel ()
-        {
-            var _self_ = this,
+        _reinitCarousel() {
+            let _self_ = this,
                 year = this._currentYear(),
                 month = this._currentMonth();
 
-            if ($('#timeline-carousel').hasClass('slick-initialized')) {
-                $('#timeline-carousel').slick('unslick');
+            if ($("#timeline-carousel").hasClass("slick-initialized")) {
+                $("#timeline-carousel").slick("unslick");
             }
 
             // $('#timeline-carousel').html('');
@@ -123,39 +118,43 @@ let app = app || {};
             _self_._initCarousel();
         },
 
-        _changeFirstMonth ()
-        {
-            this.months.find('.j-timeline-months-item.is-active:first').trigger('click');
+        _changeFirstMonth() {
+            this.months
+                .find(".j-timeline-months-item.is-active:first")
+                .trigger("click");
         },
 
-        _match ()
-        {
+        _match() {
             const _self_ = this;
 
             this._handle();
 
-            this.months.find('.j-timeline-months-item').removeClass('is-active');
+            this.months
+                .find(".j-timeline-months-item")
+                .removeClass("is-active");
 
             $.each(this.data.months, (k, item) => {
                 if (item.year.indexOf(this.data.current) >= 0) {
-                    $(item.item).addClass('is-active');
+                    $(item.item).addClass("is-active");
                 }
             });
 
-            this.filter.addClass('is-active');
+            this.filter.addClass("is-active");
         },
 
-        _events ()
-        {
+        _events() {
             const _self_ = this;
 
-            this.years.find('.j-timeline-years-item').on('click', function(e) {
+            this.years.find(".j-timeline-years-item").on("click", function(e) {
                 e.preventDefault();
 
-                if (!$(this).hasClass('is-current')) {
-                    $('#timeline-filter').find('.j-timeline-years').find('.is-current').removeClass('is-current');
+                if (!$(this).hasClass("is-current")) {
+                    $("#timeline-filter")
+                        .find(".j-timeline-years")
+                        .find(".is-current")
+                        .removeClass("is-current");
 
-                    $(this).addClass('is-current');
+                    $(this).addClass("is-current");
 
                     _self_._match();
                     _self_._changeFirstMonth();
@@ -163,25 +162,29 @@ let app = app || {};
                 }
             });
 
-            this.months.find('.j-timeline-months-item').on('click', function(e) {
-                e.preventDefault();
+            this.months
+                .find(".j-timeline-months-item")
+                .on("click", function(e) {
+                    e.preventDefault();
 
-                if (!$(this).hasClass('is-current')) {
-                    $('#timeline-filter').find('.j-timeline-months').find('.is-current').removeClass('is-current');
+                    if (!$(this).hasClass("is-current")) {
+                        $("#timeline-filter")
+                            .find(".j-timeline-months")
+                            .find(".is-current")
+                            .removeClass("is-current");
 
-                    $(this).addClass('is-current');
+                        $(this).addClass("is-current");
 
-                    _self_._match();
-                    _self_._reinitCarousel();
-                }
-            });
+                        _self_._match();
+                        _self_._reinitCarousel();
+                    }
+                });
         },
 
-        init ()
-        {
-            this.filter = $('#timeline-filter');
-            this.years = this.filter.find('.j-timeline-years');
-            this.months = this.filter.find('.j-timeline-months');
+        init() {
+            this.filter = $("#timeline-filter");
+            this.years = this.filter.find(".j-timeline-years");
+            this.months = this.filter.find(".j-timeline-months");
 
             this._match();
             this._events();
@@ -189,5 +192,4 @@ let app = app || {};
             this._reinitCarousel();
         }
     };
-
-}))(document.body);
+})(document.body);
