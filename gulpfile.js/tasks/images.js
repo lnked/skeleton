@@ -41,7 +41,7 @@ module.exports = function(config) {
 
             .pipe($.newer(config.app))
 
-            .pipe($.if(global.is.build,
+            .pipe($.cache(
                 imagemin([
                     imagemin.gifsicle({interlaced: true}),
                     imagemin.jpegtran({progressive: true}),

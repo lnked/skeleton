@@ -163,8 +163,7 @@ module.exports = function(config, bower) {
 
             .pipe($.sass({
                 outputStyle: global.is.build ? 'compact' : 'expanded', // nested, expanded, compact, compressed
-                // precision: 10
-                precision: 5
+                precision: 10
             }))
 
             .pipe($.pixrem())
