@@ -4,7 +4,13 @@ module.exports.config = {
     path: 'vendors',
     overrides: {
         "jquery": {
-            "main": "dist/jquery.min.js"
+            "main": [
+                // "jquery.min.js",
+                "dist/jquery.min.js"
+            ]
+        },
+        "jquery-tubular": {
+            "main": "dist/js/jquery-tubular.min.js"
         },
         "hammerjs": {
             "main": "hammer.min.js"
