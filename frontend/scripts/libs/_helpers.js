@@ -6,6 +6,36 @@
 //     return [n, titles[(n % 100 > 4 && n % 100 < 20) ? 2 : cases[(n % 10 < 5) ? n % 10 : 5]]].join(' ');
 // }
 
+// function currencyFormatDE (num) {
+//     return num
+//        .toFixed(2) // always two decimal digits
+//        .replace(".", ",") // replace decimal point character with ,
+//        .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.") + " €" // use . as a separator
+// }
+// console.info(currencyFormatDE(1234567.89)); // output 1.234.567,89 €
+
+
+// function currencyFormat (num) {
+//     return "$" + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
+// }
+// console.info(currencyFormat(2665));   // $2,665.00
+// console.info(currencyFormat(102665)); // $102,665.00
+
+
+// function formatNumber (num) {
+//     return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
+// }
+// console.info(formatNumber(2665));      // 2,665
+// console.info(formatNumber(102665));    // 102,665
+// console.info(formatNumber(111102665)); // 111,102,665
+
+
+// function currencyFormat (num) {
+//     return "$" + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
+// }
+// console.info(currencyFormat(2665));   // $2,665.00
+// console.info(currencyFormat(102665)); // $102,665.00
+
 // function currency(input) {
 //     const number = parseInt(input, 10);
 
