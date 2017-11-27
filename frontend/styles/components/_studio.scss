@@ -10,8 +10,8 @@
         transition: border-color $a-time $a-func, color $a-time $a-func;
 
         &:hover {
-            color: $c-orange;
-            border-color: rgba($c-orange, 0.7);
+            color: orange;
+            border-color: rgba(orange, 0.7);
         }
     }
 

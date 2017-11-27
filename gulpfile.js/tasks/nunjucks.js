@@ -31,11 +31,11 @@ module.exports = function(config) {
             .pipe($.frontMatter({ property: 'data' }))
 
             .pipe($.nunjucksRender({
+                PRODUCTION: global.is.build,
                 path: [ config.path ],
                 envOptions: {
                     watch: global.is.watch
-                },
-                PRODUCTION: global.is.build
+                }
             }))
 
             .pipe($.if(
@@ -46,7 +46,7 @@ module.exports = function(config) {
                     indent_level: 0,
                     indent_char: ' ',
                     wrap_attributes: 'auto', // 'force'
-                    preserve_newlines: true,
+                    preserve_newlines: false,
                     end_with_newline: true,
                     brace_style: 'expand',
                     indent_handlebars: false,

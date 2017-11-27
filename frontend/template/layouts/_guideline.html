@@ -1,0 +1,28 @@
+<!doctype html>
+<!-- (c) lnk. CELEBRO Studio | https://celebro.ru -->
+<html class="no-js" lang="ru" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+<head>
+    <meta charset="utf-8">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="./css/guideline.min.css">
+</head>
+<body>
+
+{% include "components/_svgstore.html" %}
+
+<div class="wrapper">
+
+    {% block sidebar %}{% endblock %}
+
+    <div class="content">
+
+        {% block content %}{% endblock %}
+
+    </div>
+
+</div>
+
+{% include "partials/_scripts.html" %}
+
+</body>
+</html>

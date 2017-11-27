@@ -1,0 +1,57 @@
+---
+title: Гайдлайн
+components: [{
+    name: 'Component 1',
+    slug: './components/_breadcrumbs'
+},{
+    name: 'Component 1',
+    slug: './partials/_header'
+},{
+    name: 'Component 1',
+    slug: './partials/_footer'
+},{
+    name: 'Component 1',
+    slug: 'components/_pagination'
+},{
+    name: 'Component 1',
+    slug: 'components/_checkbox',
+    data: {
+        name: 'test',
+        value: 'test',
+        title: 'test'
+    }
+},{
+    name: 'Component 1',
+    slug: './components/_radio',
+    data: {
+        name: 'test',
+        value: 'test',
+        title: 'test'
+    }
+}]
+---
+{% extends "layouts/_guideline.html" %}
+
+{% block sidebar %}
+    <nav>
+        <ul>
+        {% for item in components %}
+            <li>
+                <a href="#1">{{ item.name }}</a>
+            </li>
+        {% endfor %}
+        </ul>
+    </nav>
+{% endblock %}
+
+{% block content %}
+    {% for item in components %}
+        <div class="component">
+            <h2>{{ item.name }}</h2>
+
+            <div class="">
+                {% include item.slug + '.html' with item.data %}
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

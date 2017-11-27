@@ -46,4 +46,5 @@ syntax = postcss, scss, sass, css
 file_type = postcss, scss, sass, css
 
 [*.nunjucks,html]
-syntax = nunjucks, jinja2, html
+syntax = nunjucks, jinja2, twig, html
+file_type = nunjucks, jinja2, twig, html
