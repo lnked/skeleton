@@ -1,38 +1,38 @@
-{% set nav = [
-        {
-            name: "Анонсы",
-            slug: "announcements",
-            link: "./announcements.html"
-        },
-        {
-            name: "Фотоотчеты",
-            slug: "photoreports",
-            link: "./photoreports.html"
-        },
-        {
-            name: "Меню",
-            slug: "menu",
-            link: "./menu.html"
-        },
-        {
-            name: "3D тур",
-            slug: "3dtour",
-            link: "./3dtour.html"
-        },
-        {
-            name: "Контакты",
-            slug: "contacts",
-            link: "./contacts.html"
-        }
-    ]
+{%- set nav = [
+    {
+        name: "Анонсы",
+        slug: "announcements",
+        link: "./announcements.html"
+    },
+    {
+        name: "Фотоотчеты",
+        slug: "photoreports",
+        link: "./photoreports.html"
+    },
+    {
+        name: "Меню",
+        slug: "menu",
+        link: "./menu.html"
+    },
+    {
+        name: "3D тур",
+        slug: "3dtour",
+        link: "./3dtour.html"
+    },
+    {
+        name: "Контакты",
+        slug: "contacts",
+        link: "./contacts.html"
+    }
+]
 -%}
-<nav class="navigation">
+<nav class="navigation" tabindex="-1">
     <ul class="navigation__list">
     {%- if nav -%}
         {% for item in nav %}
-        <li class="navigation__item" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
-            <a href="{{ item.link }}" itemprop="url" class="navigation__link{% if current == item.slug %} is-current{% endif %}" accesskey="{{ loop.index }}">
-                <span class="navigation__link__name" itemprop="name">{{ item.name }}</span>
+        <li class="navigation__item" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement"{% if current == item.slug %} aria-current="page"{% endif %}>
+            <a href="{{ item.link }}" itemprop="url" class="navigation__link{% if current == item.slug %} is-current{% endif %}" tabindex="{{ loop.index }}">
+                {% if current == item.slug %}<span class="visually-hidden">Текущий пункт:</span> {% endif %}<span class="navigation__link__name" itemprop="name">{{ item.name }}</span>
             </a>
         </li>
         {% endfor %}
