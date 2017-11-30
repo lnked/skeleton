@@ -62,7 +62,7 @@ module.exports = function(config) {
             ))
             .pipe(gulp.dest(config.path))
             .pipe($.if(global.is.notify, $.notify({ message: config.task + ' complete', onLast: true })));
-       
+
         callback();
     };
 

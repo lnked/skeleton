@@ -86,6 +86,7 @@ module.exports.tasks = {
 
     'fonts': {
         src: src + 'fonts/**/*.{woff2,woff,ttf,eot,svg}',
+        path: src + 'fonts',
         app: app + 'fonts'
     },
 

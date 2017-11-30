@@ -337,6 +337,13 @@ module.exports.config = {
                 "react-dom.min.js"
             ]
         },
+        "material-design-iconic-font": {
+            "main": [
+                "dist/fonts/Material-Design-Iconic-Font.woff",
+                "dist/fonts/Material-Design-Iconic-Font.woff2",
+                "dist/css/material-design-iconic-font.min.css"
+            ]
+        },
         "zepto": {
             "main": "zepto.min.js"
         },
