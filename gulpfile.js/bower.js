@@ -314,8 +314,8 @@ module.exports.config = {
         },
         "cleave.js": {
             "main": [
-                "dist/addons/cleave-phone.ru.js",
-                "dist/cleave.min.js"
+                "dist/cleave.min.js",
+                "dist/addons/cleave-phone.ru.js"
             ]
         },
         "gsap": {

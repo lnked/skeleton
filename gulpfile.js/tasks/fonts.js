@@ -31,8 +31,8 @@ module.exports = function(config, bower) {
             overrides: bower.overrides
         });
 
-        if (vendorFiles.length)
-        {
+        if (vendorFiles.length) {
+
             let exists = false;
             const files = [];
 

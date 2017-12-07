@@ -110,7 +110,7 @@ module.exports = function(config, bower) {
             const glob = [];
             const files = [];
 
-            function _vendorsCallback(glob)
+            function _vendorsCallback(files)
             {
                 gulp.src(files)
                     .pipe($.concat('vendors.js'))
