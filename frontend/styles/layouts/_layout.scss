@@ -11,7 +11,7 @@ $footer-offset: $footer-height + $footer-margin;
     }
 
     &__container {
-        @extend %layout;
+		@include layout();
     }
 }
 

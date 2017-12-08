@@ -6,8 +6,7 @@
 	margin-bottom: 15px;
 
 	&__wrapper {
-		@extend %layout;
-		padding: 0;
+		@include layout($layout-width, 0);
 	}
 
 	&__list {

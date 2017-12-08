@@ -1,0 +1,15 @@
+@mixin layout($width: $layout-width, $margin: $layout-margin) {
+    width: 100%;
+    height: 100%;
+    max-width: $width;
+    padding-left: $margin;
+    padding-right: $margin;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    outline: 1px solid #0FF;
+}
+
+/*
+@include layout(1176px);
+*/
