@@ -63,8 +63,6 @@ module.exports = function(config, bower) {
                     )
                 )
 
-                .pipe($.concat(folder + '.js'))
-
                 .pipe($.rename({suffix: '.min'}))
 
                 .pipe(gulp.dest(config.app))

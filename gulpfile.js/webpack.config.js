@@ -20,6 +20,11 @@ function createConfig(name, entry, outputPath, dirname, isProduction)
     }
 
     plugins.push(
+        new webpack.optimize.CommonsChunkPlugin({
+            name: 'common',
+            filename: '[name].js',
+            minChunks: Infinity
+        }),
         new webpack.ProvidePlugin({
             $: "jquery",
             jQuery: "jquery",
@@ -107,6 +112,7 @@ function createConfig(name, entry, outputPath, dirname, isProduction)
         devtool: isProduction ? '#source-map' : '#cheap-module-eval-source-map',
 
         entry: {
+            'common': ['jquery'],
             [name]: entry
         },
 
