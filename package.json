@@ -27,7 +27,9 @@
     "python-server": "python -m SimpleHTTPServer 8000"
   },
   "dependencies": {
+    "bower-update-all": "0.1.2",
     "fontfaceobserver": "^2.0.13",
+    "global": "4.3.2",
     "gulp": "github:gulpjs/gulp#4.0",
     "gulp-brotli": "1.2.1",
     "intersection-observer": "0.5.0",
