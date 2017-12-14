@@ -6,9 +6,6 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const PrettierPlugin = require('prettier-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
-const BrotliPlugin = require('brotli-webpack-plugin');
-const CompressionPlugin = require('compression-webpack-plugin');
-
 function createConfig(name, entry, outputPath, dirname, isProduction)
 {
     let env = 'development';
@@ -20,11 +17,11 @@ function createConfig(name, entry, outputPath, dirname, isProduction)
     }
 
     plugins.push(
-        new webpack.optimize.CommonsChunkPlugin({
-            name: 'common',
-            filename: '[name].js',
-            minChunks: Infinity
-        }),
+        // new webpack.optimize.CommonsChunkPlugin({
+        //     name: 'common',
+        //     filename: '[name].js',
+        //     minChunks: Infinity
+        // }),
         new webpack.ProvidePlugin({
             $: "jquery",
             jQuery: "jquery",
@@ -57,6 +54,7 @@ function createConfig(name, entry, outputPath, dirname, isProduction)
             new UglifyJSPlugin({
                 cache: true,
                 parallel: true,
+                minimize: true,
                 sourceMap: false,
                 uglifyOptions: {
                     ecma: 8,
@@ -88,22 +86,11 @@ function createConfig(name, entry, outputPath, dirname, isProduction)
                 analyzerPort: 4000,
                 openAnalyzer: false,
                 reportFilename: [name, '.html'].join('')
-            }),
-            // new BrotliPlugin({
-            //     asset: '[path].br[query]',
-            //     test: /\.(js)$/,
-            //     threshold: 10240,
-            //     minRatio: 0.8
-            // }),
-            // new CompressionPlugin({
-            //     asset: '[path].gz[query]',
-            //     algorithm: 'gzip',
-            //     test: /\.(js)$/,
-            //     threshold: 10240,
-            //     minRatio: 0.8
-            // })
+            })
         );
     }
+
+    console.log(name, entry);
 
     webpackConfig = {
 
@@ -112,7 +99,6 @@ function createConfig(name, entry, outputPath, dirname, isProduction)
         devtool: isProduction ? '#source-map' : '#cheap-module-eval-source-map',
 
         entry: {
-            'common': ['jquery'],
             [name]: entry
         },
 
@@ -120,6 +106,7 @@ function createConfig(name, entry, outputPath, dirname, isProduction)
             path: outputPath,
             pathinfo: false,
             publicPath: '',
+            libraryTarget: 'umd',
             filename: '[name].js',
             jsonpFunction: 'WJ',
             hotUpdateFunction: 'UF'
