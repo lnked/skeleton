@@ -10,7 +10,8 @@ const getFolders    = require('../utils/folders');
 const bowerFiles    = require('main-bower-files');
 const brotli        = require('gulp-brotli');
 
-const webpackStream  = require('webpack-stream');
+const webpack       = require('webpack');
+const webpackStream = require('webpack-stream');
 const webpackConfig = require('../webpack.config');
 
 module.exports = function(config, bower) {
@@ -59,7 +60,8 @@ module.exports = function(config, bower) {
                             output,
                             dirname,
                             global.is.build
-                        )
+                        ),
+                        webpack
                     )
                 )
 
