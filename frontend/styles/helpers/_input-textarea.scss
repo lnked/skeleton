@@ -1,8 +1,47 @@
-input,
-textarea {
+select, input[type="date"] {
+    background-clip: padding-box;
+    background-color: hsl(0, 0%, 97%);
+    height: calc(2rem + 3px);
+    line-height: calc(2rem - 1px);
+    padding: 0 calc(0.84rem + 18px) 0 0.84rem;
+}
+
+select {
+    white-space: nowrap;
+}
+
+:-webkit-any(button, input[type="button"], input[type="submit"]):not(.custom-appearance), input, textarea, select {
+    -webkit-appearance: none;
+    border-radius: 3px;
+    cursor: default;
+    position: relative;
+    white-space: initial;
+    display: inline-block;
+    box-sizing: border-box;
+    -webkit-user-select: none;
+    background: hsl(0, 0%, 100%);
+    border: 1px solid hsla(0, 0%, 4%, 0.3);
+    border-top: 1px solid hsla(0, 0%, 4%, 0.2);
+    transition: border-color 150ms, box-shadow 100ms;
+}
+
+:-webkit-any(input, textarea) {
     -webkit-appearance: textfield;
     -webkit-rtl-ordering: logical;
     -webkit-user-select: text;
+}
+
+:-webkit-any(select) {
+    -webkit-appearance: none;
+    -webkit-border-radius: 0px;
+}
+
+:-webkit-any(button) {
+    -webkit-appearance: none;
+}
+
+input,
+textarea {
     cursor: auto;
 
     &:focus {
@@ -10,17 +49,8 @@ textarea {
     }
 }
 
-select {
-    -webkit-appearance: none;
-    -webkit-border-radius: 0px;
-}
-
 label {
     cursor: pointer;
-}
-
-input, button {
-    -webkit-appearance: none;
 }
 
 textarea {
