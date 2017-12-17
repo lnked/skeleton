@@ -34,24 +34,3 @@ gulp.task('build',
 );
 
 gulp.task('default', gulp.parallel( 'watch', 'webserver' ));
-
-/*
-gulp.task('archive:src', zip.zipSrc);
-gulp.task('archive:dist', zip.zipDist);
-gulp.task('archive', gulp.series('archive:src', 'archive:dist'));
-
-gulp.task('ssh:clean', ssh.clean);
-gulp.task('ssh:upload', ssh.upload);
-gulp.task('ssh:unzip', ssh.unzip);
-gulp.task('ssh', gulp.series('ssh:clean', 'ssh:upload', 'ssh:unzip'));
-
-gulp.task('w3c:html', w3cHTML);
-
-gulp.task('deploy',
-    gulp.series('production', 'archive', 'ssh')
-);
-
-gulp.task('validate',
-    gulp.series('w3c:html')
-);
-*/
