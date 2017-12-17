@@ -30,28 +30,28 @@ components: [{
     }
 }]
 ---
-{% extends "layouts/_guideline.html" %}
+{%- extends "layouts/_guideline.html" -%}
 
-{% block sidebar %}
+{%- block sidebar -%}
     <nav>
         <ul>
-        {% for item in components %}
+        {%- for item in components -%}
             <li>
                 <a href="#1">{{ item.name }}</a>
             </li>
-        {% endfor %}
+        {%- endfor -%}
         </ul>
     </nav>
-{% endblock %}
+{%- endblock -%}
 
-{% block content %}
-    {% for item in components %}
+{%- block content -%}
+    {%- for item in components -%}
         <div class="component">
             <h2>{{ item.name }}</h2>
 
             <div class="">
-                {% include item.slug + '.html' with item.data %}
+                {%- include item.slug + '.html' with item.data -%}
             </div>
         </div>
-    {% endfor %}
-{% endblock %}
+    {%- endfor -%}
+{%- endblock -%}

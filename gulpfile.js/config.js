@@ -9,12 +9,7 @@ module.exports.app  = app;
 module.exports.src  = src;
 
 module.exports.tasks = {
-    'pug': {
-        src: [src + 'template/**/*.pug', '!' + src + 'template/**/*.template', '!' + src + 'template/**/_*.*'],
-        app: app + markup
-    },
-
-    'nunjucks': {
+    'template': {
         src: [src + 'template/**/*.html', '!' + src + 'template/**/*.template', '!' + src + 'template/**/_*.*'],
         path: src + 'template',
         app: app + markup
@@ -82,6 +77,25 @@ module.exports.tasks = {
     'video': {
         src: src + 'video/**/*.*',
         app: app + 'video'
+    },
+
+    'vendors': {
+        'fonts': {
+            dir: app + 'fonts',
+            formats: ['*.{woff,woff2}', '**/*.{woff,woff2}']
+        },
+        'styles': {
+            dir: app + 'css',
+            formats: ['*.css', '**/*.css']
+        },
+        'scripts': {
+            dir: app + 'js',
+            formats: ['*.js', '**/*.js']
+        },
+        'images': {
+            dir: app + 'images',
+            formats: ['*.{gif,svg,png,jpg,jpeg,webp}', '**/*.{gif,svg,png,jpg,jpeg,webp}']
+        }
     },
 
     'fonts': {
@@ -176,9 +190,8 @@ module.exports.tasks = {
 
     'watch': {
         tasks: {
-            // template:   [src + 'template/**/*.html', src + 'template/**/_*.*'],
-            // pug:        [src + 'template/**/*.pug', src + 'template/**/_*.*'],
-            nunjucks:   [src + 'template/**/*.html', src + 'template/**/_*.*'],
+            template:   [src + 'template/**/*.html', src + 'template/**/_*.*'],
+            styles:     [src + 'styles/**/*.css', src + 'styles/**/*.{sass,scss}'],
             scripts:    [src + 'scripts/*.{js,jsx,coffee}', src + 'scripts/**/*.{js,jsx,coffee}'],
             video:      [src + 'video/**/*.*'],
             files:      [src + 'files/**/*.*'],
@@ -187,7 +200,7 @@ module.exports.tasks = {
             fonts:      [src + 'fonts/**/*.*'],
             misc:       [src + 'misc/**/*.*'],
             json:       [src + 'json/**/*.json'],
-            styles:     [src + 'styles/**/*.css', src + 'styles/**/*.{sass,scss}'],
+            vendors:    [src + 'vendors/**/*.*'],
             svgstore:   [src + 'svgstore/**/*.svg']
         }
     },

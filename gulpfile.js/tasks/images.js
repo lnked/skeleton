@@ -43,9 +43,16 @@ module.exports = function(config) {
 
             .pipe($.cache(
                 imagemin([
-                    imagemin.gifsicle({interlaced: true}),
-                    imagemin.jpegtran({progressive: true}),
-                    imagemin.optipng({optimizationLevel: 5}, { use: imageminOptipng() }),
+                    imagemin.gifsicle({
+                        interlaced: true,
+                        optimizationLevel: 3
+                    }),
+                    imagemin.jpegtran({
+                        progressive: true
+                    }),
+                    imagemin.optipng({
+                        optimizationLevel: 5
+                    }, { use: imageminOptipng() }),
                     imagemin.svgo({
                         plugins: [
                             {removeTitle:true},

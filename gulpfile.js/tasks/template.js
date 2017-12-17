@@ -4,11 +4,18 @@ const $     = require('gulp-load-plugins')({ pattern: ['gulp-*', 'gulp.*', 'post
 const gulp  = require('gulp');
 const clean = require('../utils/clean')
 const error = require('../utils/error');
+const posthtmlAttrsSorter = require('posthtml-attrs-sorter');
 
 module.exports = function(config) {
     config = config || {};
 
     return function(callback) {
+
+        $.nunjucksRender.nunjucks.configure({
+            watch: global.is.watch,
+            trimBlocks: true,
+            lstripBlocks: false
+        });
 
         gulp.src(config.src)
 
@@ -20,28 +27,56 @@ module.exports = function(config) {
                 basepath: '@file'
             }))
 
-            .pipe($.if(
-                global.is.email,
-                $.inlineCss({
-                    applyStyleTags: true,
-                    applyLinkTags: true,
-                    removeStyleTags: true,
-                    removeLinkTags: true
-                })
-            ))
+            .pipe($.if(global.is.watch, $.changed(config.app)))
+
+            .pipe($.frontMatter({ property: 'data' }))
+
+            .pipe($.nunjucksRender({
+                PRODUCTION: global.is.build,
+                path: [ config.path ],
+                envOptions: {
+                    watch: global.is.watch
+                }
+            }))
 
             .pipe($.if(
                 global.is.build,
                 $.prettify({
                     indent_size: 4,
+                    indent_level: 0,
                     indent_char: ' ',
                     brace_style: 'expand',
-                    indent_handlebars: false,
-                    indent_inner_html: false,
-                    preserve_newlines: false,
+                    end_with_newline: true,
+                    preserve_newlines: true,
+                    indent_handlebars: true,
+                    indent_inner_html: true,
                     max_preserve_newlines: 1,
-                    unformatted: ['pre', 'code', 'script', 'style']
+                    unformatted: ['pre', 'code', 'textarea', 'script']
                 })
+            ))
+
+            .pipe($.if(
+                global.is.build,
+                $.posthtml([
+                    posthtmlAttrsSorter({
+                        order: [
+                            "class",
+                            "id",
+                            "name",
+                            "data",
+                            "ng",
+                            "src",
+                            "for",
+                            "type",
+                            "href",
+                            "values",
+                            "title",
+                            "alt",
+                            "role",
+                            "aria"
+                        ]
+                    })
+                ], { })
             ))
 
             .pipe($.if(
@@ -88,9 +123,14 @@ module.exports = function(config) {
 
             .pipe(gulp.dest(config.app))
 
-            .pipe($.if(global.is.notify, $.notify({ message: config.task + ' complete', onLast: true })));
+            .pipe($.if(
+                global.is.notify,
+                $.notify({
+                    message: config.task + ' complete',
+                    onLast: true
+                })
+            ));
 
         callback();
     };
-
 };

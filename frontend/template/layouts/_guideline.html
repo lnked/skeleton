@@ -8,21 +8,21 @@
 </head>
 <body>
 
-{% include "components/_svgstore.html" %}
+{%- include "components/_svgstore.html" -%}
 
 <div class="wrapper">
 
-    {% block sidebar %}{% endblock %}
+    {%- block sidebar -%}{%- endblock -%}
 
     <div class="content">
 
-        {% block content %}{% endblock %}
+        {%- block content -%}{%- endblock -%}
 
     </div>
 
 </div>
 
-{% include "partials/_scripts.html" %}
+{%- include "partials/_scripts.html" -%}
 
 </body>
 </html>

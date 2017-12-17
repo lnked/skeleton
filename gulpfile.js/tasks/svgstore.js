@@ -28,12 +28,23 @@ module.exports = function(config) {
                                 {removeDoctype:true},
                                 {removeMetadata:true},
                                 {removeComments:true},
+                                {removeEmptyText:true},
                                 {removeUselessDefs:true},
                                 {removeXMLProcInst:true},
                                 {removeDimensions:true},
                                 {cleanupNumericValues: {
                                     floatPrecision: 2
                                 }},
+                                {removeAttrs: {
+                                    attrs: ["id", "class", "data-name", "fill", "fill-rule"]
+                                }},
+                                {sortAttrs:true},
+                                {removeEmptyAttrs:true},
+                                {removeHiddenElems:true},
+                                {removeStyleElement:true},
+                                {removeEditorsNSData:true},
+                                {removeEmptyContainers:true},
+                                {transformsWithOnePath:true},
                                 {cleanupIDs: {
                                     prefix: prefix + '-',
                                     minify: false

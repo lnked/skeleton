@@ -83,4 +83,4 @@
 
     <script>(function(d) { d.className = d.className.replace(/\bno-js/, ''); })(document.documentElement);</script>
 </head>
-<body{% if bodyclass %} class="{{ bodyclass }}"{% endif %}>
+<body{%- if bodyclass -%} class="{{ bodyclass }}"{%- endif -%}>

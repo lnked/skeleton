@@ -29,13 +29,13 @@
 <nav class="navigation" tabindex="-1" aria-label="Основное меню">
     <ul class="navigation__list">
     {%- if nav -%}
-        {% for item in nav %}
+        {%- for item in nav -%}
         <li class="navigation__item" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement"{% if current == item.slug %} aria-current="page"{% endif %}>
             <a href="{{ item.link }}" itemprop="url" class="navigation__link{% if current == item.slug %} is-current{% endif %}" accesskey="{{ loop.index }}">
                 {% if current == item.slug %}<span class="visually-hidden">Текущий пункт:</span> {% endif %}<span class="navigation__link__name" itemprop="name">{{ item.name }}</span>
             </a>
         </li>
-        {% endfor %}
+        {%- endfor -%}
     {%- endif -%}
     </ul>
 </nav>

@@ -2,29 +2,29 @@
 <!-- (c) lnk. CELEBRO Studio | https://celebro.ru -->
 <html class="no-js" lang="ru" itemscope="itemscope" itemtype="http://schema.org/WebPage">
 
-{% import "partials/_mixins.html" as mixins %}
+{%- import "partials/_mixins.html" as mixins -%}
 
-{% include "partials/_head.html" %}
+{%- include "partials/_head.html" -%}
 
-<body{% if bodyclass %} class="{{ bodyclass }}"{% endif %}>
+<body{%- if bodyclass -%} class="{{ bodyclass }}"{%- endif -%}>
 
-{% include "components/_svgstore.html" %}
+{%- include "components/_svgstore.html" -%}
 
 <div class="layout-wrapper">
 
-    {% include "partials/_header.html" %}
+    {%- include "partials/_header.html" -%}
 
     <div class="layout-wrapper__pusher">
 
         <div class="layout-wrapper__container clearfix">
 
-            {% include "partials/_sidebar.html" %}
+            {%- include "partials/_sidebar.html" -%}
 
             <main class="content">
 
-                {% include "components/_breadcrumbs.html" %}
+                {%- include "components/_breadcrumbs.html" -%}
 
-                {% block content %}{% endblock %}
+                {%- block content -%}{%- endblock -%}
 
             </main>
 
@@ -34,9 +34,9 @@
 
 </div>
 
-{% include "partials/_footer.html" %}
+{%- include "partials/_footer.html" -%}
 
-{% include "partials/_scripts.html" %}
+{%- include "partials/_scripts.html" -%}
 
 </body>
 </html>
