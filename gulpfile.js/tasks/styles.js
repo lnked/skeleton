@@ -12,21 +12,6 @@ const bowerFiles    = require('main-bower-files');
 module.exports = function(config, bower) {
     config = config || {};
 
-    const AUTOPREFIXER_BROWSERS = config.browsers || [
-        '>1%',
-        'last 4 versions',
-        'Firefox ESR',
-        'ie >= 8',
-        'ie_mob >= 10',
-        'ff >= 30',
-        'chrome >= 34',
-        'safari >= 5',
-        'opera >= 12.1',
-        'ios >= 6',
-        'android >= 2.3',
-        'bb >= 10'
-    ];
-
     let stylelintConfig = {
         "rules": {
             "color-no-invalid-hex": true,
@@ -105,6 +90,17 @@ module.exports = function(config, bower) {
             })
         ],
         pretty: [
+            require('perfectionist')({
+                cascade: false,
+                colorCase: 'lower',
+                colorShorthand: true,
+                format: 'expanded',
+                indentChar: ' ',
+                indentSize: 4,
+                trimLeadingZero: false,
+                trimTrailingZeros: true,
+                zeroLengthNoUnit: true
+            }),
             require('postcss-sorting')({
                 "sort-order": "default",
                 "empty-lines-between-children-rules": 0,
@@ -199,7 +195,6 @@ module.exports = function(config, bower) {
                 global.is.build,
                 $.postcss([
                     require('autoprefixer')({
-                        browsers: AUTOPREFIXER_BROWSERS,
                         cascade: false
                     })
                 ])
@@ -273,7 +268,6 @@ module.exports = function(config, bower) {
                         global.is.build,
                         $.postcss([
                             require('autoprefixer')({
-                                browsers: AUTOPREFIXER_BROWSERS,
                                 cascade: false
                             })
                         ])
