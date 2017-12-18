@@ -22,41 +22,42 @@ module.exports = function(config) {
                         var prefix = path.basename(file.relative, path.extname(file.relative));
                         return {
                             plugins: [
-                                {removeTitle:true},
-                                {removeDesc:true},
-                                {removeViewBox:false},
-                                {removeDoctype:true},
-                                {removeMetadata:true},
-                                {removeComments:true},
-                                {removeEmptyText:true},
-                                {removeUselessDefs:true},
-                                {removeXMLProcInst:true},
-                                {removeDimensions:true},
-                                {cleanupNumericValues: {
+                                { sortAttrs: true },
+                                { removeTitle: true },
+                                { removeDesc: true },
+                                { removeViewBox: false },
+                                { removeDoctype: true },
+                                { removeMetadata: true },
+                                { removeComments: true },
+                                { removeEmptyText: true },
+                                { removeEmptyAttrs: true },
+                                { removeHiddenElems: true },
+                                { removeStyleElement: true },
+                                { removeEditorsNSData: true },
+                                { removeEmptyContainers: true },
+                                { removeUselessDefs: true },
+                                { removeXMLProcInst: true },
+                                { removeDimensions: true },
+                                { cleanupNumericValues: {
                                     floatPrecision: 2
                                 }},
-                                {removeAttrs: {
-                                    attrs: ["id", "class", "data-name", "fill", "fill-rule"]
-                                }},
-                                {sortAttrs:true},
-                                {removeEmptyAttrs:true},
-                                {removeHiddenElems:true},
-                                {removeStyleElement:true},
-                                {removeEditorsNSData:true},
-                                {removeEmptyContainers:true},
-                                {transformsWithOnePath:true},
-                                {cleanupIDs: {
+                                { cleanupIDs: {
                                     prefix: prefix + '-',
                                     minify: false
                                 }},
-                                {js2svg: {
+                                { js2svg: {
                                     pretty: true
                                 }},
-                                {convertColors: {
+                                { convertColors: {
                                     names2hex: true,
                                     rgb2hex: true
                                 }},
-                                {removeUselessStrokeAndFill: false}
+                                { removeAttrs: {
+                                    attrs: ["id", "class", "data-name", "stroke", "fill", "fill-rule"]
+                                } },
+                                { removeStyleElement: true },
+                                { removeScriptElement: true },
+                                { removeUselessStrokeAndFill: true }
                             ]
                         }
                     }))
