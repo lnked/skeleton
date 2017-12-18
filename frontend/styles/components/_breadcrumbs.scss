@@ -1,0 +1,29 @@
+.breadcrumbs {
+    clear: both;
+    margin-bottom: 15px;
+
+    &__list {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+    &__item {
+        &:not(:last-child) {
+            margin-right: 8px;
+
+            &:after {
+                content: "/";
+                color: #2e2e2e;
+                font-size: 1.2rem;
+                margin-left: 8px;
+            }
+        }
+
+        &__link {
+            color: #2e2e2e;
+            font-size: 1.2rem;
+            text-decoration: none;
+        }
+    }
+}

@@ -1,8 +1,19 @@
 ---
 title: Demo title
 current: demo
+breadcrumbs: [{
+    name: 'Главная',
+    link: './index.html'
+}, {
+    name: 'Каталог мебели',
+    link: './catalog.html'
+}]
 ---
 {%- extends "layouts/_base.html" -%}
+
+{%- block breadcrumbs -%}
+    {%- include "components/_breadcrumbs.html" -%}
+{%- endblock -%}
 
 {%- block content -%}
 
