@@ -1,0 +1,20 @@
+{% macro switch(name, value='', type='text') %}
+<div class="field">
+  <input type="{{ type }}" name="{{ name }}"
+         value="{{ value | escape }}" />
+</div>
+{% endmacro %}
+
+{#
+<div class="switch">
+    <label class="switch__item">
+        <input type="radio" name="type" value="1" class="switch__item__input" checked>
+        <span class="switch__item__title">По зонам</span>
+    </label>
+
+    <label class="switch__item">
+        <input type="radio" name="type" value="2" class="switch__item__input">
+        <span class="switch__item__title">По типу мебели</span>
+    </label>
+</div>
+#}

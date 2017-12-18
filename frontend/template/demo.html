@@ -6,6 +6,8 @@ current: demo
 
 {%- block content -%}
 
-    <!-- contend -->
+    {{ forms.switch('user') }}
+
+    {{ forms.switch('pass', type='password') }}
 
 {%- endblock -%}
