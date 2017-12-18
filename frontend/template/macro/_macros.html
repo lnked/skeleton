@@ -1,20 +1,23 @@
-{% macro switch(name, value='', type='text') %}
-<div class="field">
-  <input type="{{ type }}" name="{{ name }}"
-         value="{{ value | escape }}" />
+{% macro switch(name, list={}, checked) %}
+<div class="switch">
+    {% for value, item in list %}
+    <label class="switch__item">
+        <input type="radio" name="{{ name }}" value="{{ value | escape }}" class="switch__item__input"{% if checked == value %} checked{% endif %}>
+        <span class="switch__item__title">{{ item }}</span>
+    </label>
+    {% endfor %}
 </div>
 {% endmacro %}
 
 {#
-<div class="switch">
-    <label class="switch__item">
-        <input type="radio" name="type" value="1" class="switch__item__input" checked>
-        <span class="switch__item__title">По зонам</span>
-    </label>
-
-    <label class="switch__item">
-        <input type="radio" name="type" value="2" class="switch__item__input">
-        <span class="switch__item__title">По типу мебели</span>
-    </label>
-</div>
+{{
+    forms.switch(
+        'type',
+        'list' = {
+            '1': 'По зонам',
+            '2': 'По типу мебели'
+        },
+        'checked' = 1
+    )
+}}
 #}

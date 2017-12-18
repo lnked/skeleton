@@ -6,8 +6,15 @@ current: demo
 
 {%- block content -%}
 
-    {{ forms.switch('user') }}
-
-    {{ forms.switch('pass', type='password') }}
+    {{
+        forms.switch(
+            'type',
+            'list' = {
+                '1': 'По зонам',
+                '2': 'По типу мебели'
+            },
+            'checked' = 1
+        )
+    }}
 
 {%- endblock -%}
