@@ -9,6 +9,9 @@ module.exports.config = {
                 "dist/jquery.min.js"
             ]
         },
+        "instantclick": {
+            "main": "instantclick.js"
+        },
         "jquery-tubular": {
             "main": "dist/js/jquery-tubular.min.js"
         },
