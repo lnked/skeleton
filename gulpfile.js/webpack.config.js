@@ -6,7 +6,7 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const PrettierPlugin = require('prettier-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
-function createConfig(name, entry, outputPath, dirname, isProduction)
+function createConfig(entryPoint, outputPath, contextDirname, isProduction)
 {
     let env = 'development';
     let plugins = [];
@@ -17,9 +17,16 @@ function createConfig(name, entry, outputPath, dirname, isProduction)
     }
 
     plugins.push(
+        new webpack.optimize.CommonsChunkPlugin({
+            name: 'vendors',
+            filename: 'vendors.js',
+            minChunks(m) {
+                return m.context && m.context.indexOf('node_modules') >= 0;
+            }
+        }),
         // new webpack.optimize.CommonsChunkPlugin({
-        //     name: 'common',
-        //     filename: '[name].js',
+        //     name: 'runtime',
+        //     chunks: ['vendors'],
         //     minChunks: Infinity
         // }),
         new webpack.ProvidePlugin({
@@ -54,12 +61,12 @@ function createConfig(name, entry, outputPath, dirname, isProduction)
             new UglifyJSPlugin({
                 cache: true,
                 parallel: true,
-                minimize: true,
                 sourceMap: false,
                 uglifyOptions: {
                     ecma: 8,
                     ie8: false,
                     mangle: true,
+                    minimize: true,
                     parse: {
                         html5_comments: false
                     },
@@ -81,26 +88,22 @@ function createConfig(name, entry, outputPath, dirname, isProduction)
                 },
                 exclude: [/\.min\.js$/gi]
             }),
-            new BundleAnalyzerPlugin({
-                analyzerMode: 'static',
-                analyzerPort: 4000,
-                openAnalyzer: false,
-                reportFilename: [name, '.html'].join('')
-            })
+            // new BundleAnalyzerPlugin({
+            //     analyzerMode: 'static',
+            //     analyzerPort: 4000,
+            //     openAnalyzer: false,
+            //     reportFilename: ['bundle', '.html'].join('')
+            // })
         );
     }
 
-    console.log(name, entry);
-
     webpackConfig = {
 
-        context: dirname,
+        context: contextDirname,
 
         devtool: isProduction ? '#source-map' : '#cheap-module-eval-source-map',
 
-        entry: {
-            [name]: entry
-        },
+        entry: entryPoint,
 
         output: {
             path: outputPath,
@@ -126,7 +129,7 @@ function createConfig(name, entry, outputPath, dirname, isProduction)
                 {
                     test: /\.js[x]?$/,
                     exclude: /(node_modules|bower_components)/,
-                    include: dirname,
+                    include: contextDirname,
                     exclude: /(node_modules|bower_components)/,
                     use: [
                         {

@@ -10,7 +10,6 @@ const getFolders    = require('../utils/folders');
 const bowerFiles    = require('main-bower-files');
 const brotli        = require('gulp-brotli');
 
-const webpack       = require('webpack');
 const webpackStream = require('webpack-stream');
 const webpackConfig = require('../webpack.config');
 
@@ -43,133 +42,57 @@ module.exports = function(config, bower) {
 
         const rootPath = path.resolve(__dirname, '../..');
 
+        const files = [];
+        const entry = {};
+
         folders.map((folder) => {
-            const entry = getFiles(path.resolve(rootPath, config.path, folder));
-            const output = path.resolve(rootPath, config.app);
-            const dirname = path.resolve(rootPath, config.path, folder);
+            const inner = getFiles(path.resolve(rootPath, config.path, folder));
 
-            gulp.src([path.join(config.path, folder, '/*.*'), path.join(config.path, folder, '/**/*.*'), config.ignore])
-                .pipe($.plumber({errorHandler: error}))
-                .pipe($.debug({title: config.task}))
+            inner.map((file) => {
+                if (typeof(entry[folder]) === 'undefined')
+                {
+                    entry[folder] = [];
+                }
 
-                .pipe(
-                    webpackStream(
-                        webpackConfig.createConfig(
-                            folder,
-                            entry,
-                            output,
-                            dirname,
-                            global.is.build
-                        ),
-                        webpack
+                entry[folder].push(file.replace(path.resolve(rootPath, config.path), '.'));
+            })
+
+            files.push(
+                path.join(config.path, folder, '/*.*'),
+                path.join(config.path, folder, '/**/*.*')
+            )
+        });
+
+        gulp.src(files)
+            .pipe($.plumber({errorHandler: error}))
+            .pipe($.debug({title: config.task}))
+
+            .pipe(
+                webpackStream(
+                    webpackConfig.createConfig(
+                        entry,
+                        path.resolve(rootPath, config.app),
+                        path.resolve(rootPath, config.path),
+                        global.is.build
                     )
                 )
+            )
+            .pipe($.rename({suffix: '.min'}))
+            .pipe(gulp.dest(config.app))
 
-                .pipe($.rename({suffix: '.min'}))
+            .pipe($.if(global.is.build, $.gzip()))
+            .pipe($.if(global.is.build, brotli.compress({
+                extension: 'brotli',
+                skipLarger: true,
+                mode: 0,
+                quality: 11,
+                lgblock: 0
+            })))
+            .pipe($.if(global.is.build, gulp.dest(config.app)))
+            .pipe(gulp.dest(config.app))
 
-                .pipe(gulp.dest(config.app))
-
-                .pipe($.if(global.is.build, $.gzip()))
-                .pipe($.if(global.is.build, brotli.compress({
-                    extension: 'brotli',
-                    skipLarger: true,
-                    mode: 0,
-                    quality: 11,
-                    lgblock: 0
-                })))
-
-                .pipe($.if(global.is.build, gulp.dest(config.app)))
-
-                .pipe(gulp.dest(config.app))
-
-                .pipe($.if(global.is.build, $.size({title: `${folder}.js.gz`})))
-                .pipe($.if(global.is.notify, $.notify({ message: config.task + ' complete', onLast: true })));
-        });
-
-        // VENDORS
-        const vendorFiles = bowerFiles(['*.js', '**/*.js'], {
-            paths: {
-                bowerDirectory: path.resolve(path.dirname(config.path), bower.path),
-                bowerrc: bower.config,
-                bowerJson: bower.json
-            },
-            debugging: false,
-            checkExistence: true,
-            overrides: bower.overrides
-        });
-
-        if (vendorFiles.length)
-        {
-            let exists = false;
-
-            const glob = [];
-            const files = [];
-
-            function _vendorsCallback(glob)
-            {
-                gulp.src(files)
-                    .pipe($.concat('vendors.js'))
-                    .pipe($.rename({suffix: '.min'}))
-                    .pipe($.if(global.is.build, $.uglify(uglifyConfig)))
-                    .pipe($.size({title: 'vendors'}))
-                    .pipe(gulp.dest(config.app))
-
-                    .pipe($.if(global.is.build, $.gzip()))
-                    .pipe($.if(global.is.build, brotli.compress({
-                        extension: 'br',
-                        skipLarger: true,
-                        mode: 0,
-                        quality: 11,
-                        lgblock: 0
-                    })))
-                    .pipe($.if(global.is.build, gulp.dest(config.app)))
-                    .pipe($.if(global.is.build, $.size({title: 'vendors.js.gz'})))
-
-                    .pipe($.if(global.is.notify, $.notify({ message: 'Bower complete', onLast: true })));
-            }
-
-            const length = vendorFiles.length - 1;
-
-            for (var i = 0; i <= length; i++)
-            {
-                const basename = path.basename(vendorFiles[i]);
-                const template = basename.split('.');
-                const extension = template[template.length - 1];
-
-                if (['js'].indexOf(extension) >= 0)
-                {
-                    exists = true;
-
-                    if (basename.indexOf('jquery.min.js') >= 0 || basename.indexOf('codemirror.js') >= 0)
-                    {
-                        glob.push(vendorFiles[i]);
-                    }
-                    else
-                    {
-                        files.push(vendorFiles[i]);
-                    }
-                }
-
-                if (i === length && exists)
-                {
-                    if (glob.length)
-                    {
-                        for (var x = glob.length - 1; x >= 0; x--) {
-                            files.unshift(glob[x]);
-
-                            if (x === 0)
-                            {
-                                _vendorsCallback(files);
-                            }
-                        }
-                    }
-                    else
-                    {
-                        _vendorsCallback(files);
-                    }
-                }
-            }
-        }
+            .pipe($.if(global.is.build, $.size({title: `[name].js.gz`})))
+            .pipe($.if(global.is.notify, $.notify({ message: config.task + ' complete', onLast: true })));
 
         callback();
 
