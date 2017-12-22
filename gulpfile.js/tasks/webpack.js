@@ -38,32 +38,51 @@ module.exports = function(config, bower) {
 
     return function(callback) {
 
-        let folders = getFolders(config.path);
-
+        const glob = [];
+        const entry = {};
         const rootPath = path.resolve(__dirname, '../..');
 
-        const files = [];
-        const entry = {};
+        if (config.readDir) {
+            const folders = getFolders(config.path);
 
-        folders.map((folder) => {
-            const inner = getFiles(path.resolve(rootPath, config.path, folder));
+            folders.map((folder) => {
+                const inner = getFiles(path.resolve(rootPath, config.path, folder));
 
-            inner.map((file) => {
-                if (typeof(entry[folder]) === 'undefined')
+                inner.map((file) => {
+                    if (typeof(entry[folder]) === 'undefined')
+                    {
+                        entry[folder] = [];
+                    }
+
+                    entry[folder].push(file.replace(path.resolve(rootPath, config.path), '.'));
+                })
+
+                glob.push(
+                    path.join(config.path, folder, '/*.*'),
+                    path.join(config.path, folder, '/**/*.*')
+                )
+            });
+        } else {
+            const files = getFiles(config.path);
+
+            files.map((file) => {
+                const basename = path.basename(file, '.js');
+
+                if (typeof(entry[basename]) === 'undefined')
                 {
-                    entry[folder] = [];
+                    entry[basename] = [];
                 }
 
-                entry[folder].push(file.replace(path.resolve(rootPath, config.path), '.'));
-            })
+                entry[basename].push(file.replace(path.resolve(rootPath, config.path), '.'));
+            });
 
-            files.push(
-                path.join(config.path, folder, '/*.*'),
-                path.join(config.path, folder, '/**/*.*')
-            )
-        });
+            glob.push(
+                path.join(config.path, '/*.*'),
+                path.join(config.path, '/**/*.*')
+            );
+        }
 
-        gulp.src(files)
+        gulp.src(glob)
             .pipe($.plumber({errorHandler: error}))
             .pipe($.debug({title: config.task}))
 
