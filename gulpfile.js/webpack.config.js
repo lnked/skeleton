@@ -61,22 +61,22 @@ function createConfig(entryPoint, outputPath, contextDirname, isProduction)
             new UglifyJSPlugin({
                 cache: true,
                 parallel: true,
-                sourceMap: false,
+                sourceMap: !isProduction,
                 uglifyOptions: {
                     ecma: 8,
                     ie8: false,
-                    mangle: true,
-                    minimize: true,
+                    mangle: isProduction,
+                    minimize: isProduction,
                     parse: {
                         html5_comments: false
                     },
                     compress: {
                         cascade: true,
                         booleans: true,
-                        drop_console: true,
+                        drop_console: isProduction,
                         drop_debugger: true,
                         global_defs: {
-                            DEBUG: false
+                            DEBUG: !isProduction
                         }
                     },
                     output: {
