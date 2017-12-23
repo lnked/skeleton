@@ -3,7 +3,6 @@ const path = require('path');
 const util = require('gulp-util');
 
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
-const PrettierPlugin = require('prettier-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 function createConfig(entryPoint, outputPath, contextDirname, isProduction)
@@ -39,16 +38,6 @@ function createConfig(entryPoint, outputPath, contextDirname, isProduction)
         }),
         new webpack.NoEmitOnErrorsPlugin()
     );
-
-    if (!isProduction)
-    {
-        plugins.push(
-            new PrettierPlugin({
-                printWidth: 80,
-                tabWidth: 4
-            }),
-        )
-    }
 
     if (isProduction)
     {

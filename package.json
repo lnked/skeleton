@@ -173,7 +173,6 @@
     "postcss-use": "^2.1.0",
     "postcss-vmin": "^3.0.0",
     "posthtml-attrs-sorter": "1.1.0",
-    "prettier-webpack-plugin": "0.2.2",
     "react": "16.2.0",
     "sass-lint": "^1.11.1",
     "stylelint": "8.4.0",
