@@ -24,11 +24,11 @@ function createConfig(entryPoint, outputPath, contextDirname, isProduction)
                 return m.context && m.context.indexOf('node_modules') >= 0;
             }
         }),
-        // new webpack.optimize.CommonsChunkPlugin({
-        //     name: 'runtime',
-        //     chunks: ['vendors'],
-        //     minChunks: Infinity
-        // }),
+        new webpack.optimize.CommonsChunkPlugin({
+            name: 'runtime',
+            chunks: ['vendors'],
+            minChunks: Infinity
+        }),
         new webpack.ProvidePlugin({
             $: "jquery",
             jQuery: "jquery",
@@ -101,6 +101,8 @@ function createConfig(entryPoint, outputPath, contextDirname, isProduction)
 
         context: contextDirname,
 
+        target: 'web',
+
         devtool: isProduction ? '#source-map' : '#cheap-module-eval-source-map',
 
         entry: entryPoint,
@@ -140,6 +142,9 @@ function createConfig(entryPoint, outputPath, contextDirname, isProduction)
                         }
                     ]
                 }
+            ],
+            noParse: [
+                /[\/\\]react[\/\\]react\.js[\/\\]jquery[\/\\]zepto\.js$/
             ]
         },
 
