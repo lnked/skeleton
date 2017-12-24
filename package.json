@@ -79,7 +79,7 @@
     "gulp-group-css-media-queries": "^1.1.0",
     "gulp-gzip": "^1.4.0",
     "gulp-htmlhint": "1.0.0",
-    "gulp-htmlmin": "^3.0.0",
+    "gulp-htmlmin": "4.0.0",
     "gulp-if": "^2.0.1",
     "gulp-imagemin": "4.0.0",
     "gulp-imports": "0.0.3",
