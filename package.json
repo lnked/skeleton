@@ -124,7 +124,7 @@
     "imagemin-guetzli": "1.0.0",
     "imagemin-optipng": "5.2.1",
     "imagemin-svgo": "6.0.0",
-    "imagemin-webp": "4.0.0",
+    "imagemin-webp": "4.1.0",
     "left-pad": "1.2.0",
     "lost": "8.2.0",
     "main-bower-files": "^2.13.1",
