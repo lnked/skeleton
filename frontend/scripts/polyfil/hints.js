@@ -1,10 +1,10 @@
 function add_hint(type, url) {
-    if (!type || !url) return;
+  if (!type || !url) return;
 
-    var el = document.createElement("link");
-    el.setAttribute("rel", type);
-    el.setAttribute("href", url);
-    document.getElementsByTagName("head")[0].appendChild(el);
+  const el = document.createElement('link');
+  el.setAttribute('rel', type);
+  el.setAttribute('href', url);
+  document.getElementsByTagName('head')[0].appendChild(el);
 }
 
 // add_hind('prefetch', 'http://ya.ru');

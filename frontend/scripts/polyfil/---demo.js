@@ -1,7 +1,7 @@
 isArray =
     Array.isArray ||
     function(arr) {
-        return Object.prototype.toString.call(arr) == "[object Array]";
+      return Object.prototype.toString.call(arr) == '[object Array]';
     };
 
 isArray(arr);
@@ -9,10 +9,10 @@ isArray(arr);
 //
 //
 //
-var parseHTML = function(str) {
-    var el = document.createElement("div");
-    el.innerHTML = str;
-    return el.children;
+const parseHTML = function(str) {
+  const el = document.createElement('div');
+  el.innerHTML = str;
+  return el.children;
 };
 
 parseHTML(htmlString);
@@ -22,5 +22,5 @@ parseHTML(htmlString);
 //
 //
 function trim() {
-    string.replace(/^\s+|\s+$/g, "");
+  string.replace(/^\s+|\s+$/g, '');
 }

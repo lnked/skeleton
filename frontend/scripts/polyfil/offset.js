@@ -1,12 +1,12 @@
 function ofset(el) {
-    var rect = el.getBoundingClientRect();
+  const rect = el.getBoundingClientRect();
 
-    return {
-        top: rect.top + document.body.scrollTop,
-        left: rect.left + document.body.scrollLeft
-    };
+  return {
+    top: rect.top + document.body.scrollTop,
+    left: rect.left + document.body.scrollLeft
+  };
 }
 
 function offsetParent(el) {
-    return el.offsetParent || el;
+  return el.offsetParent || el;
 }

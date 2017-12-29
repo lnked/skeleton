@@ -1,13 +1,13 @@
-const leftPad = require("left-pad");
+const leftPad = require('left-pad');
 // import leftPad from 'left-pad';
 
-leftPad("foo", 5);
+leftPad('foo', 5);
 // => "  foo"
 
-leftPad("foobar", 6);
+leftPad('foobar', 6);
 // => "foobar"
 
-leftPad(1, 2, "0");
+leftPad(1, 2, '0');
 // => "01"
 
 leftPad(17, 5, 0);

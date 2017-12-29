@@ -82,36 +82,42 @@ module.exports = function(config, bower) {
             );
         }
 
-        gulp.src(glob)
-            .pipe($.plumber({errorHandler: error}))
-            .pipe($.debug({title: config.task}))
+        if (Object.keys(entry).length)
+        {
+            gulp.src(glob)
+                .pipe($.plumber({errorHandler: error}))
+                .pipe($.debug({title: config.task}))
 
-            .pipe(
-                webpackStream(
-                    webpackConfig.createConfig(
-                        entry,
-                        path.resolve(rootPath, config.app),
-                        path.resolve(rootPath, config.path),
-                        global.is.build
+                .pipe(
+                    webpackStream(
+                        webpackConfig.createConfig(
+                            entry,
+                            path.resolve(rootPath, config.app),
+                            path.resolve(rootPath, config.path),
+                            global.is.build
+                        )
                     )
                 )
-            )
-            .pipe($.rename({suffix: '.min'}))
-            .pipe(gulp.dest(config.app))
+                .pipe($.rename({suffix: '.min'}))
+                .pipe(gulp.dest(config.app))
 
-            .pipe($.if(global.is.build, $.gzip()))
-            .pipe($.if(global.is.build, brotli.compress({
-                extension: 'brotli',
-                skipLarger: true,
-                mode: 0,
-                quality: 11,
-                lgblock: 0
-            })))
-            .pipe($.if(global.is.build, gulp.dest(config.app)))
-            .pipe(gulp.dest(config.app))
+                // Gzip
+                .pipe($.if(global.is.build, $.gzip()))
+                .pipe($.if(global.is.build, gulp.dest(config.app)))
 
-            .pipe($.if(global.is.build, $.size({title: `[name].js.gz`})))
-            .pipe($.if(global.is.notify, $.notify({ message: config.task + ' complete', onLast: true })));
+                // Brotli
+                .pipe($.if(global.is.build, brotli.compress({
+                    extension: 'brotli',
+                    skipLarger: true,
+                    mode: 0,
+                    quality: 11,
+                    lgblock: 0
+                })))
+                .pipe($.if(global.is.build, gulp.dest(config.app)))
+
+                .pipe($.if(global.is.build, $.size({title: `[name].js.gz`})))
+                .pipe($.if(global.is.notify, $.notify({ message: config.task + ' complete', onLast: true })));
+        }
 
         callback();
 

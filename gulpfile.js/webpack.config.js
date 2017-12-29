@@ -5,6 +5,22 @@ const util = require('gulp-util');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
+const statsConfig = {
+    assets: true,
+    children: false,
+    chunks: false,
+    hash: false,
+    modules: false,
+    publicPath: false,
+    timings: true,
+    version: false,
+    warnings: true,
+    optimizationBailout: true,
+    colors: {
+        green: '\u001b[32m',
+    }
+};
+
 function createConfig(entryPoint, outputPath, contextDirname, isProduction)
 {
     let env = 'development';
@@ -45,7 +61,12 @@ function createConfig(entryPoint, outputPath, contextDirname, isProduction)
             new webpack.optimize.ModuleConcatenationPlugin(),
             new webpack.optimize.AggressiveMergingPlugin(),
             new webpack.LoaderOptionsPlugin({
-                minimize: true
+                minimize: true,
+                options: {
+                    eslint: {
+                       formatter: require('eslint-formatter-pretty')
+                    }
+                }
             }),
             new UglifyJSPlugin({
                 cache: true,
@@ -108,10 +129,23 @@ function createConfig(entryPoint, outputPath, contextDirname, isProduction)
         module: {
             rules: [
                 {
+                    enforce: 'pre',
                     test: /\.js[x]?$/,
-                    exclude: /(node_modules|bower_components)/,
+                    use: [
+                        {
+                            loader: 'eslint-loader',
+                            options: {
+                                fix: true,
+                                cache: true
+                                // ignorePattern: __dirname + '/src/js/lib/'
+                            }
+                        }
+                    ],
                     include: contextDirname,
-                    exclude: /(node_modules|bower_components)/,
+                    exclude: /(node_modules|bower_components)/
+                },
+                {
+                    test: /\.js[x]?$/,
                     use: [
                         {
                             loader: 'babel-loader',
@@ -119,7 +153,9 @@ function createConfig(entryPoint, outputPath, contextDirname, isProduction)
                                 cacheDirectory: !isProduction
                             }
                         }
-                    ]
+                    ],
+                    include: contextDirname,
+                    exclude: /(node_modules|bower_components)/
                 }
             ],
             noParse: [
@@ -142,19 +178,22 @@ function createConfig(entryPoint, outputPath, contextDirname, isProduction)
 
         watch: !isProduction,
 
-        plugins: plugins
+        plugins: plugins,
+
+        stats: statsConfig
     };
 
     if (!isProduction)
     {
         webpackConfig.devServer = {
+            stats: statsConfig,
             compress: false,
             contentBase: outputPath,
             watchContentBase: true,
             historyApiFallback: true,
             watchOptions: {
                 aggregateTimeout: 100,
-                poll: 300
+                poll: false
             },
             overlay: {
                 warnings: true,

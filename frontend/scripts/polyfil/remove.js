@@ -1,3 +1,3 @@
 function remove(el) {
-    el.parentNode.removeChild(el);
+  el.parentNode.removeChild(el);
 }

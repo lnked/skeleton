@@ -1,3 +1,3 @@
 function clone(el) {
-    return el.cloneNode(true);
+  return el.cloneNode(true);
 }

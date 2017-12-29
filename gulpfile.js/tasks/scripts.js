@@ -53,11 +53,7 @@ module.exports = function(config, bower) {
 
                 .pipe($.if(/[.]coffee$/, $.coffee()))
                 .pipe($.if(/[.]jsx$/ || global.is.react, $.react({ harmony: true, es6module: true })))
-                .pipe($.babel({
-                    "presets": [
-                        ["es2015", { "loose": true, "modules": false }], "stage-0"
-                    ]
-                }))
+                .pipe($.babel())
 
                 .pipe($.if(!global.is.build, $.sourcemaps.write()))
 
@@ -76,7 +72,11 @@ module.exports = function(config, bower) {
 
                 .pipe(gulp.dest(config.app))
 
+                // Gzip
                 .pipe($.if(global.is.build, $.gzip()))
+                .pipe($.if(global.is.build, gulp.dest(config.app)))
+
+                // Brotli
                 .pipe($.if(global.is.build, brotli.compress({
                     extension: 'brotli',
                     skipLarger: true,
@@ -84,10 +84,9 @@ module.exports = function(config, bower) {
                     quality: 11,
                     lgblock: 0
                 })))
-
                 .pipe($.if(global.is.build, gulp.dest(config.app)))
-                .pipe($.if(global.is.build, $.size({title: `${folder}.js.gz`})))
 
+                .pipe($.if(global.is.build, $.size({title: `${folder}.js.gz`})))
                 .pipe($.if(global.is.notify, $.notify({ message: config.task + ' complete', onLast: true })));
         });
 

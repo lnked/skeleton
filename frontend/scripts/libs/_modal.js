@@ -1,183 +1,183 @@
 const Modal = (function(w, d, b) {
-    const settings = {
-        close: ".j-close-modal",
-        trigger: ".j-open-modal",
-        timeout: 400
+  const settings = {
+    close: '.j-close-modal',
+    trigger: '.j-open-modal',
+    timeout: 400
+  };
+
+  function _clean(s) {
+    if (s.substr(0, 1) == '#') {
+      s = s.substr(1);
+    }
+
+    return s;
+  }
+
+  function _render(t) {
+    const div = document.createElement('div');
+    div.innerHTML = t.trim();
+    return div.firstChild;
+  }
+
+  function _callback(c) {
+    if (typeof c === 'function') {
+      c.call(null);
+    }
+  }
+
+  function _valid(s) {
+    if (d.getElementById(`${s}`)) {
+      return s;
+    }
+
+    if (d.getElementById(`tpl-${s}`)) {
+      return `tpl-${s}`;
+    }
+
+    if (d.getElementById(`tmpl-${s}`)) {
+      return `tmpl-${s}`;
+    }
+
+    return false;
+  }
+
+  function _close(modal, callback, remove) {
+    modal.classList.remove('is-animated');
+    modal.classList.remove('is-open');
+
+    setTimeout(() => {
+      modal.classList.add('is-hidden');
+
+      if (remove) {
+        modal.parentNode.removeChild(modal);
+      }
+
+      _callback(callback);
+    }, settings.timeout);
+  }
+
+  function _show(modal) {
+    modal.classList.remove('is-hidden');
+
+    setTimeout(() => {
+      modal.classList.add('is-animated');
+      modal.classList.add('is-open');
+    }, 16);
+
+    _focus(modal);
+  }
+
+  function _focus(modal) {
+    modal.focus();
+
+    const button = d.createElement('button');
+
+    button.style =
+            'position:absolute;width:1px;height:1px;opacity:0;right:0px;bottom:0px;background-color:#f00;outline:0;';
+
+    modal.appendChild(button);
+
+    button.onfocus = function() {
+      modal.focus();
     };
+  }
 
-    function _clean(s) {
-        if (s.substr(0, 1) == "#") {
-            s = s.substr(1);
+  return {
+    hooks() {
+      w.onkeydown = (e) => {
+        if ((e.which || e.keyCode) == 27) {
+          this.close(d.querySelectorAll('.modal.is-open'));
         }
+      };
+    },
 
-        return s;
-    }
+    open(target) {
+      let selector = '';
 
-    function _render(t) {
-        const div = document.createElement("div");
-        div.innerHTML = t.trim();
-        return div.firstChild;
-    }
+      if (target.getAttribute('href')) {
+        selector = _clean(target.getAttribute('href'));
+      }
 
-    function _callback(c) {
-        if (typeof c === "function") {
-            c.call(null);
+      if (target.dataset.modal) {
+        selector = _clean(target.dataset.modal);
+      }
+
+      if ((selector = _valid(selector))) {
+        this.show(selector);
+      }
+    },
+
+    bind(modal) {
+      const close = modal.querySelectorAll(settings.close);
+
+      if (close.length) {
+        for (let i = close.length - 1; i >= 0; i--) {
+          close[i].onclick = (e) => {
+            e.preventDefault();
+            this.close(e.target);
+          };
         }
-    }
+      }
+    },
 
-    function _valid(s) {
-        if (d.getElementById(`${s}`)) {
-            return s;
+    show(selector) {
+      const modal = _render(template(selector, {}));
+
+      this.bind(modal);
+
+      this.close(d.querySelectorAll('.modal.is-open'), () => {
+        modal.classList.add('is-temp');
+
+        modal.setAttribute('aria-hidden', false);
+
+        b.appendChild(modal);
+
+        _show(modal);
+      });
+    },
+
+    close(element, callback) {
+      if (element.length) {
+        for (let i = element.length - 1; i >= 0; i--) {
+          _close(element[i], callback, true);
         }
-
-        if (d.getElementById(`tpl-${s}`)) {
-            return `tpl-${s}`;
-        }
-
-        if (d.getElementById(`tmpl-${s}`)) {
-            return `tmpl-${s}`;
-        }
-
-        return false;
-    }
-
-    function _close(modal, callback, remove) {
-        modal.classList.remove("is-animated");
-        modal.classList.remove("is-open");
-
-        setTimeout(() => {
-            modal.classList.add("is-hidden");
-
-            if (remove) {
-                modal.parentNode.removeChild(modal);
-            }
-
-            _callback(callback);
-        }, settings.timeout);
-    }
-
-    function _show(modal) {
-        modal.classList.remove("is-hidden");
-
-        setTimeout(() => {
-            modal.classList.add("is-animated");
-            modal.classList.add("is-open");
-        }, 16);
-
-        _focus(modal);
-    }
-
-    function _focus(modal) {
-        modal.focus();
-
-        const button = d.createElement("button");
-
-        button.style =
-            "position:absolute;width:1px;height:1px;opacity:0;right:0px;bottom:0px;background-color:#f00;outline:0;";
-
-        modal.appendChild(button);
-
-        button.onfocus = function() {
-            modal.focus();
-        };
-    }
-
-    return {
-        hooks() {
-            w.onkeydown = e => {
-                if ((e.which || e.keyCode) == 27) {
-                    this.close(d.querySelectorAll(".modal.is-open"));
-                }
-            };
-        },
-
-        open(target) {
-            let selector = "";
-
-            if (target.getAttribute("href")) {
-                selector = _clean(target.getAttribute("href"));
-            }
-
-            if (target.dataset.modal) {
-                selector = _clean(target.dataset.modal);
-            }
-
-            if ((selector = _valid(selector))) {
-                this.show(selector);
-            }
-        },
-
-        bind(modal) {
-            const close = modal.querySelectorAll(settings.close);
-
-            if (close.length) {
-                for (let i = close.length - 1; i >= 0; i--) {
-                    close[i].onclick = e => {
-                        e.preventDefault();
-                        this.close(e.target);
-                    };
-                }
-            }
-        },
-
-        show(selector) {
-            const modal = _render(template(selector, {}));
-
-            this.bind(modal);
-
-            this.close(d.querySelectorAll(".modal.is-open"), () => {
-                modal.classList.add("is-temp");
-
-                modal.setAttribute("aria-hidden", false);
-
-                b.appendChild(modal);
-
-                _show(modal);
-            });
-        },
-
-        close(element, callback) {
-            if (element.length) {
-                for (let i = element.length - 1; i >= 0; i--) {
-                    _close(element[i], callback, true);
-                }
-            } else if (
-                typeof element.dataset !== "undefined" &&
+      } else if (
+        typeof element.dataset !== 'undefined' &&
                 element.dataset.target
-            ) {
-                _close(d.querySelector(element.dataset.target), callback, true);
-            } else {
-                _callback(callback);
-            }
-        },
+      ) {
+        _close(d.querySelector(element.dataset.target), callback, true);
+      } else {
+        _callback(callback);
+      }
+    },
 
-        nested() {},
+    nested() {},
 
-        events() {
-            const selectors = d.querySelectorAll(settings.trigger);
+    events() {
+      const selectors = d.querySelectorAll(settings.trigger);
 
-            if (selectors.length) {
-                for (let i = selectors.length - 1; i >= 0; i--) {
-                    selectors[i].onclick = e => {
-                        e.preventDefault();
-                        this.open(e.target);
-                        return false;
-                    };
-                }
-            }
-        },
-
-        init(options) {
-            if (typeof options !== "undefined") {
-                for (const x in options) {
-                    if (typeof settings[x] !== "undefined") {
-                        settings[x] = options[x];
-                    }
-                }
-            }
-
-            this.events();
-            this.hooks();
+      if (selectors.length) {
+        for (let i = selectors.length - 1; i >= 0; i--) {
+          selectors[i].onclick = (e) => {
+            e.preventDefault();
+            this.open(e.target);
+            return false;
+          };
         }
-    };
-})(window, document, document.body);
+      }
+    },
+
+    init(options) {
+      if (typeof options !== 'undefined') {
+        for (const x in options) {
+          if (typeof settings[x] !== 'undefined') {
+            settings[x] = options[x];
+          }
+        }
+      }
+
+      this.events();
+      this.hooks();
+    }
+  };
+}(window, document, document.body));

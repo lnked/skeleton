@@ -17,7 +17,7 @@ module.exports.tasks = {
 
     'webpack': {
         gzip: true,
-        readDir: true,
+        readDir: false,
         path: src + 'scripts',
         ignore: '!' + src + 'scripts/**/!_*.*',
         app: app + 'js'
