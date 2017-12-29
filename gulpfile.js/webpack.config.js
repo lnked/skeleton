@@ -16,6 +16,11 @@ function createConfig(entryPoint, outputPath, contextDirname, isProduction)
     }
 
     plugins.push(
+        new webpack.ProvidePlugin({
+            $: "jquery",
+            jQuery: "jquery",
+            'window.jQuery': "jquery"
+        }),
         new webpack.optimize.CommonsChunkPlugin({
             name: 'vendors',
             filename: 'vendors.js',
@@ -23,16 +28,11 @@ function createConfig(entryPoint, outputPath, contextDirname, isProduction)
                 return m.context && m.context.indexOf('node_modules') >= 0;
             }
         }),
-        new webpack.optimize.CommonsChunkPlugin({
-            name: 'runtime',
-            chunks: ['vendors'],
-            minChunks: Infinity
-        }),
-        new webpack.ProvidePlugin({
-            $: "jquery",
-            jQuery: "jquery",
-            'window.jQuery': "jquery"
-        }),
+        // new webpack.optimize.CommonsChunkPlugin({
+        //     name: 'runtime',
+        //     chunks: ['vendors'],
+        //     minChunks: Infinity
+        // }),
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify(env)
         }),
@@ -60,7 +60,6 @@ function createConfig(entryPoint, outputPath, contextDirname, isProduction)
                         html5_comments: false
                     },
                     compress: {
-                        cascade: true,
                         booleans: true,
                         drop_console: isProduction,
                         drop_debugger: true,
@@ -108,15 +107,6 @@ function createConfig(entryPoint, outputPath, contextDirname, isProduction)
 
         module: {
             rules: [
-                // {
-                //     enforce: 'pre',
-                //     test: /\.jsx?$/,
-                //     options: {
-                //         fix: isProduction
-                //     },
-                //     loader: 'eslint-loader',
-                //     exclude: /(node_modules|bower_components)/,
-                // },
                 {
                     test: /\.js[x]?$/,
                     exclude: /(node_modules|bower_components)/,
