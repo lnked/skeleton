@@ -9,7 +9,7 @@ module.exports = function(config) {
     return function(callback) {
 
         global.is.build = true;
-        
+
         callback();
     };
 };
