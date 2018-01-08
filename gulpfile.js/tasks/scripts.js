@@ -14,11 +14,6 @@ module.exports = function(config, bower) {
     config = config || {};
 
     const uglifyConfig = {
-        ie8: false,
-        mangle: true,
-        toplevel: false,
-        warnings: false,
-        sourceMap: false,
         compress: {
             warnings: false,
             dead_code: true,
@@ -27,10 +22,15 @@ module.exports = function(config, bower) {
                 DEBUG: false
             }
         },
+        mangle: true,
         output: {
             ast: true,
             code: true
-        }
+        },
+        sourceMap: false,
+        ie8: false,
+        toplevel: false,
+        warnings: false
     };
 
     return function(callback) {
