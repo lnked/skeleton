@@ -178,8 +178,8 @@ module.exports.config = {
         },
         "slick-carousel": {
             "main": [
-                "slick/slick.min.js"
-                // "slick/slick.css"
+                "slick/slick.min.js",
+                "slick/slick.css"
             ]
         },
         "tingle": {
