@@ -126,6 +126,12 @@ function createConfig(entryPoint, outputPath, contextDirname, isProduction)
             hotUpdateFunction: 'UF'
         },
 
+        externals: {
+            "jQuery": "jQuery",
+            "react": "React",
+            "react-dom": "ReactDOM"
+        },
+
         module: {
             rules: [
                 {
