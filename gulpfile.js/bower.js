@@ -214,16 +214,29 @@ module.exports.config = {
                 "dist/themes/airbnb.css"
             ]
         },
-        "moment": {
-            "main": [
-                "locale/ru.js",
-                "min/moment.min.js"
-            ]
-        },
         "moment-datepicker": {
             "main": [
                 "moment-datepicker/moment-datepicker.min.js",
                 "moment-datepicker/datepicker2.css"
+            ]
+        },
+        "fullcalendar": {
+            "main": [
+                "dist/fullcalendar.min.js",
+                "dist/fullcalendar.min.css",
+                "dist/locale/ru.js"
+            ]
+        },
+        "fullcalendar-scheduler": {
+            "main": [
+                "dist/scheduler.min.js",
+                "dist/scheduler.min.css"
+            ]
+        },
+        "moment": {
+            "main": [
+                "min/moment.min.js",
+                "locale/ru.js"
             ]
         },
         "bootstrap": {
