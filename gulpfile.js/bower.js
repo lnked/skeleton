@@ -24,6 +24,9 @@ module.exports.config = {
                 "dist/modal.min.css"
             ]
         },
+        "jscolor": {
+            "main": "jscolor.js"
+        },
         "nanoscroller": {
             "main": "bin/javascripts/jquery.nanoscroller.min.js"
         },
