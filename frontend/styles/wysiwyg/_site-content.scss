@@ -1,5 +1,4 @@
 .site-content {
-
     img[src$=".gif"],
     img[src$=".png"] {
     	&:not([class]) {
@@ -71,79 +70,77 @@
         }
     }
 
-    h3,h4,h5,h6 {
+    h1,h2,h3 {
+    	&:not([class]) {
+            color: #000;
+
+    	}
+    }
+
+    h4,h5,h6 {
         &:not([class]) {
             font-family: inherit;
             font-weight: 500;
             line-height: 1.1;
             color: inherit;
-        }
-    }
-
-    h1 small,h2 small,h3 small,h4 small,h5 small,h6 small {
-        &:not([class]) {
-            font-weight: 400;
-            line-height: 1;
-            color: #777;
-        }
-    }
-
-    h3 {
-        &:not([class]) {
-            margin-bottom: 10px;
-        }
-    }
-
-    h1 small,h2 small,h3 small {
-        &:not([class]) {
-            font-size: 65%;
-        }
-    }
-
-    h4,h5,h6 {
-        &:not([class]) {
             margin-top: 10px;
             margin-bottom: 10px;
         }
     }
 
-    h4 small,h5 small,h6 small {
+    h1 {
         &:not([class]) {
-            font-size: 75%;
+			font-size: 4.9rem;
+			font-weight: 400;
+			line-height: 2.61;
+			letter-spacing: 0.002rem;
+        }
+    }
+
+    h2 {
+        &:not([class]) {
+			font-size: 3rem;
+			font-weight: 400;
+			line-height: 2;
+			letter-spacing: 0.002rem;
         }
     }
 
     h3 {
         &:not([class]) {
-            font-size: 24px;
+			font-size: 1.9rem;
+			font-weight: 400;
+			line-height: 3.16;
+			text-transform: uppercase;
+			letter-spacing: 0.001rem;
         }
     }
 
     h4 {
         &:not([class]) {
-            font-size: 18px;
+            font-size: 1.8rem;
         }
     }
 
     h5 {
         &:not([class]) {
-            font-size: 14px;
+            font-size: 1.4rem;
         }
     }
 
     h6 {
         &:not([class]) {
-            font-size: 12px;
+            font-size: 1.2rem;
         }
     }
 
     p {
     	&:not([class]) {
         	font-size: 1.6rem;
-        	line-height: 1.6em;
+        	line-height: 1.5;
 
 	        &:not(:last-child) {
-	            margin: 0 0 10px;
+	            margin-bottom: 10px;
 	        }
     	}
     }
