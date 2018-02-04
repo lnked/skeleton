@@ -86,6 +86,7 @@ else
 
     cp -r ${SOURCE}/gulpfile.js/config.js ${PATH_ROOT}/$FOLDER_NAME/gulpfile.js/config.js
     cp -r ${SOURCE}/gulpfile.js/index.js ${PATH_ROOT}/$FOLDER_NAME/gulpfile.js/index.js
+    cp -r ${SOURCE}/gulpfile.js/webpack.config.js ${PATH_ROOT}/$FOLDER_NAME/gulpfile.js/webpack.config.js
     cp -r ${SOURCE}/bower.json ${PATH_ROOT}/$FOLDER_NAME/
 
     ln -s ${SOURCE}/gulpfile.js/bower.js ${PATH_ROOT}/$FOLDER_NAME/gulpfile.js/bower.js
