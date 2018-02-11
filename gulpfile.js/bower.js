@@ -281,8 +281,14 @@ module.exports.config = {
         "pass-gen-js": {
             "main": "PassGenJS.js"
         },
+        "wnumb": {
+            "main": "wNumb.js"
+        },
         "nouislider": {
-            "main": "distribute/nouislider.min.js"
+            "main": [
+                "distribute/nouislider.min.css",
+                "distribute/nouislider.min.js"
+            ]
         },
         "jquery.maskedinput": {
             "main": "dist/jquery.maskedinput.min.js"
