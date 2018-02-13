@@ -1,0 +1,223 @@
+{% macro checkbox(type='inline', repel, name, title, color, gradient, telegram, value, checked, disabled) %}
+<label class="ui-checkbox ui-checkbox--{{ type }}">
+    {% if color and not value %}
+        {% set value = color %}
+    {% endif %}
+
+    <input type="checkbox" name="{{ name }}" value="{{ value }}" class="ui-checkbox__input"{% if checked %} checked{% endif %}{% if disabled %} disabled{% endif %}>
+
+    <span class="ui-checkbox__visible{% if color or gradient %} ui-checkbox__visible--color{% endif %}" role="checkbox" aria-checked="{% if checked %}true{% else %}false{% endif %}" tabindex="0">
+    {% if color or gradient %}
+        <span class="ui-checkbox__color" style="{% if color %}background-color: {{ color }};{% endif %}{% if gradient %}background-image: {{ gradient }};{% endif %}"></span>
+    {% endif %}
+    </span>
+
+    {% if telegram %}
+    <span class="ui-checkbox__label{% if repel %} ui-checkbox__label--repel{% endif %} ui-checkbox__label--nulled">
+        <span class="ui-checkbox__label__middle">
+            <span class="icon icon--telegram"></span>
+            <button type="button" class="button button--normal button--green">
+                <span class="button__inner">
+                    Подключить
+                </span>
+            </button>
+        </span>
+    </span>
+    {% endif %}
+
+    {% if title %}
+    <span class="ui-checkbox__label{% if repel %} ui-checkbox__label--repel{% endif %}">
+        <span class="ui-checkbox__label__middle">{{ title }}</span>
+    </span>
+    {% endif %}
+</label>
+{% endmacro %}
+
+{% macro radio(type='inline', name, title, value, checked, disabled) %}
+<label class="ui-radio ui-radio--{{ type }}">
+    <input type="radio" name="{{ name }}" value="{{ value }}" class="ui-radio__input"{% if checked %} checked{% endif %}{% if disabled %} disabled{% endif %}>
+
+    <span class="ui-radio__visible" role="radio" aria-checked="{% if checked %}true{% else %}false{% endif %}" tabindex="0"></span>
+
+    {% if type == 'box' %}
+    <span class="ui-radio__box"></span>
+    {% endif %}
+
+    {% if title %}
+    <span class="ui-radio__label">
+        <span class="ui-radio__label__middle">{{ title }}</span>
+    </span>
+    {% endif %}
+</label>
+{% endmacro %}
+
+{% macro textarea(lines=8, placeholder, label, hint, error, value) %}
+    <label class="ui-textarea">
+        {% if label %}
+        <span class="ui-textarea__label">
+            {{ label }}
+        </span>
+        {% endif %}
+
+        <span class="ui-textarea__content">
+            <textarea class="ui-textarea__field{% if error %} is-error{% endif %}" rows="{{ lines }}"{% if placeholder %} placeholder="{{ placeholder }}"{% endif %}>{{ value }}</textarea>
+        </span>
+
+        {% if error %}
+        <span class="ui-textarea__error-message">
+            {{ error }}
+        </span>
+        {% endif %}
+
+        {% if hint %}
+        <span class="ui-textarea__hint">
+            {{ hint }}
+        </span>
+        {% endif %}
+    </label>
+{% endmacro %}
+
+{% macro quantity(list={}) %}
+    <div class="quantity j-quantity clearfix" data-product="1" data-min="1" data-max="999">
+        <button type="button" class="quantity__control _decrease j-quantity-control" data-role="decrease">
+            <svg class="quantity__control__ico" role="img">
+                <use xlink:href="#decrease"/>
+            </svg>
+        </button>
+
+        <input type="number" name="count[1]" value="1" data-role="quantity-input" class="quantity__count j-quantity-count" min="1" max="999" autocomplete="off">
+
+        <button type="button" class="quantity__control _increase j-quantity-control" data-role="increase">
+            <svg class="quantity__control__ico" role="img">
+                <use xlink:href="#increase"/>
+            </svg>
+        </button>
+    </div>
+{% endmacro %}
+
+{% macro button(type='button', modal, text, size='normal', icon, hover, wide, mode, link, disabled) %}
+    {{ link }}
+    {% if link %}
+    <a href="{{ link }}" class="button{% if icon %} button--ico{% endif %}{% if wide %} button--wide{% endif %}{% if size %} button--{{ size }}{% endif %}{% if modal %} j-modal{% endif %}{% if mode %} button--{{ mode }}{% endif %}"{% if modal %} data-modal="{{ modal }}"{% endif %}{% if disabled %} disabled{% endif %}>
+        <span class="button__inner">
+        {% if icon %}
+            <svg class="button__ico button__ico--{{ icon }}" role="img">
+                <use xlink:href="#{{ icon }}"/>
+            </svg>
+        {% else %}
+            {{ text }}
+        {% endif %}
+        </span>
+    </a>
+    {% else %}
+    <button type="{{ type }}" class="button{% if icon %} button--ico{% endif %}{% if wide %} button--wide{% endif %}{% if size %} button--{{ size }}{% endif %}{% if modal %} j-modal{% endif %}{% if mode %} button--{{ mode }}{% endif %}"{% if modal %} data-modal="{{ modal }}"{% endif %}{% if disabled %} disabled{% endif %}>
+        <span class="button__inner">
+        {% if icon %}
+            <span class="button__ico button__ico--{{ icon }}" role="img"></span>
+
+            {% if hover %}
+                <span class="button__ico button__ico--{{ hover }}" role="img"></span>
+            {% endif %}
+        {% else %}
+            {{ text }}
+        {% endif %}
+        </span>
+    </button>
+    {% endif %}
+{% endmacro %}
+
+{% macro dropzone(name='file', type='image', size='default', link, file, title) %}
+    <{% if link %}a href="{{link}}"{% else %}label{% endif %} class="ui-dropzone ui-dropzone--{{ size }}">
+        {% if not link %}
+        <input type="file" name="{{ name }}" class="ui-dropzone__input">
+        {% endif %}
+
+        {% if file %}
+            {% if size == 'large' %}
+                {% set icoSize = 'default' %}
+            {% else %}
+                {% set icoSize = 'small' %}
+            {% endif %}
+
+            <span class="ui-dropzone__control">
+                {{
+                    control(
+                        'size'=icoSize,
+                        'icon'='delete'
+                    )
+                }}
+            </span>
+
+            <span class="ui-dropzone__image">
+                <img src="{{ file }}" class="ui-dropzone__image__src" alt="">
+            </span>
+        {% endif %}
+
+        <span class="ui-dropzone__center">
+            <span class="ui-dropzone__ico ui-dropzone__ico--{{ type }}">
+                <svg class="ui-dropzone__ico__present" role="img">
+                    <use xlink:href="#add-{{ type }}"/>
+                </svg>
+            </span>
+            {% if title %}
+            <span class="ui-dropzone__title">
+                {{ title }}
+            </span>
+            {% endif %}
+        </span>
+    </{% if link %}a{% else %}label{% endif %}>
+{% endmacro %}
+
+{% macro select(name, list={}, rounded, topbottom, selected) %}
+    <select name="{{ name }}" class="ui-select{% if rounded %} ui-select--rounded{% endif %}{% if topbottom %} ui-select--top-bottom{% endif %}">
+    {% for value, item in list %}
+        <option value="{{ value | escape }}"{% if selected == value %} selected{% endif %}>{{ item }}</option>
+    {% endfor %}
+    </select>
+{% endmacro %}
+
+{% macro input(type='text', placeholder, label, trigger, hint, error, value) %}
+    <label class="ui-input">
+        {% if label %}
+        <span class="ui-input__label">
+            {{ label }}
+        </span>
+        {% endif %}
+
+        <span class="ui-input__content">
+            {% if trigger %}
+            <button type="button" class="ui-input__trigger ui-input__trigger--{{ trigger }}">
+                <svg class="ui-input__trigger__ico" role="img">
+                    <use xlink:href="#{{ trigger }}"/>
+                </svg>
+            </button>
+            {% endif %}
+
+            <input type="{{ type }}" class="ui-input__field{% if error %} is-error{% endif %}"{% if placeholder %} placeholder="{{ placeholder }}"{% endif %} value="{{ value }}">
+        </span>
+
+        {% if error %}
+        <span class="ui-input__error-message">
+            {{ error }}
+        </span>
+        {% endif %}
+
+        {% if hint %}
+        <span class="ui-input__hint">
+            {{ hint }}
+        </span>
+        {% endif %}
+    </label>
+{% endmacro %}
+
+{% macro switch(name, list={}, checked) %}
+<div class="switch">
+    {% for value, item in list %}
+    <label class="switch__item">
+        <input type="radio" name="{{ name }}" value="{{ value | escape }}" class="switch__item__input j-tabs-watcher"{% if checked == value %} checked{% endif %}>
+        <span class="switch__item__title">{{ item }}</span>
+    </label>
+    {% endfor %}
+</div>
+{% endmacro %}
+

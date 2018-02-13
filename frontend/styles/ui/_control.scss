@@ -1,0 +1,81 @@
+.ui-control {
+    color: #fff;
+    border: 0;
+    padding: 0;
+    outline: 0;
+    font-size: 0;
+    display: block;
+    cursor: pointer;
+    border-radius: 50%;
+    text-align: center;
+    background-color: #acacac;
+    transition: background-color $a-time $a-func, color $a-time $a-func;
+
+    &--small {
+        width: 25px;
+        height: 25px;
+        line-height: 25px;
+    }
+
+    &--default {
+        width: 31px;
+        height: 31px;
+        line-height: 31px;
+    }
+
+    &:hover {
+        background-color: #2f2f2f;
+    }
+
+    &__ico {
+        display: inline-block;
+        vertical-align: middle;
+        transition: transform $a-micro-time $a-func;
+
+        &--zoom {
+            width: 21px;
+            height: 22px;
+            margin-bottom: -4px;
+
+            .ui-control--small > & {
+                width: 12px;
+                height: 13px;
+                margin-bottom: -2px;
+            }
+        }
+
+        &--edit {
+            width: 16px;
+            height: 16px;
+            margin-left: 3px;
+
+            .ui-control--small > & {
+                width: 13px;
+                height: 13px;
+                margin-top: 2px;
+            }
+        }
+
+        &--delete {
+            width: 15px;
+            height: 17px;
+
+            .ui-control--small > & {
+                width: 13px;
+                height: 14px;
+            }
+        }
+
+        &--arrow {
+            width: 17px;
+            height: 9px;
+            margin-top: 2px;
+            transform: rotate(90deg) translateY(1px);
+
+            .ui-control--small > & {
+                width: 13px;
+                height: 7px;
+            }
+        }
+    }
+}

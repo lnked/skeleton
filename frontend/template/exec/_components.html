@@ -1,0 +1,116 @@
+{% macro control(icon, size='default') %}
+    <button type="button" class="ui-control ui-control--{{ size }}">
+        <svg class="ui-control__ico ui-control__ico--{{ icon }}" role="img">
+            <use xlink:href="#{{ icon }}"/>
+        </svg>
+    </button>
+{% endmacro %}
+
+{% macro rating(score, label, value, present) %}
+    <div class="ui-rating">
+    {% if label %}
+        <div class="ui-rating__label">
+            {{ label }}
+        </div>
+    {% endif %}
+
+    <div class="ui-rating__group">
+    {% for value in [1, 2, 3, 4, 5] %}
+        {% if present %}
+        <span class="ui-rating__item">
+            <svg class="ui-rating__item__ico{% if value <= score %} is-active{% endif %}" role="img">
+                <use xlink:href="#rating-star"/>
+            </svg>
+        </span>
+        {% else %}
+        <label class="ui-rating__item">
+            <input type="radio" value="{{ value }}" class="ui-rating__item__input"{% if value == score %} checked{% endif %}>
+            <svg class="ui-rating__item__ico" role="img">
+                <use xlink:href="#rating-star"/>
+            </svg>
+        </label>
+        {% endif %}
+    {% endfor %}
+    </div>
+
+    {% if value %}
+        <div class="ui-rating__value">
+            {{ value }}
+        </div>
+    {% endif %}
+    </div>
+{% endmacro %}
+
+{% macro element(type, list) %}
+<div class="element__group element__group--{{type}}">
+
+    {% for item in list %}
+    <div class="element__item">
+        <div class="element-item">
+            <a href="./ideas-recomendation-article.html" class="element-item__image">
+                <img src="{{ item.image }}" class="element-item__image__src" alt="">
+            </a>
+
+            <div class="element-item__content">
+                <div class="element-item__category">{{ item.category }}</div>
+
+                <div class="element-item__name">{{ item.name }}</div>
+                <div class="element-item__description">{{ item.description }}</div>
+
+                <footer class="element-item__footer">
+                    <div class="element-item__views">Просмотров: 33</div>
+                    <div class="element-item__comments">Комментариев: 28</div>
+                </footer>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+</div>
+{% endmacro %}
+
+{% macro adds(title, disabled) %}
+    <a href="{{ link }}" class="ui-adds"{% if disabled %} disabled{% endif %}>
+        <span class="ui-adds__ico">
+            <svg class="ui-adds__ico__src" role="img">
+                <use xlink:href="#adds"/>
+            </svg>
+        </span>
+        <span class="ui-adds__title">
+            {{ title }}
+        </span>
+    </a>
+{% endmacro %}
+
+{% macro download(title, link, icon) %}
+    <a href="{{ link }}" class="ui-download">
+        {% if icon %}
+        <svg class="ui-download__ico ui-download__ico--{{ icon }}" role="img">
+            <use xlink:href="#{{ icon }}"/>
+        </svg>
+        {% endif %}
+
+        <span class="ui-download__title">
+            {{ title }}
+        </span>
+    </a>
+{% endmacro %}
+
+{% macro favorite(checked) %}
+    <button type="button" class="favorite{% if checked == true %} favorite--checked{% endif %}">
+        <svg class="favorite__star" role="img">
+            <use xlink:href="#star"/>
+        </svg>
+    </button>
+{% endmacro %}
+
+{% macro tabs(list, name) %}
+<div class="ui-tabs">
+    {% for item in list %}
+    <label class="ui-tabs__switch">
+        <input type="radio" name="{{ name }}" value="{{ item.slug }}" class="ui-tabs__switch__input j-tabs-watcher" {% if item.checked %} checked{% endif %}>
+        <span class="ui-tabs__switch__label">{{ item.name }}</span>
+    </label>
+    {% endfor %}
+</div>
+{% endmacro %}

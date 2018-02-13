@@ -1,0 +1,56 @@
+.ui-rating {
+    font-size: 0;
+
+    &__label {
+        color: #7e7e7e;
+        display: block;
+        font-size: 1.4rem;
+        line-height: 1;
+        margin-bottom: 5px;
+    }
+
+    &__group {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    &__item {
+        font-size: 0;
+        position: relative;
+        display: inline-block;
+        vertical-align: middle;
+
+        &:not(:last-child) {
+            margin-right: 5px;
+        }
+
+        &__input {
+            position: absolute;
+            left: -100px;
+            top: 0;
+        }
+
+        &__ico {
+            width: 14px;
+            height: 14px;
+            color: #d3d3d3;
+
+            &.is-active {
+                color: #ef4e23;
+            }
+        }
+
+        &__input:checked + &__ico {
+            color: #ef4e23;
+        }
+    }
+
+    &__value {
+        color: #4a4a4a;
+        font-size: 2rem;
+        line-height: 1;
+        margin-left: 5px;
+        display: inline-block;
+        vertical-align: middle;
+    }
+}

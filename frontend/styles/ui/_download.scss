@@ -1,0 +1,30 @@
+.ui-download {
+    color: #679421;
+    font-size: 0;
+    display: inline-block;
+    text-decoration: none;
+    transition: color $a-time $a-func;
+
+    &:hover {
+        color: #679421;
+    }
+
+    &__ico {
+        display: inline-block;
+        vertical-align: middle;
+        &--pdf {
+            width: 23px;
+            height: 30px;
+        }
+    }
+
+    &__title {
+        font-size: 1.6rem;
+        display: inline-block;
+        vertical-align: middle;
+
+        &:not(:first-child) {
+            margin-left: 10px;
+        }
+    }
+}

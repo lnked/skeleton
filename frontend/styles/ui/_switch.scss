@@ -1,0 +1,55 @@
+.switch {
+	height: 45px;
+	font-size: 0;
+	user-select: none;
+
+	&__item {
+		width: 245px;
+		outline: 0;
+		overflow: hidden;
+		position: relative;
+		display: inline-block;
+		vertical-align: middle;
+
+		&__input {
+			width: 0;
+			height: 0;
+			position: absolute;
+			margin-left: -100px;
+		}
+
+		&__title {
+			height: 45px;
+			color: #2f2f2f;
+			display: block;
+			font-size: 1.6rem;
+			line-height: 43px;
+			text-align: center;
+			border-radius: 0;
+			position: relative;
+			z-index: 2;
+			background-color: #fff;
+			border: 1px solid #979797;
+			transition: background-color $a-micro-time linear, border-color $a-micro-time linear, color $a-micro-time ease;
+		}
+
+		&:last-child &__title {
+			border-radius: 0 4px 4px 0;
+		}
+
+		&:not(:first-child) {
+			margin-left: -1px;
+		}
+
+		&:first-child &__title {
+			border-radius: 4px 0 0 4px;
+		}
+
+		&__input:checked + &__title {
+			z-index: 1;
+			color: #fff;
+			border-color: #8fbf00;
+			background-color: #8fbf00;
+		}
+	}
+}

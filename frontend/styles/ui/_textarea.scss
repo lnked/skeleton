@@ -1,0 +1,71 @@
+.ui-textarea {
+    width: 100%;
+    font-size: 0;
+    display: block;
+    line-height: 1;
+    position: relative;
+
+    &__content {
+        display: block;
+        position: relative;
+    }
+
+    &__label {
+        color: #2e2e2e;
+        display: block;
+        font-size: 1.6rem;
+        line-height: 1.38;
+        margin-bottom: 5px;
+    }
+
+    &__field {
+        width: 100%;
+        max-width: 100%;
+        min-height: 70px;
+        max-height: 600px;
+        color: #2e2e2e;
+        padding: 10px;
+        resize: vertical;
+        font-size: 1.4rem;
+        background-color: #fff;
+        border: 1px solid #979797;
+
+        &:placeholder {
+            color: #7e7e7e;
+        }
+
+        &:focus,
+        &:active {
+            box-shadow: 0 0 0 1px #8fbf00;
+        }
+
+        &:invalid,
+        &.is-error {
+            border-color: #ff5050;
+
+            &:focus {
+                box-shadow: 0 0 0 1px #ff5050;
+            }
+        }
+    }
+
+    &__hint,
+    &__error-message {
+        position: absolute;
+        top: 100%;
+        display: block;
+        margin-top: 2px;
+        font-size: 1.2rem;
+        line-height: 1.5;
+        letter-spacing: 0.02rem;
+    }
+
+    &__error-message {
+        color: #ff5050;
+    }
+
+    &__hint {
+        color: #7e7e7e;
+    }
+}
+
