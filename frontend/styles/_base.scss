@@ -22,30 +22,25 @@ html, body {
     overscroll-behavior-y: none; /* disable pull to refresh */ // contain
 }
 
-body {
+.page {
     color: $c-text;
     min-width: 320px;
     font-kerning: none;
     font-family: $font-family;
     line-height: 1.42857143;
     background-color: $c-body-background;
-
     overflow-x: hidden;
     overflow-y: auto;
-}
 
-/*
-body {
-    overflow-y: scroll;
-    overflow-x: hidden;
-    overflow-y: -moz-scrollbars-none;
-    overflow-style: none;
+    // overflow-y: scroll;
+    // overflow-x: hidden;
+    // overflow-y: -moz-scrollbars-none;
+    // overflow-style: none;
 
-    &::-webkit-scrollbar {
-        width: 0;
-    }
+    // &::-webkit-scrollbar {
+    //     width: 0;
+    // }
 }
-*/
 
 body, input, textarea, select, button {
     font-synthesis: none;
