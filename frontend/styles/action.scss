@@ -1,0 +1,96 @@
+@charset "utf-8";
+
+.modal-action {
+	$p: &;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    position: fixed 0;
+    padding: 30px;
+
+    font-size: 0;
+
+    z-index: 9999;
+    overflow-y: auto;
+
+    opacity: 0;
+
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transform: translate3d(0, 0, 0);
+    background-color: rgba(#000, 0.7);
+    transition: opacity .4s ease-in-out, transform .5s ease;
+    will-change: transform, opacity;
+
+    &.is-hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        margin: -1px;
+        border: 0;
+        padding: 0;
+        clip: rect(0 0 0 0);
+        overflow: hidden;
+    }
+
+    &.is-animated {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+
+    &__close {
+        width: 24px;
+        height: 24px;
+        color: #fff;
+        overflow: hidden;
+        position: absolute;
+        right: 10px;
+        top: 12px;
+        border: 0;
+        z-index: 100;
+        font-size: 0;
+        outline: 0;
+        opacity: .7;
+        line-height: 0;
+        cursor: pointer;
+        transition: opacity .5s ease;
+        background-color: transparent;
+        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACcAAAAnCAQAAAAmqpm+AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAJcEhZcwAACxIAAAsSAdLdfvwAAAAHdElNRQfiAg8OCBBqC+R5AAABFUlEQVRIx63UMU5CQRDG8S+EG7yKAxguosHETi8gB9BLqB2eBG5gS6OVtNQkWkNlQvK3MBAeb3ffzozTTTb5NTvfJ4kxd4wUGIZcc8VAElP2wJYbN9bwDsAbA7Hhb358IA2fHOZSfB8XB9jCYCIeT1YjeIZ9MJTEiw88w1Y0hwcHmMUkiWcbWMSsYC9mAauwWrAaqwFNWB9oxkqgC8uBbiwFhrAEuA5hHTCKSRJP/4hJErMWto5h7Q9wN3Yai4BJzAt27uw1AKaO1lqwRUxygqU4mcG+bJrAmqBXg7WtUQVaKqgXtPZZEaRhZW2NLOjBsqAXy4AsvFgH3DISOz/WAW/FMoK1wD1jccGSHfNIbfPAFxvupV/BihwVYBsSfgAAAABJRU5ErkJggg==');
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+        background-size: 16px 16px;
+
+        &:hover {
+        	opacity: 1;
+        }
+    }
+
+	&__dialog {
+		width: 100%;
+		overflow: hidden;
+		max-width: 1160px;
+		max-height: 100%;
+		position: relative;
+		border: 4px solid #fff;
+		box-sizing: border-box;
+		will-change: transform;
+		transform: translate3d(0, -60px, 0);
+		transition: transform .5s ease;
+
+		#{$p}.is-animated & {
+			transform: translate3d(0, 0, 0);
+		}
+	}
+
+	&__image {
+		margin: 0;
+		width: auto;
+		height: auto;
+	    max-width: 100%;
+	    max-height: 100%;
+	}
+}

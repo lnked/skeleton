@@ -4,10 +4,14 @@
 <![endif]-->
 
 <script src="/js/vendors.min.js"></script>
+<script src="http://forma-fit.com/js/jquery.cookie.js"></script>
+<script src="/js/action.min.js"></script>
+
+<!--
 <script src="/js/libs.min.js"></script>
 <script src="/js/app.min.js"></script>
 <script src="/js/test.min.js"></script>
-
+-->
 <!-- Scripts -->
 <!--
 <script>
@@ -22,13 +26,14 @@
 -->
 <!-- // Scripts -->
 
-{%- if ymap -%}
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA9CgiWdZfubdl_Sqb9fVgZie_qlXEi0ew&callback=app.google.draw" type="text/javascript"></script>
-{%- endif -%}
-
-{%- if gmap -%}
+{% if ymap %}
     <script src="//api-maps.yandex.ru/2.1/?lang=ru_RU&onload=yandexMap" async></script>
-{%- endif -%}
+{% endif %}
+
+{% if gmap %}
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA9CgiWdZfubdl_Sqb9fVgZie_qlXEi0ew&callback=app.google.draw" type="text/javascript"></script>
+{% endif %}
+
 
 </body>
 </html>
