@@ -180,7 +180,7 @@
     "util": "^0.10.3",
     "webpack": "3.11.0",
     "webpack-bundle-analyzer": "2.10.0",
-    "webpack-stream": "4.0.1"
+    "webpack-stream": "4.0.2"
   },
   "bugs": {
     "url": "https://github.com/lnked/skeleton/issues",
