@@ -2487,9 +2487,9 @@ component-inherit@0.0.3:
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/component-inherit/-/component-inherit-0.0.3.tgz#645fc4adf58b72b649d5cae65135619db26ff143"
 
-compression-webpack-plugin@1.1.7:
-  version "1.1.7"
-  resolved "https://registry.yarnpkg.com/compression-webpack-plugin/-/compression-webpack-plugin-1.1.7.tgz#b0dfb97cf1d26baab997b584b8c36fe91872abe2"
+compression-webpack-plugin@1.1.8:
+  version "1.1.8"
+  resolved "https://registry.yarnpkg.com/compression-webpack-plugin/-/compression-webpack-plugin-1.1.8.tgz#ba5f184f51ed55da07da19caada80e181403e1a7"
   dependencies:
     async "^2.4.1"
     cacache "^10.0.1"
@@ -5834,15 +5834,17 @@ gulp-imports@0.0.3:
     event-stream "~3.1.0"
     gulp-util "~2.2.9"
 
-gulp-inject@^4.1.0:
-  version "4.3.0"
-  resolved "https://registry.yarnpkg.com/gulp-inject/-/gulp-inject-4.3.0.tgz#a67a5899a6c7ecf9c7c7f1ceb9f061f1c6f4b898"
+gulp-inject@4.3.1:
+  version "4.3.1"
+  resolved "https://registry.yarnpkg.com/gulp-inject/-/gulp-inject-4.3.1.tgz#716af8d946e0f40809ce97e1beed9cc6867d70d7"
   dependencies:
+    ansi-colors "^1.0.1"
     arrify "^1.0.1"
     escape-string-regexp "^1.0.5"
     event-stream "^3.1.0"
+    fancy-log "^1.3.2"
     group-array "^0.3.0"
-    gulp-util "^3.0.0"
+    plugin-error "^0.1.2"
     stream-to-array "^2.3.0"
     through2 "^2.0.1"
 
@@ -10899,11 +10901,11 @@ postcss-sassy-import@^1.2.3:
     postcss "^5.0.17"
     postcss-scss "^0.1.5"
 
-postcss-scss@1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/postcss-scss/-/postcss-scss-1.0.3.tgz#4c00ab440fc1c994134e3d4e600c23341af6cd27"
+postcss-scss@1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/postcss-scss/-/postcss-scss-1.0.4.tgz#6310fe1a15be418707a2cfd77f21dd4a06d1e09d"
   dependencies:
-    postcss "^6.0.15"
+    postcss "^6.0.19"
 
 postcss-scss@^0.1.5:
   version "0.1.9"
@@ -11077,7 +11079,7 @@ postcss@6.0.1:
     source-map "^0.5.6"
     supports-color "^3.2.3"
 
-postcss@6.0.19:
+postcss@6.0.19, postcss@^6.0.19:
   version "6.0.19"
   resolved "https://registry.yarnpkg.com/postcss/-/postcss-6.0.19.tgz#76a78386f670b9d9494a655bf23ac012effd1555"
   dependencies:
@@ -11109,14 +11111,6 @@ postcss@^5.0.0, postcss@^5.0.10, postcss@^5.0.11, postcss@^5.0.12, postcss@^5.0.
     js-base64 "^2.1.9"
     source-map "^0.5.6"
     supports-color "^3.2.3"
-
-postcss@^6.0.15:
-  version "6.0.15"
-  resolved "https://registry.yarnpkg.com/postcss/-/postcss-6.0.15.tgz#f460cd6269fede0d1bf6defff0b934a9845d974d"
-  dependencies:
-    chalk "^2.3.0"
-    source-map "^0.6.1"
-    supports-color "^5.1.0"
 
 postcss@^6.0.16:
   version "6.0.16"
@@ -14030,9 +14024,9 @@ uglify-to-browserify@~1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/uglify-to-browserify/-/uglify-to-browserify-1.0.2.tgz#6e0924d6bda6b5afe349e39a6d632850a0f882b7"
 
-uglifyjs-webpack-plugin@1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/uglifyjs-webpack-plugin/-/uglifyjs-webpack-plugin-1.2.0.tgz#f706fa4c655000a086b4a97c7d835ed0f6e9b0ef"
+uglifyjs-webpack-plugin@1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/uglifyjs-webpack-plugin/-/uglifyjs-webpack-plugin-1.2.2.tgz#e7516d4367afdb715c3847841eb46f94c45ca2b9"
   dependencies:
     cacache "^10.0.1"
     find-cache-dir "^1.0.0"
@@ -14667,9 +14661,9 @@ webidl-conversions@^4.0.1, webidl-conversions@^4.0.2:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/webidl-conversions/-/webidl-conversions-4.0.2.tgz#a855980b1f0b6b359ba1d5d9fb39ae941faa63ad"
 
-webpack-bundle-analyzer@2.10.0:
-  version "2.10.0"
-  resolved "https://registry.yarnpkg.com/webpack-bundle-analyzer/-/webpack-bundle-analyzer-2.10.0.tgz#d0646cda342939f6f05eb632a090abbd90317446"
+webpack-bundle-analyzer@2.10.1:
+  version "2.10.1"
+  resolved "https://registry.yarnpkg.com/webpack-bundle-analyzer/-/webpack-bundle-analyzer-2.10.1.tgz#544db56754b6737451f69d5fca7c0be5fe30987f"
   dependencies:
     acorn "^5.3.0"
     bfj-node4 "^5.2.0"
