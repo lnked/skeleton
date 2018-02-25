@@ -7,7 +7,7 @@ module.exports = function(name, config) {
 
     config = config || {};
     config.task = name;
-    
+
     gulp.task(name, function(callback) {
         let task = require(folder + name).call(this, config, bower);
         return task(callback);
