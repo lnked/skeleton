@@ -148,7 +148,7 @@
     "postcss-hexrgba": "^1.0.0",
     "postcss-inline-svg": "^3.0.0",
     "postcss-js": "^1.0.0",
-    "postcss-loader": "2.1.0",
+    "postcss-loader": "2.1.1",
     "postcss-media-minmax": "3.0.0",
     "postcss-mixins": "^6.1.0",
     "postcss-modules": "1.1.0",
