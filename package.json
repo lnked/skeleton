@@ -41,7 +41,7 @@
     "basisjs-tools-instrumenter": "^2.1.0",
     "brotli-webpack-plugin": "0.5.0",
     "browser-sync": "2.23.6",
-    "compression-webpack-plugin": "1.1.8",
+    "compression-webpack-plugin": "1.1.10",
     "critical": "1.1.0",
     "css-mqpacker": "6.0.2",
     "cssnano": "3.10.0",
