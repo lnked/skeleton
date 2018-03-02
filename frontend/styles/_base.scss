@@ -40,6 +40,11 @@ html, body {
     // &::-webkit-scrollbar {
     //     width: 0;
     // }
+
+    &.modal-open {
+        position: fixed;
+        width: 100%;
+    }
 }
 
 body, input, textarea, select, button {
