@@ -1,8 +1,7 @@
 @font-face {
-    font-family: 'ALSRubl-Regular';
-    src: local(ALSRubl-Regular),
-    	 url('../fonts/ruble/ALSRubl-Regular.woff2') format('woff2'),
-         url('../fonts/ruble/ALSRubl-Regular.woff') format('woff');
+    font-family: 'Ruble';
+    src: url('../fonts/ruble/ALSRubl.woff2') format('woff2'),
+         url('../fonts/ruble/ALSRubl.woff') format('woff');
     font-weight: 400;
     font-style: normal;
 }
