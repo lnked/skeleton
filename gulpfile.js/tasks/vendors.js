@@ -9,7 +9,6 @@ const bowerFiles    = require('main-bower-files');
 
 module.exports = function(config) {
     config = config || {};
-    console.log('config: ', config);
 
     return function(callback) {
 
