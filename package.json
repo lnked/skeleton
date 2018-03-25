@@ -128,7 +128,7 @@
     "pageres": "^4.5.1",
     "path": "^0.12.7",
     "perfectionist": "2.4.0",
-    "postcss": "6.0.20",
+    "postcss": "6.0.21",
     "postcss-assets": "^5.0.0",
     "postcss-browser-reporter": "^0.5.0",
     "postcss-calc": "^6.0.0",
@@ -148,7 +148,7 @@
     "postcss-hexrgba": "^1.0.0",
     "postcss-inline-svg": "^3.0.0",
     "postcss-js": "^1.0.0",
-    "postcss-loader": "2.1.2",
+    "postcss-loader": "2.1.3",
     "postcss-media-minmax": "3.0.0",
     "postcss-mixins": "^6.1.0",
     "postcss-modules": "1.1.0",
@@ -180,7 +180,7 @@
     "util": "^0.10.3",
     "webpack": "3.11.0",
     "webpack-bundle-analyzer": "2.11.1",
-    "webpack-stream": "4.0.2"
+    "webpack-stream": "4.0.3"
   },
   "bugs": {
     "url": "https://github.com/lnked/skeleton/issues",
