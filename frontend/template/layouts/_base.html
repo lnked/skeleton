@@ -2,11 +2,84 @@
 <!-- (c) lnk. CELEBRO Studio | https://celebro.ru -->
 <html class="no-js" lang="ru" itemscope="itemscope" itemtype="http://schema.org/WebPage">
 
-{%- include "partials/_head.html" -%}
-
 {%- import "exec/_mixins.html" as mixins -%}
 {%- import "exec/_forms.html" as forms -%}
 {%- import "exec/_components.html" as components -%}
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+
+    <link rel="preload" href="./js/vendors.min.js" as="script">
+    <link rel="preload" href="./js/libs.min.js" as="script">
+    <link rel="preload" href="./js/app.min.js" as="script">
+    <link rel="preload" href="./css/main.min.css" as="style">
+    <link rel="preload" href="./css/action.min.css" as="style">
+    <link rel="preload" href="./css/vendors.min.css" as="style">
+
+    <script>
+        WebFontConfig = {
+            google: {
+                families: ['Roboto Condensed:700:cyrillic', 'Roboto:300,400,500,700,900:cyrillic-ext']
+            }
+        };
+
+        (function(d) {
+            var wf = d.createElement('script'), s = d.scripts[0];
+            wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js';
+            wf.async = true;
+            s.parentNode.insertBefore(wf, s);
+        })(document);
+    </script>
+
+    {%- include "./partials/_styles.html" -%}
+
+    {# Description no longer than 155 characters #}
+    <title itemprop="name">{{ title }}</title>
+    <meta name="description" content="{{ description }}">
+    <meta name="keywords" content="{{ keywords }}">
+
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" content="{{ twitter_summary }}">
+    <meta name="twitter:site" content="{{ twitter_publisher }}">
+    <meta name="twitter:title" content="{{ twitter_title }}">
+    <meta name="twitter:description" content="{{ twitter_description }}">
+    <meta name="twitter:creator" content="{{ twitter_author }}">
+
+    {# Twitter Summary card images must be at least 120x120px #}
+    <meta name="twitter:image" content="{{ twitter_image }}">
+
+    <!-- Open Graph data -->
+    {# <meta property="og:type" content="article"> #}
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ og_url }}">
+    <meta property="og:title" content="{{ og_title }}">
+    <meta property="og:description" content="{{ og_description }}">
+    <meta property="og:image" content="{{ og_image }}">
+    <meta property="og:site_name" content="{{ og_sitename }}">
+    <meta property="fb:admins" content="{{ fb_admins }}">
+
+    <meta content="true" name="HandheldFriendly">
+    <meta content="320" name="MobileOptimized">
+
+    <meta content="notranslate" name="google">
+
+    <meta content="skype_toolbar_parser_compatible" name="skype_toolbar">
+
+    <meta content="date=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <meta content="address=no" name="format-detection">
+    <meta content="telephone=no" name="format-detection">
+
+    <!--[if lt IE 9]>
+        <meta http-equiv="cleartype" content="on">
+        <meta http-equiv="imagetoolbar" content="no">
+        <meta http-equiv="msthemecompatible" content="no">
+    <![endif]-->
+
+    <script>(function(d){d.className=d.className.replace(/\bno-js/,'')})(document.documentElement)</script>
+</head>
 
 <body class="page{% if body_class %} {{ body_class }}{% endif %}">
 
