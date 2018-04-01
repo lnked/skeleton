@@ -10808,7 +10808,7 @@ postcss-minify-selectors@^2.0.4:
     postcss "^5.0.14"
     postcss-selector-parser "^2.0.0"
 
-postcss-mixins@^6.1.0:
+postcss-mixins@6.2.0:
   version "6.2.0"
   resolved "https://registry.yarnpkg.com/postcss-mixins/-/postcss-mixins-6.2.0.tgz#fa9d2c2166b2ae7745956c727ab9dd2de4b96a40"
   dependencies:
@@ -10853,6 +10853,13 @@ postcss-modules@1.1.0:
     generic-names "^1.0.2"
     postcss "^6.0.1"
     string-hash "^1.1.1"
+
+postcss-nested@3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/postcss-nested/-/postcss-nested-3.0.0.tgz#cde40bd07a078565f3df72e2dc2665871c724852"
+  dependencies:
+    postcss "^6.0.14"
+    postcss-selector-parser "^3.1.1"
 
 postcss-normalize-charset@^1.1.0:
   version "1.1.1"
@@ -10989,7 +10996,7 @@ postcss-selector-not@3.0.1:
     balanced-match "^0.4.2"
     postcss "^6.0.1"
 
-postcss-selector-parser@3.1.1, postcss-selector-parser@^3.1.0:
+postcss-selector-parser@3.1.1, postcss-selector-parser@^3.1.0, postcss-selector-parser@^3.1.1:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/postcss-selector-parser/-/postcss-selector-parser-3.1.1.tgz#4f875f4afb0c96573d5cf4d74011aee250a7e865"
   dependencies:
@@ -11013,17 +11020,23 @@ postcss-selector-parser@^2.0.0, postcss-selector-parser@^2.2.2:
     indexes-of "^1.0.1"
     uniq "^1.0.1"
 
+postcss-short-spacing@3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/postcss-short-spacing/-/postcss-short-spacing-3.0.0.tgz#360c5e496fca1250aeeac5988d82e7c409352ca0"
+  dependencies:
+    postcss "^6.0.1"
+
+postcss-simple-vars@4.1.0, postcss-simple-vars@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/postcss-simple-vars/-/postcss-simple-vars-4.1.0.tgz#043248cfef8d3f51b3486a28c09f8375dbf1b2f9"
+  dependencies:
+    postcss "^6.0.9"
+
 postcss-simple-vars@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/postcss-simple-vars/-/postcss-simple-vars-2.0.0.tgz#d0a1091b0da22b79507028f7b22b976c0a60b8d5"
   dependencies:
     postcss "^5.0.21"
-
-postcss-simple-vars@^4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/postcss-simple-vars/-/postcss-simple-vars-4.1.0.tgz#043248cfef8d3f51b3486a28c09f8375dbf1b2f9"
-  dependencies:
-    postcss "^6.0.9"
 
 postcss-sorting@^3.0.1:
   version "3.1.0"
