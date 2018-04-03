@@ -1,0 +1,21 @@
+.text-eclipse {
+	position: relative;
+}
+
+.text-eclipse::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 45%; /* 1 */
+	height: 100%;
+	background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 87%); /* 2 */
+}
+
+.text-eclipse {
+	background: linear-gradient(to right, rgb(0, 186, 187) 50%, rgba(0, 186, 187, 0) 95%);
+	-webkit-background-clip: text;
+	color: transparent;
+}
+
+// <span class="text-eclipse" aria-label="Johnny Smith" title="Johnny Smith">Johnny Sm</span>
