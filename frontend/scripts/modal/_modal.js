@@ -122,8 +122,12 @@ const Modal = (function(w, d, b) {
             }
         },
 
-        show(selector) {
-            const modal = _render(template(selector, {}));
+        show(selector, data) {
+            if (typeof (data) === 'undefined') {
+                data = {}
+            }
+
+            const modal = _render(template(selector, data));
 
             this.bind(modal);
 
