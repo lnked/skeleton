@@ -27,7 +27,9 @@
     "clean": "rm -rf ./public_html",
     "python-server": "python -m SimpleHTTPServer 8000"
   },
-  "dependencies": {},
+  "dependencies": {
+    "npm": "5.8.0"
+  },
   "devDependencies": {
     "autoprefixer": "7.2.6",
     "babel-core": "6.26.0",
@@ -122,7 +124,7 @@
     "imagemin-optipng": "5.2.1",
     "imagemin-svgo": "6.0.0",
     "imagemin-webp": "4.1.0",
-    "left-pad": "1.2.0",
+    "left-pad": "1.3.0",
     "lost": "8.2.1",
     "main-bower-files": "^2.13.1",
     "pageres": "^4.5.1",
