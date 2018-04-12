@@ -43,7 +43,7 @@ module.exports = function(config) {
                 global.is.build,
                 $.prettify({
                     indent_size: 4,
-                    indent_level: 0,
+                    // indent_level: 0,
                     indent_char: ' ',
                     brace_style: 'expand',
                     end_with_newline: true,
