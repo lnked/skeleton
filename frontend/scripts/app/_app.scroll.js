@@ -1,43 +1,51 @@
-const app = app || {};
-
 ((body) => {
-  const $body = $('body');
+    let cacheSt
+    let timer;
 
-  app.scroll = {
-    disableHover() {
-      let timer;
-
-      $(window).on('scroll', () => {
-        clearTimeout(timer);
-
-        if (!$body.hasClass('disable-hover')) {
-          $body.addClass('disable-hover');
+    function throttle(action) {
+        let isRunning = false;
+        return function() {
+            if (isRunning) return;
+            isRunning = true;
+            window.requestAnimationFrame(() => {
+                action();
+                isRunning = false;
+            });
         }
-
-        timer = setTimeout(() => {
-          $body.removeClass('disable-hover');
-        }, 500);
-      });
-    },
-
-    bind() {
-      $('html').scrollWithEase();
-
-      $(window)
-        .on('scroll', () => {
-          if (
-            $(window).scrollTop() >
-                        $(document).height() - $(window).height()
-          ) {
-            // вызов апи
-          }
-        })
-        .scroll();
-    },
-
-    init() {
-      this.bind();
-      this.disableHover();
     }
-  };
+
+
+    app.scroll = {
+        disableHover() {
+            clearTimeout(timer);
+
+            if (!body.classList.contains('disable-hover')) {
+                body.classList.add('disable-hover');
+            }
+
+            timer = setTimeout(() => {
+                body.classList.remove('disable-hover');
+            }, 500);
+        },
+
+        update(st) {
+            this.disableHover();
+
+            console.log('scroll top: ', st);
+        },
+
+        bind() {
+            window.addEventListener('scroll', throttle(() => {
+                this.update(window.scrollY);
+            }));
+
+            // body.addEventListener('touchstart', e => {
+            // /* doSomething */
+            // }, { passive: true });
+        },
+
+        init() {
+            this.bind();
+        }
+    };
 })(document.body);
