@@ -49,6 +49,8 @@ module.exports = function(config, bower) {
                 .pipe($.if(global.is.lint, $.eslint.format()))
                 .pipe($.if(global.is.lint, $.eslint.failAfterError()))
 
+                .pipe($.sort())
+
                 .pipe($.imports())
 
                 .pipe($.if(/[.]coffee$/, $.coffee()))
@@ -63,7 +65,7 @@ module.exports = function(config, bower) {
 
                 .pipe($.rename({suffix: '.min'}))
 
-                .pipe($.if(global.is.build, $.uglify(uglifyConfig)))
+                .pipe($.if((global.is.build || (/[.]jsx$/ || global.is.react)), $.uglify(uglifyConfig)))
                 .pipe($.size({title: 'scripts'}))
 
                 .pipe($.if(!global.is.build, $.sourcemaps.write()))
