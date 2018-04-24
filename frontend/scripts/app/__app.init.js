@@ -13,7 +13,7 @@ $.ajaxSetup({
     beforeSend: function(xhr) {
         const token = Cookies.get("csrftoken");
         xhr.setRequestHeader('X-CSRFToken', token);
-        xhr.setRequestHeader('Cookie', `csrftoken=${token}`);
+        // xhr.setRequestHeader('Cookie', `csrftoken=${token}`);
     }
 });
 
