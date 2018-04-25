@@ -13,7 +13,6 @@ html, body { height: 100%; }
 
 html {
     quotes: "“" "”";
-    overflow-x: hidden;
     font-size: $font-base;
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
@@ -30,8 +29,8 @@ html, body {
     font-family: $font-family;
     line-height: 1.42857143;
     background-color: $c-body-background;
+    overflow-y: scroll;
     overflow-x: hidden;
-    overflow-y: auto;
 
     // overflow-y: scroll;
     // overflow-x: hidden;
