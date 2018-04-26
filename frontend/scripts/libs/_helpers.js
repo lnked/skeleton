@@ -1,10 +1,44 @@
-// // 'use strict';
+'use strict';
 
-// function declOfNum(n, titles) {
-//     const cases = [2, 0, 1, 1, 1, 2];
-//     n = Math.abs(n);
-//     return [n, titles[(n % 100 > 4 && n % 100 < 20) ? 2 : cases[(n % 10 < 5) ? n % 10 : 5]]].join(' ');
-// }
+const utils = {
+    isUndefined: function(x)
+    {
+        return typeof(x) == 'undefined';
+    },
+
+    isNull: function (x)
+    {
+        return typeof x === 'object' && x === null;
+    },
+
+    isInt: function (n){
+        return Number(n) === n && n % 1 === 0;
+    },
+
+    isFloat: function(n){
+        return Number(n) === n && n % 1 !== 0;
+    },
+
+    getUrlParameter: function (p) {
+        var u = decodeURIComponent(p);
+        var a = {};
+        var v = u.split('&');
+
+        for (var i = 0; i < v.length; i++) {
+            var t = v[i].split('=');
+            a[t[0]] = t[1];
+        }
+
+        return a;
+    },
+
+    declOfNum: function(n, titles) {
+        const cases = [2, 0, 1, 1, 1, 2];
+        n = Math.abs(n);
+        return [n, titles[(n % 100 > 4 && n % 100 < 20) ? 2 : cases[(n % 10 < 5) ? n % 10 : 5]]].join(' ');
+    }
+};
+
 
 // function currencyFormatDE (num) {
 //     return num
@@ -49,16 +83,6 @@
 //     };
 
 //     return formatMoney(number, 0, ' ', '');
-// }
-
-// function is_undefined(x)
-// {
-//     return typeof(x) == 'undefined';
-// }
-
-// function is_null (x)
-// {
-//     return typeof x === 'object' && x === null;
 // }
 
 // // var i = 1;
@@ -141,12 +165,4 @@
 // // function youTubeGetId(url) {
 // //     const expression = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be[.]?\/|youtube\.com[.]?\/(?:embed\/|v\/|watch\/?\?(?:\S+=\S*&)*v=))([\w-]{11})\S*$/;
 // //     return url.match(expression) ? RegExp.$1 : undefined;
-// // }
-
-// // function isInt(n){
-// //     return Number(n) === n && n % 1 === 0;
-// // }
-
-// // function isFloat(n){
-// //     return Number(n) === n && n % 1 !== 0;
 // // }
