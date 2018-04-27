@@ -55,7 +55,17 @@ module.exports = function(config, bower) {
 
                 .pipe($.if(/[.]coffee$/, $.coffee()))
                 .pipe($.if(/[.]jsx$/ || global.is.react, $.react({ harmony: true, es6module: true })))
-                .pipe($.babel())
+
+                // .pipe($.babel())
+
+                .pipe($.babel({
+                    "presets": [
+                        ["es2015", { "loose": true, "modules": false }], "stage-0", "react"
+                    ],
+                    "plugins": [
+                        "transform-object-rest-spread"
+                    ]
+                }))
 
                 .pipe($.if(!global.is.build, $.sourcemaps.write()))
 
