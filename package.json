@@ -146,7 +146,7 @@
     "postcss-emptymediaqueries": "0.0.2",
     "postcss-extend": "^1.0.4",
     "postcss-flexboxfixer": "0.0.5",
-    "postcss-flexbugs-fixes": "3.3.0",
+    "postcss-flexbugs-fixes": "3.3.1",
     "postcss-font-magician": "2.1.1",
     "postcss-for": "^2.1.1",
     "postcss-gradientfixer": "0.0.6",

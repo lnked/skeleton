@@ -5,12 +5,20 @@ module.exports.config = {
     overrides: {
         "jquery": {
             "main": [
-                // "jquery.min.js",
                 "dist/jquery.min.js"
             ]
         },
-        "instantclick": {
-            "main": "instantclick.js"
+        "state-keeper": {
+            "main": "src/state-keeper.js"
+        },
+        "js-cookie": {
+            "main": "src/js.cookie.js"
+        },
+        "babel-polyfill": {
+            "main": "browser-polyfill.js"
+        },
+        "select2": {
+            "main": "dist/js/select2.min.js"
         },
         "jquery-tubular": {
             "main": "dist/js/jquery-tubular.min.js"
@@ -24,8 +32,11 @@ module.exports.config = {
                 "dist/modal.min.css"
             ]
         },
-        "jscolor": {
-            "main": "jscolor.js"
+        "air-datepicker": {
+            "main": [
+                "dist/js/datepicker.min.js",
+                "dist/css/datepicker.min.css"
+            ]
         },
         "nanoscroller": {
             "main": "bin/javascripts/jquery.nanoscroller.min.js"
@@ -53,6 +64,9 @@ module.exports.config = {
         },
         "pubsub-js": {
             "main": "src/pubsub.js"
+        },
+        "pubsub-advanced": {
+            "main": "pubsub.js"
         },
         "horwheel": {
             "main": "dist/horwheel.min.js"
@@ -172,8 +186,8 @@ module.exports.config = {
         },
         "fancybox": {
             "main": [
-                "dist/jquery.fancybox.min.css",
-                "dist/jquery.fancybox.js",
+                // "dist/jquery.fancybox.min.css",
+                "dist/jquery.fancybox.min.js"
                 // "dist/jquery.fancybox.min.js",
                 // "source/jquery.fancybox.css",
                 // "source/jquery.fancybox.pack.js"
@@ -217,29 +231,16 @@ module.exports.config = {
                 "dist/themes/airbnb.css"
             ]
         },
+        "moment": {
+            "main": [
+                "locale/ru.js",
+                "min/moment.min.js"
+            ]
+        },
         "moment-datepicker": {
             "main": [
                 "moment-datepicker/moment-datepicker.min.js",
                 "moment-datepicker/datepicker2.css"
-            ]
-        },
-        "fullcalendar": {
-            "main": [
-                "dist/fullcalendar.min.js",
-                "dist/fullcalendar.min.css",
-                "dist/locale/ru.js"
-            ]
-        },
-        "fullcalendar-scheduler": {
-            "main": [
-                "dist/scheduler.min.js",
-                "dist/scheduler.min.css"
-            ]
-        },
-        "moment": {
-            "main": [
-                "min/moment.min.js",
-                "locale/ru.js"
             ]
         },
         "bootstrap": {
@@ -260,14 +261,17 @@ module.exports.config = {
         "js-md5": {
             "main": "js/md5.min.js"
         },
+        "Sortable": {
+            "main": "Sortable.min.js"
+        },
+        "sortablejs": {
+            "main": "Sortable.min.js"
+        },
         "jquery-sortable": {
             "main": "source/js/jquery-sortable-min.js"
         },
         "chosen": {
-            "main": [
-                "chosen.min.css",
-                "chosen.jquery.min.js"
-            ]
+            "main": "chosen.jquery.js"
         },
         "clipboard": {
             "main": "dist/clipboard.min.js"
@@ -284,12 +288,9 @@ module.exports.config = {
         "pass-gen-js": {
             "main": "PassGenJS.js"
         },
-        "wnumb": {
-            "main": "wNumb.js"
-        },
         "nouislider": {
             "main": [
-                "distribute/nouislider.min.css",
+                // "distribute/nouislider.css",
                 "distribute/nouislider.min.js"
             ]
         },
@@ -359,10 +360,22 @@ module.exports.config = {
         "Template7": {
             "main": "dist/template7.min.js"
         },
+        "redux": {
+            "main": "index.js"
+        },
+        "reflux": {
+            "main": "dist/reflux.min.js"
+        },
+        "reflux-stateful": {
+            "main": "index.js"
+        },
+        "purescript-react-redux": {
+            "main": "index.js"
+        },
         "react": {
             "main": [
-                "react.min.js",
-                "react-dom.min.js"
+                "react.production.16.min.js",
+                "react-dom.production.16.min.js"
             ]
         },
         "material-design-iconic-font": {
