@@ -73,6 +73,9 @@ module.exports = function(config, bower) {
             require('postcss-vmin'),
             require('postcss-opacity'),
             require('postcss-hexrgba'),
+            require('postcss-reduce-idents'),
+            require('postcss-minify-font-values'),
+            require('postcss-pseudo-content-insert'),
             require('postcss-color-rgba-fallback'),
             require('postcss-reporter')({
                 clearMessages: true,

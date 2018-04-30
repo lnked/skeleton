@@ -11688,7 +11688,7 @@ postcss-message-helpers@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/postcss-message-helpers/-/postcss-message-helpers-2.0.0.tgz#a4f2f4fab6e4fe002f0aed000478cdf52f9ba60e"
 
-postcss-minify-font-values@^1.0.2:
+postcss-minify-font-values@1.0.5, postcss-minify-font-values@^1.0.2:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/postcss-minify-font-values/-/postcss-minify-font-values-1.0.5.tgz#4b58edb56641eba7c8474ab3526cafd7bbdecb69"
   dependencies:
@@ -11808,6 +11808,12 @@ postcss-position@^1.0.0:
   dependencies:
     postcss "^6.0.7"
 
+postcss-pseudo-content-insert@0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/postcss-pseudo-content-insert/-/postcss-pseudo-content-insert-0.3.0.tgz#d711900b4f4e98aa17dad8e20acc5794cac9fb38"
+  dependencies:
+    postcss "^5.0.2"
+
 postcss-quantity-queries@^0.5.0:
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/postcss-quantity-queries/-/postcss-quantity-queries-0.5.0.tgz#52b6717fcc8d9925ae64cff43340870fe15516ab"
@@ -11815,7 +11821,7 @@ postcss-quantity-queries@^0.5.0:
     balanced-match "^0.4.2"
     postcss "^6.0.0"
 
-postcss-reduce-idents@^2.2.2:
+postcss-reduce-idents@2.4.0, postcss-reduce-idents@^2.2.2:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/postcss-reduce-idents/-/postcss-reduce-idents-2.4.0.tgz#c2c6d20cc958284f6abfbe63f7609bf409059ad3"
   dependencies:
