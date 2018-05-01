@@ -1,5 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const styles = ['https://i5.walmartimages.com/.../style.css', ...];
+    const styles = [
+        '/main.min.css',
+        '/vendors.min.css'
+    ];
+
     styles.forEach((path) => {
         const link = document.createElement('link');
         link.rel = 'stylesheet';
