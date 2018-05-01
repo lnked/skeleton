@@ -27,10 +27,18 @@ for (let task_name in config.tasks) {
 gulp.task('build',
     gulp.series(
         'before_build',
-        gulp.parallel('template', 'scripts', 'images', 'favicon', 'fonts', 'json', 'misc', 'vendors'),
-        'styles' //,
-        // 'serviceWorker'
+        gulp.parallel(
+            'template',
+            'styles',
+            'scripts',
+            'images',
+            'favicon',
+            'fonts',
+            'json',
+            'misc',
+            'vendors'
+        )
     )
 );
 
-gulp.task('default', gulp.parallel( 'watch', 'webserver' ));
+gulp.task('default', gulp.parallel('watch', 'webserver'));
