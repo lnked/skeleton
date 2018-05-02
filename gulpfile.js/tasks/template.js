@@ -22,11 +22,6 @@ module.exports = function(config) {
             .pipe($.plumber({errorHandler: error}))
             .pipe($.debug({'title': config.task}))
 
-            .pipe($.fileInclude({
-                prefix: '@@',
-                basepath: '@file'
-            }))
-
             .pipe($.if(global.is.watch, $.changed(config.app)))
 
             .pipe($.frontMatter({ property: 'data' }))
@@ -39,11 +34,15 @@ module.exports = function(config) {
                 }
             }))
 
+            .pipe($.fileInclude({
+                prefix: '@@',
+                basepath: '@file'
+            }))
+
             .pipe($.if(
                 global.is.build,
                 $.prettify({
                     indent_size: 4,
-                    // indent_level: 0,
                     indent_char: ' ',
                     brace_style: 'expand',
                     end_with_newline: true,
