@@ -65,6 +65,7 @@ module.exports = function(config, bower) {
             require('postcss-custom-media'),
             require('postcss-media-minmax'),
             require('postcss-conditionals'),
+            require('postcss-mq-keyframes'),
             require('postcss-quantity-queries'),
             require('postcss-font-magician')({
                 hosted: '/fonts',
@@ -119,6 +120,9 @@ module.exports = function(config, bower) {
             })
         ],
         build: [
+            require('postcss-will-change-transition'),
+            require('postcss-will-change'),
+            require('postcss-critical-css'),
             require('postcss-discard-comments'),
             require('postcss-emptymediaqueries'),
             require('postcss-flexboxfixer'),
