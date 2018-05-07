@@ -11841,12 +11841,6 @@ postcss-position@^1.0.0:
   dependencies:
     postcss "^6.0.7"
 
-postcss-pseudo-content-insert@0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/postcss-pseudo-content-insert/-/postcss-pseudo-content-insert-0.3.0.tgz#d711900b4f4e98aa17dad8e20acc5794cac9fb38"
-  dependencies:
-    postcss "^5.0.2"
-
 postcss-quantity-queries@^0.5.0:
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/postcss-quantity-queries/-/postcss-quantity-queries-0.5.0.tgz#52b6717fcc8d9925ae64cff43340870fe15516ab"
