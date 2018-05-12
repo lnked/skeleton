@@ -35,6 +35,7 @@
     "inert-polyfill": "0.2.4",
     "hammerjs": "2.0.8",
     "history.js": "1.8.0",
-    "scrollmagic": "2.0.5"
+    "scrollmagic": "2.0.5",
+    "reactjs": "reactjs-bower#undefined"
   }
 }

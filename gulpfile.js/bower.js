@@ -372,10 +372,10 @@ module.exports.config = {
         "purescript-react-redux": {
             "main": "index.js"
         },
-        "react": {
+        "reactjs": {
             "main": [
-                "react.production.16.min.js",
-                "react-dom.production.16.min.js"
+                "react.production.min.js",
+                "react-dom.production.min.js"
             ]
         },
         "material-design-iconic-font": {
