@@ -169,7 +169,7 @@
     "postcss-reduce-idents": "2.4.0",
     "postcss-reporter": "^5.0.0",
     "postcss-safe-parser": "^3.0.1",
-    "postcss-sass": "0.3.1",
+    "postcss-sass": "0.3.2",
     "postcss-sassy-import": "^1.2.3",
     "postcss-scss": "1.0.5",
     "postcss-selector-not": "3.0.1",
@@ -193,7 +193,7 @@
     "uncss": "0.16.2",
     "util": "^0.10.3",
     "webpack": "3.11.0",
-    "webpack-bundle-analyzer": "2.12.0",
+    "webpack-bundle-analyzer": "2.13.0",
     "webpack-stream": "4.0.3"
   },
   "bugs": {
