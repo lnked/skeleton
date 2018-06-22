@@ -21,21 +21,26 @@
   ],
   "timeout": 120000,
   "dependencies": {
-    "jquery": "3.2.1",
-    "cleave.js": "1.0.2",
+    "jquery": "3.3.1",
     "svg4everybody": "2.1.9",
     "cookie": "1.2.2",
-    "a11y.css": "4.2.1",
+    "a11y.css": "4.5.2",
     "object-fit": "0.4.2",
-    "fancybox": "3.1.25",
-    "pubsub-js": "1.5.7",
+    "fancybox": "3.3.5",
+    "pubsub-js": "1.6.0",
     "bLazy": "blazy#1.8.2",
     "Template7": "template7#1.3.1",
     "picturePolyfill": "4.2.1",
-    "inert-polyfill": "0.2.4",
+    "inert-polyfill": "0.2.5",
     "hammerjs": "2.0.8",
     "history.js": "1.8.0",
-    "scrollmagic": "2.0.5",
-    "reactjs": "reactjs-bower#undefined"
+    "scrollmagic": "2.0.5"
+  },
+  "resolutions": {
+    "jquery": "^3.3.1",
+    "a11y.css": "^4.5.2",
+    "fancybox": "^3.3.5",
+    "pubsub-js": "^1.6.0",
+    "inert-polyfill": "^0.2.5"
   }
 }

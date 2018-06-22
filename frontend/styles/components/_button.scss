@@ -31,7 +31,35 @@
         background-color: darken(#f6171e, 10%);
     }
 
+    &--progress {
+        cursor: default;
+        pointer-events: none;
+
+        &:after {
+            content: '';
+            position: absolute 0;
+            background-image: linear-gradient(
+                -45deg,
+                rgba(255, 255, 255, .2) 25%,
+                transparent 25%,
+                transparent 50%,
+                rgba(255, 255, 255, .2) 50%,
+                rgba(255, 255, 255, .2) 75%,
+                transparent 75%,
+                transparent
+            );
+            z-index: 10;
+            background-size: 50px 50px;
+            animation: move 2s linear infinite;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+    }
+
+    &:disabled,
+    &[disabled],
     &.disabled {
+        pointer-events: none;
         background: #ccc !important;
         cursor: not-allowed !important;
         background: #ccc !important;

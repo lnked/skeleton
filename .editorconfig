@@ -17,11 +17,11 @@ indent_style = space
 
 [*.scss]
 indent_size = 4
-indent_style = tab
+indent_style = space
 
 [*.sass]
 indent_size = 4
-indent_style = tab
+indent_style = space
 
 [*.{json,js,jsx,html,css}]
 indent_style = space
@@ -29,12 +29,12 @@ indent_size = 4
 
 # Только для файлов package.json or .travis.yml
 [{bower.json,package.json,.travis.yml}]
-indent_size = 2
+indent_size = 4
 indent_style = space
 
 [.eslintrc]
 file_type = yaml
-indent_size = 2
+indent_size = 4
 indent_style = space
 
 [*.md]

@@ -1,0 +1,9 @@
+@media screen and (min-width: 1px) and (max-width:600px) {
+	html::before {
+		content: 'Маленький экран';
+		display: none;
+	}
+}
+
+// var MQ_indicator = window.getComputedStyle(document.querySelector('html'), ':before').getPropertyValue('content').replace(/["']/g,'');
+// if(MQ_indicator == 'Маленький экран') {

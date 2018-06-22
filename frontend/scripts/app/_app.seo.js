@@ -1,7 +1,7 @@
 const app = app || {};
 
 ((body) => {
-  app.seo = {
-    init() {}
-  };
+    app.seo = {
+        init() {}
+    };
 })(document.body);
