@@ -271,7 +271,10 @@ module.exports.config = {
             "main": "source/js/jquery-sortable-min.js"
         },
         "chosen": {
-            "main": "chosen.jquery.js"
+            "main": [
+                "chosen.min.css",
+                "chosen.jquery.min.js"
+            ]
         },
         "clipboard": {
             "main": "dist/clipboard.min.js"
